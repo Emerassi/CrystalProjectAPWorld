@@ -1,8 +1,9 @@
 from dataclasses import dataclass
 from typing import Type, Any, List
 from typing import Dict
-from Options import Toggle, DefaultOnToggle, DeathLink, Choice, Range, Visibility, Option, OptionGroup
-from Options import PerGameCommonOptions, DeathLinkMixin, AssembleOptions, StartInventoryPool
+from Options import Toggle, DefaultOnToggle, Choice, Range, OptionGroup, OptionList
+from Options import PerGameCommonOptions, StartInventoryPool
+from .constants.display_regions import *
 
 def create_option_groups() -> List[OptionGroup]:
     option_group_list: List[OptionGroup] = []
@@ -83,13 +84,25 @@ class IncludedRegions(Choice):
     Expert: Regions up to The Deep Sea will have checks. (Note: The Depths will not be included.)
 
     All: Every region is included. Finish Line: True Astley
+
+    Custom: Specify which regions to include via the CustomIncludedRegions option.
     """
     display_name = "Regions to include in game"
     option_beginner = 0
     option_advanced = 1
     option_expert = 2
     option_all = 3
+    option_custom = 4
     default = 3
+
+class CustomIncludedRegions(OptionList):
+    """
+    Only used with the custom option for IncludedRegions.
+    Delete the regions you do NOT want included in your seed
+    """
+    display_name = "Custom Included Regions"
+    valid_keys = includable_regions
+    default = includable_regions
 
 class JobRando(Choice):
     """
@@ -389,6 +402,7 @@ class CrystalProjectOptions(PerGameCommonOptions):
     shopsanity: Shopsanity
     regionsanity: Regionsanity
     includedRegions: IncludedRegions
+    customIncludedRegions: CustomIncludedRegions
     progressiveMountMode: ProgressiveMountMode
     levelGating: LevelGating
     levelComparedToEnemies: LevelComparedToEnemies
@@ -411,7 +425,7 @@ class CrystalProjectOptions(PerGameCommonOptions):
 
 crystal_project_option_groups: Dict[str, List[Any]] = {
     "Goal Options": [Goal, ClamshellGoalQuantity, ExtraClamshellsInPool, NewWorldStoneJobQuantity],
-    "Location Options": [IncludedRegions, JobRando, StartingJobQuantity, KillBossesMode, Shopsanity, Regionsanity],
+    "Location Options": [IncludedRegions, CustomIncludedRegions, JobRando, StartingJobQuantity, KillBossesMode, Shopsanity, Regionsanity],
     "Progression Options": [ProgressiveMountMode, LevelGating, LevelComparedToEnemies, ProgressiveLevelSize, MaxLevel, KeyMode, ObscureRoutes, AutoSpendLP, AutoEquipPassives, EasyLeveling],
     "Item Pool Options": [ProgressiveEquipmentMode, StartWithTreasureFinder, StartWithMaps, IncludeSummonAbilities, IncludeScholarAbilities],
     "Bonus Fun": [ItemInfoMode, RandomizeMusic, UseMods]

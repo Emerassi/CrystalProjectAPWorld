@@ -13,6 +13,7 @@ from .items import item_table, optional_scholar_abilities, get_random_starting_j
     get_item_names_per_category, progressive_equipment, non_progressive_equipment, get_starting_jobs, \
     set_jobs_at_default_locations, default_starting_job_list, key_rings, dungeon_keys, singleton_keys, \
     display_region_name_to_pass_dict
+from .region_items import region_equipment, region_items, region_shop_items
 from .locations import get_locations, get_bosses, get_shops, get_region_completions, LocationData
 from .presets import crystal_project_options_presets
 from .regions import init_areas, ap_region_to_display_region_dictionary, display_region_subregions_dictionary
@@ -454,6 +455,28 @@ class CrystalProjectWorld(World):
 
     def get_item_pool(self, excluded_items: Set[str]) -> List[Item]:
         pool: List[Item] = []
+
+        for region in self.included_regions:
+            if region in region_equipment.keys():
+                for data in region_equipment[region]:
+                    if data.name not in excluded_items:
+                        for _ in range(data.amount):
+                            item = self.set_classifications(data.name)
+                            pool.append(item)
+
+            if region in region_items.keys():
+                for data in region_items[region]:
+                    if data.name not in excluded_items:
+                        for _ in range(data.amount):
+                            item = self.set_classifications(data.name)
+                            pool.append(item)
+
+            if self.options.shopsanity.value != self.options.shopsanity.option_disabled and region in region_shop_items.keys():
+                for data in region_shop_items[region]:
+                    if data.name not in excluded_items:
+                        for _ in range(data.amount):
+                            item = self.set_classifications(data.name)
+                            pool.append(item)
 
         for name, data in item_table.items():
             if name not in excluded_items:

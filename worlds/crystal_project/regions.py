@@ -189,103 +189,113 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
 
     locations_per_region = get_locations_per_ap_region(locations)
 
-    excluded = False
+    included_regions: List[str] = []
+    if options.includedRegions == options.includedRegions.option_custom:
+        for region in options.customIncludedRegions.value:
+            included_regions.append(region)
+    else:
+        included_regions = [MENU_DISPLAY_NAME, SPAWNING_MEADOWS_DISPLAY_NAME, DELENDE_DISPLAY_NAME, MERCURY_SHRINE_DISPLAY_NAME,
+                            SOILED_DEN_DISPLAY_NAME, THE_PALE_GROTTO_DISPLAY_NAME, SEASIDE_CLIFFS_DISPLAY_NAME, DRAFT_SHAFT_CONDUIT_DISPLAY_NAME,
+                            YAMAGAWA_MA_DISPLAY_NAME, PROVING_MEADOWS_DISPLAY_NAME, SKUMPARADISE_DISPLAY_NAME]
+        if options.includedRegions >= options.includedRegions.option_advanced:
+            included_regions.extend([CAPITAL_SEQUOIA_DISPLAY_NAME, JOJO_SEWERS_DISPLAY_NAME, BOOMER_SOCIETY_DISPLAY_NAME, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME,
+                                     QUINTAR_NEST_DISPLAY_NAME, QUINTAR_SANCTUM_DISPLAY_NAME, CAPITAL_JAIL_DISPLAY_NAME, CAPITAL_PIPELINE_DISPLAY_NAME,
+                                     COBBLESTONE_CRAG_DISPLAY_NAME, OKIMOTO_NS_DISPLAY_NAME, GREENSHIRE_REPRISE_DISPLAY_NAME, SALMON_PASS_DISPLAY_NAME,
+                                     SALMON_RIVER_DISPLAY_NAME, SHOUDU_WATERFRONT_DISPLAY_NAME, POKO_POKO_DESERT_DISPLAY_NAME, SARA_SARA_BAZAAR_DISPLAY_NAME,
+                                     ANCIENT_RESERVOIR_DISPLAY_NAME, SALMON_BAY_DISPLAY_NAME])
+        if options.includedRegions >= options.includedRegions.option_expert:
+            included_regions.extend([THE_OPEN_SEA_DISPLAY_NAME, SHOUDU_PROVINCE_DISPLAY_NAME, THE_UNDERCITY_DISPLAY_NAME,
+                                     GANYMEDE_SHRINE_DISPLAY_NAME, BEAURIOR_VOLCANO_DISPLAY_NAME, BEAURIOR_ROCK_DISPLAY_NAME,
+                                     LAKE_DELENDE_DISPLAY_NAME, QUINTAR_RESERVE_DISPLAY_NAME, DIONE_SHRINE_DISPLAY_NAME,
+                                     QUINTAR_MAUSOLEUM_DISPLAY_NAME, EASTERN_CHASM_DISPLAY_NAME, TALL_TALL_HEIGHTS_DISPLAY_NAME,
+                                     NORTHERN_CAVE_DISPLAY_NAME, NORTHERN_CAVE_DISPLAY_NAME, LANDS_END_DISPLAY_NAME,
+                                     LANDS_END_DISPLAY_NAME, SLIP_GLIDE_RIDE_DISPLAY_NAME, SEQUOIA_ATHENAEUM_DISPLAY_NAME,
+                                     NORTHERN_STRETCH_DISPLAY_NAME, CASTLE_RAMPARTS_DISPLAY_NAME, THE_CHALICE_OF_TAR_DISPLAY_NAME,
+                                     FLYERS_CRAG_DISPLAY_NAME, JIDAMBA_TANGLE_DISPLAY_NAME, JIDAMBA_EACLANEYA_DISPLAY_NAME,
+                                     THE_DEEP_SEA_DISPLAY_NAME, NEPTUNE_SHRINE_DISPLAY_NAME, JADE_CAVERN_DISPLAY_NAME,
+                                     CONTINENTAL_TRAM_DISPLAY_NAME])
+        if options.includedRegions >= options.includedRegions.option_all:
+            included_regions.extend([ANCIENT_LABYRINTH_DISPLAY_NAME, THE_SEQUOIA_DISPLAY_NAME, THE_DEPTHS_DISPLAY_NAME,
+                                     CASTLE_SEQUOIA_DISPLAY_NAME, THE_OLD_WORLD_DISPLAY_NAME, THE_NEW_WORLD_DISPLAY_NAME])
 
     beginner_regions = [
-        create_display_region(world, player, locations_per_region, MENU_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, SPAWNING_MEADOWS_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, DELENDE_DISPLAY_NAME, excluded),
+        create_display_region(world, player, locations_per_region, MENU_DISPLAY_NAME, False),
+        create_display_region(world, player, locations_per_region, SPAWNING_MEADOWS_DISPLAY_NAME, SPAWNING_MEADOWS_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, DELENDE_DISPLAY_NAME, DELENDE_DISPLAY_NAME not in included_regions),
         # bumped up mercury shrine because region order influences shop price NOTE TO DRAGONS, DO NOT MOVE WITHOUT REASON!!
-        create_display_region(world, player, locations_per_region, MERCURY_SHRINE_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, SOILED_DEN_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, THE_PALE_GROTTO_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, SEASIDE_CLIFFS_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, DRAFT_SHAFT_CONDUIT_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, YAMAGAWA_MA_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, PROVING_MEADOWS_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, SKUMPARADISE_DISPLAY_NAME, excluded),
+        create_display_region(world, player, locations_per_region, MERCURY_SHRINE_DISPLAY_NAME, MERCURY_SHRINE_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, SOILED_DEN_DISPLAY_NAME, SOILED_DEN_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, THE_PALE_GROTTO_DISPLAY_NAME, THE_PALE_GROTTO_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, SEASIDE_CLIFFS_DISPLAY_NAME, SEASIDE_CLIFFS_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, DRAFT_SHAFT_CONDUIT_DISPLAY_NAME, DRAFT_SHAFT_CONDUIT_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, YAMAGAWA_MA_DISPLAY_NAME, YAMAGAWA_MA_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, PROVING_MEADOWS_DISPLAY_NAME, PROVING_MEADOWS_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, SKUMPARADISE_DISPLAY_NAME, SKUMPARADISE_DISPLAY_NAME not in included_regions),
     ]
-
-    if (options.includedRegions == options.includedRegions.option_advanced or
-        options.includedRegions == options.includedRegions.option_expert or
-        options.includedRegions == options.includedRegions.option_all):
-        excluded = False
-    else:
-        excluded = True
 
     advanced_regions = [
-        create_display_region(world, player, locations_per_region, CAPITAL_SEQUOIA_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, JOJO_SEWERS_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, BOOMER_SOCIETY_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, QUINTAR_NEST_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, QUINTAR_SANCTUM_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, CAPITAL_JAIL_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, CAPITAL_PIPELINE_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, COBBLESTONE_CRAG_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, OKIMOTO_NS_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, GREENSHIRE_REPRISE_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, SALMON_PASS_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, SALMON_RIVER_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, SHOUDU_WATERFRONT_DISPLAY_NAME, excluded), #moved from Expert to Advanced
-        create_display_region(world, player, locations_per_region, POKO_POKO_DESERT_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, SARA_SARA_BAZAAR_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, SARA_SARA_BEACH_EAST_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, SARA_SARA_BEACH_WEST_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, ANCIENT_RESERVOIR_DISPLAY_NAME, excluded),
+        create_display_region(world, player, locations_per_region, CAPITAL_SEQUOIA_DISPLAY_NAME, CAPITAL_SEQUOIA_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, JOJO_SEWERS_DISPLAY_NAME, JOJO_SEWERS_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, BOOMER_SOCIETY_DISPLAY_NAME, BOOMER_SOCIETY_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, QUINTAR_NEST_DISPLAY_NAME, QUINTAR_NEST_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, QUINTAR_SANCTUM_DISPLAY_NAME, QUINTAR_SANCTUM_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, CAPITAL_JAIL_DISPLAY_NAME, CAPITAL_JAIL_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, CAPITAL_PIPELINE_DISPLAY_NAME, CAPITAL_PIPELINE_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, COBBLESTONE_CRAG_DISPLAY_NAME, COBBLESTONE_CRAG_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, OKIMOTO_NS_DISPLAY_NAME, OKIMOTO_NS_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, GREENSHIRE_REPRISE_DISPLAY_NAME, GREENSHIRE_REPRISE_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, SALMON_PASS_DISPLAY_NAME, SALMON_PASS_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, SALMON_RIVER_DISPLAY_NAME, SALMON_RIVER_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, SHOUDU_WATERFRONT_DISPLAY_NAME, SHOUDU_WATERFRONT_DISPLAY_NAME not in included_regions), #moved from Expert to Advanced
+        create_display_region(world, player, locations_per_region, POKO_POKO_DESERT_DISPLAY_NAME, POKO_POKO_DESERT_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, SARA_SARA_BAZAAR_DISPLAY_NAME, SARA_SARA_BAZAAR_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, SARA_SARA_BEACH_EAST_DISPLAY_NAME, SARA_SARA_BEACH_EAST_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, SARA_SARA_BEACH_WEST_DISPLAY_NAME, SARA_SARA_BEACH_WEST_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, ANCIENT_RESERVOIR_DISPLAY_NAME, ANCIENT_RESERVOIR_DISPLAY_NAME not in included_regions),
         #create_display_region(world, player, locations_per_region, IBEK_CAVE_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, SALMON_BAY_DISPLAY_NAME, excluded),
+        create_display_region(world, player, locations_per_region, SALMON_BAY_DISPLAY_NAME, SALMON_BAY_DISPLAY_NAME not in included_regions),
     ]
-
-    if (options.includedRegions == options.includedRegions.option_expert or
-        options.includedRegions == options.includedRegions.option_all):
-        excluded = False
-    else:
-        excluded = True
 
     expert_regions = [
-        create_display_region(world, player, locations_per_region, THE_OPEN_SEA_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, SHOUDU_PROVINCE_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, THE_UNDERCITY_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, GANYMEDE_SHRINE_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, BEAURIOR_VOLCANO_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, BEAURIOR_ROCK_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, LAKE_DELENDE_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, QUINTAR_RESERVE_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, DIONE_SHRINE_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, QUINTAR_MAUSOLEUM_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, EASTERN_CHASM_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, TALL_TALL_HEIGHTS_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, NORTHERN_CAVE_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, LANDS_END_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, SLIP_GLIDE_RIDE_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, SEQUOIA_ATHENAEUM_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, NORTHERN_STRETCH_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, CASTLE_RAMPARTS_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, THE_CHALICE_OF_TAR_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, FLYERS_CRAG_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, JIDAMBA_TANGLE_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, JIDAMBA_EACLANEYA_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, THE_DEEP_SEA_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, NEPTUNE_SHRINE_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, JADE_CAVERN_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, CONTINENTAL_TRAM_DISPLAY_NAME, excluded),
+        create_display_region(world, player, locations_per_region, THE_OPEN_SEA_DISPLAY_NAME, THE_OPEN_SEA_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, SHOUDU_PROVINCE_DISPLAY_NAME, SHOUDU_PROVINCE_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, THE_UNDERCITY_DISPLAY_NAME, THE_UNDERCITY_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, GANYMEDE_SHRINE_DISPLAY_NAME, GANYMEDE_SHRINE_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, BEAURIOR_VOLCANO_DISPLAY_NAME, BEAURIOR_VOLCANO_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, BEAURIOR_ROCK_DISPLAY_NAME, BEAURIOR_ROCK_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, LAKE_DELENDE_DISPLAY_NAME, LAKE_DELENDE_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, QUINTAR_RESERVE_DISPLAY_NAME, QUINTAR_RESERVE_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, DIONE_SHRINE_DISPLAY_NAME, DIONE_SHRINE_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, QUINTAR_MAUSOLEUM_DISPLAY_NAME, QUINTAR_MAUSOLEUM_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, EASTERN_CHASM_DISPLAY_NAME, EASTERN_CHASM_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, TALL_TALL_HEIGHTS_DISPLAY_NAME, TALL_TALL_HEIGHTS_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, NORTHERN_CAVE_DISPLAY_NAME, NORTHERN_CAVE_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, LANDS_END_DISPLAY_NAME, LANDS_END_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, SLIP_GLIDE_RIDE_DISPLAY_NAME, SLIP_GLIDE_RIDE_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, SEQUOIA_ATHENAEUM_DISPLAY_NAME, SEQUOIA_ATHENAEUM_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, NORTHERN_STRETCH_DISPLAY_NAME, NORTHERN_STRETCH_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, CASTLE_RAMPARTS_DISPLAY_NAME, CASTLE_RAMPARTS_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, THE_CHALICE_OF_TAR_DISPLAY_NAME, THE_CHALICE_OF_TAR_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, FLYERS_CRAG_DISPLAY_NAME, FLYERS_CRAG_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, JIDAMBA_TANGLE_DISPLAY_NAME, JIDAMBA_TANGLE_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, JIDAMBA_EACLANEYA_DISPLAY_NAME, JIDAMBA_EACLANEYA_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, THE_DEEP_SEA_DISPLAY_NAME, THE_DEEP_SEA_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, NEPTUNE_SHRINE_DISPLAY_NAME, NEPTUNE_SHRINE_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, JADE_CAVERN_DISPLAY_NAME, JADE_CAVERN_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, CONTINENTAL_TRAM_DISPLAY_NAME, CONTINENTAL_TRAM_DISPLAY_NAME not in included_regions),
     ]
-
-    if options.includedRegions == options.includedRegions.option_all:
-        excluded = False
-    else:
-        excluded = True
      
     end_game_regions = [
-        create_display_region(world, player, locations_per_region, ANCIENT_LABYRINTH_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, THE_SEQUOIA_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, THE_DEPTHS_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, CASTLE_SEQUOIA_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, THE_OLD_WORLD_DISPLAY_NAME, excluded),
-        create_display_region(world, player, locations_per_region, THE_NEW_WORLD_DISPLAY_NAME, excluded),
+        create_display_region(world, player, locations_per_region, ANCIENT_LABYRINTH_DISPLAY_NAME, ANCIENT_LABYRINTH_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, THE_SEQUOIA_DISPLAY_NAME, THE_SEQUOIA_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, THE_DEPTHS_DISPLAY_NAME, THE_DEPTHS_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, CASTLE_SEQUOIA_DISPLAY_NAME, CASTLE_SEQUOIA_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, THE_OLD_WORLD_DISPLAY_NAME, THE_OLD_WORLD_DISPLAY_NAME not in included_regions),
+        create_display_region(world, player, locations_per_region, THE_NEW_WORLD_DISPLAY_NAME, THE_NEW_WORLD_DISPLAY_NAME not in included_regions),
     ]
 
+    excluded = False
     if options.useMods.value == options.useMods.option_true:
         excluded = False
     else:
