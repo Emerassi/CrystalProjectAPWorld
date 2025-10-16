@@ -57,18 +57,53 @@ region_equipment: Dict[str, List[ItemData]] = {
 }
 
 region_items: Dict[str, List[ItemData]] = {
-    MENU_DISPLAY_NAME: [],
+    MENU_DISPLAY_NAME: [
+        ItemData(WARRIOR_JOB, JOB, 0 + job_index_offset, ItemClassification.progression),
+        ItemData(MONK_JOB, JOB, 5 + job_index_offset, ItemClassification.progression),
+        ItemData(ROGUE_JOB, JOB, 2 + job_index_offset, ItemClassification.progression),
+        ItemData(CLERIC_JOB, JOB, 4 + job_index_offset, ItemClassification.progression),
+        ItemData(WIZARD_JOB, JOB, 3 + job_index_offset, ItemClassification.progression),
+        ItemData(WARLOCK_JOB, JOB, 14 + job_index_offset, ItemClassification.progression),
+        ItemData(FENCER_JOB, JOB, 1 + job_index_offset, ItemClassification.progression),
+        ItemData(SHAMAN_JOB, JOB, 8 + job_index_offset, ItemClassification.progression),
+        ItemData(SCHOLAR_JOB, JOB, 13 + job_index_offset, ItemClassification.progression),  # requirement for Grans subbasement
+        ItemData(AEGIS_JOB, JOB, 10 + job_index_offset, ItemClassification.progression),
+        ItemData(HUNTER_JOB, JOB, 7 + job_index_offset, ItemClassification.progression),
+        ItemData(CHEMIST_JOB, JOB, 17 + job_index_offset, ItemClassification.progression),
+        ItemData(REAPER_JOB, JOB, 6 + job_index_offset, ItemClassification.progression),
+        ItemData(NINJA_JOB, JOB, 18 + job_index_offset, ItemClassification.progression),
+        ItemData(NOMAD_JOB, JOB, 12 + job_index_offset, ItemClassification.progression),
+        ItemData(DERVISH_JOB, JOB, 11 + job_index_offset, ItemClassification.progression),
+        ItemData(BEATSMITH_JOB, JOB, 9 + job_index_offset, ItemClassification.progression),
+        ItemData(SAMURAI_JOB, JOB, 20 + job_index_offset, ItemClassification.progression),
+        ItemData(ASSASSIN_JOB, JOB, 19 + job_index_offset, ItemClassification.progression),
+        ItemData(VALKYRIE_JOB, JOB, 15 + job_index_offset, ItemClassification.progression),
+        ItemData(SUMMONER_JOB, JOB, 21 + job_index_offset, ItemClassification.progression),  # Required for summon fights; only job checked by NPCs
+        ItemData(BEASTMASTER_JOB, JOB, 23 + job_index_offset, ItemClassification.progression),
+        ItemData(WEAVER_JOB, JOB, 16 + job_index_offset, ItemClassification.progression),
+        ItemData(MIMIC_JOB, JOB, 22 + job_index_offset, ItemClassification.progression),
+        ItemData(PROGRESSIVE_QUINTAR_WOODWIND, MOUNT, 39 + item_index_offset, ItemClassification.progression, 3),  # Quintar Pass ID 7 & Quintar Flute ID 39 & Quintar Ocarina 115
+        ItemData(IBEK_BELL, MOUNT, 50 + item_index_offset, ItemClassification.progression),
+        ItemData(OWL_DRUM, MOUNT, 49 + item_index_offset, ItemClassification.progression),
+        ItemData(PROGRESSIVE_SALMON_VIOLA, MOUNT, 48 + item_index_offset, ItemClassification.progression, 2),  # Salmon Violin ID 48 & Salmon Cello ID 114
+        ItemData(PROGRESSIVE_MOUNT, MOUNT, 700 + item_index_offset, ItemClassification.progression, 7),
+        ItemData(HOME_POINT_STONE, TELEPORT_STONE, 19 + item_index_offset, ItemClassification.useful),
+    ],
     SPAWNING_MEADOWS_DISPLAY_NAME: [
+        ItemData(SPAWNING_MEADOWS_PASS, PASS, 801 + item_index_offset, ItemClassification.progression),
         ItemData(SPAWNING_MEADOWS_MAP, MAP, 73 + item_index_offset, ItemClassification.useful),
         ItemData(BLACK_SQUIRREL, ITEM, 21 + item_index_offset, ItemClassification.progression, 4),
         ItemData("Item - Tonic Pouch", ITEM, 133 + item_index_offset, ItemClassification.useful, 2),
     ],
     DELENDE_DISPLAY_NAME: [
+        ItemData(DELENDE_PASS, PASS, 802 + item_index_offset, ItemClassification.progression),
         ItemData(DELENDE_MAP, MAP, 74 + item_index_offset, ItemClassification.useful),
         ItemData(BASEMENT_MAP, MAP, 213 + item_index_offset, ItemClassification.useful),
         ItemData(DOG_BONE, ITEM, 6 + item_index_offset, ItemClassification.progression, 3),
         ItemData("Item - Gold Dust", ORE, 70 + item_index_offset, ItemClassification.useful),
         ItemData("Item - Tincture Pouch", ITEM, 135 + item_index_offset, ItemClassification.useful, 2),
+        ItemData("Item - Flimsy Rod", TACKLE, 55 + item_index_offset, ItemClassification.progression),
+        ItemData("Item - Plug Lure", TACKLE, 91 + item_index_offset, ItemClassification.progression),
     ]
 }
 
