@@ -53,6 +53,17 @@ region_equipment: Dict[str, List[ItemData]] = {
         ItemData("Equipment - Protect Amulet", EQUIPMENT, 49 + equipment_index_offset, ItemClassification.useful),
         ItemData("Equipment - Iron Sword", EQUIPMENT, 11 + equipment_index_offset, ItemClassification.useful),
         ItemData("Equipment - Storm Hood", EQUIPMENT, 76 + equipment_index_offset, ItemClassification.useful),
+    ],
+    MERCURY_SHRINE_DISPLAY_NAME: [
+        ItemData("Equipment - Contract", EQUIPMENT, 71 + equipment_index_offset, ItemClassification.useful),
+    ],
+    SOILED_DEN_DISPLAY_NAME: [
+        ItemData("Equipment - Dodge Charm", EQUIPMENT, 39 + equipment_index_offset, ItemClassification.useful),
+    ],
+    THE_PALE_GROTTO_DISPLAY_NAME: [
+        ItemData("Equipment - Poisonkiss", EQUIPMENT, 40 + equipment_index_offset, ItemClassification.useful),
+        ItemData("Equipment - Toothpick", EQUIPMENT, 42 + equipment_index_offset, ItemClassification.useful),
+        ItemData("Equipment - Storm Helm", EQUIPMENT, 74 + equipment_index_offset, ItemClassification.useful),
     ]
 }
 
@@ -104,6 +115,22 @@ region_items: Dict[str, List[ItemData]] = {
         ItemData("Item - Tincture Pouch", ITEM, 135 + item_index_offset, ItemClassification.useful, 2),
         ItemData("Item - Flimsy Rod", TACKLE, 55 + item_index_offset, ItemClassification.progression),
         ItemData("Item - Plug Lure", TACKLE, 91 + item_index_offset, ItemClassification.progression),
+    ],
+    MERCURY_SHRINE_DISPLAY_NAME: [
+        ItemData(MERCURY_SHRINE_PASS, PASS, 807 + item_index_offset, ItemClassification.progression),
+        ItemData(MERCURY_SHRINE_MAP, MAP, 87 + item_index_offset, ItemClassification.useful),
+        ItemData(MERCURY_STONE, TELEPORT_STONE, 13 + item_index_offset, ItemClassification.progression),
+    ],
+    SOILED_DEN_DISPLAY_NAME: [
+        ItemData(SOILED_DEN_PASS, PASS, 803 + item_index_offset, ItemClassification.progression),
+        ItemData(SOILED_DEN_MAP, MAP, 79 + item_index_offset, ItemClassification.useful),
+        ItemData("Item - Tonic Pouch", ITEM, 133 + item_index_offset, ItemClassification.useful),
+    ],
+    THE_PALE_GROTTO_DISPLAY_NAME: [
+        ItemData(THE_PALE_GROTTO_PASS, PASS, 804 + item_index_offset, ItemClassification.progression),
+        ItemData(THE_PALE_GROTTO_MAP, MAP, 75 + item_index_offset, ItemClassification.useful),
+        ItemData("Item - Tincture Pouch", ITEM, 135 + item_index_offset, ItemClassification.useful),
+        ItemData("Item - Z-Potion Pouch", ITEM, 143 + item_index_offset, ItemClassification.useful),
     ]
 }
 
