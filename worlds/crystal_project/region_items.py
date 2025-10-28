@@ -64,6 +64,14 @@ region_equipment: Dict[str, List[ItemData]] = {
         ItemData("Equipment - Poisonkiss", EQUIPMENT, 40 + equipment_index_offset, ItemClassification.useful),
         ItemData("Equipment - Toothpick", EQUIPMENT, 42 + equipment_index_offset, ItemClassification.useful),
         ItemData("Equipment - Storm Helm", EQUIPMENT, 74 + equipment_index_offset, ItemClassification.useful),
+    ],
+    SEASIDE_CLIFFS_DISPLAY_NAME: [
+        ItemData("Equipment - Storm Cap", EQUIPMENT, 75 + equipment_index_offset, ItemClassification.useful),
+        ItemData("Equipment - Swimmers Top", EQUIPMENT, 81 + equipment_index_offset, ItemClassification.useful),
+        ItemData("Equipment - Bracer", EQUIPMENT, 70 + equipment_index_offset, ItemClassification.useful),
+        ItemData("Equipment - Headgear", EQUIPMENT, 30 + equipment_index_offset, ItemClassification.useful),
+        ItemData("Equipment - Scope Bit", EQUIPMENT, 226 + equipment_index_offset, ItemClassification.useful),
+        ItemData("Equipment - Jewel of Defense", EQUIPMENT, 50 + equipment_index_offset, ItemClassification.useful),
     ]
 }
 
@@ -99,6 +107,35 @@ region_items: Dict[str, List[ItemData]] = {
         ItemData(PROGRESSIVE_SALMON_VIOLA, MOUNT, 48 + item_index_offset, ItemClassification.progression, 2),  # Salmon Violin ID 48 & Salmon Cello ID 114
         ItemData(PROGRESSIVE_MOUNT, MOUNT, 700 + item_index_offset, ItemClassification.progression, 7),
         ItemData(HOME_POINT_STONE, TELEPORT_STONE, 19 + item_index_offset, ItemClassification.useful),
+        ItemData(SHAKU_SUMMON, SUMMON, 223 + summon_index_offset, ItemClassification.useful),
+        ItemData(PAMOA_SUMMON, SUMMON, 224 + summon_index_offset, ItemClassification.useful),
+        ItemData(GUABA_SUMMON, SUMMON, 225 + summon_index_offset, ItemClassification.useful),
+        ItemData(NILTSI_SUMMON, SUMMON, 226 + summon_index_offset, ItemClassification.useful),
+        ItemData(IOSKE_SUMMON, SUMMON, 227 + summon_index_offset, ItemClassification.useful),
+        ItemData(COYOTE_SUMMON, SUMMON, 228 + summon_index_offset, ItemClassification.useful),
+        ItemData(TIRA_SUMMON, SUMMON, 231 + summon_index_offset, ItemClassification.useful),
+        ItemData(JUSES_SUMMON, SUMMON, 232 + summon_index_offset, ItemClassification.useful),
+        ItemData(PAH_SUMMON, SUMMON, 234 + summon_index_offset, ItemClassification.useful),
+        ItemData(ROOST, SCHOLAR_ABILITY, 25 + scholar_index_offset, ItemClassification.useful),
+        ItemData(LUCKY_DICE, SCHOLAR_ABILITY, 70 + scholar_index_offset, ItemClassification.useful),
+        ItemData(SUN_BATH, SCHOLAR_ABILITY, 101 + scholar_index_offset, ItemClassification.useful),
+        ItemData(SLEEP_AURA, SCHOLAR_ABILITY, 186 + scholar_index_offset, ItemClassification.useful),
+        ItemData(REGENERATE, SCHOLAR_ABILITY, 197 + scholar_index_offset, ItemClassification.useful),
+        ItemData(REVERSE_POLARITY, SCHOLAR_ABILITY, 198 + scholar_index_offset, ItemClassification.progression),
+        ItemData(BARRIER, SCHOLAR_ABILITY, 199 + scholar_index_offset, ItemClassification.useful),
+        ItemData(MP_SICKLE, SCHOLAR_ABILITY, 200 + scholar_index_offset, ItemClassification.useful),
+        ItemData(ADRENALINE, SCHOLAR_ABILITY, 202 + scholar_index_offset, ItemClassification.useful),
+        ItemData(FIRE_BREATH, SCHOLAR_ABILITY, 205 + scholar_index_offset, ItemClassification.useful),
+        ItemData(EXPLODE, SCHOLAR_ABILITY, 206 + scholar_index_offset, ItemClassification.useful),
+        ItemData(WHIRLWIND, SCHOLAR_ABILITY, 207 + scholar_index_offset, ItemClassification.useful),
+        ItemData(ATMOSHEAR, SCHOLAR_ABILITY, 213 + scholar_index_offset, ItemClassification.useful),
+        ItemData(BUILD_LIFE, SCHOLAR_ABILITY, 245 + scholar_index_offset, ItemClassification.useful),
+        ItemData(AERO, SCHOLAR_ABILITY, 264 + scholar_index_offset, ItemClassification.useful),
+        ItemData(INSULT, SCHOLAR_ABILITY, 363 + scholar_index_offset, ItemClassification.useful),
+        ItemData(INFUSION, SCHOLAR_ABILITY, 364 + scholar_index_offset, ItemClassification.useful),
+        ItemData(OVERlOAD, SCHOLAR_ABILITY, 365 + scholar_index_offset, ItemClassification.useful),
+        ItemData(REFLECTION, SCHOLAR_ABILITY, 366 + scholar_index_offset, ItemClassification.useful),
+        ItemData(LIFEGIVER, SCHOLAR_ABILITY, 376 + scholar_index_offset, ItemClassification.useful),
     ],
     SPAWNING_MEADOWS_DISPLAY_NAME: [
         ItemData(SPAWNING_MEADOWS_PASS, PASS, 801 + item_index_offset, ItemClassification.progression),
@@ -131,6 +168,13 @@ region_items: Dict[str, List[ItemData]] = {
         ItemData(THE_PALE_GROTTO_MAP, MAP, 75 + item_index_offset, ItemClassification.useful),
         ItemData("Item - Tincture Pouch", ITEM, 135 + item_index_offset, ItemClassification.useful),
         ItemData("Item - Z-Potion Pouch", ITEM, 143 + item_index_offset, ItemClassification.useful),
+    ],
+    SEASIDE_CLIFFS_DISPLAY_NAME: [
+        ItemData(SEASIDE_CLIFFS_PASS, PASS, 805 + item_index_offset, ItemClassification.progression),
+        ItemData(SEASIDE_CLIFFS_MAP, MAP, 76 + item_index_offset, ItemClassification.useful),
+        ItemData(CLAMSHELL, ITEM, 16 + item_index_offset, ItemClassification.progression, 0),
+        ItemData("Item - Diamond Ore", ORE, 5 + item_index_offset, ItemClassification.useful),
+        ItemData("Item - Tincture Pouch", ITEM, 135 + item_index_offset, ItemClassification.useful),
     ]
 }
 
@@ -167,5 +211,11 @@ region_shop_items: Dict[str, List[ItemData]] = {
         ItemData("Equipment - Cleaver", EQUIPMENT, 2 + equipment_index_offset, ItemClassification.useful),
         ItemData("Equipment - Fishgutter", EQUIPMENT, 77 + equipment_index_offset, ItemClassification.useful),
         ItemData("Equipment - Moby Dick", EQUIPMENT, 51 + equipment_index_offset, ItemClassification.useful),
+    ],
+    SEASIDE_CLIFFS_DISPLAY_NAME: [
+        ItemData("Equipment - Hand Axe", EQUIPMENT, 55 + equipment_index_offset, ItemClassification.useful),
+        ItemData("Equipment - Chopper", EQUIPMENT, 66 + equipment_index_offset, ItemClassification.useful),
+        ItemData("Equipment - Orylei", EQUIPMENT, 65 + equipment_index_offset, ItemClassification.useful),
+        ItemData("Equipment - Jewel of Defense", EQUIPMENT, 50 + equipment_index_offset, ItemClassification.useful),
     ]
 }

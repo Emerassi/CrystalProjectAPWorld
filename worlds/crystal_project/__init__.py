@@ -140,6 +140,8 @@ class CrystalProjectWorld(World):
 
         self.multiworld.push_precollected(self.create_item(HOME_POINT_STONE))
 
+        #precollect region passes for unincluded regions
+
         # Checks if starting jobs is empty and if so fills it.  If this is UT re-gen it won't be empty
         if not self.starting_jobs:
             self.starting_jobs = get_starting_jobs(self)
