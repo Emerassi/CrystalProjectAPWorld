@@ -11,6 +11,7 @@ from .constants.summons import *
 from .constants.teleport_stones import *
 from .constants.region_passes import *
 from .constants.display_regions import *
+from .constants.crystal_locations import *
 
 if TYPE_CHECKING:
     from . import CrystalProjectWorld
@@ -1711,30 +1712,30 @@ default_starting_job_list: List[str] = [
 ]
 
 job_crystal_beginner_dictionary: Dict[str, str] = {
-    FENCER_JOB: "Pale Grotto Crystal - Fencer",
-    SHAMAN_JOB: "Draft Shaft Conduit Crystal - Shaman",
-    SCHOLAR_JOB: "Yamagawa M.A. Crystal - Jump into fireplace cave for Scholar",
-    AEGIS_JOB: "Skumparadise Crystal - Aegis",
+    FENCER_JOB: FENCER_JOB_CRYSTAL_LOCATION,
+    SHAMAN_JOB: SHAMAN_JOB_CRYSTAL_LOCATION,
+    SCHOLAR_JOB: SCHOLAR_JOB_CRYSTAL_LOCATION,
+    AEGIS_JOB: AEGIS_JOB_CRYSTAL_LOCATION,
 }
 
 job_crystal_advanced_dictionary: Dict[str, str] = {
-    HUNTER_JOB: "Quintar Nest Crystal - Hunter",
-    CHEMIST_JOB: "Quintar Sanctum Crystal - Chemist (of course this is in the shroom zone)",
-    REAPER_JOB: "Capital Jail Crystal - Reaper, above hell pool",
-    NINJA_JOB: "Okimoto N.S. Crystal - Ninja",
-    NOMAD_JOB: "River Cats Ego Crystal - Appease the QuizFish Nomad",
-    DERVISH_JOB: "Ancient Reservoir Crystal - Dervish",
-    BEATSMITH_JOB: "Capital Sequoia Crystal - Beatsmith",
+    HUNTER_JOB: HUNTER_JOB_CRYSTAL_LOCATION,
+    CHEMIST_JOB: CHEMIST_JOB_CRYSTAL_LOCATION,
+    REAPER_JOB: REAPER_JOB_CRYSTAL_LOCATION,
+    NINJA_JOB: NINJA_JOB_CRYSTAL_LOCATION,
+    NOMAD_JOB: NOMAD_JOB_CRYSTAL_LOCATION,
+    DERVISH_JOB: DERVISH_JOB_CRYSTAL_LOCATION,
+    BEATSMITH_JOB: BEATSMITH_JOB_CRYSTAL_LOCATION,
 }
 
 job_crystal_expert_dictionary: Dict[str, str] = {
-    SAMURAI_JOB: "Shoudu Province Crystal - Samurai for 3 Sky Arena wins",
-    ASSASSIN_JOB: "The Undercity Crystal - Assassin",
-    VALKYRIE_JOB: "Beaurior Volcano Crystal - Valkyrie",
-    SUMMONER_JOB: "Slip Glide Ride Crystal - Summoner",
-    BEASTMASTER_JOB: "Castle Ramparts Crystal - Beastmaster (say high to the Ramparts Demon!)",
-    WEAVER_JOB: "Jidamba Eaclaneya Crystal - Weaver",
-    MIMIC_JOB: "The Chalice of Tar Crystal - Biiiiiig glide to the Mimic",
+    SAMURAI_JOB: SAMURAI_JOB_CRYSTAL_LOCATION,
+    ASSASSIN_JOB: ASSASSIN_JOB_CRYSTAL_LOCATION,
+    VALKYRIE_JOB: VALKYRIE_JOB_CRYSTAL_LOCATION,
+    SUMMONER_JOB: SUMMONER_JOB_CRYSTAL_LOCATION,
+    BEASTMASTER_JOB: BEASTMASTER_JOB_CRYSTAL_LOCATION,
+    WEAVER_JOB: WEAVER_JOB_CRYSTAL_LOCATION,
+    MIMIC_JOB: MIMIC_JOB_CRYSTAL_LOCATION,
 }
 
 key_rings: Tuple[str, ...] = (
@@ -1874,13 +1875,13 @@ def get_item_names_per_category() -> Dict[str, Set[str]]:
     return categories
 
 def get_starting_jobs(world: "CrystalProjectWorld") -> List[str]:
-    if world.options.jobRando.value == world.options.jobRando.option_full:
-        return get_random_starting_jobs(world, world.options.startingJobQuantity.value)
+    if world.options.job_rando.value == world.options.job_rando.option_full:
+        return get_random_starting_jobs(world, world.options.starting_job_quantity.value)
     else:
         return default_starting_job_list
 
 def get_random_starting_jobs(self, count:int) -> List[str]:
-    if self.options.useMods.value == self.options.useMods.option_true:
+    if self.options.use_mods.value == self.options.use_mods.option_true:
         return self.random.sample(list(self.item_name_groups[JOB]), count)
     else:
         return self.random.sample(list(self.base_game_jobs), count)
@@ -1888,11 +1889,11 @@ def get_random_starting_jobs(self, count:int) -> List[str]:
 def set_jobs_at_default_locations(world: "CrystalProjectWorld"):
     job_crystal_dictionary: Dict[str, str] = job_crystal_beginner_dictionary.copy() #if we don't use copy it means updating job_crystal_dictionary messes with the beginner dict too
 
-    if world.options.includedRegions.value == world.options.includedRegions.option_advanced:
+    if world.options.included_regions.value == world.options.included_regions.option_advanced:
         job_crystal_dictionary.update(job_crystal_advanced_dictionary)
 
-    if (world.options.includedRegions.value == world.options.includedRegions.option_expert
-        or world.options.includedRegions.value == world.options.includedRegions.option_all):
+    if (world.options.included_regions.value == world.options.included_regions.option_expert
+        or world.options.included_regions.value == world.options.included_regions.option_all):
         job_crystal_dictionary.update(job_crystal_advanced_dictionary)
         job_crystal_dictionary.update(job_crystal_expert_dictionary)
 

@@ -6,7 +6,6 @@ from .locations import LocationData
 from .constants.ap_regions import *
 from .constants.display_regions import *
 from .constants.keys import *
-from .constants.key_items import *
 from .constants.teleport_stones import *
 
 def get_home_points(player: Optional[int], options: Optional[CrystalProjectOptions]) -> List[LocationData]:
@@ -57,7 +56,7 @@ def get_home_points(player: Optional[int], options: Optional[CrystalProjectOptio
         LocationData(OKIMOTO_NS_AP_REGION, "Okimoto N.S. Base", 335),
         LocationData(OKIMOTO_NS_AP_REGION, "Ninja Yashiki", 366),
 
-        LocationData(SALMON_PASS_AP_REGION, "Salmon Pass Entrance", 367),
+        LocationData(SALMON_PASS_EAST_AP_REGION, "Salmon Pass Entrance", 367),
 
         LocationData(SALMON_RIVER_AP_REGION, "Salmon Shack", 1076),
 
@@ -96,30 +95,30 @@ def get_home_points(player: Optional[int], options: Optional[CrystalProjectOptio
         LocationData(PIPELINE_NORTH_AP_REGION, "Capital Pipeline", 1127),
         LocationData(PIPELINE_SOUTH_AP_REGION, "East Capital Pipeline", 1420),
 
-        LocationData(TALL_TALL_HEIGHTS_AP_REGION, "Sequoia Athenaeum", 2361, lambda state: logic.has_vertical_movement(state) and logic.has_glide(state)),
-        LocationData(TALL_TALL_HEIGHTS_AP_REGION, "Ice Pass", 2413),
-        LocationData(TALL_TALL_HEIGHTS_AP_REGION, "Tall, Tall Souvenir Shop", 1260, lambda state: logic.has_vertical_movement(state) and logic.has_glide(state)),
-        LocationData(TALL_TALL_HEIGHTS_AP_REGION, "Land's End Cottage", 2564),
-        LocationData(TALL_TALL_HEIGHTS_AP_REGION, "Slip Glide Ride Exit", 2743, lambda state: logic.has_vertical_movement(state) and logic.has_glide(state)),
-        LocationData(TALL_TALL_HEIGHTS_AP_REGION, "Ice Fisher's Hut", 3014),
-        LocationData(TALL_TALL_HEIGHTS_AP_REGION, "Triton Shrine", 3018, lambda state: logic.has_vertical_movement(state) or state.has(TRITON_STONE, player)),
-        LocationData(TALL_TALL_HEIGHTS_AP_REGION, "Tall, Tall Heights", 3047),
+        LocationData(SEQUOIA_ATHENAEUM_ENTRANCE_AP_REGION, "Sequoia Athenaeum", 2361),
+        LocationData(LOWER_ICE_LAKES_AP_REGION, "Ice Pass", 2413),
+        LocationData(SOUVENIR_SHOP_AP_REGION, "Tall, Tall Souvenir Shop", 1260),
+        LocationData(LOWER_ICE_LAKES_AP_REGION, "Land's End Cottage", 2564),
+        LocationData(SLIP_GLIDE_RIDE_EXIT_AP_REGION, "Slip Glide Ride Exit", 2743),
+        LocationData(LOWER_ICE_LAKES_AP_REGION, "Ice Fisher's Hut", 3014),
+        LocationData(UPPER_ICE_LAKES_AP_REGION, "Triton Shrine", 3018),
+        LocationData(TALL_TALL_SAVE_POINT_AP_REGION, "Tall, Tall Heights", 3047),
 
-        LocationData(CASTLE_RAMPARTS_AP_REGION, "East Ramparts", 1375, lambda state: logic.has_glide(state)),
-        LocationData(CASTLE_RAMPARTS_AP_REGION, "West Ramparts", 1376, lambda state: logic.has_glide(state)),
+        LocationData(PEAK_RAMPARTS_AP_REGION, "East Ramparts", 1375, lambda state: logic.has_glide(state)),
+        LocationData(PEAK_RAMPARTS_AP_REGION, "West Ramparts", 1376, lambda state: logic.has_glide(state)),
 
-        LocationData(SLIP_GLIDE_RIDE_AP_REGION, "Slip Glide Ride Entrance", 1550),
+        LocationData(SLIP_GLIDE_RIDE_ENTRANCE_AP_REGION, "Slip Glide Ride Entrance", 1550),
 
         LocationData(LANDS_END_AP_REGION, "Summit Shrine", 1559),
 
         LocationData(QUINTAR_RESERVE_AP_REGION, "Dione Shrine", 1595),
 
-        LocationData(JIDAMBA_TANGLE_AP_REGION, "Europa Shrine", 1626),
+        LocationData(EUROPA_SHRINE_AP_REGION, "Europa Shrine", 1626),
 
         LocationData(JIDAMBA_EACLANEYA_AP_REGION, "Eaclaneya Entrance", 1402),
         LocationData(JIDAMBA_EACLANEYA_AP_REGION, "Salmon Room", 2474),
 
-        LocationData(ANCIENT_LABYRINTH_AP_REGION, "Ancient Labyrinth Core", 1739, lambda state: state.has(ANCIENT_TABLET_B, player) and state.has(ANCIENT_TABLET_C, player)),
+        LocationData(LABYRINTH_CORE_AP_REGION, "Ancient Labyrinth Core", 1739),
 
         LocationData(DIONE_SHRINE_AP_REGION, "Flyer's Lookout", 2141),
 

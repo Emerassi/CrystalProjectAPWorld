@@ -140,8 +140,8 @@ class Shopsanity(Choice):
     """
     When enabled, all shop inventories will be replaced with checks. Be prepared, adventurer.
 
-    Choosing "enabled and hint" will automatically create a hint for any item available in a store after you have visited it for the first time,
-    letting other players in the multiworld know you've seen their item.
+    Choosing "enabled and hint" will, when you CLOSE the store, automatically create a hint for every item you did not purchase
+    so other players will realize you have betrayed them by refusing to purchase their key progression item!
     """
     display_name = "Shopsanity"
     option_disabled = 0
@@ -149,7 +149,7 @@ class Shopsanity(Choice):
     option_enabled_and_hint = 2
     default = 0
 
-class Regionsanity(Toggle):
+class Regionsanity(Choice):
     """
     Nothing I have tried has been able to drive the citizens of Sequoia to collect enough crystals!
     Adventurers have had TOO MUCH freedom!  From now on, you will adventure where I tell you to.
@@ -161,9 +161,18 @@ class Regionsanity(Toggle):
     However, the Overpass and Underpass are regions of lawlessness where the Grandmaster has no authority! ;)
     (You're also still allowed to use the save points, we won't tell.)
 
+    If you put any region pass items in your starting inventory, the first one will be chosen as your starting region.
+
+    If regionsanity is set to extreme, the Grandmaster won't even let you walk through regions you don't have the pass for.
+    Spend more than 10 seconds in a region without a pass and the Grandmaster will teleport you!
+
     You will start the game with a pass for one reachable region.
     """
     display_name = "Regionsanity"
+    option_disabled = 0
+    option_enabled = 1
+    option_extreme = 2
+    default = 0
 
 #"""Progression Options"""
 class ProgressiveMountMode(DefaultOnToggle):
@@ -277,8 +286,8 @@ class ObscureRoutes(Toggle):
 
 class AutoSpendLP(Toggle):
     """
-    When enabled, every time a character earns LP it will automatically spend LP on abilities or passives.
-    Extra LP earned on a job that is maxxed will then be sent to your subjob or if that is also maxxed a random unmaxxed job.
+    When enabled, every time a character earns LP, it will automatically spend LP on abilities or passives.
+    Extra LP earned on a job that is maxed will be sent to your sub job or, if that is also maxed, a random un-maxed job.
     """
     display_name = "Automatically Spend LP"
 
@@ -321,6 +330,12 @@ class StartWithMaps(DefaultOnToggle):
     """
     display_name = "Begin with Area Maps"
 
+class FillFullMap(Toggle):
+    """
+    When enabled, the world map will start filled in for areas that the player has a map item for.
+    """
+    display_name = "Fill Full Map"
+
 class IncludeSummonAbilities(DefaultOnToggle):
     """
     When enabled, Summons are added to the item pool.
@@ -338,7 +353,7 @@ class IncludeScholarAbilities(DefaultOnToggle):
 #"""Bonus Fun"""
 class TrapLikelihood(Range):
     """
-    This is the likelihood that a trap will replace a filler check, a value of 0 means no traps
+    This is the likelihood that a trap will replace a filler check. A value of 0 means no traps.
     """
     display_name = "Trap Likelihood"
     range_start = 0
@@ -349,7 +364,7 @@ class ItemInfoMode(Choice):
     """
     For Full, all treasure and store icons on the map will display if they are progression, useful, or filler items.
 
-    For Earned, all treasure and store icons on the map will display as mimics until you obtain the map-revealing item that is not yet implemented idk come back v0.9.
+    For Earned, all treasure and store icons on the map will display as mimics until you obtain the map-revealing item that is not yet implemented idk come back later.
 
     For Obscured, all treasure and store icons on the map will display as mimics permanently.
     If you find skipping treasures is distasteful but part of your brain always wants to be efficient, this option is for you!
@@ -393,40 +408,41 @@ class UseMods(Toggle):
 class CrystalProjectOptions(PerGameCommonOptions):
     start_inventory_from_pool: StartInventoryPool
     goal: Goal
-    newWorldStoneJobQuantity: NewWorldStoneJobQuantity
-    clamshellGoalQuantity: ClamshellGoalQuantity
-    extraClamshellsInPool: ExtraClamshellsInPool
-    jobRando: JobRando
-    startingJobQuantity: StartingJobQuantity
-    killBossesMode: KillBossesMode
+    new_world_stone_job_quantity: NewWorldStoneJobQuantity
+    clamshell_goal_quantity: ClamshellGoalQuantity
+    extra_clamshells_in_pool: ExtraClamshellsInPool
+    job_rando: JobRando
+    starting_job_quantity: StartingJobQuantity
+    kill_bosses_mode: KillBossesMode
     shopsanity: Shopsanity
     regionsanity: Regionsanity
-    includedRegions: IncludedRegions
-    customIncludedRegions: CustomIncludedRegions
-    progressiveMountMode: ProgressiveMountMode
-    levelGating: LevelGating
-    levelComparedToEnemies: LevelComparedToEnemies
-    progressiveLevelSize: ProgressiveLevelSize
-    maxLevel: MaxLevel
-    keyMode: KeyMode
-    obscureRoutes: ObscureRoutes
+    included_regions: IncludedRegions
+    progressive_mount_mode: ProgressiveMountMode
+    custom_included_regions: CustomIncludedRegions
+    level_gating: LevelGating
+    level_compared_to_enemies: LevelComparedToEnemies
+    progressive_level_size: ProgressiveLevelSize
+    max_level: MaxLevel
+    key_mode: KeyMode
+    obscure_routes: ObscureRoutes
     auto_spend_lp: AutoSpendLP
     auto_equip_passives: AutoEquipPassives
-    easyLeveling: EasyLeveling
-    progressiveEquipmentMode: ProgressiveEquipmentMode
-    startWithTreasureFinder: StartWithTreasureFinder
-    startWithMaps: StartWithMaps
-    includeSummonAbilities: IncludeSummonAbilities
-    includeScholarAbilities: IncludeScholarAbilities
-    trapLikelihood: TrapLikelihood
+    easy_leveling: EasyLeveling
+    progressive_equipment_mode: ProgressiveEquipmentMode
+    start_with_treasure_finder: StartWithTreasureFinder
+    start_with_maps: StartWithMaps
+    fill_full_map: FillFullMap
+    include_summon_abilities: IncludeSummonAbilities
+    include_scholar_abilities: IncludeScholarAbilities
+    trap_likelihood: TrapLikelihood
     item_info_mode: ItemInfoMode
-    randomizeMusic: RandomizeMusic
-    useMods: UseMods
+    randomize_music: RandomizeMusic
+    use_mods: UseMods
 
 crystal_project_option_groups: Dict[str, List[Any]] = {
     "Goal Options": [Goal, ClamshellGoalQuantity, ExtraClamshellsInPool, NewWorldStoneJobQuantity],
     "Location Options": [IncludedRegions, CustomIncludedRegions, JobRando, StartingJobQuantity, KillBossesMode, Shopsanity, Regionsanity],
     "Progression Options": [ProgressiveMountMode, LevelGating, LevelComparedToEnemies, ProgressiveLevelSize, MaxLevel, KeyMode, ObscureRoutes, AutoSpendLP, AutoEquipPassives, EasyLeveling],
-    "Item Pool Options": [ProgressiveEquipmentMode, StartWithTreasureFinder, StartWithMaps, IncludeSummonAbilities, IncludeScholarAbilities],
+    "Item Pool Options": [ProgressiveEquipmentMode, StartWithTreasureFinder, StartWithMaps, FillFullMap, IncludeSummonAbilities, IncludeScholarAbilities],
     "Bonus Fun": [ItemInfoMode, RandomizeMusic, UseMods]
 }
