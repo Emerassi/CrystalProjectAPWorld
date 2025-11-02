@@ -417,8 +417,8 @@ class CrystalProjectOptions(PerGameCommonOptions):
     shopsanity: Shopsanity
     regionsanity: Regionsanity
     included_regions: IncludedRegions
-    progressive_mount_mode: ProgressiveMountMode
     custom_included_regions: CustomIncludedRegions
+    progressive_mount_mode: ProgressiveMountMode
     level_gating: LevelGating
     level_compared_to_enemies: LevelComparedToEnemies
     progressive_level_size: ProgressiveLevelSize

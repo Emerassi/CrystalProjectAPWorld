@@ -191,20 +191,20 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
     locations_per_region = get_locations_per_ap_region(locations)
 
     included_regions: List[str] = []
-    if options.included_regions == options.included_regions.option_custom:
+    if world.options.included_regions.value == options.included_regions.option_custom:
         for region in options.custom_included_regions.value:
             included_regions.append(region)
     else:
         included_regions = [MENU_DISPLAY_NAME, SPAWNING_MEADOWS_DISPLAY_NAME, DELENDE_DISPLAY_NAME, MERCURY_SHRINE_DISPLAY_NAME,
                             SOILED_DEN_DISPLAY_NAME, THE_PALE_GROTTO_DISPLAY_NAME, SEASIDE_CLIFFS_DISPLAY_NAME, DRAFT_SHAFT_CONDUIT_DISPLAY_NAME,
                             YAMAGAWA_MA_DISPLAY_NAME, PROVING_MEADOWS_DISPLAY_NAME, SKUMPARADISE_DISPLAY_NAME]
-        if options.included_regions >= options.included_regions.option_advanced:
+        if options.included_regions.value >= options.included_regions.option_advanced:
             included_regions.extend([CAPITAL_SEQUOIA_DISPLAY_NAME, JOJO_SEWERS_DISPLAY_NAME, BOOMER_SOCIETY_DISPLAY_NAME, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME,
                                      QUINTAR_NEST_DISPLAY_NAME, QUINTAR_SANCTUM_DISPLAY_NAME, CAPITAL_JAIL_DISPLAY_NAME, CAPITAL_PIPELINE_DISPLAY_NAME,
                                      COBBLESTONE_CRAG_DISPLAY_NAME, OKIMOTO_NS_DISPLAY_NAME, GREENSHIRE_REPRISE_DISPLAY_NAME, SALMON_PASS_DISPLAY_NAME,
                                      SALMON_RIVER_DISPLAY_NAME, SHOUDU_WATERFRONT_DISPLAY_NAME, POKO_POKO_DESERT_DISPLAY_NAME, SARA_SARA_BAZAAR_DISPLAY_NAME,
                                      ANCIENT_RESERVOIR_DISPLAY_NAME, SALMON_BAY_DISPLAY_NAME])
-        if options.included_regions >= options.included_regions.option_expert:
+        if options.included_regions.value >= options.included_regions.option_expert:
             included_regions.extend([THE_OPEN_SEA_DISPLAY_NAME, SHOUDU_PROVINCE_DISPLAY_NAME, THE_UNDERCITY_DISPLAY_NAME,
                                      GANYMEDE_SHRINE_DISPLAY_NAME, BEAURIOR_VOLCANO_DISPLAY_NAME, BEAURIOR_ROCK_DISPLAY_NAME,
                                      LAKE_DELENDE_DISPLAY_NAME, QUINTAR_RESERVE_DISPLAY_NAME, DIONE_SHRINE_DISPLAY_NAME,
@@ -215,7 +215,7 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
                                      FLYERS_CRAG_DISPLAY_NAME, JIDAMBA_TANGLE_DISPLAY_NAME, JIDAMBA_EACLANEYA_DISPLAY_NAME,
                                      THE_DEEP_SEA_DISPLAY_NAME, NEPTUNE_SHRINE_DISPLAY_NAME, JADE_CAVERN_DISPLAY_NAME,
                                      CONTINENTAL_TRAM_DISPLAY_NAME])
-        if options.included_regions >= options.included_regions.option_all:
+        if options.included_regions.value >= options.included_regions.option_all:
             included_regions.extend([ANCIENT_LABYRINTH_DISPLAY_NAME, THE_SEQUOIA_DISPLAY_NAME, THE_DEPTHS_DISPLAY_NAME,
                                      CASTLE_SEQUOIA_DISPLAY_NAME, THE_OLD_WORLD_DISPLAY_NAME, THE_NEW_WORLD_DISPLAY_NAME])
 
