@@ -114,6 +114,11 @@ region_equipment: Dict[str, List[ItemData]] = {
         ItemData("Equipment - Lucky Socks", EQUIPMENT, 498 + equipment_index_offset, ItemClassification.useful),
         ItemData("Equipment - Lucky Briefs", EQUIPMENT, 499 + equipment_index_offset, ItemClassification.useful),
         ItemData("Equipment - Learners Pin", EQUIPMENT, 492 + equipment_index_offset, ItemClassification.useful),
+    ],
+    JOJO_SEWERS_DISPLAY_NAME: [
+        ItemData("Equipment - Iron Helm", EQUIPMENT, 125 + equipment_index_offset, ItemClassification.useful),
+        ItemData("Equipment - Iron Armor", EQUIPMENT, 126 + equipment_index_offset, ItemClassification.useful),
+        ItemData("Equipment - Smelly Gi", EQUIPMENT, 268 + equipment_index_offset, ItemClassification.useful),
     ]
 }
 
@@ -127,7 +132,7 @@ region_items: Dict[str, List[ItemData]] = {
         ItemData(WARLOCK_JOB, JOB, 14 + job_index_offset, ItemClassification.progression),
         ItemData(FENCER_JOB, JOB, 1 + job_index_offset, ItemClassification.progression),
         ItemData(SHAMAN_JOB, JOB, 8 + job_index_offset, ItemClassification.progression),
-        ItemData(SCHOLAR_JOB, JOB, 13 + job_index_offset, ItemClassification.progression),  # requirement for Grans subbasement
+        ItemData(SCHOLAR_JOB, JOB, 13 + job_index_offset, ItemClassification.progression),
         ItemData(AEGIS_JOB, JOB, 10 + job_index_offset, ItemClassification.progression),
         ItemData(HUNTER_JOB, JOB, 7 + job_index_offset, ItemClassification.progression),
         ItemData(CHEMIST_JOB, JOB, 17 + job_index_offset, ItemClassification.progression),
@@ -139,14 +144,14 @@ region_items: Dict[str, List[ItemData]] = {
         ItemData(SAMURAI_JOB, JOB, 20 + job_index_offset, ItemClassification.progression),
         ItemData(ASSASSIN_JOB, JOB, 19 + job_index_offset, ItemClassification.progression),
         ItemData(VALKYRIE_JOB, JOB, 15 + job_index_offset, ItemClassification.progression),
-        ItemData(SUMMONER_JOB, JOB, 21 + job_index_offset, ItemClassification.progression),  # Required for summon fights; only job checked by NPCs
+        ItemData(SUMMONER_JOB, JOB, 21 + job_index_offset, ItemClassification.progression),
         ItemData(BEASTMASTER_JOB, JOB, 23 + job_index_offset, ItemClassification.progression),
         ItemData(WEAVER_JOB, JOB, 16 + job_index_offset, ItemClassification.progression),
         ItemData(MIMIC_JOB, JOB, 22 + job_index_offset, ItemClassification.progression),
-        ItemData(PROGRESSIVE_QUINTAR_WOODWIND, MOUNT, 39 + item_index_offset, ItemClassification.progression, 3),  # Quintar Pass ID 7 & Quintar Flute ID 39 & Quintar Ocarina 115
+        ItemData(PROGRESSIVE_QUINTAR_WOODWIND, MOUNT, 39 + item_index_offset, ItemClassification.progression, 3),
         ItemData(IBEK_BELL, MOUNT, 50 + item_index_offset, ItemClassification.progression),
         ItemData(OWL_DRUM, MOUNT, 49 + item_index_offset, ItemClassification.progression),
-        ItemData(PROGRESSIVE_SALMON_VIOLA, MOUNT, 48 + item_index_offset, ItemClassification.progression, 2),  # Salmon Violin ID 48 & Salmon Cello ID 114
+        ItemData(PROGRESSIVE_SALMON_VIOLA, MOUNT, 48 + item_index_offset, ItemClassification.progression, 2),
         ItemData(PROGRESSIVE_MOUNT, MOUNT, 700 + item_index_offset, ItemClassification.progression, 7),
         ItemData(HOME_POINT_STONE, TELEPORT_STONE, 19 + item_index_offset, ItemClassification.useful),
         ItemData(SHAKU_SUMMON, SUMMON, 223 + summon_index_offset, ItemClassification.useful),
@@ -255,6 +260,13 @@ region_items: Dict[str, List[ItemData]] = {
         ItemData(DIGESTED_HEAD, ITEM, 17 + item_index_offset, ItemClassification.progression, 3),
         ItemData("Item - Tonic Pouch", ITEM, 133 + item_index_offset, ItemClassification.useful),
         ItemData("Item - Fenix Syrup Pouch", ITEM, 146 + item_index_offset, ItemClassification.useful),
+    ],
+    JOJO_SEWERS_DISPLAY_NAME: [
+        ItemData(JOJO_SEWERS_PASS, PASS, 812 + item_index_offset, ItemClassification.progression),
+        ItemData(JOJO_SEWERS_MAP, MAP, 85 + item_index_offset, ItemClassification.useful),
+        ItemData(CRAG_DEMON_HORN, ITEM, 197 + item_index_offset, ItemClassification.progression),
+        ItemData("Item - Tonic Pouch", ITEM, 133 + item_index_offset, ItemClassification.useful),
+        ItemData("Item - Tincture Pouch", ITEM, 135 + item_index_offset, ItemClassification.useful),
     ]
 }
 
