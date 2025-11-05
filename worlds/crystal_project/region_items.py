@@ -119,6 +119,20 @@ region_equipment: Dict[str, List[ItemData]] = {
         ItemData("Equipment - Iron Helm", EQUIPMENT, 125 + equipment_index_offset, ItemClassification.useful),
         ItemData("Equipment - Iron Armor", EQUIPMENT, 126 + equipment_index_offset, ItemClassification.useful),
         ItemData("Equipment - Smelly Gi", EQUIPMENT, 268 + equipment_index_offset, ItemClassification.useful),
+    ],
+    BOOMER_SOCIETY_DISPLAY_NAME: [
+        ItemData("Equipment - Boomer Sword", EQUIPMENT, 177 + equipment_index_offset, ItemClassification.useful),
+        ItemData("Equipment - Boomer Shield", EQUIPMENT, 178 + equipment_index_offset, ItemClassification.useful),
+        ItemData("Equipment - Gospel", EQUIPMENT, 194 + equipment_index_offset, ItemClassification.useful),
+    ],
+    ROLLING_QUINTAR_FIELDS_DISPLAY_NAME: [
+        ItemData("Equipment - Hunting Axe", EQUIPMENT, 187 + equipment_index_offset, ItemClassification.useful),
+        ItemData("Equipment - Hunting Bow", EQUIPMENT, 181 + equipment_index_offset, ItemClassification.useful),
+        ItemData("Equipment - Spore Blocker", EQUIPMENT, 195 + equipment_index_offset, ItemClassification.useful),
+    ],
+    QUINTAR_NEST_DISPLAY_NAME: [
+        ItemData("Equipment - Static Rod", EQUIPMENT, 189 + equipment_index_offset, ItemClassification.useful),
+        ItemData("Equipment - Scope Bit", EQUIPMENT, 226 + equipment_index_offset, ItemClassification.useful),
     ]
 }
 
@@ -266,6 +280,27 @@ region_items: Dict[str, List[ItemData]] = {
         ItemData(JOJO_SEWERS_MAP, MAP, 85 + item_index_offset, ItemClassification.useful),
         ItemData(CRAG_DEMON_HORN, ITEM, 197 + item_index_offset, ItemClassification.progression),
         ItemData("Item - Tonic Pouch", ITEM, 133 + item_index_offset, ItemClassification.useful),
+        ItemData("Item - Tincture Pouch", ITEM, 135 + item_index_offset, ItemClassification.useful),
+    ],
+    BOOMER_SOCIETY_DISPLAY_NAME: [
+        ItemData(BOOMER_SOCIETY_PASS, PASS, 813 + item_index_offset, ItemClassification.progression),
+        ItemData(BOOMER_SOCIETY_MAP, MAP, 89 + item_index_offset, ItemClassification.useful),
+    ],
+    ROLLING_QUINTAR_FIELDS_DISPLAY_NAME: [
+        ItemData(ROLLING_QUINTAR_FIELDS_PASS, PASS, 814 + item_index_offset, ItemClassification.progression),
+        ItemData(ROLLING_QUINTAR_FIELDS_MAP, MAP, 90 + item_index_offset, ItemClassification.useful),
+        ItemData("Item - Silver Ore", ORE, 3 + item_index_offset, ItemClassification.useful),
+        ItemData("Item - Silver Ingot", ORE, 67 + item_index_offset, ItemClassification.useful),
+        ItemData("Item - Silver Dust", ORE, 68 + item_index_offset, ItemClassification.useful),
+        ItemData("Item - Tonic Pouch", ITEM, 133 + item_index_offset, ItemClassification.useful),
+        ItemData("Item - Tincture Pouch", ITEM, 135 + item_index_offset, ItemClassification.useful),
+    ],
+    QUINTAR_NEST_DISPLAY_NAME: [
+        ItemData(QUINTAR_NEST_MAP, MAP, 92 + item_index_offset, ItemClassification.useful),
+        ItemData(QUINTAR_NEST_PASS, PASS, 815 + item_index_offset, ItemClassification.progression),
+        ItemData("Item - Silver Ore", ORE, 3 + item_index_offset, ItemClassification.useful),
+        ItemData("Item - Silver Ingot", ORE, 67 + item_index_offset, ItemClassification.useful),
+        ItemData("Item - Silver Dust", ORE, 68 + item_index_offset, ItemClassification.useful),
         ItemData("Item - Tincture Pouch", ITEM, 135 + item_index_offset, ItemClassification.useful),
     ]
 }
