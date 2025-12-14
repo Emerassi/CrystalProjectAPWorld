@@ -614,12 +614,6 @@ class CrystalProjectWorld(World):
                 item = self.create_item(scholar_ability)
                 pool.append(item)
 
-        if self.options.home_point_hustle.value != self.options.home_point_hustle.option_disabled:
-            for home_point in self.home_points:
-                if ap_region_to_display_region_dictionary[home_point.ap_region] in self.included_regions:
-                    item = self.create_item(home_point.name)
-                    pool.append(item)
-
         #for any Astley goal, make sure new world stone is in the pool
         if self.options.goal.value != self.options.goal.option_clamshells:
             item = self.set_classifications(NEW_WORLD_STONE)
