@@ -93,9 +93,9 @@ class TestKeyRings(MultiuseKeyMethods):
 
     def test_has_jidamba_keyring(self):
         self.collect_mounts_and_progressive_levels_and_passes()
-        self.assertFalse(self.can_reach_region(JIDAMBA_EACLANEYA_AP_REGION))
+        self.assertFalse(self.can_reach_region(EACLANEYA_TRICKY_BLOCK_BRANCHES_AP_REGION))
         self.collect(self.get_item_by_name(JIDAMBA_KEY_RING))
-        self.assertTrue(self.can_reach_region(JIDAMBA_EACLANEYA_AP_REGION))
+        self.assertTrue(self.can_reach_region(EACLANEYA_TRICKY_BLOCK_BRANCHES_AP_REGION))
 
 class TestVanillaKeys(MultiuseKeyMethods):
     run_default_tests = False

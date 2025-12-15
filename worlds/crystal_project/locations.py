@@ -1230,15 +1230,18 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
 
         #Jidamba Eaclaneya
         #Treasure chests
-        LocationData(JIDAMBA_EACLANEYA_AP_REGION, JIDAMBA_EACLANEYA_DISPLAY_NAME + " Chest - Climb the lamp in the south room", 2799 + treasure_index_offset, lambda state: logic.has_glide(state) and logic.has_vertical_movement(state)), #Celestial Crown chest
-        LocationData(JIDAMBA_EACLANEYA_AP_REGION, JIDAMBA_EACLANEYA_DISPLAY_NAME + " Chest - At the end of spike hallway", 2755 + treasure_index_offset, lambda state: logic.has_glide(state)), #Flame Sword chest
-        LocationData(JIDAMBA_EACLANEYA_AP_REGION, JIDAMBA_EACLANEYA_DISPLAY_NAME + " Chest - Monster cubby", 2920 + treasure_index_offset), #Jidamba Eaclaneya map chest
-        LocationData(JIDAMBA_EACLANEYA_AP_REGION, JIDAMBA_EACLANEYA_DISPLAY_NAME + " Chest - Practice your swimming", 2282 + treasure_index_offset, lambda state: logic.has_glide(state)), #Ether Pouch chest
-        LocationData(JIDAMBA_EACLANEYA_AP_REGION, JIDAMBA_EACLANEYA_DISPLAY_NAME + " Chest - Right side of the swimming puzzle", 2289 + treasure_index_offset, lambda state: logic.has_glide(state)), #Staff of Balance chest
-        LocationData(JIDAMBA_EACLANEYA_AP_REGION, JIDAMBA_EACLANEYA_DISPLAY_NAME + " Chest - Glass elevator room", 2301 + treasure_index_offset, lambda state: logic.has_glide(state)), #Stardust Wand chest
-        LocationData(JIDAMBA_EACLANEYA_AP_REGION, JIDAMBA_EACLANEYA_DISPLAY_NAME + " Chest - Underwater swimming puzzle", 2308 + treasure_index_offset, lambda state: logic.has_glide(state)), #Flameseeker chest
-        LocationData(JIDAMBA_EACLANEYA_AP_REGION, JIDAMBA_EACLANEYA_DISPLAY_NAME + " Chest - Left side of underwater swimming puzzle", 2317 + treasure_index_offset, lambda state: logic.has_glide(state)), #Viridian Book chest
-        LocationData(JIDAMBA_EACLANEYA_AP_REGION, JIDAMBA_EACLANEYA_DISPLAY_NAME + " Chest - Salmon Violin past the fish puzzles", 2288 + treasure_index_offset, lambda state: logic.has_glide(state)),
+        #Four Tricky Block Branches
+        LocationData(EACLANEYA_TRICKY_BLOCK_BRANCHES_AP_REGION, JIDAMBA_EACLANEYA_DISPLAY_NAME + " Chest - Climb the lamp in the south room", 2799 + treasure_index_offset, lambda state: logic.has_horizontal_movement(state) and logic.has_vertical_movement(state)), #Celestial Crown chest
+        LocationData(EACLANEYA_TRICKY_BLOCK_BRANCHES_AP_REGION, JIDAMBA_EACLANEYA_DISPLAY_NAME + " Chest - At the end of spike hallway", 2755 + treasure_index_offset, lambda state: logic.has_glide(state)), #Flame Sword chest
+        LocationData(EACLANEYA_TRICKY_BLOCK_BRANCHES_AP_REGION, JIDAMBA_EACLANEYA_DISPLAY_NAME + " Chest - Monster cubby", 2920 + treasure_index_offset), #Jidamba Eaclaneya map chest
+        #Land of Timer Fishes
+        LocationData(LAND_OF_TIMER_FISHES_AP_REGION, JIDAMBA_EACLANEYA_DISPLAY_NAME + " Chest - Welcome to the Land of Timer Fishes", 2289 + treasure_index_offset),  # Staff of Balance chest
+        LocationData(LAND_OF_TIMER_FISHES_AP_REGION, JIDAMBA_EACLANEYA_DISPLAY_NAME + " Chest - Dive to first underwater fish relay", 2308 + treasure_index_offset), #Flameseeker chest
+        LocationData(LAND_OF_TIMER_FISHES_AP_REGION, JIDAMBA_EACLANEYA_DISPLAY_NAME + " Chest - Practice your swimming", 2282 + treasure_index_offset), #Ether Pouch chest
+        LocationData(LAND_OF_TIMER_FISHES_AP_REGION, JIDAMBA_EACLANEYA_DISPLAY_NAME + " Chest - Past glass elevator (if you're like me, smash that Extend Timers Assist Option)", 2301 + treasure_index_offset), #Stardust Wand chest
+        LocationData(LAND_OF_TIMER_FISHES_AP_REGION, JIDAMBA_EACLANEYA_DISPLAY_NAME + " Chest - Spiral through second underwater fish relay", 2317 + treasure_index_offset), #Viridian Book chest
+        #Salmon Room
+        LocationData(SALMON_ROOM_AP_REGION, JIDAMBA_EACLANEYA_DISPLAY_NAME + " Chest - Claim the prize of the Timer Fishes", 2288 + treasure_index_offset),
 
         #NPCs
         #1 Diamond Dust on Jidamba Eaclaneya Fish Floor map has been categorized under the Capital Pipeline
@@ -1428,7 +1431,7 @@ def get_crystal_locations(player: int, options: CrystalProjectOptions | None) ->
         # (404, 243, -386)
         LocationData(PEAK_RAMPARTS_AP_REGION, CASTLE_RAMPARTS_DISPLAY_NAME + BEASTMASTER_JOB_CRYSTAL_LOCATION, 1370 + crystal_index_offset, lambda state: logic.has_glide(state)),
         LocationData(CHALICE_RIM_AP_REGION, THE_CHALICE_OF_TAR_DISPLAY_NAME + MIMIC_JOB_CRYSTAL_LOCATION, 3701 + crystal_index_offset, lambda state: logic.has_glide(state)),
-        LocationData(JIDAMBA_EACLANEYA_AP_REGION, JIDAMBA_EACLANEYA_DISPLAY_NAME + WEAVER_JOB_CRYSTAL_LOCATION, 2403 + crystal_index_offset),
+        LocationData(LAND_OF_TIMER_FISHES_AP_REGION, JIDAMBA_EACLANEYA_DISPLAY_NAME + WEAVER_JOB_CRYSTAL_LOCATION, 2403 + crystal_index_offset),
     ]
 
     return location_table
@@ -1991,7 +1994,7 @@ def get_region_completion_locations() -> List[LocationData]:
         LocationData(CHALICE_RIM_AP_REGION, THE_CHALICE_OF_TAR_DISPLAY_NAME + " Region Completion", 6050 + regionsanity_index_offset, regionsanity=True),
         LocationData(FLYERS_CRAG_UPPER_AP_REGION, FLYERS_CRAG_DISPLAY_NAME + " Region Completion", 6051 + regionsanity_index_offset, regionsanity=True),
         LocationData(EUROPA_SHRINE_AP_REGION, JIDAMBA_TANGLE_DISPLAY_NAME + " Region Completion", 6052 + regionsanity_index_offset, regionsanity=True),
-        LocationData(JIDAMBA_EACLANEYA_AP_REGION, JIDAMBA_EACLANEYA_DISPLAY_NAME + " Region Completion", 6053 + regionsanity_index_offset, regionsanity=True),
+        LocationData(EACLANEYA_ENTRANCE_AP_REGION, JIDAMBA_EACLANEYA_DISPLAY_NAME + " Region Completion", 6053 + regionsanity_index_offset, regionsanity=True),
         LocationData(THE_DEEP_SEA_AP_REGION, THE_DEEP_SEA_DISPLAY_NAME + " Region Completion", 6054 + regionsanity_index_offset, regionsanity=True),
         LocationData(NEPTUNE_SHRINE_AP_REGION, NEPTUNE_SHRINE_DISPLAY_NAME + " Region Completion", 6055 + regionsanity_index_offset, regionsanity=True),
         LocationData(JADE_CAVERN_AP_REGION, JADE_CAVERN_DISPLAY_NAME + " Region Completion", 6056 + regionsanity_index_offset, regionsanity=True),

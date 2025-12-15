@@ -19,10 +19,10 @@ class Goal(Choice):
     
     Checking the first sign in the Spawning Meadows will tell you the selected goal. A goal items counter is displayed on the in-game party screen in the menu.
     
-    Astley: Defeat Astley in the New World. The throne room in the new world will unlock with enough jobs (starting Jobs don't count).
+    Astley: Defeat Astley in the New World. The throne room in The New World will unlock once you have found enough Jobs (starting Jobs don't count).
 
     True Astley: A saga awaits you! Collect 4 Deity Eyes and the STEM WARD to challenge Gabriel for the Old World Stone. Then travel to the Old World to defeat Periculum and earn the Proof of Merit.
-    Along the way, gather enough Jobs to unlock the throne room. Then you can venture to the New World to defeat true Astley to win!
+    Along the way, gather enough Jobs to unlock the throne room in The New World. Then, venture there to defeat true Astley to win!
     
     Clamshells: Collect enough clamshells for Mañana Man in Seaside Cliffs.
     """
@@ -34,9 +34,9 @@ class Goal(Choice):
 
 class AstleyJobQuantity(Range):
     """
-    If your goal is Astley or True Astley, select how many Jobs you need to find before the throne room for the final fight is unlocked.
+    If your goal is Astley or True Astley, select how many Jobs you need to find to unlock the throne room for the final fight.
 
-    This option is validated at generation time, and if it is higher than the number of jobs you can obtain, it will be capped to what is possible. By default, the maximum you can obtain is 18.
+    This option is validated at generation time, and if it is higher than the number of Jobs you can obtain, it will be capped to what is possible. By default, the maximum you can obtain is 18.
 
     Picking Job Rando: Full and decreasing the Starting Job Quantity will increase the maximum by that much. It will also increase if you enable mods that give you more.
 
