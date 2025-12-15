@@ -1994,7 +1994,7 @@ def get_region_completion_locations() -> List[LocationData]:
         LocationData(CHALICE_RIM_AP_REGION, THE_CHALICE_OF_TAR_DISPLAY_NAME + " Region Completion", 6050 + regionsanity_index_offset, regionsanity=True),
         LocationData(FLYERS_CRAG_UPPER_AP_REGION, FLYERS_CRAG_DISPLAY_NAME + " Region Completion", 6051 + regionsanity_index_offset, regionsanity=True),
         LocationData(EUROPA_SHRINE_AP_REGION, JIDAMBA_TANGLE_DISPLAY_NAME + " Region Completion", 6052 + regionsanity_index_offset, regionsanity=True),
-        LocationData(EACLANEYA_ENTRANCE_AP_REGION, JIDAMBA_EACLANEYA_DISPLAY_NAME + " Region Completion", 6053 + regionsanity_index_offset, regionsanity=True),
+        LocationData(LAND_OF_TIMER_FISHES_AP_REGION, JIDAMBA_EACLANEYA_DISPLAY_NAME + " Region Completion", 6053 + regionsanity_index_offset, regionsanity=True),
         LocationData(THE_DEEP_SEA_AP_REGION, THE_DEEP_SEA_DISPLAY_NAME + " Region Completion", 6054 + regionsanity_index_offset, regionsanity=True),
         LocationData(NEPTUNE_SHRINE_AP_REGION, NEPTUNE_SHRINE_DISPLAY_NAME + " Region Completion", 6055 + regionsanity_index_offset, regionsanity=True),
         LocationData(JADE_CAVERN_AP_REGION, JADE_CAVERN_DISPLAY_NAME + " Region Completion", 6056 + regionsanity_index_offset, regionsanity=True),

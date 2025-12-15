@@ -284,9 +284,11 @@ TANGLE_EACLANEYA_CONNECTOR_AP_REGION = "Jidamba Tangle Eaclaneya Connector"
 #Jidamba Tangle end
 #Jidamba Eaclaneya start
 EACLANEYA_ENTRANCE_AP_REGION = "Jidamba Eaclaneya Entrance"
-EACLANEYA_ENTRANCE_AP_REGION_TELEPORT_LOCATION = "739,103,124"
+#EACLANEYA_ENTRANCE_AP_REGION_TELEPORT_LOCATION = "739,103,124"
 EACLANEYA_TRICKY_BLOCK_BRANCHES_AP_REGION = "Eaclaneya Tricky Block Branches"
 LAND_OF_TIMER_FISHES_AP_REGION = "Land of the Timer Fishes"
+#decided to start in Land of Timer Fishes for the most checks you can get right from the start with no mounts
+LAND_OF_TIMER_FISHES_AP_REGION_TELEPORT_LOCATION = "739,36,76"
 SALMON_ROOM_AP_REGION = "Jidamba Eaclaneya Salmon Room"
 #Jidamba Eaclaneya end
 THE_DEEP_SEA_AP_REGION = "The Deep Sea"
