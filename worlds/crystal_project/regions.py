@@ -917,7 +917,7 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
     fancy_add_exits(world, EACLANEYA_ENTRANCE_AP_REGION, [EACLANEYA_TRICKY_BLOCK_BRANCHES_AP_REGION],
                     {EACLANEYA_TRICKY_BLOCK_BRANCHES_AP_REGION: lambda state: state.has(JIDAMBA_EACLANEYA_PASS, player) or logic.is_regionsanity_disabled()})
     fancy_add_exits(world, EACLANEYA_TRICKY_BLOCK_BRANCHES_AP_REGION, [LAND_OF_TIMER_FISHES_AP_REGION],
-                    {LAND_OF_TIMER_FISHES_AP_REGION: lambda state: logic.has_glide(state) and (state.has(JIDAMBA_EACLANEYA_PASS, player) or logic.is_regionsanity_disabled()) and (logic.has_quintar(state) or logic.is_hop_to_it_at_least_fancy_footwork())})
+                    {LAND_OF_TIMER_FISHES_AP_REGION: lambda state: logic.has_glide(state) and (state.has(JIDAMBA_EACLANEYA_PASS, player) or logic.is_regionsanity_disabled()) and (logic.has_fast(state) or logic.is_hop_to_it_at_least_fancy_footwork())})
     fancy_add_exits(world, LAND_OF_TIMER_FISHES_AP_REGION, [SALMON_ROOM_AP_REGION],
                     {SALMON_ROOM_AP_REGION: lambda state: state.has(JIDAMBA_EACLANEYA_PASS, player) or logic.is_regionsanity_disabled()})
     fancy_add_exits(world, SALMON_ROOM_AP_REGION, [THE_DEEP_SEA_AP_REGION],
