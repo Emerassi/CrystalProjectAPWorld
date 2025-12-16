@@ -442,9 +442,9 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
                      BOOMER_OVERLOOK_AP_REGION: lambda state: logic.has_horizontal_movement(state)})
     #Rolling Quintar Fields start
     fancy_add_exits(world, ROLLING_QUINTAR_FIELDS_AP_REGION, [ROLLING_TREETOP_HIGHWAY_AP_REGION, SANCTUM_ENTRANCE_AP_REGION, CAPITAL_SEQUOIA_AP_REGION, QUINTAR_NEST_AP_REGION, OKIMOTO_NS_AP_REGION, QUINTAR_RESERVE_AP_REGION],
-                    #Obscure Route: Rolling Quintar Fields -> Sanctum Entrance; jump up to the "Pinnacle by short and tall box friends" check from the Quintar Enthusiast's House (auto-jump helps)
                     {ROLLING_TREETOP_HIGHWAY_AP_REGION: lambda state: logic.has_rental_quintar(state, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME) or logic.has_vertical_movement(state),
-                     SANCTUM_ENTRANCE_AP_REGION: lambda state: logic.obscure_routes_on(state),
+                     # Obscure Route: RQF -> Sanctum Entrance; jump up to the "Pinnacle by short and tall box friends" check from the Quintar Enthusiast's House (auto-jump helps)
+                     SANCTUM_ENTRANCE_AP_REGION: lambda state: logic.obscure_routes_on(state) and options.hop_to_it.value >= options.hop_to_it.option_fancy_footwork,
                      OKIMOTO_NS_AP_REGION: lambda state: logic.has_vertical_movement(state),
                      QUINTAR_RESERVE_AP_REGION: lambda state: logic.has_vertical_movement(state)})
     fancy_add_exits(world, ROLLING_TREETOP_HIGHWAY_AP_REGION, [ROLLING_QUINTAR_FIELDS_AP_REGION, SANCTUM_ENTRANCE_AP_REGION],
@@ -931,7 +931,7 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
                      SALMON_ROOM_AP_REGION: lambda state: logic.has_swimming(state),
                      NEPTUNE_SHRINE_AP_REGION: lambda state: logic.has_swimming(state),
                      THE_DEPTHS_AP_REGION: lambda state: logic.has_swimming(state),
-                     THE_SEQUOIA_AP_REGION: lambda state: logic.has_golden_quintar(state)})
+                     THE_SEQUOIA_AP_REGION: lambda state: logic.has_golden_quintar(state) or (options.hop_to_it.value == options.hop_to_it.option_pray and logic.has_swimming(state) and logic.has_glide(state))})
     fancy_add_exits(world, SARA_SARA_SAND_BAR_AP_REGION, [THE_DEEP_SEA_AP_REGION],
                     {THE_DEEP_SEA_AP_REGION: lambda state: logic.has_swimming(state)})
     #The Deep Sea end
