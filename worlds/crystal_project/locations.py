@@ -280,7 +280,7 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Chest - Gaea Shrine 3", 381 + treasure_index_offset), #Gaea Shard chest
         LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Chest - Gaea Shrine 4", 548 + treasure_index_offset), #Gaea Shard chest
         #Next check can be acquired with either Owl, Ibek, Quintar, or Gaea Stone; vanilla expects Gaea Stone so that's the logic were using
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Chest - Cleric's Lounge", 1391 + treasure_index_offset, lambda state: state.has(GAEA_STONE, player) or (logic.has_rental_quintar(state, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME) and logic.obscure_routes_on(state)) or logic.has_horizontal_movement(state) or logic.has_vertical_movement(state)), #Craftwork Bow chest
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Chest - Cleric's Lounge", 1391 + treasure_index_offset, lambda state: state.has(GAEA_STONE, player) or (logic.has_rental_quintar(state, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME) and logic.obscure_routes_on()) or logic.has_horizontal_movement(state) or logic.has_vertical_movement(state)), #Craftwork Bow chest
         LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Chest - Instrducktor classroom", 1387 + treasure_index_offset), #Craftwork Axe chest
         LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Chest - Master Warlock's chambers atop Weapons R Us", 2732 + treasure_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)), #Watering Can chest
         LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Chest - Master Wizard's Library atop Weapons R Us", 168 + treasure_index_offset), #Craftwork Pages chest
@@ -309,7 +309,7 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Impress the Luxury Equipment Shop Bouncer with 6 jobs collected", 51162 + npc_index_offset, lambda state: logic.has_jobs(state, 6)), #(419, 171, -289) Blocker-No-Longer, Fixed Missable, and Multichecks
         LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Impress the Luxury Equipment Shop Bouncer further with 11 jobs collected", 1162 + npc_index_offset, lambda state: logic.has_jobs(state, 11)), #(419, 171, -289)
         LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Plunder the Luxury storage and skip town to meet a very slow thief", 1529 + npc_index_offset, lambda state: logic.has_key(state, LUXURY_KEY) and state.has(PROGRESSIVE_LUXURY_PASS, player)), #(417, 171, -299) Fixed Missable
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Courtyard Chloe", 1661 + npc_index_offset, lambda state: (logic.has_rental_quintar(state, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME) and logic.obscure_routes_on(state)) or logic.has_horizontal_movement(state) or logic.has_vertical_movement(state)), #Fly Lure (399, 155, -219) Fixed Missable
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Courtyard Chloe", 1661 + npc_index_offset, lambda state: (logic.has_rental_quintar(state, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME) and logic.obscure_routes_on()) or logic.has_horizontal_movement(state) or logic.has_vertical_movement(state)), #Fly Lure (399, 155, -219) Fixed Missable
         LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Glinting Courtyard Key", 2486 + npc_index_offset), #Courtyard Key sparkle that appears if you miss Courtyard Reid in Salmon River (424, 150, -222) Fixed Missable
         LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Sparkling in the fountain", 2584 + npc_index_offset), #Plug Lure
         LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Lost Penguin on a tent", 605 + npc_index_offset),
@@ -324,7 +324,7 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Bring 6 Lost Penguins to Penguin Keeper", 50532 + npc_index_offset, lambda state: state.has(LOST_PENGUIN, player, 6)),
         LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Bring 9 Lost Penguins to Penguin Keeper", 50533 + npc_index_offset, lambda state: state.has(LOST_PENGUIN, player, 9)),
         LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Bring all 12 Lost Penguins to Penguin Keeper", 531 + npc_index_offset, lambda state: state.has(LOST_PENGUIN, player, 12)),
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Lost Penguin trampling Cleric's flowers", 564 + npc_index_offset, lambda state: state.has(GAEA_STONE, player) or (logic.has_rental_quintar(state, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME) and logic.obscure_routes_on(state)) or logic.has_horizontal_movement(state) or logic.has_vertical_movement(state)),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Lost Penguin trampling Cleric's flowers", 564 + npc_index_offset, lambda state: state.has(GAEA_STONE, player) or (logic.has_rental_quintar(state, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME) and logic.obscure_routes_on()) or logic.has_horizontal_movement(state) or logic.has_vertical_movement(state)),
         LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Sadist Sam gives you pain, you give Sadist Sam head(s)", 536 + npc_index_offset, lambda state: state.has(DIGESTED_HEAD, player, 3)), #name is ca69011a in Crystal Edit why lmao
         LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Lost Penguin wandering Magic Store rooftop garden", 573 + npc_index_offset),
         LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Lost Penguin atop sewer exit rooftop", 567 + npc_index_offset),
@@ -402,7 +402,7 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         LocationData(QUINTAR_NEST_AP_REGION, "Underpass Chest - Up north Quintar Nest waterfall", 3620 + treasure_index_offset, lambda state: logic.has_swimming(state)), #(524, 146, -368) Underpass Scrap chest
 
         #NPCs
-        #Todo NPCs CheckOrNot: two Quintar Eggs here
+        #NPCs CheckOrNot: two Quintar Eggs here; decided against
         LocationData(QUINTAR_NEST_AP_REGION, QUINTAR_NEST_DISPLAY_NAME + " NPC - Eastside Silver come on down to the water", 711 + npc_index_offset), #Dust
         LocationData(QUINTAR_NEST_AP_REGION, QUINTAR_NEST_DISPLAY_NAME + " NPC - South of sewers Silver", 850 + npc_index_offset), #Ingot
         LocationData(QUINTAR_NEST_AP_REGION, QUINTAR_NEST_DISPLAY_NAME + " NPC - Silver on the way out", 755 + npc_index_offset), #Ore
@@ -418,7 +418,7 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         LocationData(SANCTUM_EXIT_CLIFFTOP_AP_REGION, "Overpass Chest - Lonely chest above Quintar Sanctum", 3533 + treasure_index_offset), #2nd Overpass Scrap chest on main map
 
         #NPCs
-        #Todo NPCs CheckOrNot: Quintar Egg here (on Quintar Sanctum Mushroom map)
+        #NPCs CheckOrNot: Quintar Egg here (on Quintar Sanctum Mushroom map); decided against
         LocationData(QUINTAR_SANCTUM_AP_REGION, QUINTAR_SANCTUM_DISPLAY_NAME + " NPC - Silver going back down", 802 + npc_index_offset), #Dust
         LocationData(QUINTAR_SANCTUM_AP_REGION, QUINTAR_SANCTUM_DISPLAY_NAME + " NPC - Silver almost to the top", 965 + npc_index_offset), #Dust
         LocationData(QUINTAR_SANCTUM_AP_REGION, QUINTAR_SANCTUM_DISPLAY_NAME + " NPC - Mushroom bounce Silver", 411 + npc_index_offset), #Ingot
@@ -624,7 +624,7 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         LocationData(SARA_SARA_BAZAAR_AP_REGION, SARA_SARA_BAZAAR_DISPLAY_NAME + " NPC - Ticket Agent forgot what Ferry Passes are but she found this in her desk", 940 + npc_index_offset, lambda state: logic.has_jobs(state, 11)), #(-166,93,56) Fixed Missable
         LocationData(SARA_SARA_BAZAAR_AP_REGION, SARA_SARA_BAZAAR_DISPLAY_NAME + " NPC - Three tokens makes a Pyramid Key something something triangles", 949 + npc_index_offset, lambda state: state.has(WEST_LOOKOUT_TOKEN, player) and state.has(CENTRAL_LOOKOUT_TOKEN, player) and state.has(NORTH_LOOKOUT_TOKEN, player)),
         LocationData(SARA_SARA_BAZAAR_AP_REGION, SARA_SARA_BAZAAR_DISPLAY_NAME + " NPC - The One and Only Room 1 Key", 385 + npc_index_offset, lambda state: logic.can_earn_money(state, SARA_SARA_BAZAAR_AP_REGION)),
-        LocationData(SARA_SARA_BAZAAR_AP_REGION, SARA_SARA_BAZAAR_DISPLAY_NAME + " NPC - Circle the eastern desert wall for Worried Mom's Lost Son", 1196 + npc_index_offset, lambda state: (state.has(POKO_POKO_DESERT_PASS, player) or options.regionsanity.value == options.regionsanity.option_disabled) and logic.is_area_in_level_range(state, POKO_POKO_ENEMY_LEVEL)), #Ferry Pass, if regionsanity extreme is enabled, you'll need the pass for the desert
+        LocationData(SARA_SARA_BAZAAR_AP_REGION, SARA_SARA_BAZAAR_DISPLAY_NAME + " NPC - Circle the eastern desert wall for Worried Mom's Lost Son", 1196 + npc_index_offset, lambda state: (state.has(POKO_POKO_DESERT_PASS, player) or logic.is_regionsanity_disabled()) and logic.is_area_in_level_range(state, POKO_POKO_ENEMY_LEVEL)), #Ferry Pass, if regionsanity extreme is enabled, you'll need the pass for the desert
         LocationData(SARA_SARA_BAZAAR_AP_REGION, SARA_SARA_BAZAAR_DISPLAY_NAME + " NPC - Pelt this Fish Merchant with Rotten Salmon", 942 + npc_index_offset, lambda state: state.has(SPECIAL_ROTTEN_SALMON, player) and state.has(SPECIAL_FRESH_SALMON, player)),
         LocationData(SARA_SARA_BAZAAR_AP_REGION, SARA_SARA_BAZAAR_DISPLAY_NAME + " NPC - No Shoudu Stew for you!", 1200 + npc_index_offset, lambda state: state.has(SPECIAL_SHOUDU_STEW, player)),
         LocationData(SARA_SARA_BAZAAR_AP_REGION, SARA_SARA_BAZAAR_DISPLAY_NAME + " NPC - Spilled booty Silver", 2905 + npc_index_offset, lambda state: logic.has_swimming(state)), #Dust
@@ -1048,7 +1048,6 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
 
         #NPCs
         #Todo NPCs Job Masters: Tall Tall Heights (Outpost) map has Master Chemist ID 3707 (491, 221, -389); gives you Chemist Seal in exchange for job mastery
-        #Todo NPCs Player Options: (197, 192, -441) do we want a filter option to add the guys who fish things up for you
         #Boomer Overlook
         LocationData(BOOMER_OVERLOOK_AP_REGION, TALL_TALL_HEIGHTS_DISPLAY_NAME + " NPC - Gold above the Boomer Society", 1600 + npc_index_offset), #Ingot
         #Tall, Tall Ramparts Crag Chest
@@ -1231,7 +1230,7 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         #Jidamba Eaclaneya
         #Treasure chests
         #Four Tricky Block Branches
-        LocationData(EACLANEYA_TRICKY_BLOCK_BRANCHES_AP_REGION, JIDAMBA_EACLANEYA_DISPLAY_NAME + " Chest - Climb the lamp in the south room", 2799 + treasure_index_offset, lambda state: ((logic.has_horizontal_movement(state) and options.hop_to_it.value >= options.hop_to_it.option_fancy_footwork) or logic.has_glide(state)) and logic.has_vertical_movement(state)), #Celestial Crown chest
+        LocationData(EACLANEYA_TRICKY_BLOCK_BRANCHES_AP_REGION, JIDAMBA_EACLANEYA_DISPLAY_NAME + " Chest - Climb the lamp in the south room", 2799 + treasure_index_offset, lambda state: ((logic.has_horizontal_movement(state) and logic.is_hop_to_it_at_least_fancy_footwork()) or logic.has_glide(state)) and logic.has_vertical_movement(state)), #Celestial Crown chest
         LocationData(EACLANEYA_TRICKY_BLOCK_BRANCHES_AP_REGION, JIDAMBA_EACLANEYA_DISPLAY_NAME + " Chest - At the end of spike hallway", 2755 + treasure_index_offset, lambda state: logic.has_glide(state)), #Flame Sword chest
         LocationData(EACLANEYA_TRICKY_BLOCK_BRANCHES_AP_REGION, JIDAMBA_EACLANEYA_DISPLAY_NAME + " Chest - Monster cubby", 2920 + treasure_index_offset), #Jidamba Eaclaneya map chest
         #Land of Timer Fishes

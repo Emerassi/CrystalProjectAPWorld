@@ -62,6 +62,9 @@ class CrystalProjectLogic:
 
         return has_rental_quintar
 
+    def has_quintar(self, state: CollectionState) -> bool:
+        return state.has(PROGRESSIVE_QUINTAR_WOODWIND, self.player, 2) or state.has(PROGRESSIVE_MOUNT, self.player, 2)
+
     def has_horizontal_movement(self, state: CollectionState) -> bool:
         return state.has(PROGRESSIVE_QUINTAR_WOODWIND, self.player, 2) or state.has(OWL_DRUM, self.player) or state.has(PROGRESSIVE_MOUNT, self.player, 2)
 
@@ -92,8 +95,23 @@ class CrystalProjectLogic:
     def has_golden_quintar(self, state: CollectionState) -> bool:
         return state.has(PROGRESSIVE_QUINTAR_WOODWIND, self.player, 3) or state.has(PROGRESSIVE_MOUNT, self.player, 7)
 
-    def obscure_routes_on(self, state: CollectionState) -> bool:
+    def obscure_routes_on(self) -> bool:
         return self.options.obscure_routes.value == self.options.obscure_routes.option_true
+
+    def is_hop_to_it_at_least_fancy_footwork(self) -> bool:
+        return self.options.hop_to_it.value >= self.options.hop_to_it.option_fancy_footwork
+
+    def is_hop_to_it_at_least_one_hop_beyond(self) -> bool:
+        return self.options.hop_to_it.value >= self.options.hop_to_it.option_one_hop_beyond
+
+    def is_hop_to_it_pray(self) -> bool:
+        return self.options.hop_to_it.value == self.options.hop_to_it.option_pray
+
+    def is_regionsanity_disabled(self) -> bool:
+        return self.options.regionsanity.value == self.options.regionsanity.option_disabled
+
+    def is_regionsanity_extreme(self) -> bool:
+        return self.options.regionsanity.value == self.options.regionsanity.option_extreme
 
     def old_world_requirements(self, state: CollectionState) -> bool:
         if self.options.goal.value == self.options.goal.option_true_astley:
