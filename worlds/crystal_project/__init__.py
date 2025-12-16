@@ -137,6 +137,7 @@ class CrystalProjectWorld(World):
                     self.options.max_level.value = slot_data["maxLevel"]
                     self.options.key_mode.value = slot_data["keyMode"]
                     self.options.obscure_routes.value = slot_data["obscureRoutes"]
+                    self.options.hop_to_it.value = slot_data["hopToIt"]
                     self.options.include_summon_abilities.value = slot_data["includeSummonAbilities"]
                     self.options.include_scholar_abilities.value = slot_data["includeScholarAbilities"]
                     self.options.use_mods.value = slot_data["useMods"]
@@ -743,6 +744,7 @@ class CrystalProjectWorld(World):
             "maxLevel": self.options.max_level.value,
             "keyMode": self.options.key_mode.value,
             "obscureRoutes": bool(self.options.obscure_routes.value),
+            "hopToIt": self.options.hop_to_it.value,
             "autoSpendLP": bool(self.options.auto_spend_lp.value),
             "autoEquipPassives": bool(self.options.auto_equip_passives.value),
             "easyLeveling": bool(self.options.easy_leveling.value),

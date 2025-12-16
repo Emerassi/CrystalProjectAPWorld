@@ -1231,7 +1231,7 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         #Jidamba Eaclaneya
         #Treasure chests
         #Four Tricky Block Branches
-        LocationData(EACLANEYA_TRICKY_BLOCK_BRANCHES_AP_REGION, JIDAMBA_EACLANEYA_DISPLAY_NAME + " Chest - Climb the lamp in the south room", 2799 + treasure_index_offset, lambda state: logic.has_horizontal_movement(state) and logic.has_vertical_movement(state)), #Celestial Crown chest
+        LocationData(EACLANEYA_TRICKY_BLOCK_BRANCHES_AP_REGION, JIDAMBA_EACLANEYA_DISPLAY_NAME + " Chest - Climb the lamp in the south room", 2799 + treasure_index_offset, lambda state: ((logic.has_horizontal_movement(state) and options.hop_to_it.value >= options.hop_to_it.option_fancy_footwork) or logic.has_glide(state)) and logic.has_vertical_movement(state)), #Celestial Crown chest
         LocationData(EACLANEYA_TRICKY_BLOCK_BRANCHES_AP_REGION, JIDAMBA_EACLANEYA_DISPLAY_NAME + " Chest - At the end of spike hallway", 2755 + treasure_index_offset, lambda state: logic.has_glide(state)), #Flame Sword chest
         LocationData(EACLANEYA_TRICKY_BLOCK_BRANCHES_AP_REGION, JIDAMBA_EACLANEYA_DISPLAY_NAME + " Chest - Monster cubby", 2920 + treasure_index_offset), #Jidamba Eaclaneya map chest
         #Land of Timer Fishes

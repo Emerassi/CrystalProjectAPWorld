@@ -9,6 +9,7 @@ from .constants.key_items import *
 from .constants.display_regions import *
 from .constants.home_points import *
 from .constants.level_requirements import *
+from .constants.mounts import *
 from .constants.teleport_stones import *
 from .constants.region_passes import *
 
@@ -552,7 +553,7 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
     fancy_add_exits(world, TOWER_OF_ZOT_AP_REGION, [POKO_POKO_DESERT_AP_REGION, POKO_POKO_EAST_PLATEAU_AP_REGION, RUINS_CRUMBLING_ON_SHORE_AP_REGION, ANCIENT_LABYRINTH_AP_REGION, SALMON_BAY_AP_REGION, SALMON_RIVER_MOUTH_AP_REGION],
                     {POKO_POKO_EAST_PLATEAU_AP_REGION: lambda state: logic.has_glide(state),
                      ANCIENT_LABYRINTH_AP_REGION: lambda state: (state.has(POKO_POKO_DESERT_PASS, player) or options.regionsanity.value == options.regionsanity.option_disabled) and (state.has(ANCIENT_TABLET_A, player) or logic.obscure_routes_on(state)) and logic.has_vertical_movement(state) and logic.has_glide(state),
-                     SALMON_BAY_AP_REGION: lambda state: logic.has_vertical_movement(state),
+                     SALMON_BAY_AP_REGION: lambda state: logic.has_vertical_movement(state) and options.hop_to_it.value >= options.hop_to_it.option_one_hop_beyond,
                      SALMON_RIVER_MOUTH_AP_REGION: lambda state: logic.has_vertical_movement(state) and logic.has_glide(state)})
     fancy_add_exits(world, POKO_POKO_LAKE_DELENDE_PASS_AP_REGION, [POKO_POKO_EAST_PLATEAU_AP_REGION, POKO_POKO_SPAWNING_MEADOWS_PASS_AP_REGION, LAKE_DELENDE_AP_REGION, SALMON_RIVER_MOUTH_AP_REGION],
                     {POKO_POKO_SPAWNING_MEADOWS_PASS_AP_REGION: lambda state: logic.has_glide(state),
@@ -917,7 +918,7 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
     fancy_add_exits(world, EACLANEYA_ENTRANCE_AP_REGION, [EACLANEYA_TRICKY_BLOCK_BRANCHES_AP_REGION],
                     {EACLANEYA_TRICKY_BLOCK_BRANCHES_AP_REGION: lambda state: state.has(JIDAMBA_EACLANEYA_PASS, player) or options.regionsanity.value == options.regionsanity.option_disabled})
     fancy_add_exits(world, EACLANEYA_TRICKY_BLOCK_BRANCHES_AP_REGION, [LAND_OF_TIMER_FISHES_AP_REGION],
-                    {LAND_OF_TIMER_FISHES_AP_REGION: lambda state: logic.has_glide(state) and (state.has(JIDAMBA_EACLANEYA_PASS, player) or options.regionsanity.value == options.regionsanity.option_disabled)})
+                    {LAND_OF_TIMER_FISHES_AP_REGION: lambda state: logic.has_glide(state) and (state.has(JIDAMBA_EACLANEYA_PASS, player) or options.regionsanity.value == options.regionsanity.option_disabled) and (state.has(PROGRESSIVE_QUINTAR_WOODWIND, player, 1) or state.has(PROGRESSIVE_MOUNT, player, 2) or options.hop_to_it.value >= options.hop_to_it.option_fancy_footwork)})
     fancy_add_exits(world, LAND_OF_TIMER_FISHES_AP_REGION, [SALMON_ROOM_AP_REGION],
                     {SALMON_ROOM_AP_REGION: lambda state: state.has(JIDAMBA_EACLANEYA_PASS, player) or options.regionsanity.value == options.regionsanity.option_disabled})
     fancy_add_exits(world, SALMON_ROOM_AP_REGION, [THE_DEEP_SEA_AP_REGION],

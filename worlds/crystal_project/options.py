@@ -329,6 +329,20 @@ class ObscureRoutes(Toggle):
     """
     display_name = "Obscure Routes"
 
+class HopToIt(Choice):
+    """
+    No Tricks: No fancy hops expected.
+    Fancy Footwork: Some above-average jumping skill expected, e.g. jumping past the pushblocks in Eaclaneya with no mounts or Auto-Jump-level jumping precision.
+    One Hop Beyond: More jumping tricks expected, like ibek jumping up from underneath a ledge.
+    Pray: You didn't *want* the Golden Quintar for the Sequoia, did you?
+    """
+    display_name = "Hop To It"
+    option_no_tricks = 0
+    option_fancy_footwork = 1
+    option_one_hop_beyond = 2
+    option_pray = 3
+    default = 0
+
 class PrioritizeCrystals(DefaultOnToggle):
     """
     When enabled, crystals will be prioritized when placing progression items.
@@ -493,6 +507,7 @@ class CrystalProjectOptions(PerGameCommonOptions):
     max_level: MaxLevel
     key_mode: KeyMode
     obscure_routes: ObscureRoutes
+    hop_to_it: HopToIt
     prioritize_crystals: PrioritizeCrystals
     auto_spend_lp: AutoSpendLP
     auto_equip_passives: AutoEquipPassives
@@ -511,7 +526,7 @@ class CrystalProjectOptions(PerGameCommonOptions):
 crystal_project_option_groups: Dict[str, List[Any]] = {
     "Goal Options": [Goal, ClamshellGoalQuantity, ExtraClamshellsInPool, AstleyJobQuantity],
     "Location Options": [IncludedRegions, JobRando, StartingJobQuantity, DisableSparks, KillBossesMode, Shopsanity, Regionsanity, RegionsanityStarterRegionMinLevel, RegionsanityStarterRegionMaxLevel, HomePointHustle],
-    "Progression Options": [ProgressiveMountMode, StartingLevel, LevelGating, LevelComparedToEnemies, ProgressiveLevelSize, MaxLevel, KeyMode, ObscureRoutes, PrioritizeCrystals, AutoSpendLP, AutoEquipPassives, EasyLeveling],
+    "Progression Options": [ProgressiveMountMode, StartingLevel, LevelGating, LevelComparedToEnemies, ProgressiveLevelSize, MaxLevel, KeyMode, ObscureRoutes, HopToIt, PrioritizeCrystals, AutoSpendLP, AutoEquipPassives, EasyLeveling],
     "Item Pool Options": [ProgressiveEquipmentMode, StartWithTreasureFinder, StartWithMaps, FillFullMap, IncludeSummonAbilities, IncludeScholarAbilities],
     "Bonus Fun": [ItemInfoMode, RandomizeMusic, UseMods]
 }
