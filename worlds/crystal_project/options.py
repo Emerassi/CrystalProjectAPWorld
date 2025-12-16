@@ -332,7 +332,7 @@ class ObscureRoutes(Toggle):
 class HopToIt(Choice):
     """
     No Tricks: No fancy hops expected.
-    Fancy Footwork: Some above-average jumping skill expected, e.g. jumping past the pushblocks in Eaclaneya with no mounts or Auto-Jump-level jumping precision.
+    Fancy Footwork: Above-average jumping skill expected, e.g. jumping past the pushblocks in Eaclaneya with no mounts or Auto-Jump-level jumping precision.
     One Hop Beyond: More jumping tricks expected, like ibek jumping up from underneath a ledge.
     Pray: You didn't *want* the Golden Quintar for the Sequoia, did you?
     """
