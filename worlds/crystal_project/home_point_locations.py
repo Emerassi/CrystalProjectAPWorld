@@ -1,13 +1,13 @@
 from typing import List, Optional
 
 from .constants.home_points import *
-from .constants.keys import *
 from .locations import LocationData
 from .options import CrystalProjectOptions
 from .rules import CrystalProjectLogic
 
 
 #Remember if you update the AP Region a Home Point is in or its name, go change it in the Menu connections function in the region.py file
+#No rules on any Home Point locations bc if you get their teleport item, you can get there with no rules whatsoever
 def get_home_points(player: int, options: Optional[CrystalProjectOptions]) -> List[LocationData]:
     logic = CrystalProjectLogic(player, options)  # pyright: ignore [reportArgumentType]
     home_point_table: List[LocationData] = [
@@ -83,23 +83,31 @@ def get_home_points(player: int, options: Optional[CrystalProjectOptions]) -> Li
         #The Open Sea
         LocationData(HOMEPOINT_SAILORS_RAFT_AP_REGION, HOMEPOINT_SAILORS_RAFT_NAME, 3775),
         #Shoudu Province
-        LocationData(HOMEPOINT_SHOUDU_FIELDS_AP_REGION, HOMEPOINT_SHOUDU_FIELDS_NAME, 576, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state) or state.can_reach(GANYMEDE_SHRINE_AP_REGION, player=player) or state.can_reach(QUINTAR_RESERVE_AP_REGION, player=player)),
-        LocationData(HOMEPOINT_SHOUDU_MARKET_AP_REGION, HOMEPOINT_SHOUDU_MARKET_NAME, 577, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state) or state.can_reach(GANYMEDE_SHRINE_AP_REGION, player=player) or state.can_reach(QUINTAR_RESERVE_AP_REGION, player=player)),
+        #former rules: lambda state: logic.has_vertical_movement(state) or logic.has_glide(state) or state.can_reach(GANYMEDE_SHRINE_AP_REGION, player=player) or state.can_reach(QUINTAR_RESERVE_AP_REGION, player=player)
+        LocationData(HOMEPOINT_SHOUDU_FIELDS_AP_REGION, HOMEPOINT_SHOUDU_FIELDS_NAME, 576),
+        #former rules: lambda state: logic.has_vertical_movement(state) or logic.has_glide(state) or state.can_reach(GANYMEDE_SHRINE_AP_REGION, player=player) or state.can_reach(QUINTAR_RESERVE_AP_REGION, player=player)
+        LocationData(HOMEPOINT_SHOUDU_MARKET_AP_REGION, HOMEPOINT_SHOUDU_MARKET_NAME, 577),
         LocationData(HOMEPOINT_SHOUDU_PORT_AP_REGION, HOMEPOINT_SHOUDU_PORT_NAME, 672),
         LocationData(HOMEPOINT_SHANTY_INN_AP_REGION, HOMEPOINT_SHANTY_INN_NAME, 1523),
-        LocationData(HOMEPOINT_SKY_ARENA_AP_REGION, HOMEPOINT_SKY_ARENA_NAME, 1524, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state) or state.can_reach(QUINTAR_RESERVE_AP_REGION, player=player)),
-        LocationData(HOMEPOINT_PRIZE_COUNTER_AP_REGION, HOMEPOINT_PRIZE_COUNTER_NAME, 2731, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state) or state.can_reach(GANYMEDE_SHRINE_AP_REGION, player=player) or state.can_reach(QUINTAR_RESERVE_AP_REGION, player=player)),
-        LocationData(HOMEPOINT_SHOUDU_ELEVATOR_AP_REGION, HOMEPOINT_SHOUDU_ELEVATOR_NAME, 3523, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state) or state.can_reach(GANYMEDE_SHRINE_AP_REGION, player=player) or state.can_reach(QUINTAR_RESERVE_AP_REGION, player=player)),
+        #former rules: lambda state: logic.has_vertical_movement(state) or logic.has_glide(state) or state.can_reach(QUINTAR_RESERVE_AP_REGION, player=player)
+        LocationData(HOMEPOINT_SKY_ARENA_AP_REGION, HOMEPOINT_SKY_ARENA_NAME, 1524),
+        #former rules: lambda state: logic.has_vertical_movement(state) or logic.has_glide(state) or state.can_reach(GANYMEDE_SHRINE_AP_REGION, player=player) or state.can_reach(QUINTAR_RESERVE_AP_REGION, player=player)
+        LocationData(HOMEPOINT_PRIZE_COUNTER_AP_REGION, HOMEPOINT_PRIZE_COUNTER_NAME, 2731),
+        #former rules: lambda state: logic.has_vertical_movement(state) or logic.has_glide(state) or state.can_reach(GANYMEDE_SHRINE_AP_REGION, player=player) or state.can_reach(QUINTAR_RESERVE_AP_REGION, player=player)
+        LocationData(HOMEPOINT_SHOUDU_ELEVATOR_AP_REGION, HOMEPOINT_SHOUDU_ELEVATOR_NAME, 3523),
         #The Undercity
-        LocationData(HOMEPOINT_THE_UNDERCITY_AP_REGION, HOMEPOINT_THE_UNDERCITY_NAME, 1266, lambda state: logic.has_swimming(state) or logic.has_horizontal_movement(state) or logic.has_vertical_movement(state) or state.can_reach(GANYMEDE_SHRINE_AP_REGION, player=player) or state.can_reach(QUINTAR_RESERVE_AP_REGION, player=player)),
+        #former rules: lambda state: logic.has_swimming(state) or logic.has_horizontal_movement(state) or logic.has_vertical_movement(state) or state.can_reach(GANYMEDE_SHRINE_AP_REGION, player=player) or state.can_reach(QUINTAR_RESERVE_AP_REGION, player=player)
+        LocationData(HOMEPOINT_THE_UNDERCITY_AP_REGION, HOMEPOINT_THE_UNDERCITY_NAME, 1266),
         #Ganymede Shrine
         LocationData(HOMEPOINT_GANYMEDE_SHRINE_AP_REGION, HOMEPOINT_GANYMEDE_SHRINE_NAME, 1573),
         #Beaurior Volcano
         LocationData(HOMEPOINT_BEAURIOR_ROCK_AP_REGION, HOMEPOINT_BEAURIOR_ROCK_NAME, 1792),
         # TODO: put volcano peak in separate ap region instead of included in Beaurior Rock (also items nearby, not just homepoint stone)
-        LocationData(HOMEPOINT_BEAURIOR_VOLCANO_PEAK_AP_REGION, HOMEPOINT_BEAURIOR_VOLCANO_PEAK_NAME, 3037, lambda state: logic.has_key(state, SMALL_KEY, 4) and logic.has_key(state, BEAURIOR_BOSS_KEY)),
+        #former rules: lambda state: logic.has_key(state, SMALL_KEY, 4) and logic.has_key(state, BEAURIOR_BOSS_KEY)
+        LocationData(HOMEPOINT_BEAURIOR_VOLCANO_PEAK_AP_REGION, HOMEPOINT_BEAURIOR_VOLCANO_PEAK_NAME, 3037),
         #Beaurior Rock
-        LocationData(HOMEPOINT_BOSS_ROOM_AP_REGION, HOMEPOINT_BOSS_ROOM_NAME, 822, lambda state: logic.has_key(state, SMALL_KEY, 4)),
+        #former rules: lambda state: logic.has_key(state, SMALL_KEY, 4)
+        LocationData(HOMEPOINT_BOSS_ROOM_AP_REGION, HOMEPOINT_BOSS_ROOM_NAME, 822),
         #Quintar Reserve
         LocationData(HOMEPOINT_DIONE_SHRINE_AP_REGION, HOMEPOINT_DIONE_SHRINE_NAME, 1595),
         #Dione Shrine
