@@ -384,7 +384,7 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
                     {YAMAGAWA_MA_AP_REGION: lambda state: logic.has_vertical_movement(state)})
     #Yamagawa M.A. end
     #Proving Meadows start
-    fancy_add_exits(world, PROVING_MEADOWS_AP_REGION, [DELENDE_HIGH_BRIDGES_AP_REGION, THE_PALE_GROTTO_AP_REGION, PROVING_MEADOWS_SKUMPARADISE_CONNECTOR_AP_REGION, CAPITAL_SEQUOIA_AP_REGION, CAPITAL_MOAT_AP_REGION, COBBLESTONE_CRAG_AP_REGION, THE_OPEN_SEA_AP_REGION],
+    fancy_add_exits(world, PROVING_MEADOWS_AP_REGION, [DELENDE_HIGH_BRIDGES_AP_REGION, PROVING_MEADOWS_SKUMPARADISE_CONNECTOR_AP_REGION, CAPITAL_SEQUOIA_AP_REGION, CAPITAL_MOAT_AP_REGION, COBBLESTONE_CRAG_AP_REGION, THE_OPEN_SEA_AP_REGION],
                     {CAPITAL_SEQUOIA_AP_REGION: lambda state: logic.has_glide(state),
                      CAPITAL_MOAT_AP_REGION: lambda state: logic.has_swimming(state),
                      COBBLESTONE_CRAG_AP_REGION: lambda state: logic.has_swimming(state),
