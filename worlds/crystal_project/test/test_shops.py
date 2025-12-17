@@ -16,6 +16,7 @@ class TestCanEarnMoneyBasic(CrystalProjectTestBase):
         self.collect_all_progressive_levels()
         self.assertTrue(self.can_reach_location("Proving Meadows Chest - Tarzan"))
         self.assertFalse(self.can_reach_location("Proving Meadows Shop - Item Merchant 1"))
+        self.collect_by_name(DELENDE_PASS)
         self.collect_by_name(THE_PALE_GROTTO_PASS)
         self.assertTrue(self.can_reach_location("Proving Meadows Shop - Item Merchant 1"))
 
