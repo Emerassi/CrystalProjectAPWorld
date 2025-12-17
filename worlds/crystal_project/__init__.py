@@ -51,7 +51,7 @@ class CrystalProjectWorld(World):
     topology_present = True  # show path to required location checks in spoiler
 
     # Add the home points to the item_table so they don't require any special code after this
-    home_points = get_home_points(-1, None)
+    home_points = get_home_points()
     for home_point in home_points:
         item_table[home_point.name] = ItemData(HOME_POINT, home_point.code + home_point_item_index_offset, ItemClassification.progression)
 
@@ -208,7 +208,7 @@ class CrystalProjectWorld(World):
                         locations.remove(location)
 
         if self.options.home_point_hustle.value != self.options.home_point_hustle.option_disabled:
-            home_points = get_home_points(self.player, self.options)
+            home_points = get_home_points()
 
             for home_point in home_points:
                 home_point_location = LocationData(home_point.ap_region, home_point.name, (home_point.code + home_point_location_index_offset), home_point.rule)
@@ -547,7 +547,7 @@ class CrystalProjectWorld(World):
             for home_point_item in self.item_name_groups[HOME_POINT]:
                 excluded_items.add(home_point_item)
         else:
-            all_home_point_locations = get_home_points(self.player, self.options)
+            all_home_point_locations = get_home_points()
 
             for home_point_item in self.item_name_groups[HOME_POINT]:
                 is_in_included_region: bool = False

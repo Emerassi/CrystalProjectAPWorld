@@ -33,7 +33,7 @@ def get_location_name_to_id() -> dict[str, int]:
     crystal_name_to_id = {crystal.name: crystal.code for crystal in get_crystal_locations(-1, None)}
     boss_name_to_id = {boss.name: boss.code for boss in get_boss_locations(-1, None)}
     shop_name_to_id = {shop.name: shop.code for shop in get_shop_locations(-1, None)}
-    homepoint_name_to_id = {homepoint.name: homepoint.code + home_point_location_index_offset for homepoint in get_home_points(-1, None)}
+    homepoint_name_to_id = {homepoint.name: homepoint.code + home_point_location_index_offset for homepoint in get_home_points()}
     region_completion_name_to_id = {region_completion.name: region_completion.code for region_completion in get_region_completion_locations()}
     location_name_to_id.update(crystal_name_to_id)
     location_name_to_id.update(boss_name_to_id)
@@ -2021,7 +2021,7 @@ def get_location_names_per_category() -> Dict[str, Set[str]]:
     for location in get_boss_locations(-1, None):
         categories.setdefault("Bosses", set()).add(location.name)
 
-    for location in get_home_points(-1, None):
+    for location in get_home_points():
         categories.setdefault("Homepoints", set()).add(location.name)
 
     for location in get_region_completion_locations():
