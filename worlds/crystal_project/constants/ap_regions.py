@@ -160,6 +160,7 @@ THE_OPEN_SEA_AP_REGION_TELEPORT_LOCATION = "929,91,253"
 JIDAMBA_ATOLLS_AP_REGION = "Jidamba Atolls"
 BAZAAR_COAST_AP_REGION = "Sara Sara Bazaar Coast"
 #The Open Sea end
+#Shoudu Province start
 SHOUDU_DOCKSIDE_AP_REGION = "Shoudu Province Dockside"
 SHOUDU_DOCKSIDE_AP_REGION_TELEPORT_LOCATION = "756,101,-166"
 SHOUDU_PROVINCE_PROPER_AP_REGION = "Shoudu Province Proper"
@@ -169,6 +170,8 @@ NORTHEAST_UPPER_SCAFFOLDING_AP_REGION = "Shoudu Province Northeast Upper Scaffol
 SHOUDU_FIELDS_WEST_SCAFFOLDING_AP_REGION = "Shoudu Fields and Western Scaffolding"
 SHOUDU_GOLD_NEAR_GANYMEDE_AP_REGION = "Gold Near Ganymede"
 SKY_ARENA_AP_REGION = "Sky Arena"
+SHOUDU_WATERWAYS_AP_REGION = "Shoudu Waterways"
+#Shoudu Province end
 THE_UNDERCITY_AP_REGION = "The Undercity"
 THE_UNDERCITY_AP_REGION_TELEPORT_LOCATION = "732,97,-197"
 #Ganymede Shrine start
