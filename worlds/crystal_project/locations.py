@@ -783,97 +783,109 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         #LocationData(THE_OPEN_SEA_AP_REGION, THE_OPEN_SEA_DISPLAY_NAME + " NPC - Z34_SinisterSailor", 2520 + npc_index_offset),
 
         #Shoudu Waterfront
-        #Treasure chests
         LocationData(SHOUDU_WATERFRONT_AP_REGION, SHOUDU_WATERFRONT_DISPLAY_NAME + " Chest - Along the water", 2419 + treasure_index_offset), #Money chest
         LocationData(SHOUDU_WATERFRONT_AP_REGION, SHOUDU_WATERFRONT_DISPLAY_NAME + " Chest - Hop around 1", 3690 + treasure_index_offset), #Empty chest
         LocationData(SHOUDU_WATERFRONT_AP_REGION, SHOUDU_WATERFRONT_DISPLAY_NAME + " Chest - Hop around 2", 1114 + treasure_index_offset), #Mars Stone chest
 
         #Shoudu Province
-        #Treasure chests
         #Port area
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Jump through a window", 1507 + treasure_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)),  # Ether Pouch chest
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Lurking above spike ball pit by goldsmith", 2984 + treasure_index_offset),  # (753, 105, -176) Tincture Pouch chest
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Weaponsmith", 1505 + treasure_index_offset),  # Plague Mask chest
+        LocationData(SHOUDU_DOCKSIDE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Lurking above spike ball pit by goldsmith", 2984 + treasure_index_offset),  # (753, 105, -176) Tincture Pouch chest
+        LocationData(SHOUDU_DOCKSIDE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Weaponsmith", 1505 + treasure_index_offset),  # Plague Mask chest
+        LocationData(SHOUDU_DOCKSIDE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Jump through a window", 1507 + treasure_index_offset, lambda state: logic.has_vertical_movement(state) or (logic.is_hop_to_it_at_least_fancy_footwork() and logic.has_glide(state))),  # Ether Pouch chest
 
         #Shanty Inn Home Point area
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Outside the inn", 2985 + treasure_index_offset),  # Potion chest
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Sneaky back door of cramped storage room", 1519 + treasure_index_offset),  # Looters Pin chest
+        LocationData(SHOUDU_DOCKSIDE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Outside the inn", 2985 + treasure_index_offset),  # Potion chest
+        LocationData(SHOUDU_DOCKSIDE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Sneaky back door of cramped storage room", 1519 + treasure_index_offset),  # Looters Pin chest
 
-        #Moving up past here requires Ibek/Owl
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Below fast boi spark", 3504 + treasure_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)), #Elevator Part chest
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Through rooftop window south of fast boi spark 1", 3506 + treasure_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)), #Elevator Part chest
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Through rooftop window south of fast boi spark 2", 2763 + treasure_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)), #Potion chest
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Reservoir above the water", 3508 + treasure_index_offset, lambda state: logic.has_vertical_movement(state) and logic.has_swimming(state)), #Elevator Part chest
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Above accessory store", 3509 + treasure_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)), #Elevator Part chest
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Building near all the grates", 3510 + treasure_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)), #Elevator Part chest
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Above Samurai Lounge 1", 3511 + treasure_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)), #Elevator Part chest
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Above Samurai Lounge 2", 1541 + treasure_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)), #Fleuret chest
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Samurai Lounge", 3512 + treasure_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)), #Elevator Part chest
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Assassin Lounge", 3513 + treasure_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)), #Elevator Part chest
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Among crates across from Assassin Lounge", 3514 + treasure_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)), #Elevator Part chest
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Its in a room and there is a bed", 3515 + treasure_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)), #Elevator Part chest
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Granary", 3520 + treasure_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)), #Elevator Part chest
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Below the flower house", 3521 + treasure_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)), #Elevator Part chest
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - White hut", 3522 + treasure_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)), #Elevator Part chest
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Across the reservoir", 2978 + treasure_index_offset, lambda state: (logic.has_vertical_movement(state) and logic.has_swimming(state)) or logic.has_glide(state)), #Ether Pouch chest
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Crawl along the attic", 1536 + treasure_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)), #Knicked Knackers chest
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Sneak behind crates near Assassin Lounge", 2760 + treasure_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)), #Muggers Glove chest
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Go in the back door", 1506 + treasure_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)), #Potion Pouch
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Near the Assassin Lounge", 2762 + treasure_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)), #Potion Pouch
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Jump along the lamppost", 2752 + treasure_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)), #Suitor Hat chest
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Above the armor store", 1517 + treasure_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)), #Potion Pouch chest
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Enter building next to white hut to balance above The Undercity 1", 2717 + treasure_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)), #Ether chest
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Enter building next to white hut to balance above The Undercity 2", 2716 + treasure_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)), #Tincture Pouch chest
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Cross the balance beam east of Fields save point", 3040 + treasure_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)), #Potion Pouch chest
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Cross the balance beam on the way to Sky Arena", 2754 + treasure_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)), #Acrobat Shoes chest
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Atop the roofs near the grates", 1369 + treasure_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)), #Potion chest
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - In the flower room", 2789 + treasure_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)), #Potion chest
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Hidden in a house by the elevator 1", 3505 + treasure_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)), #Elevator Part chest
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Hidden in a house by the elevator 2", 2790 + treasure_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)), #Potion chest
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Near sky fishing 1", 3507 + treasure_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)), #Elevator Part chest
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Near sky fishing 2", 2986 + treasure_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)), #Potion chest
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Under the dry kid pit", 1365 + treasure_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)), #The Immovable chest
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Fall through broken grate in building west of Sky Arena Prize Counter", 2951 + treasure_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)), #Potion chest
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 2 Sky Arena Wins Room 1", 2794 + treasure_index_offset, lambda state: (logic.has_vertical_movement(state) or logic.has_glide(state)) and logic.is_area_in_level_range(state, SECOND_SKY_ARENA_FIGHT_LEVEL)),  # Money chest
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 2 Sky Arena Wins Room 2", 2751 + treasure_index_offset, lambda state: (logic.has_vertical_movement(state) or logic.has_glide(state)) and logic.is_area_in_level_range(state, SECOND_SKY_ARENA_FIGHT_LEVEL)),  # Bone Mail chest
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 2 Sky Arena Wins room 3", 2747 + treasure_index_offset, lambda state: (logic.has_vertical_movement(state) or logic.has_glide(state)) and logic.is_area_in_level_range(state, SECOND_SKY_ARENA_FIGHT_LEVEL)),  # Cutlass chest
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 2 Sky Arena Wins room 4", 2796 + treasure_index_offset, lambda state: (logic.has_vertical_movement(state) or logic.has_glide(state)) and logic.is_area_in_level_range(state, SECOND_SKY_ARENA_FIGHT_LEVEL)), #Tonic Pouch
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 2 Sky Arena Wins room 5", 2748 + treasure_index_offset, lambda state: (logic.has_vertical_movement(state) or logic.has_glide(state)) and logic.is_area_in_level_range(state, SECOND_SKY_ARENA_FIGHT_LEVEL)), #Soul Kris chest
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 5 Sky Arena Wins room 1", 2812 + treasure_index_offset, lambda state: (logic.has_vertical_movement(state) or logic.has_glide(state)) and logic.is_area_in_level_range(state, FIFTH_SKY_ARENA_FIGHT_LEVEL)), #Money chest
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 5 Sky Arena Wins room 2", 2723 + treasure_index_offset, lambda state: (logic.has_vertical_movement(state) or logic.has_glide(state)) and logic.is_area_in_level_range(state, FIFTH_SKY_ARENA_FIGHT_LEVEL)), #Gaia Axe chest
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 5 Sky Arena Wins room 3", 2813 + treasure_index_offset, lambda state: (logic.has_vertical_movement(state) or logic.has_glide(state)) and logic.is_area_in_level_range(state, FIFTH_SKY_ARENA_FIGHT_LEVEL)), #Money chest
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 5 Sky Arena Wins room 4", 2753 + treasure_index_offset, lambda state: (logic.has_vertical_movement(state) or logic.has_glide(state)) and logic.is_area_in_level_range(state, FIFTH_SKY_ARENA_FIGHT_LEVEL)), #Gaia Vest chest
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 8 Sky Arena Wins room 1", 2665 + treasure_index_offset, lambda state: (logic.has_vertical_movement(state) or logic.has_glide(state)) and logic.is_area_in_level_range(state, EIGHTH_SKY_ARENA_FIGHT_LEVEL)), #Gravedigger chest
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 8 Sky Arena Wins room 2", 2805 + treasure_index_offset, lambda state: (logic.has_vertical_movement(state) or logic.has_glide(state)) and logic.is_area_in_level_range(state, EIGHTH_SKY_ARENA_FIGHT_LEVEL)), #Malifice chest
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 8 Sky Arena Wins room 3", 2800 + treasure_index_offset, lambda state: (logic.has_vertical_movement(state) or logic.has_glide(state)) and logic.is_area_in_level_range(state, EIGHTH_SKY_ARENA_FIGHT_LEVEL)), #Wizards Wall chest
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 10 Sky Arena Wins room 1", 2756 + treasure_index_offset, lambda state: (logic.has_vertical_movement(state) or logic.has_glide(state)) and logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL)), #(753, 134, -263) Yasha chest
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 10 Sky Arena Wins room 2", 2928 + treasure_index_offset, lambda state: (logic.has_vertical_movement(state) or logic.has_glide(state)) and logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL)), #(754, 134, -264) Muramasa chest
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 10 Sky Arena Wins room 3", 2929 + treasure_index_offset, lambda state: (logic.has_vertical_movement(state) or logic.has_glide(state)) and logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL)), #(755, 134, -263) Shadow Gi chest
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Fall through floorboards of 10 Sky Arena Wins room 1", 3763 + treasure_index_offset, lambda state: (logic.has_vertical_movement(state) or logic.has_glide(state)) and logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL)), #(754, 130, -264) Zether chest
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Fall through floorboards of 10 Sky Arena Wins room 2", 3764 + treasure_index_offset, lambda state: (logic.has_vertical_movement(state) or logic.has_glide(state)) and logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL)), #(755, 130, -263) Z-Potion chest
-
-        #NPCs
+        #Shoudu Province Proper
         #Todo NPCs Job Masters: Master Assassin ID 3605 (769, 123, -201); gives you Assassin Seal in exchange for job mastery
         #Todo NPCs Job Masters: Master Samurai ID 3576 (800, 115, -221); gives you Samurai Seal in exchange for job mastery
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - Chloe and Talon sky fishing", 3702 + npc_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)), #(765, 125, -248) Fixed Missable; removed post-sparkle
-        #NPCs Multichecks: Shoudu Province (Sky Arena) map Z38_SkyArenaPrizes ID 1921 (765, 125, -248) gives 5 prizes in exchange for winning fights
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - 1 Sky Arena Win Prize", 51921 + npc_index_offset, lambda state: (logic.has_vertical_movement(state) or logic.has_glide(state)) and logic.is_area_in_level_range(state, FIRST_SKY_ARENA_FIGHT_LEVEL)), #(765, 125, -248)
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - 4 Sky Arena Wins Prize", 51922 + npc_index_offset, lambda state: (logic.has_vertical_movement(state) or logic.has_glide(state)) and logic.is_area_in_level_range(state, FOURTH_SKY_ARENA_FIGHT_LEVEL)), #(765, 125, -248)
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - 6 Sky Arena Wins Prize", 51923 + npc_index_offset, lambda state: (logic.has_vertical_movement(state) or logic.has_glide(state)) and logic.is_area_in_level_range(state, SIXTH_SKY_ARENA_FIGHT_LEVEL)), #(765, 125, -248)
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - 7 Sky Arena Wins Prize", 51924 + npc_index_offset, lambda state: (logic.has_vertical_movement(state) or logic.has_glide(state)) and logic.is_area_in_level_range(state, SEVENTH_SKY_ARENA_FIGHT_LEVEL)), #(765, 125, -248)
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - 9 Sky Arena Wins Prize", 1921 + npc_index_offset, lambda state: (logic.has_vertical_movement(state) or logic.has_glide(state)) and logic.is_area_in_level_range(state, NINTH_SKY_ARENA_FIGHT_LEVEL)), #(765, 125, -248)
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - 10 Sky Arena Wins room Diamond 1", 2833 + npc_index_offset, lambda state: (logic.has_vertical_movement(state) or logic.has_glide(state)) and logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL)), #(752, 133, -262) Dust
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - 10 Sky Arena Wins room Diamond 2", 2811 + npc_index_offset, lambda state: (logic.has_vertical_movement(state) or logic.has_glide(state)) and logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL)), #(756, 133, -261) Ingot
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - Diamond through a hole in the 10 Sky Arena Wins room floor", 2832 + npc_index_offset, lambda state: (logic.has_vertical_movement(state) or logic.has_glide(state)) and logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL)), #(753, 130, -264) Ore
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - Gold at back reservoir wall", 2827 + npc_index_offset, lambda state: (logic.has_vertical_movement(state) or logic.has_glide(state)) and logic.has_swimming(state)), #Ingot
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - Gold in farmland on way to shrine", 2821 + npc_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)), #Ingot
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - Gold near sky fishing", 2834 + npc_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)), #Ore
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - Gold in 2 Sky Arena Wins room", 2829 + npc_index_offset, lambda state: (logic.has_vertical_movement(state) or logic.has_glide(state)) and logic.is_area_in_level_range(state, SECOND_SKY_ARENA_FIGHT_LEVEL)), #Dust
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - Gold in 5 Sky Arena Wins room 1", 2720 + npc_index_offset, lambda state: (logic.has_vertical_movement(state) or logic.has_glide(state)) and logic.is_area_in_level_range(state, FIFTH_SKY_ARENA_FIGHT_LEVEL)), #Ore
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - Gold in 5 Sky Arena Wins room 2", 2722 + npc_index_offset, lambda state: (logic.has_vertical_movement(state) or logic.has_glide(state)) and logic.is_area_in_level_range(state, FIFTH_SKY_ARENA_FIGHT_LEVEL)), #Ingot
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - Gold in 5 Sky Arena Wins room 3", 2721 + npc_index_offset, lambda state: (logic.has_vertical_movement(state) or logic.has_glide(state)) and logic.is_area_in_level_range(state, FIFTH_SKY_ARENA_FIGHT_LEVEL)), #Dust
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - Gold in 8 Sky Arena Wins room 1", 2830 + npc_index_offset, lambda state: (logic.has_vertical_movement(state) or logic.has_glide(state)) and logic.is_area_in_level_range(state, EIGHTH_SKY_ARENA_FIGHT_LEVEL)), #Ingot
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - Gold in 8 Sky Arena Wins room 2", 2831 + npc_index_offset, lambda state: (logic.has_vertical_movement(state) or logic.has_glide(state)) and logic.is_area_in_level_range(state, EIGHTH_SKY_ARENA_FIGHT_LEVEL)), #Ore
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Go in the dockside warehouse attic backdoor", 1506 + treasure_index_offset), #Potion Pouch
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Samurai Lounge", 3512 + treasure_index_offset), #Elevator Part chest
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Above the armor store", 1517 + treasure_index_offset),  # Potion Pouch chest
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Jump along the lamppost", 2752 + treasure_index_offset), #Suitor Hat chest
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Crawl along the joists", 1536 + treasure_index_offset),  # Knicked Knackers chest
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Granary", 3520 + treasure_index_offset),  # Elevator Part chest
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Bed under the stairs", 3521 + treasure_index_offset),  # Elevator Part chest
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - It's in a room and there is a bed", 3515 + treasure_index_offset),  # Elevator Part chest
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Near the Assassin Lounge", 2762 + treasure_index_offset),  # Potion Pouch
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Assassin Lounge", 3513 + treasure_index_offset),  # Elevator Part chest
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Among crates across from Assassin Lounge", 3514 + treasure_index_offset),  # Elevator Part chest
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Skulk behind crates near Assassin Lounge", 2760 + treasure_index_offset),  # Muggers Glove chest
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Below fast boi spark", 3504 + treasure_index_offset), #Elevator Part chest
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Through rooftop window south of fast boi spark 1", 2763 + treasure_index_offset), #Potion chest
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Through rooftop window south of fast boi spark 2", 3506 + treasure_index_offset), #Elevator Part chest
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - White hut", 3522 + treasure_index_offset),  # Elevator Part chest
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Above accessory store", 3509 + treasure_index_offset),  # Elevator Part chest
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Building near all the grates", 3510 + treasure_index_offset),  # Elevator Part chest
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Atop the roofs near the grates", 1369 + treasure_index_offset),  # Potion chest
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Across the reservoir", 2978 + treasure_index_offset, lambda state: logic.has_swimming(state) or logic.has_glide(state)),  # Ether Pouch chest
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - Gold at back reservoir wall", 2827 + npc_index_offset, lambda state: logic.has_swimming(state) or logic.has_glide(state)),  # Ingot
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Reservoir above the water", 3508 + treasure_index_offset, lambda state: logic.has_vertical_movement(state) and (logic.has_swimming(state) or logic.has_glide(state))),  # Elevator Part chest
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Above Samurai Lounge 1", 1541 + treasure_index_offset), #Fleuret chest
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Above Samurai Lounge 2", 3511 + treasure_index_offset), #Elevator Part chest
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Under the dry kid pit", 1365 + treasure_index_offset),  # The Immovable chest
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Sea-breeze scaffolding", 3507 + treasure_index_offset),  # Elevator Part chest
+
+        #Todo these two chests should be in their own region that connects shoudu and undercity for the purposes of making it easier to navigate using playthrough or UT /get_logical_path
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Enter building next to white hut to balance above The Undercity 1", 2717 + treasure_index_offset),  # Ether chest
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Enter building next to white hut to balance above The Undercity 2", 2716 + treasure_index_offset),  # Tincture Pouch chest
+
+        #Todo this chest should be in their own region that connects shoudu and undercity for the purposes of making it easier to navigate using playthrough or UT /get_logical_path
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Fall through broken grate in building west of Sky Arena Prize Counter", 2951 + treasure_index_offset),  # Potion chest
+
+        #Northeast Scaffolding Midpoint
+        LocationData(NORTHEAST_MIDPOINT_SCAFFOLDING_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - This scaffolding's mid", 2986 + treasure_index_offset),  # Potion chest
+
+        #Northeast Upper Scaffolding
+        LocationData(NORTHEAST_UPPER_SCAFFOLDING_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - Gold near sky fishing", 2834 + npc_index_offset),  # Ore
+        LocationData(NORTHEAST_UPPER_SCAFFOLDING_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - Chloe and Talon sky fishing", 3702 + npc_index_offset),  # (765, 125, -248) Fixed Missable; removed post-sparkle
+
+        #Elevator Base
+        LocationData(SHOUDU_ELEVATOR_BASE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - In the flower room", 2789 + treasure_index_offset),  # Potion chest
+        LocationData(SHOUDU_ELEVATOR_BASE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Hidden in a house by the elevator 1", 2790 + treasure_index_offset),  # Potion chest
+        LocationData(SHOUDU_ELEVATOR_BASE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Hidden in a house by the elevator 2", 3505 + treasure_index_offset),  # Elevator Part chest
+
+        #Shoudu Fields and West Scaffolding
+        LocationData(SHOUDU_FIELDS_WEST_SCAFFOLDING_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Cross the balance beam east of Fields save point", 3040 + treasure_index_offset),  # Potion Pouch chest
+        LocationData(SHOUDU_FIELDS_WEST_SCAFFOLDING_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Cross the balance beam on the way to Sky Arena", 2754 + treasure_index_offset),  # Acrobat Shoes chest
+
+        #Gold Near Ganymede
+        LocationData(SHOUDU_GOLD_NEAR_GANYMEDE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - Gold in farmland on way to shrine", 2821 + npc_index_offset),  # Ingot
+
+        #Sky Arena
+        # NPCs Multichecks: Shoudu Province (Sky Arena) map Z38_SkyArenaPrizes ID 1921 (765, 125, -248) gives 5 prizes in exchange for winning fights
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - 1 Sky Arena Win Prize", 51921 + npc_index_offset, lambda state: logic.is_area_in_level_range(state, FIRST_SKY_ARENA_FIGHT_LEVEL)), #(765, 125, -248)
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - 4 Sky Arena Wins Prize", 51922 + npc_index_offset, lambda state: logic.is_area_in_level_range(state, FOURTH_SKY_ARENA_FIGHT_LEVEL)), #(765, 125, -248)
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - 6 Sky Arena Wins Prize", 51923 + npc_index_offset, lambda state: logic.is_area_in_level_range(state, SIXTH_SKY_ARENA_FIGHT_LEVEL)), #(765, 125, -248)
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - 7 Sky Arena Wins Prize", 51924 + npc_index_offset, lambda state: logic.is_area_in_level_range(state, SEVENTH_SKY_ARENA_FIGHT_LEVEL)), #(765, 125, -248)
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - 9 Sky Arena Wins Prize", 1921 + npc_index_offset, lambda state: logic.is_area_in_level_range(state, NINTH_SKY_ARENA_FIGHT_LEVEL)), #(765, 125, -248)
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 2 Sky Arena Wins Room 1", 2794 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, SECOND_SKY_ARENA_FIGHT_LEVEL)),  # Money chest
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 2 Sky Arena Wins Room 2", 2751 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, SECOND_SKY_ARENA_FIGHT_LEVEL)),  # Bone Mail chest
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 2 Sky Arena Wins room 3", 2747 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, SECOND_SKY_ARENA_FIGHT_LEVEL)),  # Cutlass chest
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 2 Sky Arena Wins room 4", 2796 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, SECOND_SKY_ARENA_FIGHT_LEVEL)),  # Tonic Pouch
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 2 Sky Arena Wins room 5", 2748 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, SECOND_SKY_ARENA_FIGHT_LEVEL)),  # Soul Kris chest
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - Gold in 2 Sky Arena Wins room", 2829 + npc_index_offset, lambda state: logic.is_area_in_level_range(state, SECOND_SKY_ARENA_FIGHT_LEVEL)), #Dust
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 5 Sky Arena Wins room 1", 2812 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, FIFTH_SKY_ARENA_FIGHT_LEVEL)),  # Money chest
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 5 Sky Arena Wins room 2", 2723 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, FIFTH_SKY_ARENA_FIGHT_LEVEL)),  # Gaia Axe chest
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 5 Sky Arena Wins room 3", 2813 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, FIFTH_SKY_ARENA_FIGHT_LEVEL)),  # Money chest
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 5 Sky Arena Wins room 4", 2753 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, FIFTH_SKY_ARENA_FIGHT_LEVEL)),  # Gaia Vest chest
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - Gold in 5 Sky Arena Wins room 1", 2720 + npc_index_offset, lambda state: logic.is_area_in_level_range(state, FIFTH_SKY_ARENA_FIGHT_LEVEL)),  # Ore
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - Gold in 5 Sky Arena Wins room 2", 2722 + npc_index_offset, lambda state: logic.is_area_in_level_range(state, FIFTH_SKY_ARENA_FIGHT_LEVEL)),  # Ingot
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - Gold in 5 Sky Arena Wins room 3", 2721 + npc_index_offset, lambda state: logic.is_area_in_level_range(state, FIFTH_SKY_ARENA_FIGHT_LEVEL)),  # Dust
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 8 Sky Arena Wins room 1", 2665 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, EIGHTH_SKY_ARENA_FIGHT_LEVEL)),  # Gravedigger chest
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 8 Sky Arena Wins room 2", 2805 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, EIGHTH_SKY_ARENA_FIGHT_LEVEL)),  # Malifice chest
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 8 Sky Arena Wins room 3", 2800 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, EIGHTH_SKY_ARENA_FIGHT_LEVEL)),  # Wizards Wall chest
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - Gold in 8 Sky Arena Wins room 1", 2830 + npc_index_offset, lambda state: logic.is_area_in_level_range(state, EIGHTH_SKY_ARENA_FIGHT_LEVEL)),  # Ingot
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - Gold in 8 Sky Arena Wins room 2", 2831 + npc_index_offset, lambda state: logic.is_area_in_level_range(state, EIGHTH_SKY_ARENA_FIGHT_LEVEL)),  # Ore
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 10 Sky Arena Wins room 1", 2756 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL)),  # (753, 134, -263) Yasha chest
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 10 Sky Arena Wins room 2", 2928 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL)),  # (754, 134, -264) Muramasa chest
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 10 Sky Arena Wins room 3", 2929 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL)),  # (755, 134, -263) Shadow Gi chest
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - 10 Sky Arena Wins room Diamond 1", 2833 + npc_index_offset, lambda state: logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL)),  # (752, 133, -262) Dust
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - 10 Sky Arena Wins room Diamond 2", 2811 + npc_index_offset, lambda state: logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL)),  # (756, 133, -261) Ingot
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Fall through floorboards of 10 Sky Arena Wins room 1", 3763 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL)),  # (754, 130, -264) Zether chest
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Fall through floorboards of 10 Sky Arena Wins room 2", 3764 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL)),  # (755, 130, -263) Z-Potion chest
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - Diamond through a hole in the 10 Sky Arena Wins room floor", 2832 + npc_index_offset, lambda state: logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL)), #(753, 130, -264) Ore
 
         #The Undercity
         #Treasures
@@ -1422,7 +1434,7 @@ def get_crystal_locations(player: int, options: CrystalProjectOptions | None) ->
         LocationData(RIVER_CATS_EGO_AP_REGION, RIVER_CATS_EGO_AP_REGION + NOMAD_JOB_CRYSTAL_LOCATION, 630 + crystal_index_offset),
         LocationData(ANCIENT_RESERVOIR_AP_REGION, ANCIENT_RESERVOIR_DISPLAY_NAME + DERVISH_JOB_CRYSTAL_LOCATION, 1121 + crystal_index_offset),
         # Zones (Expert)
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + SAMURAI_JOB_CRYSTAL_LOCATION, 1206 + crystal_index_offset, lambda state: (logic.has_vertical_movement(state) or logic.has_glide(state)) and logic.is_area_in_level_range(state, THIRD_SKY_ARENA_FIGHT_LEVEL)),
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + SAMURAI_JOB_CRYSTAL_LOCATION, 1206 + crystal_index_offset, lambda state: logic.is_area_in_level_range(state, THIRD_SKY_ARENA_FIGHT_LEVEL)),
         # Can just swim or defeat the Undercity Masters; Blade Master: Ibek or Owl, Shadow Master: Horizontal or Fish, Duel Master: Ibek or Owl; to defeat all masters, you either need both ibek + quintar, owl, or fish
         LocationData(THE_UNDERCITY_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + ASSASSIN_JOB_CRYSTAL_LOCATION, 1204 + crystal_index_offset, lambda state: (logic.has_horizontal_movement(state) and logic.has_vertical_movement(state)) or logic.has_glide(state) or logic.has_swimming(state)),
         LocationData(BEAURIOR_ROCK_AP_REGION, BEAURIOR_VOLCANO_DISPLAY_NAME + VALKYRIE_JOB_CRYSTAL_LOCATION, 1086 + crystal_index_offset, lambda state: logic.has_key(state, SMALL_KEY, 4) and logic.has_key(state, BEAURIOR_BOSS_KEY)),
@@ -1445,7 +1457,7 @@ def get_boss_locations(player: int, options: CrystalProjectOptions | None) -> Li
         LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Boss - Niltsi Summon", 1109 + boss_index_offset, lambda state: state.has(SUMMONER_JOB, player) and logic.is_area_in_level_range(state, NILTSI_FIGHT_LEVEL)), #376, 178, -345 (Capital Sequoia (Maze) map) Monster ID: 93
         LocationData(SALMON_BAY_AP_REGION, SALMON_BAY_DISPLAY_NAME + " Boss - Guaba Summon", 1138 + boss_index_offset, lambda state: state.has(SUMMONER_JOB, player) and logic.is_area_in_level_range(state, GUABA_FIGHT_LEVEL)), #-50, 91, -330 Monster ID: 94
         LocationData(THE_UNDERCITY_AP_REGION, "Underpass Boss - Pah Summon", 1130 + boss_index_offset, lambda state: (logic.has_swimming(state) or logic.has_glide(state)) and state.has(SUMMONER_JOB, player) and logic.is_area_in_level_range(state, PAH_FIGHT_LEVEL)), #614, 91, -213 Monster ID: 97
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Boss - Tira Summon", 1132 + boss_index_offset, lambda state: state.has(SUMMONER_JOB, player) and (logic.has_vertical_movement(state) or logic.has_glide(state) or state.can_reach(QUINTAR_RESERVE_AP_REGION, player=player) or state.can_reach(GANYMEDE_SHRINE_AP_REGION, player=player)) and logic.is_area_in_level_range(state, TIRA_FIGHT_LEVEL)), #(720, 138, -278) Monster ID: 98
+        LocationData(SHOUDU_ELEVATOR_BASE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Boss - Tira Summon", 1132 + boss_index_offset, lambda state: state.has(SUMMONER_JOB, player) and logic.is_area_in_level_range(state, TIRA_FIGHT_LEVEL)), #(720, 138, -278) Monster ID: 98
         LocationData(LAKE_DELENDE_AP_REGION, LAKE_DELENDE_DISPLAY_NAME + " Boss - Ioske Summon", 1111 + boss_index_offset, lambda state: state.has(SUMMONER_JOB, player) and logic.is_area_in_level_range(state, IOSKE_FIGHT_LEVEL)), #97, 126, -211 Monster ID: 92
         LocationData(PAMOA_TREE_AP_REGION, TALL_TALL_HEIGHTS_DISPLAY_NAME + " Boss - Pamoa Summon", 1136 + boss_index_offset, lambda state: state.has(SUMMONER_JOB, player) and logic.is_area_in_level_range(state, PAMOA_FIGHT_LEVEL)), #498, 218, -412 Monster ID: 91
         LocationData(JIDAMBA_SUMMIT_AP_REGION, JIDAMBA_TANGLE_DISPLAY_NAME + " Boss - Juses Summon", 1134 + boss_index_offset, lambda state: state.has(SUMMONER_JOB, player) and logic.is_area_in_level_range(state, JUSES_FIGHT_LEVEL)), #(672, 124, 106) Monster ID: 99
@@ -1470,7 +1482,7 @@ def get_boss_locations(player: int, options: CrystalProjectOptions | None) -> Li
         LocationData(COBBLESTONE_CRAG_AP_REGION, COBBLESTONE_CRAG_DISPLAY_NAME + " Boss - Crag Demon", 1118 + boss_index_offset, lambda state: logic.is_area_in_level_range(state, CRAG_DEMON_FIGHT_LEVEL)), #Monster ID: 217
         LocationData(OKIMOTO_NS_AP_REGION, OKIMOTO_NS_DISPLAY_NAME + " Boss - Kuromanto", 698 + boss_index_offset, lambda state: logic.is_area_in_level_range(state, KUROMANTO_FIGHT_LEVEL)), #Monster ID: 63
         LocationData(IBEK_CAVE_AP_REGION, ANCIENT_RESERVOIR_DISPLAY_NAME + " Boss - Possessor", 1674 + boss_index_offset, lambda state: logic.is_area_in_level_range(state, POSSESSOR_FIGHT_LEVEL)), #Monster ID: 221
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Boss - Final Sky Arena Fight: Arachlea", 1366 + boss_index_offset, lambda state: (logic.has_vertical_movement(state) or logic.has_glide(state)) and logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL)), #Monster ID: 252 (SkyArenaRegistrar)
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Boss - Final Sky Arena Fight: Arachlea", 1366 + boss_index_offset, lambda state: logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL)), #Monster ID: 252 (SkyArenaRegistrar)
         LocationData(THE_UNDERCITY_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " Boss - Blade Master", 1939 + boss_index_offset, lambda state: (logic.has_vertical_movement(state) or logic.has_glide(state)) and logic.is_area_in_level_range(state, BLADE_MASTER_FIGHT_LEVEL)), #Monster ID: 145
         LocationData(THE_UNDERCITY_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " Boss - Shadow Master", 1940 + boss_index_offset, lambda state: (logic.has_swimming(state) or logic.has_horizontal_movement(state)) and logic.is_area_in_level_range(state, SHADOW_MASTER_FIGHT_LEVEL)), #Monster ID: 144
         LocationData(THE_UNDERCITY_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " Boss - Duel Master", 1941 + boss_index_offset, lambda state: (logic.has_vertical_movement(state) or logic.has_glide(state)) and logic.is_area_in_level_range(state, DUEL_MASTER_FIGHT_LEVEL)), #Monster ID: 146
@@ -1820,52 +1832,52 @@ def get_shop_locations(player: int, options: CrystalProjectOptions | None) -> Li
 
         #Zones (Expert)
         #Shoudu Province
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Item Merchant 1", 10951 + shop_index_offset),
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Item Merchant 2", 20951 + shop_index_offset),
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Item Merchant 3", 30951 + shop_index_offset),
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Item Merchant 4", 40951 + shop_index_offset),
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Item Merchant 5", 50951 + shop_index_offset),
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Item Merchant 6", 60951 + shop_index_offset),
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Item Merchant 7", 70951 + shop_index_offset),
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Item Merchant 8", 80951 + shop_index_offset),
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Item Merchant 9", 90951 + shop_index_offset),
+        LocationData(SHOUDU_DOCKSIDE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Item Merchant 1", 10951 + shop_index_offset),
+        LocationData(SHOUDU_DOCKSIDE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Item Merchant 2", 20951 + shop_index_offset),
+        LocationData(SHOUDU_DOCKSIDE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Item Merchant 3", 30951 + shop_index_offset),
+        LocationData(SHOUDU_DOCKSIDE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Item Merchant 4", 40951 + shop_index_offset),
+        LocationData(SHOUDU_DOCKSIDE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Item Merchant 5", 50951 + shop_index_offset),
+        LocationData(SHOUDU_DOCKSIDE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Item Merchant 6", 60951 + shop_index_offset),
+        LocationData(SHOUDU_DOCKSIDE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Item Merchant 7", 70951 + shop_index_offset),
+        LocationData(SHOUDU_DOCKSIDE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Item Merchant 8", 80951 + shop_index_offset),
+        LocationData(SHOUDU_DOCKSIDE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Item Merchant 9", 90951 + shop_index_offset),
 
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - No Shoudu Stew for you 1", 11199 + shop_index_offset),
+        LocationData(SHOUDU_DOCKSIDE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - No Shoudu Stew for you 1", 11199 + shop_index_offset),
 
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Accessory Merchant 1", 11614 + shop_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)),
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Accessory Merchant 2", 21614 + shop_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)),
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Accessory Merchant 3", 31614 + shop_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)),
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Accessory Merchant 4", 41614 + shop_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)),
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Accessory Merchant 5", 51614 + shop_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)),
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Accessory Merchant 6", 61614 + shop_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)),
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Accessory Merchant 1", 11614 + shop_index_offset),
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Accessory Merchant 2", 21614 + shop_index_offset),
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Accessory Merchant 3", 31614 + shop_index_offset),
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Accessory Merchant 4", 41614 + shop_index_offset),
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Accessory Merchant 5", 51614 + shop_index_offset),
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Accessory Merchant 6", 61614 + shop_index_offset),
 
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Armor Merchant 1", 11535 + shop_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)),
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Armor Merchant 2", 21535 + shop_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)),
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Armor Merchant 3", 31535 + shop_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)),
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Armor Merchant 4", 41535 + shop_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)),
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Armor Merchant 5", 51535 + shop_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)),
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Armor Merchant 6", 61535 + shop_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)),
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Armor Merchant 7", 71535 + shop_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)),
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Armor Merchant 8", 81535 + shop_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)),
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Armor Merchant 9", 91535 + shop_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)),
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Armor Merchant 10", 101535 + shop_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)),
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Armor Merchant 1", 11535 + shop_index_offset),
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Armor Merchant 2", 21535 + shop_index_offset),
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Armor Merchant 3", 31535 + shop_index_offset),
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Armor Merchant 4", 41535 + shop_index_offset),
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Armor Merchant 5", 51535 + shop_index_offset),
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Armor Merchant 6", 61535 + shop_index_offset),
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Armor Merchant 7", 71535 + shop_index_offset),
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Armor Merchant 8", 81535 + shop_index_offset),
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Armor Merchant 9", 91535 + shop_index_offset),
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Armor Merchant 10", 101535 + shop_index_offset),
 
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Weapon Merchant 1", 11544 + shop_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)),
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Weapon Merchant 2", 21544 + shop_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)),
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Weapon Merchant 3", 31544 + shop_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)),
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Weapon Merchant 4", 41544 + shop_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)),
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Weapon Merchant 5", 51544 + shop_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)),
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Weapon Merchant 6", 61544 + shop_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)),
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Weapon Merchant 7", 71544 + shop_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)),
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Weapon Merchant 8", 81544 + shop_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)),
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Weapon Merchant 9", 91544 + shop_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)),
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Weapon Merchant 10", 101544 + shop_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)),
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Weapon Merchant 11", 111544 + shop_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)),
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Weapon Merchant 12", 121544 + shop_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)),
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Weapon Merchant 13", 131544 + shop_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)),
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Weapon Merchant 14", 141544 + shop_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)),
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Weapon Merchant 15", 151544 + shop_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)),
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Weapon Merchant 16", 161544 + shop_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)),
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Weapon Merchant 1", 11544 + shop_index_offset),
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Weapon Merchant 2", 21544 + shop_index_offset),
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Weapon Merchant 3", 31544 + shop_index_offset),
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Weapon Merchant 4", 41544 + shop_index_offset),
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Weapon Merchant 5", 51544 + shop_index_offset),
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Weapon Merchant 6", 61544 + shop_index_offset),
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Weapon Merchant 7", 71544 + shop_index_offset),
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Weapon Merchant 8", 81544 + shop_index_offset),
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Weapon Merchant 9", 91544 + shop_index_offset),
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Weapon Merchant 10", 101544 + shop_index_offset),
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Weapon Merchant 11", 111544 + shop_index_offset),
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Weapon Merchant 12", 121544 + shop_index_offset),
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Weapon Merchant 13", 131544 + shop_index_offset),
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Weapon Merchant 14", 141544 + shop_index_offset),
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Weapon Merchant 15", 151544 + shop_index_offset),
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Shop - Weapon Merchant 16", 161544 + shop_index_offset),
 
         #Ganymede Shrine
         LocationData(GANYMEDE_SHRINE_AP_REGION, GANYMEDE_SHRINE_DISPLAY_NAME + " Shop - Attendant 1", 11574 + shop_index_offset),
@@ -1973,7 +1985,7 @@ def get_region_completion_locations() -> List[LocationData]:
         LocationData(SALMON_BAY_AP_REGION, SALMON_BAY_DISPLAY_NAME + " Region Completion", 6030 + regionsanity_index_offset, regionsanity=True),
         LocationData(THE_OPEN_SEA_AP_REGION, THE_OPEN_SEA_DISPLAY_NAME + " Region Completion", 6031 + regionsanity_index_offset, regionsanity=True),
         LocationData(SHOUDU_WATERFRONT_AP_REGION, SHOUDU_WATERFRONT_DISPLAY_NAME + " Region Completion", 6032 + regionsanity_index_offset, regionsanity=True),
-        LocationData(SHOUDU_PROVINCE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Region Completion", 6033 + regionsanity_index_offset, regionsanity=True),
+        LocationData(SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Region Completion", 6033 + regionsanity_index_offset, regionsanity=True),
         LocationData(THE_UNDERCITY_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " Region Completion", 6034 + regionsanity_index_offset, regionsanity=True),
         LocationData(GANYMEDE_SHRINE_AP_REGION, GANYMEDE_SHRINE_DISPLAY_NAME + " Region Completion", 6035 + regionsanity_index_offset, regionsanity=True),
         LocationData(BEAURIOR_VOLCANO_AP_REGION, BEAURIOR_VOLCANO_DISPLAY_NAME + " Region Completion", 6036 + regionsanity_index_offset, regionsanity=True),
