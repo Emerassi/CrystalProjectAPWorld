@@ -326,6 +326,16 @@ class StartingPassivePoints(Range):
     range_end = 50
     default = 10
 
+class PassivePointCapIncreaseSize(Range):
+    """
+    If your Maximum Passive Points is greate than your starting passive points
+    this controls how many additional passive points each check will give you
+    """
+    display_name = "Passive Point Cap Increase Size"
+    range_start = 1
+    range_end = 10
+    default = 2
+
 class KeyMode(Choice):
     """
     Skeleton Key: Only the Skeleton Key, which can open any locked door, will be in your item pool.
@@ -528,6 +538,7 @@ class CrystalProjectOptions(PerGameCommonOptions):
     max_level: MaxLevel
     starting_passive_points: StartingPassivePoints
     maximum_passive_points: MaximumPassivePoints
+    passive_point_cap_increase_size: PassivePointCapIncreaseSize
     key_mode: KeyMode
     obscure_routes: ObscureRoutes
     hop_to_it: HopToIt
@@ -549,7 +560,7 @@ class CrystalProjectOptions(PerGameCommonOptions):
 crystal_project_option_groups: Dict[str, List[Any]] = {
     "Goal Options": [Goal, ClamshellGoalQuantity, ExtraClamshellsInPool, AstleyJobQuantity],
     "Location Options": [IncludedRegions, JobRando, StartingJobQuantity, DisableSparks, KillBossesMode, Shopsanity, Regionsanity, RegionsanityStarterRegionMinLevel, RegionsanityStarterRegionMaxLevel, HomePointHustle],
-    "Progression Options": [ProgressiveMountMode, StartingLevel, LevelGating, LevelComparedToEnemies, ProgressiveLevelSize, MaxLevel, StartingPassivePoints, MaximumPassivePoints, KeyMode, ObscureRoutes, HopToIt, PrioritizeCrystals, AutoSpendLP, AutoEquipPassives, EasyLeveling],
+    "Progression Options": [ProgressiveMountMode, StartingLevel, LevelGating, LevelComparedToEnemies, ProgressiveLevelSize, MaxLevel, StartingPassivePoints, MaximumPassivePoints, PassivePointCapIncreaseSize, KeyMode, ObscureRoutes, HopToIt, PrioritizeCrystals, AutoSpendLP, AutoEquipPassives, EasyLeveling],
     "Item Pool Options": [ProgressiveEquipmentMode, StartWithTreasureFinder, StartWithMaps, FillFullMap, IncludeSummonAbilities, IncludeScholarAbilities],
     "Bonus Fun": [ItemInfoMode, RandomizeMusic, UseMods]
 }
