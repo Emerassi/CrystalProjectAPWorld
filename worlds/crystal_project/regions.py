@@ -459,13 +459,12 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
                      QUINTAR_RESERVE_AP_REGION: lambda state: logic.has_vertical_movement(state)})
     fancy_add_exits(world, HUNTERS_TOWER_AP_REGION, [ROLLING_QUINTAR_FIELDS_AP_REGION, ROLLING_TREETOP_HIGHWAY_AP_REGION, SANCTUM_ENTRANCE_AP_REGION, SANCTUM_EXIT_CLIFFTOP_AP_REGION, RAMPART_ATOP_PORTCULLIS_AP_REGION],
                     {SANCTUM_EXIT_CLIFFTOP_AP_REGION: lambda state: logic.has_horizontal_movement(state) or logic.has_vertical_movement(state)})
-    fancy_add_exits(world, AEGIS_OUTPOST_AP_REGION, [ROLLING_QUINTAR_FIELDS_AP_REGION, WEST_COBBLESTONE_CRAG_AP_REGION, EAST_COBBLESTONE_CRAG_AP_REGION, OKIMOTO_NS_AP_REGION, SHOUDU_WATERFRONT_AP_REGION, SHOUDU_DOCKSIDE_AP_REGION, THE_UNDERCITY_AP_REGION, FLYERS_CRAG_LOWER_AP_REGION],
+    fancy_add_exits(world, AEGIS_OUTPOST_AP_REGION, [ROLLING_QUINTAR_FIELDS_AP_REGION, WEST_COBBLESTONE_CRAG_AP_REGION, EAST_COBBLESTONE_CRAG_AP_REGION, OKIMOTO_NS_AP_REGION, SHOUDU_WATERFRONT_AP_REGION, SHOUDU_DOCKSIDE_AP_REGION, PAH_SUMMON_AP_REGION, FLYERS_CRAG_LOWER_AP_REGION],
                     #Note: Aegis Master is inside this region and requires rental quintar(obscure) or horizontal or vertical
                     {OKIMOTO_NS_AP_REGION: lambda state: (logic.has_rental_quintar(state, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME) and logic.obscure_routes_on()) or logic.has_horizontal_movement(state) or logic.has_vertical_movement(state),
                      SHOUDU_WATERFRONT_AP_REGION: lambda state: logic.obscure_routes_on() and (logic.has_rental_quintar(state, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME) or logic.has_vertical_movement(state)),
                      SHOUDU_DOCKSIDE_AP_REGION: lambda state: logic.obscure_routes_on() and (logic.has_vertical_movement(state) or logic.has_glide(state)),
-                     #TODO: this Undercity connection is to the Pah Summon cave specifically
-                     THE_UNDERCITY_AP_REGION: lambda state: logic.obscure_routes_on() and (logic.has_glide(state) or logic.has_swimming(state)),
+                     PAH_SUMMON_AP_REGION: lambda state: logic.obscure_routes_on() and (logic.has_glide(state) or logic.has_swimming(state)),
                      FLYERS_CRAG_LOWER_AP_REGION: lambda state: logic.obscure_routes_on() and (logic.has_vertical_movement(state) or logic.has_glide(state))})
     #Rolling Quintar Fields end
     #Quintar Nest start
@@ -516,19 +515,17 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
                      ROLLING_QUINTAR_FIELDS_AP_REGION: lambda state: logic.has_vertical_movement(state),
                      AEGIS_OUTPOST_AP_REGION: lambda state: logic.has_vertical_movement(state),
                      THE_OPEN_SEA_AP_REGION: lambda state: logic.has_swimming(state)})
-    fancy_add_exits(world, EAST_COBBLESTONE_CRAG_AP_REGION, [WEST_COBBLESTONE_CRAG_AP_REGION, OKIMOTO_NS_AP_REGION, SHOUDU_WATERFRONT_AP_REGION, SHOUDU_DOCKSIDE_AP_REGION, THE_UNDERCITY_AP_REGION, THE_OPEN_SEA_AP_REGION, FLYERS_CRAG_LOWER_AP_REGION],
+    fancy_add_exits(world, EAST_COBBLESTONE_CRAG_AP_REGION, [WEST_COBBLESTONE_CRAG_AP_REGION, OKIMOTO_NS_AP_REGION, SHOUDU_WATERFRONT_AP_REGION, SHOUDU_DOCKSIDE_AP_REGION, PAH_SUMMON_AP_REGION, THE_OPEN_SEA_AP_REGION, FLYERS_CRAG_LOWER_AP_REGION],
                     {SHOUDU_WATERFRONT_AP_REGION: lambda state: logic.has_horizontal_movement(state) or (logic.has_vertical_movement(state) and logic.is_hop_to_it_at_least_fancy_footwork()),
                      SHOUDU_DOCKSIDE_AP_REGION: lambda state: (logic.is_hop_to_it_at_least_fancy_footwork() or logic.has_horizontal_movement(state)) and logic.has_vertical_movement(state),
-                     #TODO: this Undercity connection is to the Pah Summon cave specifically
-                     THE_UNDERCITY_AP_REGION: lambda state: logic.has_glide(state) or logic.has_swimming(state),
+                     PAH_SUMMON_AP_REGION: lambda state: logic.has_glide(state) or logic.has_swimming(state),
                      THE_OPEN_SEA_AP_REGION: lambda state: logic.has_swimming(state),
                      FLYERS_CRAG_LOWER_AP_REGION: lambda state: (logic.is_hop_to_it_at_least_fancy_footwork() or logic.has_horizontal_movement(state)) and logic.has_vertical_movement(state)})
     #Cobblestone Crag end
-    fancy_add_exits(world, OKIMOTO_NS_AP_REGION, [EAST_COBBLESTONE_CRAG_AP_REGION, THE_OPEN_SEA_AP_REGION, SHOUDU_WATERFRONT_AP_REGION, SHOUDU_WATERWAYS_AP_REGION, THE_UNDERCITY_AP_REGION, GANYMEDE_SHRINE_AP_REGION, GANYMEDE_STEEPLE_AP_REGION, QUINTAR_RESERVE_AP_REGION, FLYERS_CRAG_LOWER_AP_REGION, FLYERS_CRAG_UPPER_AP_REGION],
+    fancy_add_exits(world, OKIMOTO_NS_AP_REGION, [EAST_COBBLESTONE_CRAG_AP_REGION, THE_OPEN_SEA_AP_REGION, SHOUDU_WATERFRONT_AP_REGION, SHOUDU_WATERWAYS_AP_REGION, PAH_SUMMON_AP_REGION, GANYMEDE_SHRINE_AP_REGION, GANYMEDE_STEEPLE_AP_REGION, QUINTAR_RESERVE_AP_REGION, FLYERS_CRAG_LOWER_AP_REGION, FLYERS_CRAG_UPPER_AP_REGION],
                     {THE_OPEN_SEA_AP_REGION: lambda state: logic.has_swimming(state),
                      SHOUDU_WATERWAYS_AP_REGION: lambda state: logic.has_swimming(state),
-                     #TODO: this Undercity connection is to the Pah Summon cave specifically
-                     THE_UNDERCITY_AP_REGION: lambda state: logic.has_glide(state) or logic.has_swimming(state),
+                     PAH_SUMMON_AP_REGION: lambda state: logic.has_glide(state) or logic.has_swimming(state),
                      GANYMEDE_SHRINE_AP_REGION: lambda state: logic.has_glide(state) or logic.has_swimming(state),
                      GANYMEDE_STEEPLE_AP_REGION: lambda state: (logic.has_horizontal_movement(state) and logic.has_swimming(state) and logic.obscure_routes_on()) or logic.has_glide(state),
                      QUINTAR_RESERVE_AP_REGION: lambda state: (logic.obscure_routes_on() and logic.has_vertical_movement(state)) or logic.has_glide(state) or logic.has_swimming(state),
@@ -667,14 +664,13 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
                      TOWER_OF_ZOT_AP_REGION: lambda state: logic.has_glide(state)})
     #Salmon Bay end
     #The Open Sea start
-    fancy_add_exits(world, THE_OPEN_SEA_AP_REGION, [SEASIDE_CLIFFS_AP_REGION, PROVING_MEADOWS_AP_REGION, CAPITAL_MOAT_AP_REGION, WEST_COBBLESTONE_CRAG_AP_REGION, SHOUDU_WATERFRONT_AP_REGION, BAZAAR_COAST_AP_REGION, SARA_SARA_BEACH_EAST_AP_REGION, RENTAL_QUINTAR_BEACH_EP_AP_REGION, RUINS_CRUMBLING_ON_SHORE_AP_REGION, SALMON_BAY_AP_REGION, SHOUDU_WATERWAYS_AP_REGION, THE_UNDERCITY_AP_REGION, JIDAMBA_ATOLLS_AP_REGION, JIDAMBA_WATERWAYS_AP_REGION, THE_DEEP_SEA_AP_REGION],
+    fancy_add_exits(world, THE_OPEN_SEA_AP_REGION, [SEASIDE_CLIFFS_AP_REGION, PROVING_MEADOWS_AP_REGION, CAPITAL_MOAT_AP_REGION, WEST_COBBLESTONE_CRAG_AP_REGION, SHOUDU_WATERFRONT_AP_REGION, BAZAAR_COAST_AP_REGION, SARA_SARA_BEACH_EAST_AP_REGION, RENTAL_QUINTAR_BEACH_EP_AP_REGION, RUINS_CRUMBLING_ON_SHORE_AP_REGION, SALMON_BAY_AP_REGION, SHOUDU_WATERWAYS_AP_REGION, UNDERCITY_WATERWAYS_AP_REGION, JIDAMBA_ATOLLS_AP_REGION, JIDAMBA_WATERWAYS_AP_REGION, THE_DEEP_SEA_AP_REGION],
                     {SEASIDE_CLIFFS_AP_REGION: lambda state: logic.has_swimming(state),
                      PROVING_MEADOWS_AP_REGION: lambda state: logic.has_swimming(state),
                      CAPITAL_MOAT_AP_REGION: lambda state: logic.has_swimming(state),
                      WEST_COBBLESTONE_CRAG_AP_REGION: lambda state: logic.has_swimming(state),
                      SHOUDU_WATERFRONT_AP_REGION: lambda state: logic.has_swimming(state),
-                     #TODO: this Undercity connection is to the Pah Summon cave specifically, though there may be more connections
-                     THE_UNDERCITY_AP_REGION: lambda state: logic.has_swimming(state),
+                     UNDERCITY_WATERWAYS_AP_REGION: lambda state: logic.has_swimming(state),
                      BAZAAR_COAST_AP_REGION: lambda state: logic.has_swimming(state),
                      SARA_SARA_BEACH_EAST_AP_REGION: lambda state: logic.has_swimming(state),
                      RENTAL_QUINTAR_BEACH_EP_AP_REGION: lambda state: logic.has_swimming(state),
@@ -693,17 +689,16 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
                      CONTINENTAL_TRAM_AP_REGION: lambda state: logic.has_swimming(state)})
     #The Open Sea end
     #Shoudu Province start (though the Waterfront is a separate display region)
-    fancy_add_exits(world, SHOUDU_WATERFRONT_AP_REGION, [SHOUDU_DOCKSIDE_AP_REGION, SHOUDU_WATERWAYS_AP_REGION, EAST_COBBLESTONE_CRAG_AP_REGION, OKIMOTO_NS_AP_REGION, THE_UNDERCITY_AP_REGION, FLYERS_CRAG_LOWER_AP_REGION],
+    fancy_add_exits(world, SHOUDU_WATERFRONT_AP_REGION, [SHOUDU_DOCKSIDE_AP_REGION, SHOUDU_WATERWAYS_AP_REGION, EAST_COBBLESTONE_CRAG_AP_REGION, OKIMOTO_NS_AP_REGION, PAH_SUMMON_AP_REGION, FLYERS_CRAG_LOWER_AP_REGION],
                     {SHOUDU_DOCKSIDE_AP_REGION: lambda state: logic.has_vertical_movement(state) or logic.has_glide(state) or logic.has_swimming(state),
                      SHOUDU_WATERWAYS_AP_REGION: lambda state: logic.has_swimming(state),
-                     #TODO: this Undercity connection is to the Pah Summon cave specifically
-                     THE_UNDERCITY_AP_REGION: lambda state: logic.has_glide(state) or logic.has_swimming(state),
+                     PAH_SUMMON_AP_REGION: lambda state: logic.has_glide(state) or logic.has_swimming(state),
                      FLYERS_CRAG_LOWER_AP_REGION: lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)})
-    fancy_add_exits(world, SHOUDU_DOCKSIDE_AP_REGION, [SHOUDU_WATERFRONT_AP_REGION, SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_WATERWAYS_AP_REGION, EAST_COBBLESTONE_CRAG_AP_REGION, SARA_SARA_BAZAAR_AP_REGION, THE_UNDERCITY_AP_REGION],
+    fancy_add_exits(world, SHOUDU_DOCKSIDE_AP_REGION, [SHOUDU_WATERFRONT_AP_REGION, SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_WATERWAYS_AP_REGION, EAST_COBBLESTONE_CRAG_AP_REGION, SARA_SARA_BAZAAR_AP_REGION, EAST_UNDERCITY_WAREHOUSE_AP_REGION],
                     {SHOUDU_PROVINCE_PROPER_AP_REGION: lambda state: logic.has_vertical_movement(state) or logic.has_glide(state),
                      SHOUDU_WATERWAYS_AP_REGION: lambda state: logic.has_swimming(state),
                      SARA_SARA_BAZAAR_AP_REGION: lambda state: (state.has(THE_OPEN_SEA_PASS, player) or not logic.is_regionsanity_extreme()) and state.has(FERRY_PASS, player)})
-    fancy_add_exits(world, SHOUDU_PROVINCE_PROPER_AP_REGION, [SHOUDU_DOCKSIDE_AP_REGION, SHOUDU_ELEVATOR_BASE_AP_REGION, NORTHEAST_MIDPOINT_SCAFFOLDING_AP_REGION, SHOUDU_FIELDS_WEST_SCAFFOLDING_AP_REGION, SHOUDU_WATERWAYS_AP_REGION],
+    fancy_add_exits(world, SHOUDU_PROVINCE_PROPER_AP_REGION, [SHOUDU_DOCKSIDE_AP_REGION, SHOUDU_ELEVATOR_BASE_AP_REGION, NORTHEAST_MIDPOINT_SCAFFOLDING_AP_REGION, SHOUDU_FIELDS_WEST_SCAFFOLDING_AP_REGION, SHOUDU_WATERWAYS_AP_REGION, HOLE_NEAR_PRIZE_COUNTER_UNDERCITY_CONNECTOR_AP_REGION, BALANCE_BEAM_NEAR_WHITE_HUT_UNDERCITY_CONNECTOR_AP_REGION],
                     {SHOUDU_ELEVATOR_BASE_AP_REGION: lambda state: logic.has_glide(state),
                      NORTHEAST_MIDPOINT_SCAFFOLDING_AP_REGION: lambda state: logic.has_vertical_movement(state) or logic.has_glide(state),
                      SHOUDU_FIELDS_WEST_SCAFFOLDING_AP_REGION: lambda state: logic.has_vertical_movement(state) or logic.has_glide(state),
@@ -728,23 +723,43 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
     fancy_add_exits(world, SKY_ARENA_AP_REGION, [SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_ELEVATOR_BASE_AP_REGION, NORTHEAST_UPPER_SCAFFOLDING_AP_REGION, SHOUDU_FIELDS_WEST_SCAFFOLDING_AP_REGION, SHOUDU_GOLD_NEAR_GANYMEDE_AP_REGION, SHOUDU_WATERWAYS_AP_REGION],
                     {SHOUDU_GOLD_NEAR_GANYMEDE_AP_REGION: lambda state: logic.has_glide(state),
                      SHOUDU_WATERWAYS_AP_REGION: lambda state: logic.has_swimming(state)})
-    fancy_add_exits(world, SHOUDU_WATERWAYS_AP_REGION, [SHOUDU_WATERFRONT_AP_REGION, SHOUDU_DOCKSIDE_AP_REGION, SHOUDU_FIELDS_WEST_SCAFFOLDING_AP_REGION, OKIMOTO_NS_AP_REGION, THE_OPEN_SEA_AP_REGION, THE_UNDERCITY_AP_REGION, GANYMEDE_SHRINE_AP_REGION, GANYMEDE_STEEPLE_AP_REGION, QUINTAR_RESERVE_AP_REGION, RESERVE_BLUFFS_AP_REGION],
+    fancy_add_exits(world, BALANCE_BEAM_NEAR_WHITE_HUT_UNDERCITY_CONNECTOR_AP_REGION, [SHOUDU_PROVINCE_PROPER_AP_REGION, THE_UNDERCITY_HOMEPOINT_AND_BLADE_MASTER_AP_REGION, SHADOW_MASTER_ENTRANCE_AP_REGION])
+    fancy_add_exits(world, HOLE_NEAR_PRIZE_COUNTER_UNDERCITY_CONNECTOR_AP_REGION, [SHOUDU_PROVINCE_PROPER_AP_REGION, THE_UNDERCITY_HOMEPOINT_AND_BLADE_MASTER_AP_REGION, EAST_UNDERCITY_WALL_CLIMB_AP_REGION])
+    fancy_add_exits(world, SHOUDU_WATERWAYS_AP_REGION, [SHOUDU_WATERFRONT_AP_REGION, SHOUDU_DOCKSIDE_AP_REGION, SHOUDU_FIELDS_WEST_SCAFFOLDING_AP_REGION, OKIMOTO_NS_AP_REGION, THE_OPEN_SEA_AP_REGION, GANYMEDE_SHRINE_AP_REGION, GANYMEDE_STEEPLE_AP_REGION, QUINTAR_RESERVE_AP_REGION, RESERVE_BLUFFS_AP_REGION, UNDERCITY_WATERWAYS_AP_REGION],
                     {SHOUDU_WATERFRONT_AP_REGION: lambda state: logic.has_swimming(state),
                      SHOUDU_DOCKSIDE_AP_REGION: lambda state: logic.has_swimming(state),
                      SHOUDU_FIELDS_WEST_SCAFFOLDING_AP_REGION: lambda state: logic.has_swimming(state),
                      OKIMOTO_NS_AP_REGION: lambda state: logic.has_swimming(state),
                      THE_OPEN_SEA_AP_REGION: lambda state: logic.has_swimming(state),
-                     #TODO: multiple entrances from Shoudu Waterways into the Undercity, including the Pah Summon cave
-                     THE_UNDERCITY_AP_REGION: lambda state: logic.has_swimming(state),
+                     UNDERCITY_WATERWAYS_AP_REGION: lambda state: logic.has_swimming(state),
                      GANYMEDE_SHRINE_AP_REGION: lambda state: logic.has_swimming(state),
                      GANYMEDE_STEEPLE_AP_REGION: lambda state: logic.has_horizontal_movement(state) and logic.has_swimming(state) and logic.obscure_routes_on(),
                      QUINTAR_RESERVE_AP_REGION: lambda state: logic.has_swimming(state),
                      RESERVE_BLUFFS_AP_REGION: lambda state: logic.has_swimming(state)})
     #Shoudu Province end
-    fancy_add_exits(world, THE_UNDERCITY_AP_REGION, [SHOUDU_DOCKSIDE_AP_REGION, SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_WATERWAYS_AP_REGION, THE_OPEN_SEA_AP_REGION],
-                    {SHOUDU_PROVINCE_PROPER_AP_REGION: lambda state: logic.has_vertical_movement(state),
-                     SHOUDU_WATERWAYS_AP_REGION: lambda state: logic.has_swimming(state),
-                     THE_OPEN_SEA_AP_REGION: lambda state: logic.has_swimming(state)})
+    #The Undercity start
+    fancy_add_exits(world, THE_UNDERCITY_HOMEPOINT_AND_BLADE_MASTER_AP_REGION, [SHOUDU_DOCKSIDE_AP_REGION, EAST_UNDERCITY_WAREHOUSE_AP_REGION, DUEL_MASTER_AP_REGION, UNDERCITY_WATERWAYS_AP_REGION, SHADOW_MASTER_ENTRANCE_AP_REGION],
+                    {SHADOW_MASTER_ENTRANCE_AP_REGION: lambda state: logic.has_horizontal_movement(state) or logic.has_vertical_movement(state),
+                     SHOUDU_WATERWAYS_AP_REGION: lambda state: logic.has_swimming(state)})
+    fancy_add_exits(world, EAST_UNDERCITY_WAREHOUSE_AP_REGION, [SHOUDU_DOCKSIDE_AP_REGION, EAST_UNDERCITY_WALL_CLIMB_AP_REGION, THE_UNDERCITY_HOMEPOINT_AND_BLADE_MASTER_AP_REGION, SHADOW_MASTER_ENTRANCE_AP_REGION, UNDERCITY_WATERWAYS_AP_REGION],
+                    {EAST_UNDERCITY_WALL_CLIMB_AP_REGION: lambda state: logic.has_vertical_movement(state),
+                     THE_UNDERCITY_HOMEPOINT_AND_BLADE_MASTER_AP_REGION: lambda state: logic.has_vertical_movement(state) or logic.has_horizontal_movement(state),
+                     SHADOW_MASTER_ENTRANCE_AP_REGION: lambda state: logic.has_vertical_movement(state),
+                     SHOUDU_WATERWAYS_AP_REGION: lambda state: logic.has_swimming(state)})
+    fancy_add_exits(world, EAST_UNDERCITY_WALL_CLIMB_AP_REGION, [EAST_UNDERCITY_WAREHOUSE_AP_REGION, HOLE_NEAR_PRIZE_COUNTER_UNDERCITY_CONNECTOR_AP_REGION],
+                    {HOLE_NEAR_PRIZE_COUNTER_UNDERCITY_CONNECTOR_AP_REGION: lambda state: logic.has_vertical_movement(state)})
+    fancy_add_exits(world, DUEL_MASTER_AP_REGION, [THE_UNDERCITY_HOMEPOINT_AND_BLADE_MASTER_AP_REGION])
+    fancy_add_exits(world, SHADOW_MASTER_ENTRANCE_AP_REGION, [THE_UNDERCITY_HOMEPOINT_AND_BLADE_MASTER_AP_REGION, SHADOW_MASTER_AP_REGION, UNDERCITY_WATERWAYS_AP_REGION],
+                    {THE_UNDERCITY_HOMEPOINT_AND_BLADE_MASTER_AP_REGION: lambda state: logic.has_vertical_movement(state) or logic.has_horizontal_movement(state),
+                     SHADOW_MASTER_AP_REGION: lambda state: logic.has_horizontal_movement(state),
+                     SHOUDU_WATERWAYS_AP_REGION: lambda state: logic.has_swimming(state)})
+    fancy_add_exits(world, SHADOW_MASTER_AP_REGION, [SHADOW_MASTER_ENTRANCE_AP_REGION, UNDERCITY_WATERWAYS_AP_REGION],
+                    {SHADOW_MASTER_ENTRANCE_AP_REGION: lambda state: logic.has_horizontal_movement(state),
+                     SHOUDU_WATERWAYS_AP_REGION: lambda state: logic.has_swimming(state)})
+    fancy_add_exits(world, PAH_SUMMON_AP_REGION, [UNDERCITY_WATERWAYS_AP_REGION],
+                    {SHOUDU_WATERWAYS_AP_REGION: lambda state: logic.has_swimming(state)})
+    fancy_add_exits(world, UNDERCITY_WATERWAYS_AP_REGION, [THE_UNDERCITY_HOMEPOINT_AND_BLADE_MASTER_AP_REGION, EAST_UNDERCITY_WAREHOUSE_AP_REGION, DUEL_MASTER_AP_REGION, SHADOW_MASTER_AP_REGION, SHADOW_MASTER_ENTRANCE_AP_REGION, PAH_SUMMON_AP_REGION, SHOUDU_WATERFRONT_AP_REGION, SHOUDU_WATERWAYS_AP_REGION, THE_OPEN_SEA_AP_REGION])
+    #The Undercity end
     #Ganymede Shrine start
     fancy_add_exits(world, GANYMEDE_SHRINE_AP_REGION, [OKIMOTO_NS_AP_REGION, SHOUDU_FIELDS_WEST_SCAFFOLDING_AP_REGION, SHOUDU_GOLD_NEAR_GANYMEDE_AP_REGION, SHOUDU_WATERWAYS_AP_REGION, QUINTAR_RESERVE_AP_REGION, FLYERS_CRAG_LOWER_AP_REGION],
                     {OKIMOTO_NS_AP_REGION: lambda state: logic.has_swimming(state),
@@ -1166,7 +1181,7 @@ def connect_menu_region(world: "CrystalProjectWorld", options: CrystalProjectOpt
     logic = CrystalProjectLogic(world.player, options)
     player = world.player
 
-    fancy_add_exits(world, MENU_AP_REGION, [SPAWNING_MEADOWS_AP_REGION, DELENDE_PLAINS_AP_REGION, DELENDE_HIGH_BRIDGES_AP_REGION, DELENDE_PEAK_AP_REGION, MERCURY_SHRINE_AP_REGION, THE_PALE_GROTTO_AP_REGION, SEASIDE_CLIFFS_AP_REGION, YAMAGAWA_MA_AP_REGION, PROVING_MEADOWS_AP_REGION, SKUMPARADISE_AP_REGION, CAPITAL_SEQUOIA_AP_REGION, CAPITAL_JAIL_AP_REGION, JAIL_DARK_WING_AP_REGION, ROLLING_QUINTAR_FIELDS_AP_REGION, SANCTUM_ENTRANCE_AP_REGION, QUINTAR_SANCTUM_AP_REGION, BOOMER_SOCIETY_AP_REGION, OKIMOTO_NS_AP_REGION, SALMON_PASS_EAST_AP_REGION, SALMON_RIVER_AP_REGION, CASTLE_SEQUOIA_AP_REGION, TOWER_OF_ZOT_AP_REGION, POKO_POKO_DESERT_AP_REGION, SARA_SARA_BAZAAR_AP_REGION, IBEK_CAVE_MOUTH_AP_REGION, BEACH_BIRDS_NEST_AP_REGION, BEAURIOR_VOLCANO_AP_REGION, BEAURIOR_ROCK_AP_REGION, ANCIENT_RESERVOIR_AP_REGION, SHOUDU_DOCKSIDE_AP_REGION, SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_ELEVATOR_BASE_AP_REGION, SHOUDU_FIELDS_WEST_SCAFFOLDING_AP_REGION, SKY_ARENA_AP_REGION, GANYMEDE_SHRINE_AP_REGION, GANYMEDE_STEEPLE_AP_REGION, THE_UNDERCITY_AP_REGION, PIPELINE_NORTH_AP_REGION, PIPELINE_SOUTH_AP_REGION, SEQUOIA_ATHENAEUM_ENTRANCE_AP_REGION, LOWER_ICE_LAKES_AP_REGION, SOUVENIR_SHOP_AP_REGION, SLIP_GLIDE_RIDE_EXIT_AP_REGION, UPPER_ICE_LAKES_AP_REGION, TALL_TALL_SAVE_POINT_AP_REGION, PEAK_RAMPARTS_AP_REGION, SLIP_GLIDE_RIDE_ENTRANCE_AP_REGION, LANDS_END_AP_REGION, OWL_TREE_AP_REGION, QUINTAR_RESERVE_AP_REGION, EUROPA_SHRINE_AP_REGION, EACLANEYA_ENTRANCE_AP_REGION, SALMON_ROOM_AP_REGION, LABYRINTH_CORE_AP_REGION, DIONE_SHRINE_AP_REGION, DIONE_ROOF_AP_REGION, THE_SEQUOIA_AP_REGION, CHALICE_FOOT_AP_REGION, THE_OPEN_SEA_AP_REGION, CONTINENTAL_TRAM_AP_REGION, POSEIDON_SHRINE_ROOF_AP_REGION, NEPTUNE_SHRINE_AP_REGION, THE_OLD_WORLD_AP_REGION, THE_NEW_WORLD_AP_REGION, DISCIPLINE_HOLLOW_AP_REGION, MODDED_ZONE_AP_REGION],
+    fancy_add_exits(world, MENU_AP_REGION, [SPAWNING_MEADOWS_AP_REGION, DELENDE_PLAINS_AP_REGION, DELENDE_HIGH_BRIDGES_AP_REGION, DELENDE_PEAK_AP_REGION, MERCURY_SHRINE_AP_REGION, THE_PALE_GROTTO_AP_REGION, SEASIDE_CLIFFS_AP_REGION, YAMAGAWA_MA_AP_REGION, PROVING_MEADOWS_AP_REGION, SKUMPARADISE_AP_REGION, CAPITAL_SEQUOIA_AP_REGION, CAPITAL_JAIL_AP_REGION, JAIL_DARK_WING_AP_REGION, ROLLING_QUINTAR_FIELDS_AP_REGION, SANCTUM_ENTRANCE_AP_REGION, QUINTAR_SANCTUM_AP_REGION, BOOMER_SOCIETY_AP_REGION, OKIMOTO_NS_AP_REGION, SALMON_PASS_EAST_AP_REGION, SALMON_RIVER_AP_REGION, CASTLE_SEQUOIA_AP_REGION, TOWER_OF_ZOT_AP_REGION, POKO_POKO_DESERT_AP_REGION, SARA_SARA_BAZAAR_AP_REGION, IBEK_CAVE_MOUTH_AP_REGION, BEACH_BIRDS_NEST_AP_REGION, BEAURIOR_VOLCANO_AP_REGION, BEAURIOR_ROCK_AP_REGION, ANCIENT_RESERVOIR_AP_REGION, SHOUDU_DOCKSIDE_AP_REGION, SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_ELEVATOR_BASE_AP_REGION, SHOUDU_FIELDS_WEST_SCAFFOLDING_AP_REGION, SKY_ARENA_AP_REGION, GANYMEDE_SHRINE_AP_REGION, GANYMEDE_STEEPLE_AP_REGION, THE_UNDERCITY_HOMEPOINT_AND_BLADE_MASTER_AP_REGION, PIPELINE_NORTH_AP_REGION, PIPELINE_SOUTH_AP_REGION, SEQUOIA_ATHENAEUM_ENTRANCE_AP_REGION, LOWER_ICE_LAKES_AP_REGION, SOUVENIR_SHOP_AP_REGION, SLIP_GLIDE_RIDE_EXIT_AP_REGION, UPPER_ICE_LAKES_AP_REGION, TALL_TALL_SAVE_POINT_AP_REGION, PEAK_RAMPARTS_AP_REGION, SLIP_GLIDE_RIDE_ENTRANCE_AP_REGION, LANDS_END_AP_REGION, OWL_TREE_AP_REGION, QUINTAR_RESERVE_AP_REGION, EUROPA_SHRINE_AP_REGION, EACLANEYA_ENTRANCE_AP_REGION, SALMON_ROOM_AP_REGION, LABYRINTH_CORE_AP_REGION, DIONE_SHRINE_AP_REGION, DIONE_ROOF_AP_REGION, THE_SEQUOIA_AP_REGION, CHALICE_FOOT_AP_REGION, THE_OPEN_SEA_AP_REGION, CONTINENTAL_TRAM_AP_REGION, POSEIDON_SHRINE_ROOF_AP_REGION, NEPTUNE_SHRINE_AP_REGION, THE_OLD_WORLD_AP_REGION, THE_NEW_WORLD_AP_REGION, DISCIPLINE_HOLLOW_AP_REGION, MODDED_ZONE_AP_REGION],
                     {SPAWNING_MEADOWS_AP_REGION: lambda state: state.has(HOMEPOINT_AP_SPAWN_NAME, player) or state.has(HOMEPOINT_OLD_NANS_WATERING_HOLE_NAME, player),
                      DELENDE_PLAINS_AP_REGION: lambda state: (state.has(HOMEPOINT_THE_PALE_GROTTO_ENTRANCE_NAME, player) or state.has(HOMEPOINT_SOILED_DEN_NAME, player) or state.has(HOMEPOINT_FISH_HATCHERY_NAME, player)),
                      DELENDE_HIGH_BRIDGES_AP_REGION: lambda state: (state.has(HOMEPOINT_CABIN_ON_THE_CLIFF_NAME, player) or state.has(HOMEPOINT_DELENDE_FALLS_NAME, player)),
@@ -1203,7 +1218,7 @@ def connect_menu_region(world: "CrystalProjectWorld", options: CrystalProjectOpt
                      SKY_ARENA_AP_REGION: lambda state: state.has(HOMEPOINT_SKY_ARENA_NAME, player),
                      GANYMEDE_SHRINE_AP_REGION: lambda state: state.has(HOMEPOINT_GANYMEDE_SHRINE_NAME, player),
                      GANYMEDE_STEEPLE_AP_REGION: lambda state: state.has(GANYMEDE_STONE, player),
-                     THE_UNDERCITY_AP_REGION: lambda state: state.has(HOMEPOINT_THE_UNDERCITY_NAME, player),
+                     THE_UNDERCITY_HOMEPOINT_AND_BLADE_MASTER_AP_REGION: lambda state: state.has(HOMEPOINT_THE_UNDERCITY_NAME, player),
                      PIPELINE_NORTH_AP_REGION: lambda state: state.has(HOMEPOINT_CAPITAL_PIPELINE_NAME, player),
                      PIPELINE_SOUTH_AP_REGION: lambda state: state.has(HOMEPOINT_EAST_CAPITAL_PIPELINE_NAME, player),
                      SEQUOIA_ATHENAEUM_ENTRANCE_AP_REGION: lambda state: state.has(HOMEPOINT_SEQUOIA_ATHENAEUM_NAME, player),
