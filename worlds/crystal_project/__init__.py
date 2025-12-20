@@ -442,6 +442,10 @@ class CrystalProjectWorld(World):
         progressive_levels = -(level_up_amount // -self.options.progressive_level_size.value)
         return progressive_levels
 
+    @staticmethod
+    def get_total_passive_point_cap_items(max_passive_point_cap: int, starting_passive_point_cap: int) -> int:
+        return round((max_passive_point_cap - starting_passive_point_cap) / 2)
+
     #making randomized scholar ability pool
     def get_optional_scholar_abilities(self, count: int):
         return self.random.sample(optional_scholar_abilities, count)
@@ -621,6 +625,13 @@ class CrystalProjectWorld(World):
             if item not in pool:
                 pool.append(item)
 
+        if self.options.maximum_passive_points > self.options.starting_passive_points:
+            passive_points_to_add_to_pool = self.get_total_passive_point_cap_items(self.options.maximum_passive_points.value, self.options.starting_passive_points.value)
+            if passive_points_to_add_to_pool > 0:
+                for _ in range(passive_points_to_add_to_pool):
+                    item = self.set_classifications(PASSIVE_POINT_CAP)
+                    pool.append(item)
+
         if self.options.use_mods:
             combined_locations: List[ModLocationData] = self.modded_locations
             combined_locations.extend(self.modded_shops)
@@ -762,4 +773,6 @@ class CrystalProjectWorld(World):
             "prefillMap": bool(self.options.fill_full_map.value),
             "disableSparks": bool(self.options.disable_sparks.value),
             "homePointHustle": self.options.home_point_hustle.value,
+            "maximumPassivePoints": self.options.maximum_passive_points.value,
+            "startingPassivePoints": self.options.starting_passive_points.value,
         }
