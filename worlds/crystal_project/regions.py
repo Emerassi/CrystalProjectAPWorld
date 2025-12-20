@@ -740,24 +740,24 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
     #The Undercity start
     fancy_add_exits(world, THE_UNDERCITY_HOMEPOINT_AND_BLADE_MASTER_AP_REGION, [SHOUDU_DOCKSIDE_AP_REGION, EAST_UNDERCITY_WAREHOUSE_AP_REGION, DUEL_MASTER_AP_REGION, UNDERCITY_WATERWAYS_AP_REGION, SHADOW_MASTER_ENTRANCE_AP_REGION],
                     {SHADOW_MASTER_ENTRANCE_AP_REGION: lambda state: logic.has_horizontal_movement(state) or logic.has_vertical_movement(state),
-                     SHOUDU_WATERWAYS_AP_REGION: lambda state: logic.has_swimming(state)})
+                     UNDERCITY_WATERWAYS_AP_REGION: lambda state: logic.has_swimming(state)})
     fancy_add_exits(world, EAST_UNDERCITY_WAREHOUSE_AP_REGION, [SHOUDU_DOCKSIDE_AP_REGION, EAST_UNDERCITY_WALL_CLIMB_AP_REGION, THE_UNDERCITY_HOMEPOINT_AND_BLADE_MASTER_AP_REGION, SHADOW_MASTER_ENTRANCE_AP_REGION, UNDERCITY_WATERWAYS_AP_REGION],
                     {EAST_UNDERCITY_WALL_CLIMB_AP_REGION: lambda state: logic.has_vertical_movement(state),
                      THE_UNDERCITY_HOMEPOINT_AND_BLADE_MASTER_AP_REGION: lambda state: logic.has_vertical_movement(state) or logic.has_horizontal_movement(state),
                      SHADOW_MASTER_ENTRANCE_AP_REGION: lambda state: logic.has_vertical_movement(state),
-                     SHOUDU_WATERWAYS_AP_REGION: lambda state: logic.has_swimming(state)})
+                     UNDERCITY_WATERWAYS_AP_REGION: lambda state: logic.has_swimming(state)})
     fancy_add_exits(world, EAST_UNDERCITY_WALL_CLIMB_AP_REGION, [EAST_UNDERCITY_WAREHOUSE_AP_REGION, HOLE_NEAR_PRIZE_COUNTER_UNDERCITY_CONNECTOR_AP_REGION],
                     {HOLE_NEAR_PRIZE_COUNTER_UNDERCITY_CONNECTOR_AP_REGION: lambda state: logic.has_vertical_movement(state)})
     fancy_add_exits(world, DUEL_MASTER_AP_REGION, [THE_UNDERCITY_HOMEPOINT_AND_BLADE_MASTER_AP_REGION])
     fancy_add_exits(world, SHADOW_MASTER_ENTRANCE_AP_REGION, [THE_UNDERCITY_HOMEPOINT_AND_BLADE_MASTER_AP_REGION, SHADOW_MASTER_AP_REGION, UNDERCITY_WATERWAYS_AP_REGION],
                     {THE_UNDERCITY_HOMEPOINT_AND_BLADE_MASTER_AP_REGION: lambda state: logic.has_vertical_movement(state) or logic.has_horizontal_movement(state),
                      SHADOW_MASTER_AP_REGION: lambda state: logic.has_horizontal_movement(state),
-                     SHOUDU_WATERWAYS_AP_REGION: lambda state: logic.has_swimming(state)})
+                     UNDERCITY_WATERWAYS_AP_REGION: lambda state: logic.has_swimming(state)})
     fancy_add_exits(world, SHADOW_MASTER_AP_REGION, [SHADOW_MASTER_ENTRANCE_AP_REGION, UNDERCITY_WATERWAYS_AP_REGION],
                     {SHADOW_MASTER_ENTRANCE_AP_REGION: lambda state: logic.has_horizontal_movement(state),
-                     SHOUDU_WATERWAYS_AP_REGION: lambda state: logic.has_swimming(state)})
+                     UNDERCITY_WATERWAYS_AP_REGION: lambda state: logic.has_swimming(state)})
     fancy_add_exits(world, PAH_SUMMON_AP_REGION, [UNDERCITY_WATERWAYS_AP_REGION],
-                    {SHOUDU_WATERWAYS_AP_REGION: lambda state: logic.has_swimming(state)})
+                    {UNDERCITY_WATERWAYS_AP_REGION: lambda state: logic.has_swimming(state)})
     fancy_add_exits(world, UNDERCITY_WATERWAYS_AP_REGION, [THE_UNDERCITY_HOMEPOINT_AND_BLADE_MASTER_AP_REGION, EAST_UNDERCITY_WAREHOUSE_AP_REGION, DUEL_MASTER_AP_REGION, SHADOW_MASTER_AP_REGION, SHADOW_MASTER_ENTRANCE_AP_REGION, PAH_SUMMON_AP_REGION, SHOUDU_WATERFRONT_AP_REGION, SHOUDU_WATERWAYS_AP_REGION, THE_OPEN_SEA_AP_REGION])
     #The Undercity end
     #Ganymede Shrine start
