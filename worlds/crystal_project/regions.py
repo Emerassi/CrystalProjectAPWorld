@@ -384,10 +384,10 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
                     {YAMAGAWA_MA_AP_REGION: lambda state: logic.has_vertical_movement(state)})
     #Yamagawa M.A. end
     #Proving Meadows start
-    fancy_add_exits(world, PROVING_MEADOWS_AP_REGION, [DELENDE_HIGH_BRIDGES_AP_REGION, PROVING_MEADOWS_SKUMPARADISE_CONNECTOR_AP_REGION, CAPITAL_SEQUOIA_AP_REGION, CAPITAL_MOAT_AP_REGION, COBBLESTONE_CRAG_AP_REGION, THE_OPEN_SEA_AP_REGION],
+    fancy_add_exits(world, PROVING_MEADOWS_AP_REGION, [DELENDE_HIGH_BRIDGES_AP_REGION, PROVING_MEADOWS_SKUMPARADISE_CONNECTOR_AP_REGION, CAPITAL_SEQUOIA_AP_REGION, CAPITAL_MOAT_AP_REGION, WEST_COBBLESTONE_CRAG_AP_REGION, THE_OPEN_SEA_AP_REGION],
                     {CAPITAL_SEQUOIA_AP_REGION: lambda state: logic.has_glide(state),
                      CAPITAL_MOAT_AP_REGION: lambda state: logic.has_swimming(state),
-                     COBBLESTONE_CRAG_AP_REGION: lambda state: logic.has_swimming(state),
+                     WEST_COBBLESTONE_CRAG_AP_REGION: lambda state: logic.has_swimming(state),
                      THE_OPEN_SEA_AP_REGION: lambda state: logic.has_swimming(state)})
     #A Proving Meadows <-> Skumparadise connector; untraversable w/o a region pass in Regionsanity
     fancy_add_exits(world, PROVING_MEADOWS_SKUMPARADISE_CONNECTOR_AP_REGION, [PROVING_MEADOWS_AP_REGION, SKUMPARADISE_AP_REGION],
@@ -396,38 +396,36 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
     #Proving Meadows end
     fancy_add_exits(world, SKUMPARADISE_AP_REGION, [PROVING_MEADOWS_SKUMPARADISE_CONNECTOR_AP_REGION, CAPITAL_SEQUOIA_AP_REGION])
     #Capital Sequoia start
-    fancy_add_exits(world, CAPITAL_SEQUOIA_AP_REGION, [MOAT_SHALLOWS_AP_REGION, CAPITAL_MOAT_AP_REGION, BEATSMITH_DISCO_AP_REGION, PROVING_MEADOWS_AP_REGION, SKUMPARADISE_AP_REGION, JOJO_SEWERS_AP_REGION, BOOMER_SOCIETY_AP_REGION, ROLLING_QUINTAR_FIELDS_AP_REGION, COBBLESTONE_CRAG_AP_REGION, GREENSHIRE_REPRISE_AP_REGION, RAMPART_ATOP_PORTCULLIS_AP_REGION, CASTLE_SEQUOIA_AP_REGION],
+    fancy_add_exits(world, CAPITAL_SEQUOIA_AP_REGION, [MOAT_SHALLOWS_AP_REGION, CAPITAL_MOAT_AP_REGION, BEATSMITH_DISCO_AP_REGION, PROVING_MEADOWS_AP_REGION, SKUMPARADISE_AP_REGION, JOJO_SEWERS_AP_REGION, BOOMER_SOCIETY_AP_REGION, ROLLING_QUINTAR_FIELDS_AP_REGION, WEST_COBBLESTONE_CRAG_AP_REGION, GREENSHIRE_REPRISE_AP_REGION, RAMPART_ATOP_PORTCULLIS_AP_REGION, CASTLE_SEQUOIA_AP_REGION],
                     # Obscure Routes: it is possible to jump from Rolling Quintar Fields onto the Capital Sequoia walls from the southeast and manage to bypass the guard and thus the job requirement
-                    {MOAT_SHALLOWS_AP_REGION: lambda state: logic.has_key(state, COURTYARD_KEY) or (logic.has_rental_quintar(state, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME) and logic.obscure_routes_on()) or logic.has_horizontal_movement(state) or logic.has_vertical_movement(state),
-                     CAPITAL_MOAT_AP_REGION: lambda state: (logic.has_jobs(state, 5) or state.has(GAEA_STONE, player) or (logic.obscure_routes_on() and logic.has_rental_quintar(state, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME)) or logic.has_horizontal_movement(state) or logic.has_vertical_movement(state)) and logic.has_swimming(state),
-                     BEATSMITH_DISCO_AP_REGION: lambda state: logic.has_vertical_movement(state),
+                    {BEATSMITH_DISCO_AP_REGION: lambda state: logic.has_vertical_movement(state),
                      BOOMER_SOCIETY_AP_REGION: lambda state: logic.has_vertical_movement(state) or logic.has_glide(state),
-                     COBBLESTONE_CRAG_AP_REGION: lambda state: logic.has_key(state, COURTYARD_KEY) or logic.has_rental_quintar(state, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME) or logic.has_vertical_movement(state),
-                     GREENSHIRE_REPRISE_AP_REGION: lambda state: logic.has_jobs(state, 5) or state.has(GAEA_STONE, player) or (logic.obscure_routes_on() and logic.has_rental_quintar(state, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME)) or logic.has_horizontal_movement(state) or logic.has_vertical_movement(state),
+                     GREENSHIRE_REPRISE_AP_REGION: lambda state: logic.has_jobs(state, 5) or state.has(GAEA_STONE, player) or (logic.obscure_routes_on() and logic.has_rental_quintar(state, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME) and (state.has(CAPITAL_SEQUOIA_PASS, player) or not logic.is_regionsanity_extreme())) or logic.has_horizontal_movement(state) or logic.has_vertical_movement(state),
                      RAMPART_ATOP_PORTCULLIS_AP_REGION: lambda state: logic.has_horizontal_movement(state) and logic.has_vertical_movement(state),
                      #note for eme: technically possible to get into the first dungeon with quintar instead of glide, but it's hard lol; come from Quintar Sanctum save point and go west up mountain and fall down through grate (that part's easy) then the quintar jump to the lamp is hard
                      CASTLE_SEQUOIA_AP_REGION: lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)})
-    fancy_add_exits(world, MOAT_SHALLOWS_AP_REGION, [CAPITAL_SEQUOIA_AP_REGION, CAPITAL_MOAT_AP_REGION, DELENDE_HIGH_BRIDGES_AP_REGION, JOJO_SEWERS_AP_REGION, COBBLESTONE_CRAG_AP_REGION],
+    fancy_add_exits(world, MOAT_SHALLOWS_AP_REGION, [CAPITAL_SEQUOIA_AP_REGION, CAPITAL_MOAT_AP_REGION, DELENDE_HIGH_BRIDGES_AP_REGION, JOJO_SEWERS_AP_REGION, WEST_COBBLESTONE_CRAG_AP_REGION],
                     {CAPITAL_MOAT_AP_REGION: lambda state: logic.has_swimming(state),
-                     COBBLESTONE_CRAG_AP_REGION: lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)})
-    fancy_add_exits(world, CAPITAL_MOAT_AP_REGION, [MOAT_SHALLOWS_AP_REGION, DELENDE_HIGH_BRIDGES_AP_REGION, JOJO_SEWERS_AP_REGION, COBBLESTONE_CRAG_AP_REGION, GREENSHIRE_REPRISE_AP_REGION, THE_OPEN_SEA_AP_REGION],
+                     WEST_COBBLESTONE_CRAG_AP_REGION: lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)})
+    fancy_add_exits(world, CAPITAL_MOAT_AP_REGION, [MOAT_SHALLOWS_AP_REGION, DELENDE_HIGH_BRIDGES_AP_REGION, PROVING_MEADOWS_AP_REGION, JOJO_SEWERS_AP_REGION, WEST_COBBLESTONE_CRAG_AP_REGION, GREENSHIRE_REPRISE_AP_REGION, THE_OPEN_SEA_AP_REGION],
                     {MOAT_SHALLOWS_AP_REGION: lambda state: logic.has_swimming(state),
                      DELENDE_HIGH_BRIDGES_AP_REGION: lambda state: logic.has_swimming(state),
+                     PROVING_MEADOWS_AP_REGION: lambda state: logic.has_swimming(state),
                      JOJO_SEWERS_AP_REGION: lambda state: logic.has_swimming(state),
-                     COBBLESTONE_CRAG_AP_REGION: lambda state: logic.has_swimming(state),
+                     WEST_COBBLESTONE_CRAG_AP_REGION: lambda state: logic.has_swimming(state),
                      GREENSHIRE_REPRISE_AP_REGION: lambda state: logic.has_swimming(state),
                      THE_OPEN_SEA_AP_REGION: lambda state: logic.has_swimming(state)})
     fancy_add_exits(world, BEATSMITH_DISCO_AP_REGION, [CAPITAL_SEQUOIA_AP_REGION])
     #Capital Sequoia end
     #Jojo Sewers section start
-    fancy_add_exits(world, JOJO_SEWERS_AP_REGION, [CAPITAL_SEQUOIA_AP_REGION, MOAT_SHALLOWS_AP_REGION, CAPITAL_MOAT_AP_REGION, OMINOUS_RED_SEWERS_AP_REGION, SEWERS_SECRET_PASSWORD_AP_REGION, SEWERS_TO_BOOMER_SOCIETY_AP_REGION, THE_PALE_GROTTO_AP_REGION, QUINTAR_NEST_AP_REGION],
+    fancy_add_exits(world, JOJO_SEWERS_AP_REGION, [CAPITAL_SEQUOIA_AP_REGION, MOAT_SHALLOWS_AP_REGION, CAPITAL_MOAT_AP_REGION, OMINOUS_RED_SEWERS_AP_REGION, SEWERS_SECRET_PASSWORD_AP_REGION, SEWERS_TO_BOOMER_SOCIETY_AP_REGION, SEWER_DETOUR_FOR_QUINTAR_NEST_AP_REGION, THE_PALE_GROTTO_AP_REGION],
                     #Swimming connection to Sewers to Boomer Society bypasses the Secret Password region
                     {CAPITAL_MOAT_AP_REGION: lambda state: logic.has_swimming(state),
-                     OMINOUS_RED_SEWERS_AP_REGION: lambda state: logic.has_rental_quintar(state, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME) or logic.has_swimming(state),
+                     OMINOUS_RED_SEWERS_AP_REGION: lambda state: (logic.has_rental_quintar(state, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME) and (state.has(CAPITAL_SEQUOIA_PASS, player) or not logic.is_regionsanity_extreme())) or logic.has_horizontal_movement(state) or logic.has_swimming(state),
                      SEWERS_TO_BOOMER_SOCIETY_AP_REGION: lambda state: logic.has_swimming(state),
                      THE_PALE_GROTTO_AP_REGION: lambda state: logic.has_swimming(state),
-                     QUINTAR_NEST_AP_REGION: lambda state: (logic.has_rental_quintar(state, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME) or logic.has_swimming(state))})
-    fancy_add_exits(world, OMINOUS_RED_SEWERS_AP_REGION, [JOJO_SEWERS_AP_REGION, CAPITAL_JAIL_AP_REGION])
+                     SEWER_DETOUR_FOR_QUINTAR_NEST_AP_REGION: lambda state: (logic.has_rental_quintar(state, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME) and (state.has(CAPITAL_SEQUOIA_PASS, player) or not logic.is_regionsanity_extreme())) or logic.has_horizontal_movement(state) or logic.has_swimming(state)})
+    fancy_add_exits(world, OMINOUS_RED_SEWERS_AP_REGION, [JOJO_SEWERS_AP_REGION, SEWER_DETOUR_FOR_QUINTAR_NEST_AP_REGION, CAPITAL_JAIL_AP_REGION])
     #A Jojo Sewers <-> Sewers to Boomer Society connector; untraversable w/o a region pass in Regionsanity
     fancy_add_exits(world, SEWERS_SECRET_PASSWORD_AP_REGION, [JOJO_SEWERS_AP_REGION, SEWERS_TO_BOOMER_SOCIETY_AP_REGION],
                     {JOJO_SEWERS_AP_REGION: lambda state: state.has(JOJO_SEWERS_PASS, player) or logic.is_regionsanity_disabled(),
@@ -435,19 +433,25 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
     fancy_add_exits(world, SEWERS_TO_BOOMER_SOCIETY_AP_REGION, [JOJO_SEWERS_AP_REGION, SEWERS_SECRET_PASSWORD_AP_REGION, BOOMER_SOCIETY_AP_REGION],
                     #Swimming connection to Jojo Sewers Main (lol) bypasses the Secret Password region
                     {JOJO_SEWERS_AP_REGION: lambda state: logic.has_swimming(state)})
+    fancy_add_exits(world, SEWER_DETOUR_FOR_QUINTAR_NEST_AP_REGION, [JOJO_SEWERS_AP_REGION, OMINOUS_RED_SEWERS_AP_REGION, QUINTAR_NEST_AP_REGION, NEST_SEWER_DETOUR_CHEST_AP_REGION],
+                    {OMINOUS_RED_SEWERS_AP_REGION: lambda state: (logic.has_rental_quintar(state, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME) and (state.has(CAPITAL_SEQUOIA_PASS, player) or not logic.is_regionsanity_extreme())) or logic.has_horizontal_movement(state) or logic.has_swimming(state)})
     #Jojo Sewers section end
     fancy_add_exits(world, BOOMER_SOCIETY_AP_REGION, [CAPITAL_SEQUOIA_AP_REGION, BEATSMITH_DISCO_AP_REGION, SEWERS_TO_BOOMER_SOCIETY_AP_REGION, GREENSHIRE_REPRISE_AP_REGION, BOOMER_OVERLOOK_AP_REGION],
                     {BEATSMITH_DISCO_AP_REGION: lambda state: logic.has_glide(state) and logic.obscure_routes_on(),
                      BOOMER_OVERLOOK_AP_REGION: lambda state: logic.has_horizontal_movement(state)})
     #Rolling Quintar Fields start
-    fancy_add_exits(world, ROLLING_QUINTAR_FIELDS_AP_REGION, [ROLLING_TREETOP_HIGHWAY_AP_REGION, SANCTUM_ENTRANCE_AP_REGION, CAPITAL_SEQUOIA_AP_REGION, QUINTAR_NEST_AP_REGION, OKIMOTO_NS_AP_REGION, QUINTAR_RESERVE_AP_REGION],
+    fancy_add_exits(world, ROLLING_QUINTAR_FIELDS_AP_REGION, [ROLLING_TREETOP_HIGHWAY_AP_REGION, SANCTUM_ENTRANCE_AP_REGION, AEGIS_OUTPOST_AP_REGION, CAPITAL_SEQUOIA_AP_REGION, MOAT_SHALLOWS_AP_REGION, CAPITAL_MOAT_AP_REGION, QUINTAR_NEST_AP_REGION, WEST_COBBLESTONE_CRAG_AP_REGION, OKIMOTO_NS_AP_REGION, QUINTAR_RESERVE_AP_REGION],
                     {ROLLING_TREETOP_HIGHWAY_AP_REGION: lambda state: logic.has_rental_quintar(state, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME) or logic.has_vertical_movement(state),
                      # Obscure Route: RQF -> Sanctum Entrance; jump up to the "Pinnacle by short and tall box friends" check from the Quintar Enthusiast's House (auto-jump helps)
                      SANCTUM_ENTRANCE_AP_REGION: lambda _: logic.obscure_routes_on() and logic.is_hop_to_it_at_least_fancy_footwork(),
+                     AEGIS_OUTPOST_AP_REGION: lambda state: (logic.has_rental_quintar(state, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME) and logic.obscure_routes_on()) or logic.has_vertical_movement(state),
+                     MOAT_SHALLOWS_AP_REGION: lambda _: logic.obscure_routes_on(),
+                     CAPITAL_MOAT_AP_REGION: lambda state: logic.has_swimming(state),
+                     WEST_COBBLESTONE_CRAG_AP_REGION: lambda state: logic.has_vertical_movement(state) or logic.has_glide(state),
                      OKIMOTO_NS_AP_REGION: lambda state: logic.has_vertical_movement(state),
                      QUINTAR_RESERVE_AP_REGION: lambda state: logic.has_vertical_movement(state)})
     fancy_add_exits(world, ROLLING_TREETOP_HIGHWAY_AP_REGION, [ROLLING_QUINTAR_FIELDS_AP_REGION, SANCTUM_ENTRANCE_AP_REGION],
-                    {SANCTUM_ENTRANCE_AP_REGION: lambda state: (logic.has_rental_quintar(state, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME) or logic.has_vertical_movement(state)),})
+                    {SANCTUM_ENTRANCE_AP_REGION: lambda state: logic.has_rental_quintar(state, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME) or logic.has_vertical_movement(state)})
     fancy_add_exits(world, SANCTUM_ENTRANCE_AP_REGION, [ROLLING_QUINTAR_FIELDS_AP_REGION, ROLLING_TREETOP_HIGHWAY_AP_REGION, HUNTERS_TOWER_AP_REGION, QUINTAR_SANCTUM_AP_REGION, SANCTUM_EXIT_CLIFFTOP_AP_REGION, QUINTAR_RESERVE_AP_REGION],
                     {ROLLING_TREETOP_HIGHWAY_AP_REGION: lambda state: logic.has_rental_quintar(state, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME) or logic.has_vertical_movement(state),
                      HUNTERS_TOWER_AP_REGION: lambda state: logic.obscure_routes_on() or logic.has_vertical_movement(state),
@@ -455,9 +459,22 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
                      QUINTAR_RESERVE_AP_REGION: lambda state: logic.has_vertical_movement(state)})
     fancy_add_exits(world, HUNTERS_TOWER_AP_REGION, [ROLLING_QUINTAR_FIELDS_AP_REGION, ROLLING_TREETOP_HIGHWAY_AP_REGION, SANCTUM_ENTRANCE_AP_REGION, SANCTUM_EXIT_CLIFFTOP_AP_REGION, RAMPART_ATOP_PORTCULLIS_AP_REGION],
                     {SANCTUM_EXIT_CLIFFTOP_AP_REGION: lambda state: logic.has_horizontal_movement(state) or logic.has_vertical_movement(state)})
+    #TODO: should these connections require obscure routes?
+    fancy_add_exits(world, AEGIS_OUTPOST_AP_REGION, [ROLLING_QUINTAR_FIELDS_AP_REGION, WEST_COBBLESTONE_CRAG_AP_REGION, EAST_COBBLESTONE_CRAG_AP_REGION, OKIMOTO_NS_AP_REGION, SHOUDU_WATERFRONT_AP_REGION, THE_UNDERCITY_AP_REGION, FLYERS_CRAG_LOWER_AP_REGION],
+                    #Note: Aegis Master is inside this region and requires rental quintar(obscure) or horizontal or vertical
+                    {OKIMOTO_NS_AP_REGION: lambda state: (logic.has_rental_quintar(state, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME) and logic.obscure_routes_on()) or logic.has_horizontal_movement(state) or logic.has_vertical_movement(state),
+                     SHOUDU_WATERFRONT_AP_REGION: lambda state: (logic.has_rental_quintar(state, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME) and logic.obscure_routes_on()) or logic.has_horizontal_movement(state) or logic.has_vertical_movement(state),
+                    #TODO: this Undercity connection is to the Pah Summon cave specifically
+                     THE_UNDERCITY_AP_REGION: lambda state: logic.has_glide(state) or logic.has_swimming(state),
+                     FLYERS_CRAG_LOWER_AP_REGION: lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)})
     #Rolling Quintar Fields end
-    fancy_add_exits(world, QUINTAR_NEST_AP_REGION, [QUINTAR_SANCTUM_AP_REGION, COBBLESTONE_CRAG_AP_REGION, JOJO_SEWERS_AP_REGION],
-                    {QUINTAR_SANCTUM_AP_REGION: lambda state: logic.has_swimming(state)})
+    #Quintar Nest start
+    fancy_add_exits(world, QUINTAR_NEST_AP_REGION, [NEST_SEWER_DETOUR_CHEST_AP_REGION, SEWER_DETOUR_FOR_QUINTAR_NEST_AP_REGION, QUINTAR_SANCTUM_AP_REGION, WEST_COBBLESTONE_CRAG_AP_REGION, EAST_COBBLESTONE_CRAG_AP_REGION],
+                    {NEST_SEWER_DETOUR_CHEST_AP_REGION: lambda state: logic.has_rental_quintar(state, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME) or logic.has_vertical_movement(state) or logic.has_swimming(state),
+                     QUINTAR_SANCTUM_AP_REGION: lambda state: logic.has_swimming(state),
+                     EAST_COBBLESTONE_CRAG_AP_REGION: lambda state: logic.has_rental_quintar(state, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME) and logic.obscure_routes_on()})
+    fancy_add_exits(world, NEST_SEWER_DETOUR_CHEST_AP_REGION, [QUINTAR_NEST_AP_REGION, SEWER_DETOUR_FOR_QUINTAR_NEST_AP_REGION])
+    #Quintar Nest end
     #Quintar Sanctum start
     fancy_add_exits(world, QUINTAR_SANCTUM_AP_REGION, [SANCTUM_EXIT_CLIFFTOP_AP_REGION, QUINTAR_NEST_AP_REGION, QUINTAR_MAUSOLEUM_AP_REGION],
                     {QUINTAR_MAUSOLEUM_AP_REGION: lambda state: logic.has_swimming(state),
@@ -489,24 +506,35 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
     fancy_add_exits(world, PIPELINE_JIDAMBA_CONNECTOR_AP_REGION, [JIDAMBA_CAVE_AP_REGION],
                     {JIDAMBA_CAVE_AP_REGION: lambda state: state.has(CAPITAL_PIPELINE_PASS, player) or logic.is_regionsanity_disabled()})
     #Capital Pipeline end
-    #Todo there should really be a connection to the quintar nest in cobblestone and vice versa, and you might even be able to cross the quintar jump in cobblestone using a rental if you go through the nest, should test it
-    fancy_add_exits(world, COBBLESTONE_CRAG_AP_REGION, [PROVING_MEADOWS_AP_REGION, CAPITAL_SEQUOIA_AP_REGION, CAPITAL_MOAT_AP_REGION, THE_OPEN_SEA_AP_REGION, SHOUDU_WATERFRONT_AP_REGION, SHOUDU_DOCKSIDE_AP_REGION, OKIMOTO_NS_AP_REGION],
-                    {CAPITAL_MOAT_AP_REGION: lambda state: logic.has_swimming(state),
-                     SHOUDU_WATERFRONT_AP_REGION: lambda state: logic.has_horizontal_movement(state),
-                     SHOUDU_DOCKSIDE_AP_REGION: lambda state: logic.has_vertical_movement(state),
-                     OKIMOTO_NS_AP_REGION: lambda state: logic.has_horizontal_movement(state),
+    #Cobblestone Crag start
+    fancy_add_exits(world, WEST_COBBLESTONE_CRAG_AP_REGION, [EAST_COBBLESTONE_CRAG_AP_REGION, PROVING_MEADOWS_AP_REGION, CAPITAL_SEQUOIA_AP_REGION, MOAT_SHALLOWS_AP_REGION, CAPITAL_MOAT_AP_REGION, ROLLING_QUINTAR_FIELDS_AP_REGION, QUINTAR_NEST_AP_REGION, AEGIS_OUTPOST_AP_REGION, THE_OPEN_SEA_AP_REGION],
+                    {EAST_COBBLESTONE_CRAG_AP_REGION: lambda state: (logic.has_rental_quintar(state, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME) and logic.obscure_routes_on()) or logic.has_horizontal_movement(state) or logic.has_vertical_movement(state),
+                     CAPITAL_MOAT_AP_REGION: lambda state: logic.has_swimming(state),
+                     ROLLING_QUINTAR_FIELDS_AP_REGION: lambda state: logic.has_vertical_movement(state),
+                     AEGIS_OUTPOST_AP_REGION: lambda state: logic.has_vertical_movement(state),
                      THE_OPEN_SEA_AP_REGION: lambda state: logic.has_swimming(state)})
-    fancy_add_exits(world, OKIMOTO_NS_AP_REGION, [COBBLESTONE_CRAG_AP_REGION, THE_OPEN_SEA_AP_REGION, SHOUDU_FIELDS_WEST_SCAFFOLDING_AP_REGION, GANYMEDE_SHRINE_AP_REGION, GANYMEDE_STEEPLE_AP_REGION, QUINTAR_RESERVE_AP_REGION, FLYERS_CRAG_UPPER_AP_REGION],
+    fancy_add_exits(world, EAST_COBBLESTONE_CRAG_AP_REGION, [WEST_COBBLESTONE_CRAG_AP_REGION, OKIMOTO_NS_AP_REGION, SHOUDU_WATERFRONT_AP_REGION, SHOUDU_DOCKSIDE_AP_REGION, THE_UNDERCITY_AP_REGION, THE_OPEN_SEA_AP_REGION, FLYERS_CRAG_LOWER_AP_REGION],
+                    {SHOUDU_WATERFRONT_AP_REGION: lambda state: logic.has_horizontal_movement(state) or (logic.has_vertical_movement(state) and logic.is_hop_to_it_at_least_fancy_footwork()),
+                     SHOUDU_DOCKSIDE_AP_REGION: lambda state: (logic.is_hop_to_it_at_least_fancy_footwork() or logic.has_horizontal_movement(state)) and logic.has_vertical_movement(state),
+                     #TODO: this Undercity connection is to the Pah Summon cave specifically
+                     THE_UNDERCITY_AP_REGION: lambda state: logic.has_glide(state) or logic.has_swimming(state),
+                     THE_OPEN_SEA_AP_REGION: lambda state: logic.has_swimming(state),
+                     FLYERS_CRAG_LOWER_AP_REGION: lambda state: (logic.is_hop_to_it_at_least_fancy_footwork() or logic.has_horizontal_movement(state)) and logic.has_vertical_movement(state)})
+    #Cobblestone Crag end
+    fancy_add_exits(world, OKIMOTO_NS_AP_REGION, [EAST_COBBLESTONE_CRAG_AP_REGION, THE_OPEN_SEA_AP_REGION, SHOUDU_WATERFRONT_AP_REGION, SHOUDU_FIELDS_WEST_SCAFFOLDING_AP_REGION, THE_UNDERCITY_AP_REGION, GANYMEDE_SHRINE_AP_REGION, GANYMEDE_STEEPLE_AP_REGION, QUINTAR_RESERVE_AP_REGION, FLYERS_CRAG_LOWER_AP_REGION, FLYERS_CRAG_UPPER_AP_REGION],
                     {THE_OPEN_SEA_AP_REGION: lambda state: logic.has_swimming(state),
                      SHOUDU_FIELDS_WEST_SCAFFOLDING_AP_REGION: lambda state: logic.has_swimming(state),
+                     #TODO: this Undercity connection is to the Pah Summon cave specifically
+                     THE_UNDERCITY_AP_REGION: lambda state: logic.has_glide(state) or logic.has_swimming(state),
                      GANYMEDE_SHRINE_AP_REGION: lambda state: logic.has_glide(state) or logic.has_swimming(state),
                      GANYMEDE_STEEPLE_AP_REGION: lambda state: (logic.has_horizontal_movement(state) and logic.has_swimming(state) and logic.obscure_routes_on()) or logic.has_glide(state),
                      QUINTAR_RESERVE_AP_REGION: lambda state: (logic.obscure_routes_on() and logic.has_vertical_movement(state)) or logic.has_glide(state) or logic.has_swimming(state),
+                     FLYERS_CRAG_LOWER_AP_REGION: lambda state: (logic.has_vertical_movement(state) and (logic.has_horizontal_movement(state) or logic.is_hop_to_it_at_least_fancy_footwork())) or logic.has_glide(state),
                      FLYERS_CRAG_UPPER_AP_REGION: lambda state: logic.has_glide(state) or logic.has_swimming(state)})
     fancy_add_exits(world, GREENSHIRE_REPRISE_AP_REGION, [DELENDE_PLAINS_AP_REGION, DELENDE_HIGH_BRIDGES_AP_REGION, CAPITAL_SEQUOIA_AP_REGION, CAPITAL_MOAT_AP_REGION, SALMON_PASS_EAST_AP_REGION, GREENSHIRE_OVERLOOK_AP_REGION],
                     #Obscure Routes: it is possible to jump from Rolling Quintar Fields onto the Capital Sequoia walls from the southeast and manage to bypass the guard and thus the job requirement
                     {CAPITAL_MOAT_AP_REGION: lambda state: logic.has_swimming(state),
-                     SALMON_PASS_EAST_AP_REGION: lambda state: ((logic.has_jobs(state, 5) or logic.obscure_routes_on()) and logic.has_rental_quintar(state, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME)) or logic.has_vertical_movement(state),
+                     SALMON_PASS_EAST_AP_REGION: lambda state: ((logic.has_jobs(state, 5) or logic.obscure_routes_on()) and logic.has_rental_quintar(state, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME) and (state.has(CAPITAL_SEQUOIA_PASS, player) or not logic.is_regionsanity_extreme())) or logic.has_vertical_movement(state),
                      GREENSHIRE_OVERLOOK_AP_REGION: lambda state: logic.has_vertical_movement(state)})
     fancy_add_exits(world, SALMON_PASS_EAST_AP_REGION, [GREENSHIRE_REPRISE_AP_REGION, SALMON_PASS_WEST_AP_REGION, DELENDE_PLAINS_AP_REGION],
                     {SALMON_PASS_WEST_AP_REGION: lambda state: logic.has_horizontal_movement(state) or logic.has_swimming(state),
@@ -636,13 +664,13 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
                      TOWER_OF_ZOT_AP_REGION: lambda state: logic.has_glide(state)})
     #Salmon Bay end
     #The Open Sea start
-    fancy_add_exits(world, THE_OPEN_SEA_AP_REGION, [SEASIDE_CLIFFS_AP_REGION, PROVING_MEADOWS_AP_REGION, CAPITAL_MOAT_AP_REGION, COBBLESTONE_CRAG_AP_REGION, OKIMOTO_NS_AP_REGION, SHOUDU_WATERFRONT_AP_REGION, BAZAAR_COAST_AP_REGION, SARA_SARA_BEACH_EAST_AP_REGION, RENTAL_QUINTAR_BEACH_EP_AP_REGION, RUINS_CRUMBLING_ON_SHORE_AP_REGION, SALMON_BAY_AP_REGION, SHOUDU_WATERWAYS_AP_REGION, THE_UNDERCITY_AP_REGION, JIDAMBA_ATOLLS_AP_REGION, JIDAMBA_WATERWAYS_AP_REGION, THE_DEEP_SEA_AP_REGION],
+    fancy_add_exits(world, THE_OPEN_SEA_AP_REGION, [SEASIDE_CLIFFS_AP_REGION, PROVING_MEADOWS_AP_REGION, CAPITAL_MOAT_AP_REGION, WEST_COBBLESTONE_CRAG_AP_REGION, SHOUDU_WATERFRONT_AP_REGION, BAZAAR_COAST_AP_REGION, SARA_SARA_BEACH_EAST_AP_REGION, RENTAL_QUINTAR_BEACH_EP_AP_REGION, RUINS_CRUMBLING_ON_SHORE_AP_REGION, SALMON_BAY_AP_REGION, SHOUDU_WATERWAYS_AP_REGION, THE_UNDERCITY_AP_REGION, JIDAMBA_ATOLLS_AP_REGION, JIDAMBA_WATERWAYS_AP_REGION, THE_DEEP_SEA_AP_REGION],
                     {SEASIDE_CLIFFS_AP_REGION: lambda state: logic.has_swimming(state),
                      PROVING_MEADOWS_AP_REGION: lambda state: logic.has_swimming(state),
                      CAPITAL_MOAT_AP_REGION: lambda state: logic.has_swimming(state),
-                     COBBLESTONE_CRAG_AP_REGION: lambda state: logic.has_swimming(state),
-                     OKIMOTO_NS_AP_REGION: lambda state: logic.has_swimming(state),
+                     WEST_COBBLESTONE_CRAG_AP_REGION: lambda state: logic.has_swimming(state),
                      SHOUDU_WATERFRONT_AP_REGION: lambda state: logic.has_swimming(state),
+                     #TODO: this Undercity connection is to the Pah Summon cave specifically, though there may be more connections
                      THE_UNDERCITY_AP_REGION: lambda state: logic.has_swimming(state),
                      BAZAAR_COAST_AP_REGION: lambda state: logic.has_swimming(state),
                      SARA_SARA_BEACH_EAST_AP_REGION: lambda state: logic.has_swimming(state),
@@ -662,11 +690,13 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
                      CONTINENTAL_TRAM_AP_REGION: lambda state: logic.has_swimming(state)})
     #The Open Sea end
     #Shoudu Province start (though the Waterfront is a separate display region)
-    fancy_add_exits(world, SHOUDU_WATERFRONT_AP_REGION, [SHOUDU_DOCKSIDE_AP_REGION, SHOUDU_WATERWAYS_AP_REGION, COBBLESTONE_CRAG_AP_REGION],
-                    {SHOUDU_DOCKSIDE_AP_REGION: lambda state: logic.has_vertical_movement(state) or logic.has_glide(state),
+    fancy_add_exits(world, SHOUDU_WATERFRONT_AP_REGION, [SHOUDU_DOCKSIDE_AP_REGION, SHOUDU_WATERWAYS_AP_REGION, EAST_COBBLESTONE_CRAG_AP_REGION, OKIMOTO_NS_AP_REGION, THE_UNDERCITY_AP_REGION, FLYERS_CRAG_LOWER_AP_REGION],
+                    {SHOUDU_DOCKSIDE_AP_REGION: lambda state: logic.has_vertical_movement(state) or logic.has_glide(state) or logic.has_swimming(state),
                      SHOUDU_WATERWAYS_AP_REGION: lambda state: logic.has_swimming(state),
-                     COBBLESTONE_CRAG_AP_REGION: lambda state: logic.has_horizontal_movement(state)})
-    fancy_add_exits(world, SHOUDU_DOCKSIDE_AP_REGION, [SHOUDU_WATERFRONT_AP_REGION, SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_WATERWAYS_AP_REGION, COBBLESTONE_CRAG_AP_REGION, SARA_SARA_BAZAAR_AP_REGION, THE_UNDERCITY_AP_REGION],
+                     #TODO: this Undercity connection is to the Pah Summon cave specifically
+                     THE_UNDERCITY_AP_REGION: lambda state: logic.has_glide(state) or logic.has_swimming(state),
+                     FLYERS_CRAG_LOWER_AP_REGION: lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)})
+    fancy_add_exits(world, SHOUDU_DOCKSIDE_AP_REGION, [SHOUDU_WATERFRONT_AP_REGION, SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_WATERWAYS_AP_REGION, EAST_COBBLESTONE_CRAG_AP_REGION, SARA_SARA_BAZAAR_AP_REGION, THE_UNDERCITY_AP_REGION],
                     {SHOUDU_PROVINCE_PROPER_AP_REGION: lambda state: logic.has_vertical_movement(state) or logic.has_glide(state),
                      SHOUDU_WATERWAYS_AP_REGION: lambda state: logic.has_swimming(state),
                      SARA_SARA_BAZAAR_AP_REGION: lambda state: (state.has(THE_OPEN_SEA_PASS, player) or not logic.is_regionsanity_extreme()) and state.has(FERRY_PASS, player)})
@@ -701,6 +731,7 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
                      SHOUDU_FIELDS_WEST_SCAFFOLDING_AP_REGION: lambda state: logic.has_swimming(state),
                      OKIMOTO_NS_AP_REGION: lambda state: logic.has_swimming(state),
                      THE_OPEN_SEA_AP_REGION: lambda state: logic.has_swimming(state),
+                     #TODO: multiple entrances from Shoudu Waterways into the Undercity, including the Pah Summon cave
                      THE_UNDERCITY_AP_REGION: lambda state: logic.has_swimming(state),
                      GANYMEDE_SHRINE_AP_REGION: lambda state: logic.has_swimming(state),
                      GANYMEDE_STEEPLE_AP_REGION: lambda state: logic.has_horizontal_movement(state) and logic.has_swimming(state) and logic.obscure_routes_on(),

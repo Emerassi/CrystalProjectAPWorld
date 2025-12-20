@@ -395,11 +395,11 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         LocationData(QUINTAR_NEST_AP_REGION, QUINTAR_NEST_DISPLAY_NAME + " Chest - Welcome", 3078 + treasure_index_offset), #Potion chest
         LocationData(QUINTAR_NEST_AP_REGION, QUINTAR_NEST_DISPLAY_NAME + " Chest - Mighty jump along east side wall", 746 + treasure_index_offset), #Scope Bit chest
         #You can't detour through the sewers if you can't reach the sewers (relevant for regionsanity)
-        LocationData(QUINTAR_NEST_AP_REGION, QUINTAR_NEST_DISPLAY_NAME + " Chest - Detour through the sewers", 638 + treasure_index_offset, lambda state: state.can_reach(JOJO_SEWERS_AP_REGION, player=player) or logic.has_rental_quintar(state, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME) or logic.has_vertical_movement(state)), #Static Rod chest
         LocationData(QUINTAR_NEST_AP_REGION, QUINTAR_NEST_DISPLAY_NAME + " Chest - North Donut Lake sprinkle", 852 + treasure_index_offset), #Tincture chest
         LocationData(QUINTAR_NEST_AP_REGION, QUINTAR_NEST_DISPLAY_NAME + " Chest - Hop along west side wall", 2982 + treasure_index_offset), #Tincture Pouch chest
         LocationData(QUINTAR_NEST_AP_REGION, QUINTAR_NEST_DISPLAY_NAME + " Chest - Donut Lake crown sprinkle", 851 + treasure_index_offset), #Tonic chest
         LocationData(QUINTAR_NEST_AP_REGION, "Underpass Chest - Up north Quintar Nest waterfall", 3620 + treasure_index_offset, lambda state: logic.has_swimming(state)), #(524, 146, -368) Underpass Scrap chest
+        LocationData(NEST_SEWER_DETOUR_CHEST_AP_REGION, QUINTAR_NEST_DISPLAY_NAME + " Chest - Detour through the sewers", 638 + treasure_index_offset),  # Static Rod chest
 
         #NPCs
         #NPCs CheckOrNot: two Quintar Eggs here; decided against
@@ -483,20 +483,19 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         LocationData(PIPELINE_JIDAMBA_CONNECTOR_AP_REGION, JIDAMBA_EACLANEYA_DISPLAY_NAME + " NPC - Ride the Pipeline elevator for Jidamba diamond heist", 2897 + npc_index_offset),  # Dust
 
         #Cobblestone Crag
-        #Treasure chests
-        LocationData(COBBLESTONE_CRAG_AP_REGION, COBBLESTONE_CRAG_DISPLAY_NAME + " Chest - Behind sluice gate", 479 + treasure_index_offset), #Ether Pouch chest
-        LocationData(COBBLESTONE_CRAG_AP_REGION, COBBLESTONE_CRAG_DISPLAY_NAME + " Chest - Long jump", 382 + treasure_index_offset, lambda state: logic.has_horizontal_movement(state)), #Potion chest
-        LocationData(COBBLESTONE_CRAG_AP_REGION, COBBLESTONE_CRAG_DISPLAY_NAME + " Chest - Tucked in cranny between two tall spikes", 1119 + treasure_index_offset, lambda state: logic.has_horizontal_movement(state)), #Potion Pouch chest
-        LocationData(COBBLESTONE_CRAG_AP_REGION, COBBLESTONE_CRAG_DISPLAY_NAME + " Chest - I totally meant to miss that jump", 2670 + treasure_index_offset), #Skewer chest
-        LocationData(COBBLESTONE_CRAG_AP_REGION, COBBLESTONE_CRAG_DISPLAY_NAME + " Chest - Upon exiting from Quintar Nest", 478 + treasure_index_offset), #Tonic Pouch chest
-        LocationData(COBBLESTONE_CRAG_AP_REGION, COBBLESTONE_CRAG_DISPLAY_NAME + " Chest - Could really use a Walking Stick (chest) right about now...", 2669 + treasure_index_offset),
-        LocationData(COBBLESTONE_CRAG_AP_REGION, "Underpass Chest - On the way to village hidden among leaves", 3669 + treasure_index_offset, lambda state: logic.has_horizontal_movement(state)), #Underpass Scrap (Okimoto)
-
-        #NPCs
-        LocationData(COBBLESTONE_CRAG_AP_REGION, COBBLESTONE_CRAG_DISPLAY_NAME + " NPC - Westernmost Silver", 1120 + npc_index_offset), #Dust
+        #West Cobblestone Crag
+        LocationData(WEST_COBBLESTONE_CRAG_AP_REGION, COBBLESTONE_CRAG_DISPLAY_NAME + " Chest - Behind sluice gate", 479 + treasure_index_offset), #Ether Pouch chest
+        LocationData(WEST_COBBLESTONE_CRAG_AP_REGION, COBBLESTONE_CRAG_DISPLAY_NAME + " NPC - Westernmost Silver", 1120 + npc_index_offset),  # Dust
+        LocationData(WEST_COBBLESTONE_CRAG_AP_REGION, COBBLESTONE_CRAG_DISPLAY_NAME + " Chest - I totally meant to miss that jump", 2670 + treasure_index_offset), #Skewer chest
+        LocationData(WEST_COBBLESTONE_CRAG_AP_REGION, COBBLESTONE_CRAG_DISPLAY_NAME + " Chest - These holes were made for you! (to enter the Quintar Nest)", 478 + treasure_index_offset), #Tonic Pouch chest
+        LocationData(WEST_COBBLESTONE_CRAG_AP_REGION, COBBLESTONE_CRAG_DISPLAY_NAME + " Chest - Could really use a Walking Stick (chest) right about now...", 2669 + treasure_index_offset),
+        #East Cobblestone Crag
+        LocationData(EAST_COBBLESTONE_CRAG_AP_REGION, COBBLESTONE_CRAG_DISPLAY_NAME + " Chest - Long jump", 382 + treasure_index_offset), #Potion chest
+        LocationData(EAST_COBBLESTONE_CRAG_AP_REGION, COBBLESTONE_CRAG_DISPLAY_NAME + " Chest - Tucked in cranny between two tall spikes", 1119 + treasure_index_offset), #Potion Pouch chest
 
         #Okimoto N.S.
         #Treasure chests
+        LocationData(OKIMOTO_NS_AP_REGION, "Underpass Chest - On the way to village hidden among leaves", 3669 + treasure_index_offset),  # Underpass Scrap (Okimoto)
         LocationData(OKIMOTO_NS_AP_REGION, OKIMOTO_NS_DISPLAY_NAME + " Chest - Moth love lamp", 364 + treasure_index_offset), #Butterfly chest
         LocationData(OKIMOTO_NS_AP_REGION, OKIMOTO_NS_DISPLAY_NAME + " Chest - Don't bump your head", 2661 + treasure_index_offset), #Ether Pouch chest
         LocationData(OKIMOTO_NS_AP_REGION, OKIMOTO_NS_DISPLAY_NAME + " Chest - Parkour to the west", 337 + treasure_index_offset), #Float Shoes chest
@@ -507,7 +506,7 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         LocationData(OKIMOTO_NS_AP_REGION, OKIMOTO_NS_DISPLAY_NAME + " Chest - East ground floor room", 2673 + treasure_index_offset), #Magic Finder chest
         LocationData(OKIMOTO_NS_AP_REGION, OKIMOTO_NS_DISPLAY_NAME + " Chest - Lurking behind bookcase", 434 + treasure_index_offset), #Potion Pouch chest
         LocationData(OKIMOTO_NS_AP_REGION, OKIMOTO_NS_DISPLAY_NAME + " Chest - Past hidden staircase", 694 + treasure_index_offset), #Tachi chest
-        LocationData(OKIMOTO_NS_AP_REGION, OKIMOTO_NS_DISPLAY_NAME + " Chest - Dance above the koi pond", 1103 + treasure_index_offset), #Training Gi chest
+        LocationData(OKIMOTO_NS_AP_REGION, OKIMOTO_NS_DISPLAY_NAME + " Chest - Dance above the koi pond", 1103 + treasure_index_offset, lambda state: logic.has_horizontal_movement(state) or logic.has_swimming(state)), #Training Gi chest
         LocationData(OKIMOTO_NS_AP_REGION, "Overpass Chest - Mountain lake north of the yashiki", 3534 + treasure_index_offset), #(605, 228, -270) 3rd Overpass Scrap in Overpass main map
 
         #NPCs
@@ -1476,10 +1475,10 @@ def get_boss_locations(player: int, options: CrystalProjectOptions | None) -> Li
         LocationData(SKUMPARADISE_AP_REGION, SKUMPARADISE_DISPLAY_NAME + " Boss - Parasite", 333 + boss_index_offset, lambda state: logic.is_area_in_level_range(state, PARASITE_FIGHT_LEVEL)), #Monster ID: 38
         LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Boss - Defeat L60 dummy and it shall appear...!", 3530 + boss_index_offset, lambda state: logic.is_area_in_level_range(state, DUMMY_BOSS_FIGHT_LEVEL)), #Monster ID: 303
         LocationData(MOAT_SHALLOWS_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Boss - Enami", 458 + boss_index_offset, lambda state: logic.is_area_in_level_range(state, ENAMI_FIGHT_LEVEL)), #Monster ID: 49
-        LocationData(JOJO_SEWERS_AP_REGION, JOJO_SEWERS_DISPLAY_NAME + " Boss - Blood Slop", 758 + boss_index_offset, lambda state: logic.is_area_in_level_range(state, BLOOD_SLOP_FIGHT_LEVEL)), #Monster ID: 4
+        LocationData(SEWER_DETOUR_FOR_QUINTAR_NEST_AP_REGION, JOJO_SEWERS_DISPLAY_NAME + " Boss - Blood Slop", 758 + boss_index_offset, lambda state: logic.is_area_in_level_range(state, BLOOD_SLOP_FIGHT_LEVEL)), #Monster ID: 4
         LocationData(QUINTAR_SANCTUM_AP_REGION, QUINTAR_SANCTUM_DISPLAY_NAME + " Boss - Fancy Quintar", 971 + boss_index_offset, lambda state: logic.is_area_in_level_range(state, FANCY_QUINTAR_FIGHT_LEVEL)), #Monster ID: 68
         LocationData(CAPITAL_JAIL_AP_REGION, CAPITAL_JAIL_DISPLAY_NAME + " Boss - Warden", 907 + boss_index_offset, lambda state: logic.has_key(state, DARK_WING_KEY) and logic.is_area_in_level_range(state, WARDEN_FIGHT_LEVEL)), #Monster ID: 37
-        LocationData(COBBLESTONE_CRAG_AP_REGION, COBBLESTONE_CRAG_DISPLAY_NAME + " Boss - Crag Demon", 1118 + boss_index_offset, lambda state: logic.is_area_in_level_range(state, CRAG_DEMON_FIGHT_LEVEL)), #Monster ID: 217
+        LocationData(WEST_COBBLESTONE_CRAG_AP_REGION, COBBLESTONE_CRAG_DISPLAY_NAME + " Boss - Crag Demon", 1118 + boss_index_offset, lambda state: logic.is_area_in_level_range(state, CRAG_DEMON_FIGHT_LEVEL)), #Monster ID: 217
         LocationData(OKIMOTO_NS_AP_REGION, OKIMOTO_NS_DISPLAY_NAME + " Boss - Kuromanto", 698 + boss_index_offset, lambda state: logic.is_area_in_level_range(state, KUROMANTO_FIGHT_LEVEL)), #Monster ID: 63
         LocationData(IBEK_CAVE_AP_REGION, ANCIENT_RESERVOIR_DISPLAY_NAME + " Boss - Possessor", 1674 + boss_index_offset, lambda state: logic.is_area_in_level_range(state, POSSESSOR_FIGHT_LEVEL)), #Monster ID: 221
         LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Boss - Final Sky Arena Fight: Arachlea", 1366 + boss_index_offset, lambda state: logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL)), #Monster ID: 252 (SkyArenaRegistrar)
@@ -1973,7 +1972,7 @@ def get_region_completion_locations() -> List[LocationData]:
         LocationData(QUINTAR_SANCTUM_AP_REGION, QUINTAR_SANCTUM_DISPLAY_NAME + " Region Completion", 6016 + regionsanity_index_offset, regionsanity=True),
         LocationData(CAPITAL_JAIL_AP_REGION, CAPITAL_JAIL_DISPLAY_NAME + " Region Completion", 6017 + regionsanity_index_offset, regionsanity=True),
         LocationData(PIPELINE_SOUTH_AP_REGION, CAPITAL_PIPELINE_DISPLAY_NAME + " Region Completion", 6018 + regionsanity_index_offset, regionsanity=True),
-        LocationData(COBBLESTONE_CRAG_AP_REGION, COBBLESTONE_CRAG_DISPLAY_NAME + " Region Completion", 6019 + regionsanity_index_offset, regionsanity=True),
+        LocationData(WEST_COBBLESTONE_CRAG_AP_REGION, COBBLESTONE_CRAG_DISPLAY_NAME + " Region Completion", 6019 + regionsanity_index_offset, regionsanity=True),
         LocationData(OKIMOTO_NS_AP_REGION, OKIMOTO_NS_DISPLAY_NAME + " Region Completion", 6020 + regionsanity_index_offset, regionsanity=True),
         LocationData(GREENSHIRE_REPRISE_AP_REGION, GREENSHIRE_REPRISE_DISPLAY_NAME + " Region Completion", 6021 + regionsanity_index_offset, regionsanity=True),
         LocationData(SALMON_PASS_EAST_AP_REGION, SALMON_PASS_DISPLAY_NAME + " Region Completion", 6022 + regionsanity_index_offset, regionsanity=True),
