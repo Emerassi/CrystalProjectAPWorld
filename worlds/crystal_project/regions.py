@@ -459,11 +459,10 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
                      QUINTAR_RESERVE_AP_REGION: lambda state: logic.has_vertical_movement(state)})
     fancy_add_exits(world, HUNTERS_TOWER_AP_REGION, [ROLLING_QUINTAR_FIELDS_AP_REGION, ROLLING_TREETOP_HIGHWAY_AP_REGION, SANCTUM_ENTRANCE_AP_REGION, SANCTUM_EXIT_CLIFFTOP_AP_REGION, RAMPART_ATOP_PORTCULLIS_AP_REGION],
                     {SANCTUM_EXIT_CLIFFTOP_AP_REGION: lambda state: logic.has_horizontal_movement(state) or logic.has_vertical_movement(state)})
-    fancy_add_exits(world, AEGIS_OUTPOST_AP_REGION, [ROLLING_QUINTAR_FIELDS_AP_REGION, WEST_COBBLESTONE_CRAG_AP_REGION, EAST_COBBLESTONE_CRAG_AP_REGION, OKIMOTO_NS_AP_REGION, SHOUDU_WATERFRONT_AP_REGION, SHOUDU_DOCKSIDE_AP_REGION, PAH_SUMMON_AP_REGION, FLYERS_CRAG_LOWER_AP_REGION],
+    fancy_add_exits(world, AEGIS_OUTPOST_AP_REGION, [ROLLING_QUINTAR_FIELDS_AP_REGION, WEST_COBBLESTONE_CRAG_AP_REGION, EAST_COBBLESTONE_CRAG_AP_REGION, OKIMOTO_NS_AP_REGION, SHOUDU_WATERFRONT_AP_REGION, PAH_SUMMON_AP_REGION, FLYERS_CRAG_LOWER_AP_REGION],
                     #Note: Aegis Master is inside this region and requires rental quintar(obscure) or horizontal or vertical
                     {OKIMOTO_NS_AP_REGION: lambda state: (logic.has_rental_quintar(state, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME) and logic.obscure_routes_on()) or logic.has_horizontal_movement(state) or logic.has_vertical_movement(state),
                      SHOUDU_WATERFRONT_AP_REGION: lambda state: logic.obscure_routes_on() and (logic.has_rental_quintar(state, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME) or logic.has_vertical_movement(state)),
-                     SHOUDU_DOCKSIDE_AP_REGION: lambda state: logic.obscure_routes_on() and (logic.has_vertical_movement(state) or logic.has_glide(state)),
                      PAH_SUMMON_AP_REGION: lambda state: logic.obscure_routes_on() and (logic.has_glide(state) or logic.has_swimming(state)),
                      FLYERS_CRAG_LOWER_AP_REGION: lambda state: logic.obscure_routes_on() and (logic.has_vertical_movement(state) or logic.has_glide(state))})
     #Rolling Quintar Fields end
@@ -515,9 +514,8 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
                      ROLLING_QUINTAR_FIELDS_AP_REGION: lambda state: logic.has_vertical_movement(state),
                      AEGIS_OUTPOST_AP_REGION: lambda state: logic.has_vertical_movement(state),
                      THE_OPEN_SEA_AP_REGION: lambda state: logic.has_swimming(state)})
-    fancy_add_exits(world, EAST_COBBLESTONE_CRAG_AP_REGION, [WEST_COBBLESTONE_CRAG_AP_REGION, OKIMOTO_NS_AP_REGION, SHOUDU_WATERFRONT_AP_REGION, SHOUDU_DOCKSIDE_AP_REGION, PAH_SUMMON_AP_REGION, THE_OPEN_SEA_AP_REGION, FLYERS_CRAG_LOWER_AP_REGION],
+    fancy_add_exits(world, EAST_COBBLESTONE_CRAG_AP_REGION, [WEST_COBBLESTONE_CRAG_AP_REGION, OKIMOTO_NS_AP_REGION, SHOUDU_WATERFRONT_AP_REGION, PAH_SUMMON_AP_REGION, THE_OPEN_SEA_AP_REGION, FLYERS_CRAG_LOWER_AP_REGION],
                     {SHOUDU_WATERFRONT_AP_REGION: lambda state: logic.has_horizontal_movement(state) or (logic.has_vertical_movement(state) and logic.is_hop_to_it_at_least_fancy_footwork()),
-                     SHOUDU_DOCKSIDE_AP_REGION: lambda state: (logic.is_hop_to_it_at_least_fancy_footwork() or logic.has_horizontal_movement(state)) and logic.has_vertical_movement(state),
                      PAH_SUMMON_AP_REGION: lambda state: logic.has_glide(state) or logic.has_swimming(state),
                      THE_OPEN_SEA_AP_REGION: lambda state: logic.has_swimming(state),
                      FLYERS_CRAG_LOWER_AP_REGION: lambda state: (logic.is_hop_to_it_at_least_fancy_footwork() or logic.has_horizontal_movement(state)) and logic.has_vertical_movement(state)})
@@ -694,7 +692,7 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
                      SHOUDU_WATERWAYS_AP_REGION: lambda state: logic.has_swimming(state),
                      PAH_SUMMON_AP_REGION: lambda state: logic.has_glide(state) or logic.has_swimming(state),
                      FLYERS_CRAG_LOWER_AP_REGION: lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)})
-    fancy_add_exits(world, SHOUDU_DOCKSIDE_AP_REGION, [SHOUDU_WATERFRONT_AP_REGION, SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_WATERWAYS_AP_REGION, EAST_COBBLESTONE_CRAG_AP_REGION, SARA_SARA_BAZAAR_AP_REGION, EAST_UNDERCITY_WAREHOUSE_AP_REGION],
+    fancy_add_exits(world, SHOUDU_DOCKSIDE_AP_REGION, [SHOUDU_WATERFRONT_AP_REGION, SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_WATERWAYS_AP_REGION, SARA_SARA_BAZAAR_AP_REGION, EAST_UNDERCITY_WAREHOUSE_AP_REGION],
                     {SHOUDU_PROVINCE_PROPER_AP_REGION: lambda state: logic.has_vertical_movement(state) or logic.has_glide(state),
                      SHOUDU_WATERWAYS_AP_REGION: lambda state: logic.has_swimming(state),
                      SARA_SARA_BAZAAR_AP_REGION: lambda state: (state.has(THE_OPEN_SEA_PASS, player) or not logic.is_regionsanity_extreme()) and state.has(FERRY_PASS, player)})
@@ -956,7 +954,7 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
                     {SHOUDU_WATERWAYS_AP_REGION: lambda state: logic.has_swimming(state),
                      GANYMEDE_STEEPLE_AP_REGION: lambda state: (logic.has_horizontal_movement(state) and logic.obscure_routes_on()) or logic.has_glide(state),
                      JIDAMBA_SUMMIT_AP_REGION: lambda state: (state.has(THE_OPEN_SEA_PASS, player) or not logic.is_regionsanity_extreme()) and logic.has_glide(state)})
-    fancy_add_exits(world, FLYERS_CRAG_LOWER_AP_REGION, [THE_OPEN_SEA_AP_REGION, SHOUDU_WATERFRONT_AP_REGION, SHOUDU_WATERWAYS_AP_REGION],
+    fancy_add_exits(world, FLYERS_CRAG_LOWER_AP_REGION, [THE_OPEN_SEA_AP_REGION, SHOUDU_WATERFRONT_AP_REGION, SHOUDU_DOCKSIDE_AP_REGION, SHOUDU_WATERWAYS_AP_REGION],
                     {THE_OPEN_SEA_AP_REGION: lambda state: logic.has_swimming(state),
                      SHOUDU_WATERWAYS_AP_REGION: lambda state: logic.has_swimming(state)})
     #Flyer's Crag end
