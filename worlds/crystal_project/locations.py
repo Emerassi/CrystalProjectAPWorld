@@ -10,6 +10,7 @@ from .constants.display_regions import *
 from .constants.teleport_stones import *
 from .constants.crystal_locations import *
 from .constants.level_requirements import *
+from .constants.location_groups import *
 
 class LocationData(NamedTuple):
     ap_region: str
@@ -17,6 +18,7 @@ class LocationData(NamedTuple):
     code: int
     rule: Optional[Callable[[CollectionState], bool]] = None
     regionsanity: bool = False
+    tags: Optional[list[str]] = None
 
 treasure_index_offset = 1
 npc_index_offset = 10000
@@ -312,25 +314,25 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Courtyard Chloe", 1661 + npc_index_offset, lambda state: (logic.has_rental_quintar(state, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME) and logic.obscure_routes_on()) or logic.has_horizontal_movement(state) or logic.has_vertical_movement(state)), #Fly Lure (399, 155, -219) Fixed Missable
         LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Glinting Courtyard Key", 2486 + npc_index_offset), #Courtyard Key sparkle that appears if you miss Courtyard Reid in Salmon River (424, 150, -222) Fixed Missable
         LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Sparkling in the fountain", 2584 + npc_index_offset), #Plug Lure
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Lost Penguin on a tent", 605 + npc_index_offset),
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Speedy Lost Penguin on patrol", 584 + npc_index_offset),
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Lost Penguin kiosk keeper", 508 + npc_index_offset),
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Lost Penguin skulking in store alley", 565 + npc_index_offset),
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Lost Penguin on gender change bench porch", 1095 + npc_index_offset),
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Lost Penguin enjoying inn hospitality", 946 + npc_index_offset),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Lost Penguin on a tent", 605 + npc_index_offset, tags=[PENGUIN_LOCATION_GROUP]),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Speedy Lost Penguin on patrol", 584 + npc_index_offset, tags=[PENGUIN_LOCATION_GROUP]),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Lost Penguin kiosk keeper", 508 + npc_index_offset, tags=[PENGUIN_LOCATION_GROUP]),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Lost Penguin skulking in store alley", 565 + npc_index_offset, tags=[PENGUIN_LOCATION_GROUP]),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Lost Penguin on gender change bench porch", 1095 + npc_index_offset, tags=[PENGUIN_LOCATION_GROUP]),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Lost Penguin enjoying inn hospitality", 946 + npc_index_offset, tags=[PENGUIN_LOCATION_GROUP]),
         # Progressive Location: 4 checks on the Penguin Keeper, must add a progressive location in the C# app every time you use one of these.
         # The original check that corresponds to the npc id should be last so that when it completes it stops showing up on your minimap.
         LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Bring 3 Lost Penguins to Penguin Keeper", 50531 + npc_index_offset, lambda state: state.has(LOST_PENGUIN, player, 3)),
         LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Bring 6 Lost Penguins to Penguin Keeper", 50532 + npc_index_offset, lambda state: state.has(LOST_PENGUIN, player, 6)),
         LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Bring 9 Lost Penguins to Penguin Keeper", 50533 + npc_index_offset, lambda state: state.has(LOST_PENGUIN, player, 9)),
         LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Bring all 12 Lost Penguins to Penguin Keeper", 531 + npc_index_offset, lambda state: state.has(LOST_PENGUIN, player, 12)),
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Lost Penguin trampling Cleric's flowers", 564 + npc_index_offset, lambda state: state.has(GAEA_STONE, player) or (logic.has_rental_quintar(state, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME) and logic.obscure_routes_on()) or logic.has_horizontal_movement(state) or logic.has_vertical_movement(state)),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Lost Penguin trampling Cleric's flowers", 564 + npc_index_offset, lambda state: state.has(GAEA_STONE, player) or (logic.has_rental_quintar(state, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME) and logic.obscure_routes_on()) or logic.has_horizontal_movement(state) or logic.has_vertical_movement(state), tags=[PENGUIN_LOCATION_GROUP]),
         LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Sadist Sam gives you pain, you give Sadist Sam head(s)", 536 + npc_index_offset, lambda state: state.has(DIGESTED_HEAD, player, 3)), #name is ca69011a in Crystal Edit why lmao
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Lost Penguin wandering Magic Store rooftop garden", 573 + npc_index_offset),
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Lost Penguin atop sewer exit rooftop", 567 + npc_index_offset),
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Lost Penguin cheating at Garden Maze", 421 + npc_index_offset),
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - How did you climb that tree, Lost Penguin?", 422 + npc_index_offset),
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Library roof Lost Penguin", 594 + npc_index_offset),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Lost Penguin wandering Magic Store rooftop garden", 573 + npc_index_offset, tags=[PENGUIN_LOCATION_GROUP]),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Lost Penguin atop sewer exit rooftop", 567 + npc_index_offset, tags=[PENGUIN_LOCATION_GROUP]),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Lost Penguin cheating at Garden Maze", 421 + npc_index_offset, tags=[PENGUIN_LOCATION_GROUP]),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - How did you climb that tree, Lost Penguin?", 422 + npc_index_offset, tags=[PENGUIN_LOCATION_GROUP]),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Library roof Lost Penguin", 594 + npc_index_offset, tags=[PENGUIN_LOCATION_GROUP]),
         LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Library Morii of the East!", 1948 + npc_index_offset), #(440, 171, -296) Z14_Library Scholar
 
         #Jojo Sewers
@@ -889,37 +891,34 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - Diamond through a hole in the 10 Sky Arena Wins room floor", 2832 + npc_index_offset, lambda state: logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL)), #(753, 130, -264) Ore
 
         #The Undercity
-        #Treasures
         # can get without mounts from Shoudu
-        LocationData(THE_UNDERCITY_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " Chest - Gated-off room 1", 2988 + treasure_index_offset),  # Fenix Juice chest
-        LocationData(THE_UNDERCITY_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " Chest - Gated-off room 2", 2987 + treasure_index_offset),  # Ether chest
-        LocationData(THE_UNDERCITY_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " Chest - Gated-off room 3", 1147 + treasure_index_offset),  # Potion chest
-        LocationData(THE_UNDERCITY_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " Chest - Gated-off room 4", 3517 + treasure_index_offset),  # (778, 94, -254) Elevator Part chest
+        LocationData(EAST_UNDERCITY_WAREHOUSE_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " Chest - Gated-off room 1", 2988 + treasure_index_offset),  # Fenix Juice chest
+        LocationData(EAST_UNDERCITY_WAREHOUSE_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " Chest - Gated-off room 2", 2987 + treasure_index_offset),  # Ether chest
+        LocationData(EAST_UNDERCITY_WAREHOUSE_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " Chest - Gated-off room 3", 1147 + treasure_index_offset),  # Potion chest
+        LocationData(EAST_UNDERCITY_WAREHOUSE_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " Chest - Gated-off room 4", 3517 + treasure_index_offset),  # (778, 94, -254) Elevator Part chest
+        LocationData(EAST_UNDERCITY_WAREHOUSE_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " NPC - Gold hiding from the bats under the awning", 2835 + npc_index_offset),  # Dust
+        LocationData(EAST_UNDERCITY_WAREHOUSE_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " NPC - Gated-off room Gold", 2825 + npc_index_offset),  # Ore
         #except these up high
-        LocationData(THE_UNDERCITY_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " Chest - Climb up lampposts and run across the fence", 1925 + treasure_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)),  # Cursegiver chest
-        LocationData(THE_UNDERCITY_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " Chest - North wall climb (or fall through broken grate by Sky Arena Prize Counter)", 3516 + treasure_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state) or state.can_reach(GANYMEDE_SHRINE_AP_REGION, player=player) or state.can_reach(QUINTAR_RESERVE_AP_REGION, player=player)),  # Elevator Part chest
+        LocationData(EAST_UNDERCITY_WAREHOUSE_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " Chest - Climb up lampposts and run across the fence", 1925 + treasure_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)),  # Cursegiver chest
+        LocationData(EAST_UNDERCITY_WALL_CLIMB_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " Chest - North wall climb (or fall through broken grate by Sky Arena Prize Counter)", 3516 + treasure_index_offset),  # Elevator Part chest
         #Home Point Stone area - can walk from Ganymede Shrine -> Undercity entrance next to white hut -> fall off rafter; can also swim from the sea
-        LocationData(THE_UNDERCITY_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " Chest - Hiding in the rafters", 2989 + treasure_index_offset, lambda state: logic.has_swimming(state) or logic.has_horizontal_movement(state) or logic.has_vertical_movement(state) or state.can_reach(GANYMEDE_SHRINE_AP_REGION, player=player) or state.can_reach(QUINTAR_RESERVE_AP_REGION, player=player)),  # Potion Pouch chest
-        LocationData(THE_UNDERCITY_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " Chest - Atop awning east of the waterfall", 3518 + treasure_index_offset, lambda state: logic.has_swimming(state) or logic.has_horizontal_movement(state) or logic.has_vertical_movement(state) or state.can_reach(GANYMEDE_SHRINE_AP_REGION, player=player) or state.can_reach(QUINTAR_RESERVE_AP_REGION, player=player)),  # Elevator Part chest
-        LocationData(THE_UNDERCITY_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " Chest - Hidden in a nook in the wall", 2793 + treasure_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)),  # Knights Plate chest
+        LocationData(THE_UNDERCITY_HOMEPOINT_AND_BLADE_MASTER_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " Chest - Hiding in the rafters", 2989 + treasure_index_offset),  # Potion Pouch chest
+        LocationData(THE_UNDERCITY_HOMEPOINT_AND_BLADE_MASTER_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " Chest - Atop awning east of the waterfall", 3518 + treasure_index_offset),  # Elevator Part chest
+        LocationData(THE_UNDERCITY_HOMEPOINT_AND_BLADE_MASTER_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " Chest - Hidden in a nook in the wall", 2793 + treasure_index_offset, lambda state: logic.has_vertical_movement(state) or (logic.has_glide(state) and logic.is_hop_to_it_at_least_fancy_footwork())),  # Knights Plate chest
         #ibek from Home Point Stone area
-        LocationData(THE_UNDERCITY_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " Chest - Up the rafters against a pillar", 2990 + treasure_index_offset, lambda state: logic.has_vertical_movement(state)),  # Ether chest
-        LocationData(THE_UNDERCITY_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " Chest - Even further up the rafters", 2991 + treasure_index_offset, lambda state: logic.has_vertical_movement(state)),  # Ether Pouch chest
+        LocationData(THE_UNDERCITY_HOMEPOINT_AND_BLADE_MASTER_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " Chest - Up the rafters against a pillar", 2990 + treasure_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_golden_quintar(state)),  # Ether chest
+        LocationData(THE_UNDERCITY_HOMEPOINT_AND_BLADE_MASTER_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " Chest - Even further up the rafters", 2991 + treasure_index_offset, lambda state: logic.has_vertical_movement(state)),  # Ether Pouch chest
         #Undercity Inn area - can walk from Home Point Stone area if you hop up on guy who wants you to defeat the Undercity masters, go north, and hop west across lamps
-        LocationData(THE_UNDERCITY_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " Chest - Hiding in a building in the north area", 2826 + treasure_index_offset, lambda state: logic.has_swimming(state) or logic.has_horizontal_movement(state) or logic.has_vertical_movement(state) or state.can_reach(GANYMEDE_SHRINE_AP_REGION, player=player) or state.can_reach(QUINTAR_RESERVE_AP_REGION, player=player)),  # Potion chest
-        LocationData(THE_UNDERCITY_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " Chest - Undercity Inn", 3519 + treasure_index_offset, lambda state: logic.has_swimming(state) or logic.has_horizontal_movement(state) or logic.has_vertical_movement(state) or state.can_reach(GANYMEDE_SHRINE_AP_REGION, player=player) or state.can_reach(QUINTAR_RESERVE_AP_REGION, player=player)),  # Elevator Part
-        LocationData(THE_UNDERCITY_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " Chest - South of the Undercity Inn", 1695 + treasure_index_offset, lambda state: logic.has_swimming(state) or logic.has_horizontal_movement(state) or logic.has_vertical_movement(state) or state.can_reach(GANYMEDE_SHRINE_AP_REGION, player=player) or state.can_reach(QUINTAR_RESERVE_AP_REGION, player=player)),  # Brigandine chest
+        LocationData(THE_UNDERCITY_HOMEPOINT_AND_BLADE_MASTER_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " Chest - Hiding in a building in the north area", 2826 + treasure_index_offset),  # Potion chest
+        LocationData(THE_UNDERCITY_HOMEPOINT_AND_BLADE_MASTER_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " Chest - Undercity Inn", 3519 + treasure_index_offset),  # Elevator Part
+        LocationData(THE_UNDERCITY_HOMEPOINT_AND_BLADE_MASTER_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " Chest - South of the Undercity Inn", 1695 + treasure_index_offset),  # Brigandine chest
+        LocationData(THE_UNDERCITY_HOMEPOINT_AND_BLADE_MASTER_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " NPC - Storage room Gold of the Undercity Inns", 1694 + npc_index_offset), #Ingot
+        #First north swimmable option when heading to shadw master
+        LocationData(SHADOW_MASTER_ENTRANCE_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " NPC - Gold in the sewer offshoot", 1696 + npc_index_offset),  # Dust
+
         #swimmy swimmy
-        LocationData(THE_UNDERCITY_AP_REGION, "Underpass Chest - Lovely bounce tree W of The Undercity", 3673 + treasure_index_offset, lambda state: logic.has_swimming(state) or logic.has_glide(state)), #(608, 91, -215) (Summon Pah) Underpass Scrap chest
-        
-        #NPCs
-        #can get without mounts from Shoudu
-        LocationData(THE_UNDERCITY_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " NPC - Gold hiding from the bats under the awning", 2835 + npc_index_offset), #Dust
-        LocationData(THE_UNDERCITY_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " NPC - Gated-off room Gold", 2825 + npc_index_offset), #Ore
-        #other side of canal from Home Point Stone area
-        LocationData(THE_UNDERCITY_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " NPC - Gold in the sewer offshoot", 1696 + npc_index_offset, lambda state: logic.has_swimming(state) or logic.has_horizontal_movement(state) or logic.has_vertical_movement(state) or state.can_reach(GANYMEDE_SHRINE_AP_REGION, player=player) or state.can_reach(QUINTAR_RESERVE_AP_REGION, player=player)), #Dust
-        #Undercity Inn area
-        LocationData(THE_UNDERCITY_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " NPC - Storage room Gold of the Undercity Inns", 1694 + npc_index_offset, lambda state: logic.has_swimming(state) or logic.has_horizontal_movement(state) or logic.has_vertical_movement(state) or state.can_reach(GANYMEDE_SHRINE_AP_REGION, player=player) or state.can_reach(QUINTAR_RESERVE_AP_REGION, player=player)), #Ingot
+        LocationData(PAH_SUMMON_AP_REGION, "Underpass Chest - Lovely bounce tree W of The Undercity", 3673 + treasure_index_offset), #(608, 91, -215) (Summon Pah) Underpass Scrap chest
+
 
         #Ganymede Shrine
         #Treasure chests
@@ -1291,21 +1290,21 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         #The Deep Sea
         LocationData(THE_DEEP_SEA_AP_REGION, THE_DEEP_SEA_DISPLAY_NAME + " NPC - Locked *wink* sunken house 2 off Jidamba Diamond", 2519 + npc_index_offset), #(639, 54, 182) Dust
         LocationData(THE_DEEP_SEA_AP_REGION, THE_DEEP_SEA_DISPLAY_NAME + " NPC - Locked *wink* sunken house 2 off Jidamba Gold", 2518 + npc_index_offset), #(648, 54, 180)  Dust
-        LocationData(THE_DEEP_SEA_AP_REGION, THE_DEEP_SEA_DISPLAY_NAME + " NPC - Burrow to burrow crab", 3409 + npc_index_offset), #(20, 53, 251) Crab 1
-        LocationData(THE_DEEP_SEA_AP_REGION, THE_DEEP_SEA_DISPLAY_NAME + " NPC - Tall tall crab S of volcano", 3426 + npc_index_offset), #(76, 76, 178) Crab 2
-        LocationData(THE_DEEP_SEA_AP_REGION, THE_DEEP_SEA_DISPLAY_NAME + " NPC - Crab in underwater cove south of volcano", 3427 + npc_index_offset), #(96, 60, 131) Crab 3
-        LocationData(THE_DEEP_SEA_AP_REGION, THE_DEEP_SEA_DISPLAY_NAME + " NPC - Zigzaggedy crab NW of Tall Tall Heights", 3428 + npc_index_offset), #(142, 51, -611) Crab 4
-        LocationData(THE_DEEP_SEA_AP_REGION, THE_DEEP_SEA_DISPLAY_NAME + " NPC - Crab strolling around the undersea block", 3429 + npc_index_offset), #(60, 53, -609) Crab 5
-        LocationData(THE_DEEP_SEA_AP_REGION, THE_DEEP_SEA_DISPLAY_NAME + " NPC - Crab clinging to SW underwater volcano slope", 3430 + npc_index_offset), #(54, 62, 155) Crab 6
-        LocationData(THE_DEEP_SEA_AP_REGION, THE_DEEP_SEA_DISPLAY_NAME + " NPC - Low low crab S of volcano", 3431 + npc_index_offset), #(128, 49, 196) Crab 7
-        LocationData(THE_DEEP_SEA_AP_REGION, THE_DEEP_SEA_DISPLAY_NAME + " NPC - Serpentine crab S of crab hole", 3432 + npc_index_offset), #(239, 53, -613) for some reason crab 8 is on (Depths Fix) submap
-        LocationData(THE_DEEP_SEA_AP_REGION, THE_DEEP_SEA_DISPLAY_NAME + " NPC - Patrolling crab S of crab hole", 3433 + npc_index_offset), #(254, 53, 215) Crab 9
-        LocationData(THE_DEEP_SEA_AP_REGION, THE_DEEP_SEA_DISPLAY_NAME + " NPC - Crab living on the edge S of crab hole", 3434 + npc_index_offset), #(306, 53, 224) Crab 10
-        LocationData(THE_DEEP_SEA_AP_REGION, THE_DEEP_SEA_DISPLAY_NAME + " NPC - Crab on a mission N of Tall Tall Heights", 3435 + npc_index_offset), #(288, 53, -620) Crab 11
-        LocationData(THE_DEEP_SEA_AP_REGION, THE_DEEP_SEA_DISPLAY_NAME + " NPC - Middle of nowhere sandy speedster crab", 3436 + npc_index_offset), #(58, 52, 244) Crab 12
-        LocationData(THE_DEEP_SEA_AP_REGION, THE_DEEP_SEA_DISPLAY_NAME + " NPC - Putt Putt Crab mows the lawn", 3437 + npc_index_offset), #(54, 52, 200) Crab 13
-        LocationData(THE_DEEP_SEA_AP_REGION, THE_DEEP_SEA_DISPLAY_NAME + " NPC - King of the middle of nowhere ocean crab", 3438 + npc_index_offset), #(52, 76, -616) Crab 14
-        LocationData(THE_DEEP_SEA_AP_REGION, THE_DEEP_SEA_DISPLAY_NAME + " NPC - Crab scuttling SE of volcano", 3439 + npc_index_offset), #(207, 53, 152) Crab 15
+        LocationData(THE_DEEP_SEA_AP_REGION, THE_DEEP_SEA_DISPLAY_NAME + " NPC - Burrow to burrow crab", 3409 + npc_index_offset, tags=[CRAB_LOCATION_GROUP]), #(20, 53, 251) Crab 1
+        LocationData(THE_DEEP_SEA_AP_REGION, THE_DEEP_SEA_DISPLAY_NAME + " NPC - Tall tall crab S of volcano", 3426 + npc_index_offset, tags=[CRAB_LOCATION_GROUP]), #(76, 76, 178) Crab 2
+        LocationData(THE_DEEP_SEA_AP_REGION, THE_DEEP_SEA_DISPLAY_NAME + " NPC - Crab in underwater cove south of volcano", 3427 + npc_index_offset, tags=[CRAB_LOCATION_GROUP]), #(96, 60, 131) Crab 3
+        LocationData(THE_DEEP_SEA_AP_REGION, THE_DEEP_SEA_DISPLAY_NAME + " NPC - Zigzaggedy crab NW of Tall Tall Heights", 3428 + npc_index_offset, tags=[CRAB_LOCATION_GROUP]), #(142, 51, -611) Crab 4
+        LocationData(THE_DEEP_SEA_AP_REGION, THE_DEEP_SEA_DISPLAY_NAME + " NPC - Crab strolling around the undersea block", 3429 + npc_index_offset, tags=[CRAB_LOCATION_GROUP]), #(60, 53, -609) Crab 5
+        LocationData(THE_DEEP_SEA_AP_REGION, THE_DEEP_SEA_DISPLAY_NAME + " NPC - Crab clinging to SW underwater volcano slope", 3430 + npc_index_offset, tags=[CRAB_LOCATION_GROUP]), #(54, 62, 155) Crab 6
+        LocationData(THE_DEEP_SEA_AP_REGION, THE_DEEP_SEA_DISPLAY_NAME + " NPC - Low low crab S of volcano", 3431 + npc_index_offset, tags=[CRAB_LOCATION_GROUP]), #(128, 49, 196) Crab 7
+        LocationData(THE_DEEP_SEA_AP_REGION, THE_DEEP_SEA_DISPLAY_NAME + " NPC - Serpentine crab S of crab hole", 3432 + npc_index_offset, tags=[CRAB_LOCATION_GROUP]), #(239, 53, -613) for some reason crab 8 is on (Depths Fix) submap
+        LocationData(THE_DEEP_SEA_AP_REGION, THE_DEEP_SEA_DISPLAY_NAME + " NPC - Patrolling crab S of crab hole", 3433 + npc_index_offset, tags=[CRAB_LOCATION_GROUP]), #(254, 53, 215) Crab 9
+        LocationData(THE_DEEP_SEA_AP_REGION, THE_DEEP_SEA_DISPLAY_NAME + " NPC - Crab living on the edge S of crab hole", 3434 + npc_index_offset, tags=[CRAB_LOCATION_GROUP]), #(306, 53, 224) Crab 10
+        LocationData(THE_DEEP_SEA_AP_REGION, THE_DEEP_SEA_DISPLAY_NAME + " NPC - Crab on a mission N of Tall Tall Heights", 3435 + npc_index_offset, tags=[CRAB_LOCATION_GROUP]), #(288, 53, -620) Crab 11
+        LocationData(THE_DEEP_SEA_AP_REGION, THE_DEEP_SEA_DISPLAY_NAME + " NPC - Middle of nowhere sandy speedster crab", 3436 + npc_index_offset, tags=[CRAB_LOCATION_GROUP]), #(58, 52, 244) Crab 12
+        LocationData(THE_DEEP_SEA_AP_REGION, THE_DEEP_SEA_DISPLAY_NAME + " NPC - Putt Putt Crab mows the lawn", 3437 + npc_index_offset, tags=[CRAB_LOCATION_GROUP]), #(54, 52, 200) Crab 13
+        LocationData(THE_DEEP_SEA_AP_REGION, THE_DEEP_SEA_DISPLAY_NAME + " NPC - King of the middle of nowhere ocean crab", 3438 + npc_index_offset, tags=[CRAB_LOCATION_GROUP]), #(52, 76, -616) Crab 14
+        LocationData(THE_DEEP_SEA_AP_REGION, THE_DEEP_SEA_DISPLAY_NAME + " NPC - Crab scuttling SE of volcano", 3439 + npc_index_offset, tags=[CRAB_LOCATION_GROUP]), #(207, 53, 152) Crab 15
         LocationData(THE_DEEP_SEA_AP_REGION, THE_DEEP_SEA_DISPLAY_NAME + " NPC - Undersea Crab People Crab Retirement Home south of Salmon Race start", 3424 + npc_index_offset, lambda state: state.has(UNDERSEA_CRAB, player, 15)), #(256, 63, 113)
         LocationData(THE_DEEP_SEA_AP_REGION, THE_DEEP_SEA_DISPLAY_NAME + " NPC - Fastest squid in the West", 3450 + npc_index_offset), #(-314, 64, -624) (swims in a fixed path; slightly slower than golden Quintar but faster than royal salmon) Z35_SpeedOcto
 
@@ -1437,7 +1436,7 @@ def get_crystal_locations(player: int, options: CrystalProjectOptions | None) ->
         # Zones (Expert)
         LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + SAMURAI_JOB_CRYSTAL_LOCATION, 1206 + crystal_index_offset, lambda state: logic.is_area_in_level_range(state, THIRD_SKY_ARENA_FIGHT_LEVEL)),
         # Can just swim or defeat the Undercity Masters; Blade Master: Ibek or Owl, Shadow Master: Horizontal or Fish, Duel Master: Ibek or Owl; to defeat all masters, you either need both ibek + quintar, owl, or fish
-        LocationData(THE_UNDERCITY_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + ASSASSIN_JOB_CRYSTAL_LOCATION, 1204 + crystal_index_offset, lambda state: (logic.has_horizontal_movement(state) and logic.has_vertical_movement(state)) or logic.has_glide(state) or logic.has_swimming(state)),
+        LocationData(THE_UNDERCITY_HOMEPOINT_AND_BLADE_MASTER_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + ASSASSIN_JOB_CRYSTAL_LOCATION, 1204 + crystal_index_offset, lambda state: (logic.has_horizontal_movement(state) and logic.has_vertical_movement(state)) or logic.has_glide(state) or logic.has_swimming(state)),
         LocationData(BEAURIOR_ROCK_AP_REGION, BEAURIOR_VOLCANO_DISPLAY_NAME + VALKYRIE_JOB_CRYSTAL_LOCATION, 1086 + crystal_index_offset, lambda state: logic.has_key(state, SMALL_KEY, 4) and logic.has_key(state, BEAURIOR_BOSS_KEY)),
         LocationData(SLIP_GLIDE_RIDE_AP_REGION, SLIP_GLIDE_RIDE_DISPLAY_NAME + SUMMONER_JOB_CRYSTAL_LOCATION, 1714 + crystal_index_offset, lambda state: logic.has_key(state, RED_DOOR_KEY, 3)),
         # (404, 243, -386)
@@ -1454,16 +1453,16 @@ def get_boss_locations(player: int, options: CrystalProjectOptions | None) -> Li
         #IDs here are specifically the spark IDs or NPC IDs for where you go to fight them from Crystal Edit
         #Summons
         #Not included: Pinga (unused)
-        LocationData(SPAWNING_MEADOWS_AP_REGION, SPAWNING_MEADOWS_DISPLAY_NAME + " Boss - Shaku Summon", 477 + boss_index_offset, lambda state: state.has(SUMMONER_JOB, player) and logic.is_area_in_level_range(state, SHAKU_FIGHT_LEVEL)), #(118, 109, 10) Monster ID: 102
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Boss - Niltsi Summon", 1109 + boss_index_offset, lambda state: state.has(SUMMONER_JOB, player) and logic.is_area_in_level_range(state, NILTSI_FIGHT_LEVEL)), #376, 178, -345 (Capital Sequoia (Maze) map) Monster ID: 93
-        LocationData(SALMON_BAY_BASIN_AP_REGION, SALMON_BAY_DISPLAY_NAME + " Boss - Guaba Summon", 1138 + boss_index_offset, lambda state: state.has(SUMMONER_JOB, player) and logic.is_area_in_level_range(state, GUABA_FIGHT_LEVEL)), #-50, 91, -330 Monster ID: 94
-        LocationData(THE_UNDERCITY_AP_REGION, "Underpass Boss - Pah Summon", 1130 + boss_index_offset, lambda state: (logic.has_swimming(state) or logic.has_glide(state)) and state.has(SUMMONER_JOB, player) and logic.is_area_in_level_range(state, PAH_FIGHT_LEVEL)), #614, 91, -213 Monster ID: 97
-        LocationData(SHOUDU_ELEVATOR_BASE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Boss - Tira Summon", 1132 + boss_index_offset, lambda state: state.has(SUMMONER_JOB, player) and logic.is_area_in_level_range(state, TIRA_FIGHT_LEVEL)), #(720, 138, -278) Monster ID: 98
-        LocationData(LAKE_DELENDE_AP_REGION, LAKE_DELENDE_DISPLAY_NAME + " Boss - Ioske Summon", 1111 + boss_index_offset, lambda state: state.has(SUMMONER_JOB, player) and logic.is_area_in_level_range(state, IOSKE_FIGHT_LEVEL)), #97, 126, -211 Monster ID: 92
-        LocationData(PAMOA_TREE_AP_REGION, TALL_TALL_HEIGHTS_DISPLAY_NAME + " Boss - Pamoa Summon", 1136 + boss_index_offset, lambda state: state.has(SUMMONER_JOB, player) and logic.is_area_in_level_range(state, PAMOA_FIGHT_LEVEL)), #498, 218, -412 Monster ID: 91
-        LocationData(JIDAMBA_SUMMIT_AP_REGION, JIDAMBA_TANGLE_DISPLAY_NAME + " Boss - Juses Summon", 1134 + boss_index_offset, lambda state: state.has(SUMMONER_JOB, player) and logic.is_area_in_level_range(state, JUSES_FIGHT_LEVEL)), #(672, 124, 106) Monster ID: 99
+        LocationData(SPAWNING_MEADOWS_AP_REGION, SPAWNING_MEADOWS_DISPLAY_NAME + " Boss - Shaku Summon", 477 + boss_index_offset, lambda state: state.has(SUMMONER_JOB, player) and logic.is_area_in_level_range(state, SHAKU_FIGHT_LEVEL), tags=[SUMMON_LOCATION_GROUP]), #(118, 109, 10) Monster ID: 102
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Boss - Niltsi Summon", 1109 + boss_index_offset, lambda state: state.has(SUMMONER_JOB, player) and logic.is_area_in_level_range(state, NILTSI_FIGHT_LEVEL), tags=[SUMMON_LOCATION_GROUP]), #376, 178, -345 (Capital Sequoia (Maze) map) Monster ID: 93
+        LocationData(SALMON_BAY_BASIN_AP_REGION, SALMON_BAY_DISPLAY_NAME + " Boss - Guaba Summon", 1138 + boss_index_offset, lambda state: state.has(SUMMONER_JOB, player) and logic.is_area_in_level_range(state, GUABA_FIGHT_LEVEL), tags=[SUMMON_LOCATION_GROUP]), #-50, 91, -330 Monster ID: 94
+        LocationData(PAH_SUMMON_AP_REGION, "Underpass Boss - Pah Summon", 1130 + boss_index_offset, lambda state: state.has(SUMMONER_JOB, player) and logic.is_area_in_level_range(state, PAH_FIGHT_LEVEL), tags=[SUMMON_LOCATION_GROUP]), #614, 91, -213 Monster ID: 97
+        LocationData(SHOUDU_ELEVATOR_BASE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Boss - Tira Summon", 1132 + boss_index_offset, lambda state: state.has(SUMMONER_JOB, player) and logic.is_area_in_level_range(state, TIRA_FIGHT_LEVEL), tags=[SUMMON_LOCATION_GROUP]), #(720, 138, -278) Monster ID: 98
+        LocationData(LAKE_DELENDE_AP_REGION, LAKE_DELENDE_DISPLAY_NAME + " Boss - Ioske Summon", 1111 + boss_index_offset, lambda state: state.has(SUMMONER_JOB, player) and logic.is_area_in_level_range(state, IOSKE_FIGHT_LEVEL), tags=[SUMMON_LOCATION_GROUP]), #97, 126, -211 Monster ID: 92
+        LocationData(PAMOA_TREE_AP_REGION, TALL_TALL_HEIGHTS_DISPLAY_NAME + " Boss - Pamoa Summon", 1136 + boss_index_offset, lambda state: state.has(SUMMONER_JOB, player) and logic.is_area_in_level_range(state, PAMOA_FIGHT_LEVEL), tags=[SUMMON_LOCATION_GROUP]), #498, 218, -412 Monster ID: 91
+        LocationData(JIDAMBA_SUMMIT_AP_REGION, JIDAMBA_TANGLE_DISPLAY_NAME + " Boss - Juses Summon", 1134 + boss_index_offset, lambda state: state.has(SUMMONER_JOB, player) and logic.is_area_in_level_range(state, JUSES_FIGHT_LEVEL), tags=[SUMMON_LOCATION_GROUP]), #(672, 124, 106) Monster ID: 99
         #Mind's Delusion is part of the Coyote fight
-        LocationData(THE_DEEP_SEA_AP_REGION, THE_DEEP_SEA_DISPLAY_NAME + " Boss - Coyote Summon", 1140 + boss_index_offset, lambda state: state.has(SUMMONER_JOB, player) and logic.is_area_in_level_range(state, COYOTE_FIGHT_LEVEL)), #(-60, 53, 202) Monster ID: 95
+        LocationData(THE_DEEP_SEA_AP_REGION, THE_DEEP_SEA_DISPLAY_NAME + " Boss - Coyote Summon", 1140 + boss_index_offset, lambda state: state.has(SUMMONER_JOB, player) and logic.is_area_in_level_range(state, COYOTE_FIGHT_LEVEL), tags=[SUMMON_LOCATION_GROUP]), #(-60, 53, 202) Monster ID: 95
 
         #Bosses
         #Not included: Bone Drinker (unused), Rexosaur (too RNG), Astley/Chloe/Reid/Talon Final Fights, Buttermint (you monster)
@@ -1484,9 +1483,9 @@ def get_boss_locations(player: int, options: CrystalProjectOptions | None) -> Li
         LocationData(OKIMOTO_NS_AP_REGION, OKIMOTO_NS_DISPLAY_NAME + " Boss - Kuromanto", 698 + boss_index_offset, lambda state: logic.is_area_in_level_range(state, KUROMANTO_FIGHT_LEVEL)), #Monster ID: 63
         LocationData(IBEK_CAVE_AP_REGION, ANCIENT_RESERVOIR_DISPLAY_NAME + " Boss - Possessor", 1674 + boss_index_offset, lambda state: logic.is_area_in_level_range(state, POSSESSOR_FIGHT_LEVEL)), #Monster ID: 221
         LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Boss - Final Sky Arena Fight: Arachlea", 1366 + boss_index_offset, lambda state: logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL)), #Monster ID: 252 (SkyArenaRegistrar)
-        LocationData(THE_UNDERCITY_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " Boss - Blade Master", 1939 + boss_index_offset, lambda state: (logic.has_vertical_movement(state) or logic.has_glide(state)) and logic.is_area_in_level_range(state, BLADE_MASTER_FIGHT_LEVEL)), #Monster ID: 145
-        LocationData(THE_UNDERCITY_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " Boss - Shadow Master", 1940 + boss_index_offset, lambda state: (logic.has_swimming(state) or logic.has_horizontal_movement(state)) and logic.is_area_in_level_range(state, SHADOW_MASTER_FIGHT_LEVEL)), #Monster ID: 144
-        LocationData(THE_UNDERCITY_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " Boss - Duel Master", 1941 + boss_index_offset, lambda state: (logic.has_vertical_movement(state) or logic.has_glide(state)) and logic.is_area_in_level_range(state, DUEL_MASTER_FIGHT_LEVEL)), #Monster ID: 146
+        LocationData(THE_UNDERCITY_HOMEPOINT_AND_BLADE_MASTER_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " Boss - Blade Master", 1939 + boss_index_offset, lambda state: (logic.has_vertical_movement(state) or logic.has_glide(state)) and logic.is_area_in_level_range(state, BLADE_MASTER_FIGHT_LEVEL)), #Monster ID: 145
+        LocationData(SHADOW_MASTER_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " Boss - Shadow Master", 1940 + boss_index_offset, lambda state: (logic.has_swimming(state) or logic.has_horizontal_movement(state)) and logic.is_area_in_level_range(state, SHADOW_MASTER_FIGHT_LEVEL)), #Monster ID: 144
+        LocationData(DUEL_MASTER_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " Boss - Duel Master", 1941 + boss_index_offset, lambda state: (logic.has_vertical_movement(state) or logic.has_glide(state)) and logic.is_area_in_level_range(state, DUEL_MASTER_FIGHT_LEVEL)), #Monster ID: 146
         LocationData(BEAURIOR_ROCK_AP_REGION, BEAURIOR_ROCK_DISPLAY_NAME + " Boss - Ancient Sword", 821 + boss_index_offset, lambda state: logic.has_key(state, SMALL_KEY, 2) and logic.is_area_in_level_range(state, ANCIENT_SWORD_FIGHT_LEVEL)), #Monster ID: 59
         LocationData(BEAURIOR_ROCK_AP_REGION, BEAURIOR_ROCK_DISPLAY_NAME + " Boss - Iguanadon & Iguanadin", 862 + boss_index_offset, lambda state: logic.has_key(state, SMALL_KEY, 4) and logic.has_key(state, BEAURIOR_BOSS_KEY) and logic.is_area_in_level_range(state, IGUANADON_AND_DIN_FIGHT_LEVEL)), #Monster ID: 78 and 100
         LocationData(EASTERN_CHASM_AP_REGION, EASTERN_CHASM_DISPLAY_NAME + " Boss - Undergrowth", 3476 + boss_index_offset, lambda state: logic.is_area_in_level_range(state, UNDERGROWTH_FIGHT_LEVEL)), #Monster ID: 293
@@ -1987,7 +1986,7 @@ def get_region_completion_locations() -> List[LocationData]:
         LocationData(THE_OPEN_SEA_AP_REGION, THE_OPEN_SEA_DISPLAY_NAME + " Region Completion", 6031 + regionsanity_index_offset, regionsanity=True),
         LocationData(SHOUDU_WATERFRONT_AP_REGION, SHOUDU_WATERFRONT_DISPLAY_NAME + " Region Completion", 6032 + regionsanity_index_offset, regionsanity=True),
         LocationData(SHOUDU_DOCKSIDE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Region Completion", 6033 + regionsanity_index_offset, regionsanity=True),
-        LocationData(THE_UNDERCITY_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " Region Completion", 6034 + regionsanity_index_offset, regionsanity=True),
+        LocationData(THE_UNDERCITY_HOMEPOINT_AND_BLADE_MASTER_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " Region Completion", 6034 + regionsanity_index_offset, regionsanity=True),
         LocationData(GANYMEDE_SHRINE_AP_REGION, GANYMEDE_SHRINE_DISPLAY_NAME + " Region Completion", 6035 + regionsanity_index_offset, regionsanity=True),
         LocationData(BEAURIOR_VOLCANO_AP_REGION, BEAURIOR_VOLCANO_DISPLAY_NAME + " Region Completion", 6036 + regionsanity_index_offset, regionsanity=True),
         LocationData(BEAURIOR_ROCK_AP_REGION, BEAURIOR_ROCK_DISPLAY_NAME + " Region Completion", 6037 + regionsanity_index_offset, regionsanity=True),
@@ -2025,19 +2024,37 @@ def get_location_names_per_category() -> Dict[str, Set[str]]:
 
     from .home_point_locations import get_home_points
 
+    for location in get_treasure_and_npc_locations(-1, None):
+        process_location_tags(categories, location)
+
     for location in get_crystal_locations(-1, None):
         categories.setdefault("Crystals", set()).add(location.name)
+        process_location_tags(categories, location)
 
     for location in get_shop_locations(-1, None):
         categories.setdefault("Shops", set()).add(location.name)
+        process_location_tags(categories, location)
 
     for location in get_boss_locations(-1, None):
         categories.setdefault("Bosses", set()).add(location.name)
+        process_location_tags(categories, location)
 
     for location in get_home_points():
         categories.setdefault("Homepoints", set()).add(location.name)
+        process_location_tags(categories, location)
 
     for location in get_region_completion_locations():
         categories.setdefault("Region Completions", set()).add(location.name)
+        process_location_tags(categories, location)
 
     return categories
+
+def process_location_tags(categories: Dict[str, Set[str]], location: LocationData):
+    from .regions import ap_region_to_display_region_dictionary
+
+    if isinstance(location.tags, list):
+        for tag in location.tags:
+            categories.setdefault(tag, set()).add(location.name)
+
+    categories.setdefault(location.ap_region, set()).add(location.name)
+    categories.setdefault(ap_region_to_display_region_dictionary[location.ap_region], set()).add(location.name)
