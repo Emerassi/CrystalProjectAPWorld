@@ -749,8 +749,7 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
                     {HOLE_NEAR_PRIZE_COUNTER_UNDERCITY_CONNECTOR_AP_REGION: lambda state: logic.has_vertical_movement(state)})
     fancy_add_exits(world, DUEL_MASTER_AP_REGION, [THE_UNDERCITY_HOMEPOINT_AND_BLADE_MASTER_AP_REGION])
     fancy_add_exits(world, SHADOW_MASTER_ENTRANCE_AP_REGION, [THE_UNDERCITY_HOMEPOINT_AND_BLADE_MASTER_AP_REGION, SHADOW_MASTER_AP_REGION, UNDERCITY_WATERWAYS_AP_REGION],
-                    {THE_UNDERCITY_HOMEPOINT_AND_BLADE_MASTER_AP_REGION: lambda state: logic.has_vertical_movement(state) or logic.has_horizontal_movement(state),
-                     SHADOW_MASTER_AP_REGION: lambda state: logic.has_horizontal_movement(state),
+                    {SHADOW_MASTER_AP_REGION: lambda state: logic.has_horizontal_movement(state),
                      UNDERCITY_WATERWAYS_AP_REGION: lambda state: logic.has_swimming(state)})
     fancy_add_exits(world, SHADOW_MASTER_AP_REGION, [SHADOW_MASTER_ENTRANCE_AP_REGION, UNDERCITY_WATERWAYS_AP_REGION],
                     {SHADOW_MASTER_ENTRANCE_AP_REGION: lambda state: logic.has_horizontal_movement(state),
