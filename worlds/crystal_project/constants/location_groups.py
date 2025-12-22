@@ -1,1 +1,3 @@
-SUMMON = "Summon"
+SUMMON_LOCATION_GROUP = "Summon"
+PENGUIN_LOCATION_GROUP = "Penguin"
+CRAB_LOCATION_GROUP = "Undersea Crab"
