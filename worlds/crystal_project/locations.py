@@ -896,7 +896,7 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         LocationData(EAST_UNDERCITY_WAREHOUSE_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " NPC - Gated-off room Gold", 2825 + npc_index_offset),  # Ore
         #except these up high
         LocationData(EAST_UNDERCITY_WAREHOUSE_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " Chest - Climb up lampposts and run across the fence", 1925 + treasure_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)),  # Cursegiver chest
-        LocationData(EAST_UNDERCITY_WALL_CLIMB_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " Chest - North wall climb (or fall through broken grate by Sky Arena Prize Counter)", 3516 + treasure_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state) or state.can_reach(GANYMEDE_SHRINE_AP_REGION, player=player) or state.can_reach(QUINTAR_RESERVE_AP_REGION, player=player)),  # Elevator Part chest
+        LocationData(EAST_UNDERCITY_WALL_CLIMB_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " Chest - North wall climb (or fall through broken grate by Sky Arena Prize Counter)", 3516 + treasure_index_offset),  # Elevator Part chest
         #Home Point Stone area - can walk from Ganymede Shrine -> Undercity entrance next to white hut -> fall off rafter; can also swim from the sea
         LocationData(THE_UNDERCITY_HOMEPOINT_AND_BLADE_MASTER_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " Chest - Hiding in the rafters", 2989 + treasure_index_offset),  # Potion Pouch chest
         LocationData(THE_UNDERCITY_HOMEPOINT_AND_BLADE_MASTER_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " Chest - Atop awning east of the waterfall", 3518 + treasure_index_offset),  # Elevator Part chest
