@@ -585,7 +585,7 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         LocationData(POKO_POKO_EAST_PLATEAU_AP_REGION, POKO_POKO_DESERT_DISPLAY_NAME + " Chest - Balance beam", 97 + treasure_index_offset),  # Scope Specs chest
         LocationData(POKO_POKO_EAST_PLATEAU_AP_REGION, POKO_POKO_DESERT_DISPLAY_NAME + " Chest - Past Lost Son", 1667 + treasure_index_offset),  # Ether Pouch chest
         #Tower of Zot
-        LocationData(TOWER_OF_ZOT_AP_REGION, POKO_POKO_DESERT_DISPLAY_NAME + " Chest - Cooling off in the tent before the Tower of Zot", 2914 + treasure_index_offset), #Salmon Bay map chest
+        LocationData(TOWER_OF_ZOT_CAMP_AP_REGION, POKO_POKO_DESERT_DISPLAY_NAME + " Chest - Cooling off in the tent before the Tower of Zot", 2914 + treasure_index_offset), #Salmon Bay map chest
 
         #NPCs
         #NPCs CheckOrNot: three Quintar Eggs in Poko Poko Desert (Nest) map - not
@@ -605,9 +605,10 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         LocationData(POKO_POKO_EAST_PLATEAU_AP_REGION, POKO_POKO_DESERT_DISPLAY_NAME + " NPC - Gold overlooking Sara Sara Bazaar", 2707 + npc_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)),  # Ingot
         #Poko Poko Sara Sara Beach West Mountain Pass
         LocationData(POKO_POKO_BEACH_WEST_PASS_AP_REGION, POKO_POKO_DESERT_DISPLAY_NAME + " NPC - High western gold (approach from the Lookout Tower or the Beach Nest)", 2711 + npc_index_offset, lambda state: logic.has_horizontal_movement(state)), #Dust
-        #Tower of Zot
-        LocationData(TOWER_OF_ZOT_AP_REGION, POKO_POKO_DESERT_DISPLAY_NAME + " NPC - Diamond bedazzling the Tower of Zot", 2879 + npc_index_offset, lambda state: logic.has_vertical_movement(state) and logic.has_glide(state)), #Dust
-        LocationData(TOWER_OF_ZOT_AP_REGION, POKO_POKO_DESERT_DISPLAY_NAME + " NPC - Gold bedazzling the Tower of Zot", 2816 + npc_index_offset, lambda state: logic.has_vertical_movement(state) and logic.has_glide(state)), #Ore
+        #Ancient Labyrinth Push-Block Entrance
+        LocationData(LABYRINTH_ENTRANCE_PUSHBLOCK_AP_REGION, POKO_POKO_DESERT_DISPLAY_NAME + " NPC - Diamond bedazzling the Tower of Zot", 2879 + npc_index_offset), #Dust
+        #Gold Bedazzling the Labyrinth
+        LocationData(GOLD_BEDAZZLING_LABYRINTH_AP_REGION, POKO_POKO_DESERT_DISPLAY_NAME + " NPC - Gold bedazzling the Tower of Zot", 2816 + npc_index_offset), #Ore
 
         #Sara Sara Bazaar
         #Treasure chests
@@ -710,15 +711,16 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         LocationData(IBEK_CAVE_SPIRALING_TREK_OUT_AP_REGION, ANCIENT_RESERVOIR_DISPLAY_NAME + " NPC - Silver in the goat digs", 2696 + npc_index_offset),  # Dust
 
         #Salmon Bay
-        #Treasure chests
-        LocationData(SALMON_BAY_AP_REGION, SALMON_BAY_DISPLAY_NAME + " Chest - Cliff diving", 2975 + treasure_index_offset, lambda state: logic.has_vertical_movement(state)), #Ether Pouch chest
-        LocationData(SALMON_BAY_AP_REGION, SALMON_BAY_DISPLAY_NAME + " Chest - Across the bridge", 2974 + treasure_index_offset), #Potion Pouch chest
+        #Salmon Bay Base
+        LocationData(SALMON_BAY_BASIN_AP_REGION, SALMON_BAY_DISPLAY_NAME + " NPC - Moodlit shore behind waterfall", 2438 + npc_index_offset), #Ancient Tablet B
+        LocationData(SALMON_BAY_BASIN_AP_REGION, SALMON_BAY_DISPLAY_NAME + " NPC - Quintar splish splash", 1272 + npc_index_offset), #Ancient Tablet A
+        LocationData(SALMON_BAY_BASIN_AP_REGION, SALMON_BAY_DISPLAY_NAME + " Chest - Across the bridge", 2974 + treasure_index_offset), #Potion Pouch chest
+        #Salmon Bay West Crag
+        LocationData(SALMON_BAY_WEST_CRAG_AP_REGION, SALMON_BAY_DISPLAY_NAME + " NPC - West cliff diving", 1271 + npc_index_offset), #Ancient Tablet C
+        #Salmon Bay East Crag
+        LocationData(SALMON_BAY_EAST_CRAG_AP_REGION, SALMON_BAY_DISPLAY_NAME + " Chest - East cliff diving", 2975 + treasure_index_offset), #Ether Pouch chest
+        #Salmon River Mouth
         LocationData(SALMON_RIVER_MOUTH_AP_REGION, "Overpass Chest - Lonely scrap among half-dead pines above Salmon Bay", 3677 + treasure_index_offset), #8th Scrap in Overpass main map
-        
-        #NPCs
-        LocationData(SALMON_BAY_AP_REGION, SALMON_BAY_DISPLAY_NAME + " NPC - Ancient Tablet B on moodlit shore behind waterfall", 2438 + npc_index_offset),
-        LocationData(SALMON_BAY_AP_REGION, SALMON_BAY_DISPLAY_NAME + " NPC - West cliff diving Ancient Tablet C", 1271 + npc_index_offset, lambda state: logic.has_vertical_movement(state)),
-        LocationData(SALMON_BAY_AP_REGION, SALMON_BAY_DISPLAY_NAME + " NPC - Quintar splish splash Ancient Tablet A", 1272 + npc_index_offset),
 
         #Overpass
         #Treasure chests
@@ -1454,7 +1456,7 @@ def get_boss_locations(player: int, options: CrystalProjectOptions | None) -> Li
         #Not included: Pinga (unused)
         LocationData(SPAWNING_MEADOWS_AP_REGION, SPAWNING_MEADOWS_DISPLAY_NAME + " Boss - Shaku Summon", 477 + boss_index_offset, lambda state: state.has(SUMMONER_JOB, player) and logic.is_area_in_level_range(state, SHAKU_FIGHT_LEVEL)), #(118, 109, 10) Monster ID: 102
         LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Boss - Niltsi Summon", 1109 + boss_index_offset, lambda state: state.has(SUMMONER_JOB, player) and logic.is_area_in_level_range(state, NILTSI_FIGHT_LEVEL)), #376, 178, -345 (Capital Sequoia (Maze) map) Monster ID: 93
-        LocationData(SALMON_BAY_AP_REGION, SALMON_BAY_DISPLAY_NAME + " Boss - Guaba Summon", 1138 + boss_index_offset, lambda state: state.has(SUMMONER_JOB, player) and logic.is_area_in_level_range(state, GUABA_FIGHT_LEVEL)), #-50, 91, -330 Monster ID: 94
+        LocationData(SALMON_BAY_BASIN_AP_REGION, SALMON_BAY_DISPLAY_NAME + " Boss - Guaba Summon", 1138 + boss_index_offset, lambda state: state.has(SUMMONER_JOB, player) and logic.is_area_in_level_range(state, GUABA_FIGHT_LEVEL)), #-50, 91, -330 Monster ID: 94
         LocationData(THE_UNDERCITY_AP_REGION, "Underpass Boss - Pah Summon", 1130 + boss_index_offset, lambda state: (logic.has_swimming(state) or logic.has_glide(state)) and state.has(SUMMONER_JOB, player) and logic.is_area_in_level_range(state, PAH_FIGHT_LEVEL)), #614, 91, -213 Monster ID: 97
         LocationData(SHOUDU_ELEVATOR_BASE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Boss - Tira Summon", 1132 + boss_index_offset, lambda state: state.has(SUMMONER_JOB, player) and logic.is_area_in_level_range(state, TIRA_FIGHT_LEVEL)), #(720, 138, -278) Monster ID: 98
         LocationData(LAKE_DELENDE_AP_REGION, LAKE_DELENDE_DISPLAY_NAME + " Boss - Ioske Summon", 1111 + boss_index_offset, lambda state: state.has(SUMMONER_JOB, player) and logic.is_area_in_level_range(state, IOSKE_FIGHT_LEVEL)), #97, 126, -211 Monster ID: 92
@@ -1981,7 +1983,7 @@ def get_region_completion_locations() -> List[LocationData]:
         LocationData(SARA_SARA_BAZAAR_AP_REGION, SARA_SARA_BAZAAR_DISPLAY_NAME + " Region Completion", 6025 + regionsanity_index_offset, regionsanity=True),
         LocationData(SARA_SARA_BEACH_EAST_AP_REGION, SARA_SARA_BEACH_DISPLAY_NAME + " Region Completion", 6026 + regionsanity_index_offset, regionsanity=True),
         LocationData(ANCIENT_RESERVOIR_AP_REGION, ANCIENT_RESERVOIR_DISPLAY_NAME + " Region Completion", 6028 + regionsanity_index_offset, regionsanity=True),
-        LocationData(SALMON_BAY_AP_REGION, SALMON_BAY_DISPLAY_NAME + " Region Completion", 6030 + regionsanity_index_offset, regionsanity=True),
+        LocationData(SALMON_BAY_BASIN_AP_REGION, SALMON_BAY_DISPLAY_NAME + " Region Completion", 6030 + regionsanity_index_offset, regionsanity=True),
         LocationData(THE_OPEN_SEA_AP_REGION, THE_OPEN_SEA_DISPLAY_NAME + " Region Completion", 6031 + regionsanity_index_offset, regionsanity=True),
         LocationData(SHOUDU_WATERFRONT_AP_REGION, SHOUDU_WATERFRONT_DISPLAY_NAME + " Region Completion", 6032 + regionsanity_index_offset, regionsanity=True),
         LocationData(SHOUDU_DOCKSIDE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Region Completion", 6033 + regionsanity_index_offset, regionsanity=True),
