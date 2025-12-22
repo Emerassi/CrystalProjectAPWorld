@@ -1056,10 +1056,10 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
                     {THE_DEEP_SEA_AP_REGION: lambda state: logic.has_swimming(state)})
     fancy_add_exits(world, CASTLE_SEQUOIA_AP_REGION, [CAPITAL_SEQUOIA_AP_REGION])
     #The New World start
-    fancy_add_exits(world, THE_NEW_WORLD_AP_REGION, [DISCIPLINE_HOLLOW_AP_REGION],
-                    {DISCIPLINE_HOLLOW_AP_REGION: lambda state: logic.has_key(state, SKELETON_KEY, 1) or state.has(PROOF_OF_MERIT, player)})
-    fancy_add_exits(world, DISCIPLINE_HOLLOW_AP_REGION, [THE_NEW_WORLD_AP_REGION],
-                    {THE_NEW_WORLD_AP_REGION: lambda state: logic.has_key(state, SKELETON_KEY, 1) or state.has(PROOF_OF_MERIT, player)})
+    # normally this would take the proof of merit but we unlocked the door
+    fancy_add_exits(world, THE_NEW_WORLD_AP_REGION, [DISCIPLINE_HOLLOW_AP_REGION])
+    # normally this would take the proof of merit but we unlocked the door
+    fancy_add_exits(world, DISCIPLINE_HOLLOW_AP_REGION, [THE_NEW_WORLD_AP_REGION])
     #The New World end
     # regions without connections don't get parsed by Jsonifier
     fancy_add_exits(world, THE_OLD_WORLD_AP_REGION, [MENU_AP_REGION])
