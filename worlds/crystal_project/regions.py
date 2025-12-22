@@ -954,8 +954,9 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
                     {SHOUDU_WATERWAYS_AP_REGION: lambda state: logic.has_swimming(state),
                      GANYMEDE_STEEPLE_AP_REGION: lambda state: (logic.has_horizontal_movement(state) and logic.obscure_routes_on()) or logic.has_glide(state),
                      JIDAMBA_SUMMIT_AP_REGION: lambda state: (state.has(THE_OPEN_SEA_PASS, player) or not logic.is_regionsanity_extreme()) and logic.has_glide(state)})
-    fancy_add_exits(world, FLYERS_CRAG_LOWER_AP_REGION, [THE_OPEN_SEA_AP_REGION, SHOUDU_WATERFRONT_AP_REGION, SHOUDU_DOCKSIDE_AP_REGION, SHOUDU_WATERWAYS_AP_REGION],
+    fancy_add_exits(world, FLYERS_CRAG_LOWER_AP_REGION, [THE_OPEN_SEA_AP_REGION, PAH_SUMMON_AP_REGION, SHOUDU_WATERFRONT_AP_REGION, SHOUDU_DOCKSIDE_AP_REGION, SHOUDU_WATERWAYS_AP_REGION],
                     {THE_OPEN_SEA_AP_REGION: lambda state: logic.has_swimming(state),
+                     PAH_SUMMON_AP_REGION: lambda state: logic.has_glide(state) or logic.has_swimming(state),
                      SHOUDU_WATERWAYS_AP_REGION: lambda state: logic.has_swimming(state)})
     #Flyer's Crag end
     #Jidamba Tangle start
