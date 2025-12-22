@@ -10,6 +10,7 @@ from .constants.display_regions import *
 from .constants.teleport_stones import *
 from .constants.crystal_locations import *
 from .constants.level_requirements import *
+from .constants.location_groups import *
 
 class LocationData(NamedTuple):
     ap_region: str
@@ -17,6 +18,7 @@ class LocationData(NamedTuple):
     code: int
     rule: Optional[Callable[[CollectionState], bool]] = None
     regionsanity: bool = False
+    tags: Optional[list[str]] = None
 
 treasure_index_offset = 1
 npc_index_offset = 10000
@@ -1449,16 +1451,16 @@ def get_boss_locations(player: int, options: CrystalProjectOptions | None) -> Li
         #IDs here are specifically the spark IDs or NPC IDs for where you go to fight them from Crystal Edit
         #Summons
         #Not included: Pinga (unused)
-        LocationData(SPAWNING_MEADOWS_AP_REGION, SPAWNING_MEADOWS_DISPLAY_NAME + " Boss - Shaku Summon", 477 + boss_index_offset, lambda state: state.has(SUMMONER_JOB, player) and logic.is_area_in_level_range(state, SHAKU_FIGHT_LEVEL)), #(118, 109, 10) Monster ID: 102
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Boss - Niltsi Summon", 1109 + boss_index_offset, lambda state: state.has(SUMMONER_JOB, player) and logic.is_area_in_level_range(state, NILTSI_FIGHT_LEVEL)), #376, 178, -345 (Capital Sequoia (Maze) map) Monster ID: 93
-        LocationData(SALMON_BAY_AP_REGION, SALMON_BAY_DISPLAY_NAME + " Boss - Guaba Summon", 1138 + boss_index_offset, lambda state: state.has(SUMMONER_JOB, player) and logic.is_area_in_level_range(state, GUABA_FIGHT_LEVEL)), #-50, 91, -330 Monster ID: 94
-        LocationData(PAH_SUMMON_AP_REGION, "Underpass Boss - Pah Summon", 1130 + boss_index_offset, lambda state: state.has(SUMMONER_JOB, player) and logic.is_area_in_level_range(state, PAH_FIGHT_LEVEL)), #614, 91, -213 Monster ID: 97
-        LocationData(SHOUDU_ELEVATOR_BASE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Boss - Tira Summon", 1132 + boss_index_offset, lambda state: state.has(SUMMONER_JOB, player) and logic.is_area_in_level_range(state, TIRA_FIGHT_LEVEL)), #(720, 138, -278) Monster ID: 98
-        LocationData(LAKE_DELENDE_AP_REGION, LAKE_DELENDE_DISPLAY_NAME + " Boss - Ioske Summon", 1111 + boss_index_offset, lambda state: state.has(SUMMONER_JOB, player) and logic.is_area_in_level_range(state, IOSKE_FIGHT_LEVEL)), #97, 126, -211 Monster ID: 92
-        LocationData(PAMOA_TREE_AP_REGION, TALL_TALL_HEIGHTS_DISPLAY_NAME + " Boss - Pamoa Summon", 1136 + boss_index_offset, lambda state: state.has(SUMMONER_JOB, player) and logic.is_area_in_level_range(state, PAMOA_FIGHT_LEVEL)), #498, 218, -412 Monster ID: 91
-        LocationData(JIDAMBA_SUMMIT_AP_REGION, JIDAMBA_TANGLE_DISPLAY_NAME + " Boss - Juses Summon", 1134 + boss_index_offset, lambda state: state.has(SUMMONER_JOB, player) and logic.is_area_in_level_range(state, JUSES_FIGHT_LEVEL)), #(672, 124, 106) Monster ID: 99
+        LocationData(SPAWNING_MEADOWS_AP_REGION, SPAWNING_MEADOWS_DISPLAY_NAME + " Boss - Shaku Summon", 477 + boss_index_offset, lambda state: state.has(SUMMONER_JOB, player) and logic.is_area_in_level_range(state, SHAKU_FIGHT_LEVEL), tags=[SUMMON]), #(118, 109, 10) Monster ID: 102
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Boss - Niltsi Summon", 1109 + boss_index_offset, lambda state: state.has(SUMMONER_JOB, player) and logic.is_area_in_level_range(state, NILTSI_FIGHT_LEVEL), tags=[SUMMON]), #376, 178, -345 (Capital Sequoia (Maze) map) Monster ID: 93
+        LocationData(SALMON_BAY_AP_REGION, SALMON_BAY_DISPLAY_NAME + " Boss - Guaba Summon", 1138 + boss_index_offset, lambda state: state.has(SUMMONER_JOB, player) and logic.is_area_in_level_range(state, GUABA_FIGHT_LEVEL), tags=[SUMMON]), #-50, 91, -330 Monster ID: 94
+        LocationData(PAH_SUMMON_AP_REGION, "Underpass Boss - Pah Summon", 1130 + boss_index_offset, lambda state: state.has(SUMMONER_JOB, player) and logic.is_area_in_level_range(state, PAH_FIGHT_LEVEL), tags=[SUMMON]), #614, 91, -213 Monster ID: 97
+        LocationData(SHOUDU_ELEVATOR_BASE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Boss - Tira Summon", 1132 + boss_index_offset, lambda state: state.has(SUMMONER_JOB, player) and logic.is_area_in_level_range(state, TIRA_FIGHT_LEVEL), tags=[SUMMON]), #(720, 138, -278) Monster ID: 98
+        LocationData(LAKE_DELENDE_AP_REGION, LAKE_DELENDE_DISPLAY_NAME + " Boss - Ioske Summon", 1111 + boss_index_offset, lambda state: state.has(SUMMONER_JOB, player) and logic.is_area_in_level_range(state, IOSKE_FIGHT_LEVEL), tags=[SUMMON]), #97, 126, -211 Monster ID: 92
+        LocationData(PAMOA_TREE_AP_REGION, TALL_TALL_HEIGHTS_DISPLAY_NAME + " Boss - Pamoa Summon", 1136 + boss_index_offset, lambda state: state.has(SUMMONER_JOB, player) and logic.is_area_in_level_range(state, PAMOA_FIGHT_LEVEL), tags=[SUMMON]), #498, 218, -412 Monster ID: 91
+        LocationData(JIDAMBA_SUMMIT_AP_REGION, JIDAMBA_TANGLE_DISPLAY_NAME + " Boss - Juses Summon", 1134 + boss_index_offset, lambda state: state.has(SUMMONER_JOB, player) and logic.is_area_in_level_range(state, JUSES_FIGHT_LEVEL), tags=[SUMMON]), #(672, 124, 106) Monster ID: 99
         #Mind's Delusion is part of the Coyote fight
-        LocationData(THE_DEEP_SEA_AP_REGION, THE_DEEP_SEA_DISPLAY_NAME + " Boss - Coyote Summon", 1140 + boss_index_offset, lambda state: state.has(SUMMONER_JOB, player) and logic.is_area_in_level_range(state, COYOTE_FIGHT_LEVEL)), #(-60, 53, 202) Monster ID: 95
+        LocationData(THE_DEEP_SEA_AP_REGION, THE_DEEP_SEA_DISPLAY_NAME + " Boss - Coyote Summon", 1140 + boss_index_offset, lambda state: state.has(SUMMONER_JOB, player) and logic.is_area_in_level_range(state, COYOTE_FIGHT_LEVEL), tags=[SUMMON]), #(-60, 53, 202) Monster ID: 95
 
         #Bosses
         #Not included: Bone Drinker (unused), Rexosaur (too RNG), Astley/Chloe/Reid/Talon Final Fights, Buttermint (you monster)
@@ -2020,19 +2022,37 @@ def get_location_names_per_category() -> Dict[str, Set[str]]:
 
     from .home_point_locations import get_home_points
 
+    for location in get_treasure_and_npc_locations(-1, None):
+        process_location_tags(categories, location)
+
     for location in get_crystal_locations(-1, None):
         categories.setdefault("Crystals", set()).add(location.name)
+        process_location_tags(categories, location)
 
     for location in get_shop_locations(-1, None):
         categories.setdefault("Shops", set()).add(location.name)
+        process_location_tags(categories, location)
 
     for location in get_boss_locations(-1, None):
         categories.setdefault("Bosses", set()).add(location.name)
+        process_location_tags(categories, location)
 
     for location in get_home_points():
         categories.setdefault("Homepoints", set()).add(location.name)
+        process_location_tags(categories, location)
 
     for location in get_region_completion_locations():
         categories.setdefault("Region Completions", set()).add(location.name)
+        process_location_tags(categories, location)
 
     return categories
+
+def process_location_tags(categories: Dict[str, Set[str]], location: LocationData):
+    from .regions import ap_region_to_display_region_dictionary
+
+    if isinstance(location.tags, list):
+        for tag in location.tags:
+            categories.setdefault(tag, set()).add(location.name)
+
+    categories.setdefault(location.ap_region, set()).add(location.name)
+    categories.setdefault(ap_region_to_display_region_dictionary[location.ap_region], set()).add(location.name)

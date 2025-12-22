@@ -55,6 +55,8 @@ class CrystalProjectWorld(World):
     for home_point in home_points:
         item_table[home_point.name] = ItemData(HOME_POINT, home_point.code + home_point_item_index_offset, ItemClassification.progression)
 
+    init_ap_region_to_display_region_dictionary()
+
     item_name_to_id = {item: item_table[item].code for item in item_table}
     location_name_to_id = get_location_name_to_id()
 
@@ -164,8 +166,6 @@ class CrystalProjectWorld(World):
                 self.multiworld.push_precollected(self.create_item(map_name))
 
     def create_regions(self) -> None:
-        init_ap_region_to_display_region_dictionary()
-
         locations = get_treasure_and_npc_locations(self.player, self.options)
         locations.extend(get_crystal_locations(self.player, self.options))
 
