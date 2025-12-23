@@ -615,8 +615,9 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         #Sara Sara Bazaar
         #Treasure chests
         LocationData(SARA_SARA_BAZAAR_AP_REGION, SARA_SARA_BAZAAR_DISPLAY_NAME + " Chest - Someone took the St James and left a...", 408 + treasure_index_offset, lambda state: logic.has_key(state, ROOM_ONE_KEY)), #Knockout Stick chest
-        LocationData(SARA_SARA_BAZAAR_AP_REGION, SARA_SARA_BAZAAR_DISPLAY_NAME + " Chest - Darkened upper storeroom", 414 + treasure_index_offset, lambda state: logic.has_rental_quintar(state, SARA_SARA_BAZAAR_DISPLAY_NAME) or logic.has_horizontal_movement(state)), #Potion chest
-        LocationData(SARA_SARA_BAZAAR_AP_REGION, SARA_SARA_BAZAAR_DISPLAY_NAME + " Chest - Wedge yourself through the crates in the darkened upper storeroom", 513 + treasure_index_offset, lambda state: logic.has_rental_quintar(state, SARA_SARA_BAZAAR_DISPLAY_NAME) or logic.has_horizontal_movement(state)), #Storm Rod chest
+        # If you want to get to the next two chests without a mount you stand on the left stairs one step from the top use auto jump and try to move more right than up
+        LocationData(SARA_SARA_BAZAAR_AP_REGION, SARA_SARA_BAZAAR_DISPLAY_NAME + " Chest - Darkened upper storeroom", 414 + treasure_index_offset, lambda state: logic.has_rental_quintar(state, SARA_SARA_BAZAAR_DISPLAY_NAME) or logic.has_horizontal_movement(state) or logic.is_hop_to_it_pray()), #Potion chest
+        LocationData(SARA_SARA_BAZAAR_AP_REGION, SARA_SARA_BAZAAR_DISPLAY_NAME + " Chest - Wedge yourself through the crates in the darkened upper storeroom", 513 + treasure_index_offset, lambda state: logic.has_rental_quintar(state, SARA_SARA_BAZAAR_DISPLAY_NAME) or logic.has_horizontal_movement(state) or logic.is_hop_to_it_pray()), #Storm Rod chest
         LocationData(SARA_SARA_BAZAAR_AP_REGION, SARA_SARA_BAZAAR_DISPLAY_NAME + " Chest - Potion Mixer", 1194 + treasure_index_offset), #Beaurior Volcano map chest
         LocationData(SARA_SARA_BAZAAR_AP_REGION, SARA_SARA_BAZAAR_DISPLAY_NAME + " Chest - Spilled booty", 2936 + treasure_index_offset, lambda state: logic.has_swimming(state)), #Captains Hat chest
 
