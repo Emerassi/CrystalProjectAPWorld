@@ -605,7 +605,6 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
     fancy_add_exits(world, SARA_SARA_BAZAAR_AP_REGION, [POKO_POKO_DESERT_AP_REGION, POKO_POKO_EAST_PLATEAU_AP_REGION, SARA_SARA_BEACH_EAST_AP_REGION, IBEK_CAVE_MOUTH_AP_REGION, BELOW_IBEK_CAVE_WEST_AP_REGION, RENTAL_QUINTAR_BEACH_EP_AP_REGION, SHOUDU_DOCKSIDE_AP_REGION, BAZAAR_COAST_AP_REGION, CONTINENTAL_TRAM_AP_REGION],
                     #Swimming connection to both the Bazaar Coast and the Continental Tram bc you can get to the Tram without going into The Open Sea and vice versa
                     {IBEK_CAVE_MOUTH_AP_REGION: lambda state: logic.has_glide(state),
-                     BELOW_IBEK_CAVE_WEST_AP_REGION: lambda state: logic.has_rental_quintar(state, SARA_SARA_BAZAAR_DISPLAY_NAME),
                      RENTAL_QUINTAR_BEACH_EP_AP_REGION: lambda state: logic.has_rental_quintar(state, SARA_SARA_BAZAAR_DISPLAY_NAME) or logic.has_swimming(state),
                      SHOUDU_DOCKSIDE_AP_REGION: lambda state: (state.has(THE_OPEN_SEA_PASS, player) or not logic.is_regionsanity_extreme()) and state.has(FERRY_PASS, player),
                      BAZAAR_COAST_AP_REGION: lambda state: logic.has_swimming(state),

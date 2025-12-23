@@ -641,7 +641,7 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         #Sara Sara Beach East
         LocationData(SARA_SARA_BEACH_EAST_AP_REGION, SARA_SARA_BEACH_DISPLAY_NAME + " Chest - How dare you stand where he stood?", 1084 + treasure_index_offset),  # Money chest
         #Below Ibek's Cave Mouth West
-        LocationData(BELOW_IBEK_CAVE_WEST_AP_REGION, SARA_SARA_BEACH_DISPLAY_NAME + " Chest - Just a hop over from the Bazaar", 1085 + treasure_index_offset),  # Tonic Pouch chest; #3 "glittering in the sun" check from west to east
+        LocationData(BELOW_IBEK_CAVE_WEST_AP_REGION, SARA_SARA_BEACH_DISPLAY_NAME + " Chest - Just a hop up and over the Bazaar east stables", 1085 + treasure_index_offset),  # Tonic Pouch chest; #3 "glittering in the sun" check from west to east
         #Below Ibek's Cave Mouth East
         LocationData(BELOW_IBEK_CAVE_EAST_AP_REGION, SARA_SARA_BEACH_DISPLAY_NAME + " Chest - Glittering in the sun east of Ibek's Cave", 1083 + treasure_index_offset),  # Tincture Pouch chest; #8 "glittering in the sun" check from west to east
 
@@ -654,7 +654,7 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         LocationData(SARA_SARA_BEACH_EAST_AP_REGION, SARA_SARA_BEACH_DISPLAY_NAME + " NPC - Silver on the eastern rocks", 2687 + npc_index_offset),  # Ingot
         LocationData(SARA_SARA_BEACH_EAST_AP_REGION, SARA_SARA_BEACH_DISPLAY_NAME + " NPC - Silver beheld by Dr Cool Aids", 2691 + npc_index_offset, lambda state: logic.has_horizontal_movement(state) or logic.has_vertical_movement(state)),  # Ore
         #Below Ibek's Cave Mouth West
-        LocationData(BELOW_IBEK_CAVE_WEST_AP_REGION, SARA_SARA_BEACH_DISPLAY_NAME + " NPC - Just a hop over from the Bazaar for silver", 2683 + npc_index_offset),  # Dust; #2 "glittering in the sun" check from west to east
+        LocationData(BELOW_IBEK_CAVE_WEST_AP_REGION, SARA_SARA_BEACH_DISPLAY_NAME + " NPC - Just a hop up and over the Bazaar east stables for silver", 2683 + npc_index_offset),  # Dust; #2 "glittering in the sun" check from west to east
         LocationData(BELOW_IBEK_CAVE_WEST_AP_REGION, SARA_SARA_BEACH_DISPLAY_NAME + " NPC - Just two hops from the Bazaar for silver", 2688 + npc_index_offset),  # Silver; #4 "glittering in the sun" check from west to east
         #Directly Below Ibek's Cave Mouth
         LocationData(BELOW_IBEK_CAVE_MOUTH_AP_REGION, SARA_SARA_BEACH_DISPLAY_NAME + " NPC - Silver glittering in the sun below Ibek's Cave mouth", 2684 + npc_index_offset),  # Dust; #6 "glittering in the sun" check from west to east
