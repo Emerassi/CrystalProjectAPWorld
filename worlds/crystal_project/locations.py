@@ -2043,7 +2043,7 @@ def get_location_names_per_category() -> Dict[str, Set[str]]:
         process_location_tags(categories, location)
 
     for location in get_home_points():
-        categories.setdefault("Homepoints", set()).add(location.name)
+        categories.setdefault("Home Points", set()).add(location.name)
         process_location_tags(categories, location)
 
     for location in get_region_completion_locations():
