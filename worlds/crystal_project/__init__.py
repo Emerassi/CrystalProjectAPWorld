@@ -397,11 +397,11 @@ class CrystalProjectWorld(World):
             if total_clamshell_quantity > max_clamshells:
                 percent_goal_clamshells = self.options.clamshell_goal_quantity.value / total_clamshell_quantity
                 self.options.clamshell_goal_quantity.value = int(percent_goal_clamshells * max_clamshells)
-                if self.options.clamshell_goal_quantity.value < 2:
-                    self.options.clamshell_goal_quantity.value = 2
+                if self.options.clamshell_goal_quantity.value < self.options.clamshell_goal_quantity.range_start:
+                    self.options.clamshell_goal_quantity.value = self.options.clamshell_goal_quantity.range_start
                 self.options.extra_clamshells_in_pool.value = int(max_clamshells - self.options.clamshell_goal_quantity.value)
-                if self.options.extra_clamshells_in_pool.value < 0:
-                    self.options.extra_clamshells_in_pool.value = 0
+                if self.options.extra_clamshells_in_pool.value < self.options.extra_clamshells_in_pool.range_start:
+                    self.options.extra_clamshells_in_pool.value = self.options.extra_clamshells_in_pool.range_start
 
                 # Log the change to player settings
                 message = ("For player {2}: total_clamshells was {0} but there was only room for {1} clamshells in the pool. "
