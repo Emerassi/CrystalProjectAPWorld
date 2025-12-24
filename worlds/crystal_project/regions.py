@@ -498,7 +498,7 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
     #Capital Jail end
     #Capital Pipeline start
     fancy_add_exits(world, PIPELINE_NORTH_AP_REGION, [PIPELINE_SOUTH_AP_REGION, JAIL_SOUTH_WING_RUBBLE_AP_REGION],
-                    {PIPELINE_SOUTH_AP_REGION: lambda state: logic.has_vertical_movement(state)})
+                    {PIPELINE_SOUTH_AP_REGION: lambda state: logic.has_vertical_movement(state) or logic.has_golden_quintar(state) or (logic.has_glide(state) and logic.is_hop_to_it_at_least_one_hop_beyond())})
     fancy_add_exits(world, PIPELINE_SOUTH_AP_REGION, [PIPELINE_NORTH_AP_REGION, CONTINENTAL_TRAM_AP_REGION, PIPELINE_JIDAMBA_CONNECTOR_AP_REGION],
                     #The Eaclaneya elevator heist diamond is inside this connector, so it needs the regionsanity check on entering and exiting
                     {PIPELINE_JIDAMBA_CONNECTOR_AP_REGION: lambda state: state.has(CAPITAL_PIPELINE_PASS, player) or logic.is_regionsanity_disabled()})
@@ -1078,9 +1078,9 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
                     {THE_DEEP_SEA_AP_REGION: lambda state: logic.has_swimming(state)})
     fancy_add_exits(world, CASTLE_SEQUOIA_AP_REGION, [CAPITAL_SEQUOIA_AP_REGION])
     #The New World start
-    # normally this would take the proof of merit but we unlocked the door
+    # Normally this would take the proof of merit but we unlocked the door
     fancy_add_exits(world, THE_NEW_WORLD_AP_REGION, [DISCIPLINE_HOLLOW_AP_REGION])
-    # normally this would take the proof of merit but we unlocked the door
+    # Normally this would take the proof of merit but we unlocked the door
     fancy_add_exits(world, DISCIPLINE_HOLLOW_AP_REGION, [THE_NEW_WORLD_AP_REGION])
     #The New World end
     # regions without connections don't get parsed by Jsonifier
