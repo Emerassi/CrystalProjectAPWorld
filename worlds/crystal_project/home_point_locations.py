@@ -98,7 +98,6 @@ def get_home_points() -> List[LocationData]:
         LocationData(HOMEPOINT_GANYMEDE_SHRINE_AP_REGION, HOMEPOINT_GANYMEDE_SHRINE_NAME, 1573),
         #Beaurior Volcano
         LocationData(HOMEPOINT_BEAURIOR_ROCK_AP_REGION, HOMEPOINT_BEAURIOR_ROCK_NAME, 1792),
-        # TODO: put volcano peak in separate ap region instead of included in Beaurior Rock (also items nearby, not just homepoint stone)
         #former rules: lambda state: logic.has_key(state, SMALL_KEY, 4) and logic.has_key(state, BEAURIOR_BOSS_KEY)
         LocationData(HOMEPOINT_BEAURIOR_VOLCANO_PEAK_AP_REGION, HOMEPOINT_BEAURIOR_VOLCANO_PEAK_NAME, 3037),
         #Beaurior Rock

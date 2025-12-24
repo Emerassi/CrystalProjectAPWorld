@@ -304,11 +304,11 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
 
     connect_menu_region(world, options)
 
-    fancy_add_exits(world, SPAWNING_MEADOWS_AP_REGION, [DELENDE_PLAINS_AP_REGION, MERCURY_SHRINE_AP_REGION, POKO_POKO_SPAWNING_MEADOWS_PASS_AP_REGION, CONTINENTAL_TRAM_AP_REGION, BEAURIOR_VOLCANO_AP_REGION, YAMAGAWA_MA_AP_REGION],
+    fancy_add_exits(world, SPAWNING_MEADOWS_AP_REGION, [DELENDE_PLAINS_AP_REGION, MERCURY_SHRINE_AP_REGION, POKO_POKO_SPAWNING_MEADOWS_PASS_AP_REGION, CONTINENTAL_TRAM_AP_REGION, VALKYRIE_WATCHTOWER_AP_REGION, YAMAGAWA_MA_AP_REGION],
                     {CONTINENTAL_TRAM_AP_REGION: lambda state: logic.has_swimming(state) and logic.obscure_routes_on(),
                      MERCURY_SHRINE_AP_REGION: lambda state: logic.has_vertical_movement(state),
                      POKO_POKO_SPAWNING_MEADOWS_PASS_AP_REGION: lambda state: logic.has_vertical_movement(state) or logic.obscure_routes_on(),
-                     BEAURIOR_VOLCANO_AP_REGION: lambda state: logic.has_vertical_movement(state),
+                     VALKYRIE_WATCHTOWER_AP_REGION: lambda state: logic.has_vertical_movement(state),
                      YAMAGAWA_MA_AP_REGION: lambda state: logic.has_swimming(state) or logic.has_vertical_movement(state)})
     #Delende start
     fancy_add_exits(world, DELENDE_PLAINS_AP_REGION, [ATOP_FISH_HATCHERY_AP_REGION, DELENDE_HIGH_BRIDGES_AP_REGION, DELENDE_MESA_OVER_SPOOKY_CAVE_AP_REGION, SPAWNING_MEADOWS_AP_REGION, MERCURY_SHRINE_AP_REGION, SOILED_DENLENDE_AP_REGION, THE_PALE_GROTTO_AP_REGION, SEASIDE_CLIFFS_AP_REGION, GREENSHIRE_REPRISE_AP_REGION, SALMON_PASS_WEST_AP_REGION, SALMON_PASS_EAST_AP_REGION, LAKE_DELENDE_AP_REGION],
@@ -345,8 +345,10 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
     fancy_add_exits(world, DELENDE_PEAK_AP_REGION, [DELENDE_HIGH_BRIDGES_AP_REGION, SEASIDE_CLIFFS_AP_REGION, CLIFF_OVER_SEASIDE_CAMP_AP_REGION])
 
     #Delende end
-    fancy_add_exits(world, MERCURY_SHRINE_AP_REGION, [DELENDE_PLAINS_AP_REGION, SEASIDE_CLIFFS_AP_REGION, BEAURIOR_VOLCANO_AP_REGION],
-                    {BEAURIOR_VOLCANO_AP_REGION: lambda state: logic.has_vertical_movement(state)})
+    fancy_add_exits(world, MERCURY_SHRINE_AP_REGION, [DELENDE_PLAINS_AP_REGION, SEASIDE_CLIFFS_AP_REGION, BEAURIOR_BOARDWALK_AP_REGION, VOLCANO_PEAK_AP_REGION, VALKYRIE_WATCHTOWER_AP_REGION],
+                    {BEAURIOR_BOARDWALK_AP_REGION: lambda state: logic.has_vertical_movement(state) or logic.has_glide(state) or (logic.has_swimming(state) and logic.obscure_routes_on()),
+                     VOLCANO_PEAK_AP_REGION: lambda state: logic.has_golden_quintar(state),
+                     VALKYRIE_WATCHTOWER_AP_REGION: lambda state: (logic.has_vertical_movement(state) or logic.has_glide(state)) and logic.obscure_routes_on()})
     fancy_add_exits(world, SOILED_DENLENDE_AP_REGION, [DELENDE_PLAINS_AP_REGION, THE_BANGLER_AP_REGION, THE_PALE_GROTTO_AP_REGION, JADE_WATERWAYS_AP_REGION],
                     {THE_BANGLER_AP_REGION: lambda state: logic.has_swimming(state),
                      JADE_WATERWAYS_AP_REGION: lambda state: logic.has_swimming(state),
@@ -360,11 +362,11 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
                      LOWER_ICE_LAKES_AP_REGION: lambda state: logic.has_swimming(state),
                      SALMON_PASS_EAST_AP_REGION: lambda state: logic.has_swimming(state)})
     #Seaside Cliffs start
-    fancy_add_exits(world, SEASIDE_CLIFFS_AP_REGION, [CLIFF_OVER_SEASIDE_CAMP_AP_REGION, DELENDE_PLAINS_AP_REGION, DELENDE_HIGH_BRIDGES_AP_REGION, DELENDE_PEAK_AP_REGION, MERCURY_SHRINE_AP_REGION, THE_BANGLER_AP_REGION, DRAFT_SHAFT_CONDUIT_AP_REGION, THE_OPEN_SEA_AP_REGION, BEAURIOR_VOLCANO_AP_REGION],
+    fancy_add_exits(world, SEASIDE_CLIFFS_AP_REGION, [CLIFF_OVER_SEASIDE_CAMP_AP_REGION, DELENDE_PLAINS_AP_REGION, DELENDE_HIGH_BRIDGES_AP_REGION, DELENDE_PEAK_AP_REGION, MERCURY_SHRINE_AP_REGION, THE_BANGLER_AP_REGION, DRAFT_SHAFT_CONDUIT_AP_REGION, THE_OPEN_SEA_AP_REGION, BEAURIOR_BOARDWALK_AP_REGION],
                     {CLIFF_OVER_SEASIDE_CAMP_AP_REGION: lambda state: logic.has_vertical_movement(state),
                      DELENDE_PEAK_AP_REGION: lambda state: logic.has_horizontal_movement(state) or logic.has_vertical_movement(state),
                      THE_OPEN_SEA_AP_REGION: lambda state: logic.has_swimming(state),
-                     BEAURIOR_VOLCANO_AP_REGION: lambda state: logic.has_vertical_movement(state)})
+                     BEAURIOR_BOARDWALK_AP_REGION: lambda state: logic.has_vertical_movement(state) or logic.has_glide(state) or (logic.has_swimming(state) and logic.obscure_routes_on())})
     fancy_add_exits(world, CLIFF_OVER_SEASIDE_CAMP_AP_REGION, [SEASIDE_CLIFFS_AP_REGION, DELENDE_HIGH_BRIDGES_AP_REGION, DELENDE_PEAK_AP_REGION],
                     {DELENDE_PEAK_AP_REGION: lambda _: logic.obscure_routes_on()})
     #Seaside Cliffs end
@@ -576,10 +578,11 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
                      POKO_POKO_BEACH_WEST_PASS_AP_REGION: lambda state: (logic.has_horizontal_movement(state) and logic.has_vertical_movement(state)) or logic.has_glide(state),
                      TOWER_OF_ZOT_CAMP_AP_REGION: lambda state: logic.has_vertical_movement(state) and logic.has_glide(state),
                      ANCIENT_RESERVOIR_AP_REGION: lambda state: logic.has_key(state, PYRAMID_KEY)})
-    fancy_add_exits(world, POKO_POKO_EAST_PLATEAU_AP_REGION, [POKO_POKO_DESERT_AP_REGION, TOWER_OF_ZOT_CAMP_AP_REGION, POKO_POKO_LAKE_DELENDE_PASS_AP_REGION, POKO_POKO_SPAWNING_MEADOWS_PASS_AP_REGION, SARA_SARA_BAZAAR_AP_REGION],
+    fancy_add_exits(world, POKO_POKO_EAST_PLATEAU_AP_REGION, [POKO_POKO_DESERT_AP_REGION, TOWER_OF_ZOT_CAMP_AP_REGION, POKO_POKO_LAKE_DELENDE_PASS_AP_REGION, POKO_POKO_SPAWNING_MEADOWS_PASS_AP_REGION, SARA_SARA_BAZAAR_AP_REGION, VALKYRIE_WATCHTOWER_AP_REGION],
                     {TOWER_OF_ZOT_CAMP_AP_REGION: lambda state: logic.has_vertical_movement(state) and logic.has_glide(state),
                      POKO_POKO_LAKE_DELENDE_PASS_AP_REGION: lambda state: logic.has_vertical_movement(state),
-                     POKO_POKO_SPAWNING_MEADOWS_PASS_AP_REGION: lambda state: logic.has_vertical_movement(state)})
+                     POKO_POKO_SPAWNING_MEADOWS_PASS_AP_REGION: lambda state: logic.has_vertical_movement(state),
+                     VALKYRIE_WATCHTOWER_AP_REGION: lambda state: logic.has_vertical_movement(state)})
     fancy_add_exits(world, POKO_POKO_BEACH_WEST_PASS_AP_REGION, [POKO_POKO_DESERT_AP_REGION, BEACH_BIRDS_NEST_AP_REGION])
     fancy_add_exits(world, TOWER_OF_ZOT_CAMP_AP_REGION, [POKO_POKO_DESERT_AP_REGION, POKO_POKO_EAST_PLATEAU_AP_REGION, LABYRINTH_ENTRANCE_PUSHBLOCK_AP_REGION, GOLD_BEDAZZLING_LABYRINTH_AP_REGION, POKO_POKO_LAKE_DELENDE_PASS_AP_REGION, RUINS_CRUMBLING_ON_SHORE_AP_REGION, SALMON_BAY_BASIN_AP_REGION, SALMON_BAY_WEST_CRAG_AP_REGION, SALMON_RIVER_MOUTH_AP_REGION],
                     {POKO_POKO_EAST_PLATEAU_AP_REGION: lambda state: logic.has_glide(state),
@@ -600,7 +603,8 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
                      POKO_POKO_SPAWNING_MEADOWS_PASS_AP_REGION: lambda state: logic.has_glide(state),
                      SALMON_BAY_WEST_CRAG_AP_REGION: lambda state: logic.has_glide(state),
                      SALMON_RIVER_MOUTH_AP_REGION: lambda state: logic.has_vertical_movement(state) and logic.has_glide(state)})
-    fancy_add_exits(world, POKO_POKO_SPAWNING_MEADOWS_PASS_AP_REGION, [POKO_POKO_EAST_PLATEAU_AP_REGION, SPAWNING_MEADOWS_AP_REGION])
+    fancy_add_exits(world, POKO_POKO_SPAWNING_MEADOWS_PASS_AP_REGION, [POKO_POKO_EAST_PLATEAU_AP_REGION, SPAWNING_MEADOWS_AP_REGION, VALKYRIE_WATCHTOWER_AP_REGION],
+                    {VALKYRIE_WATCHTOWER_AP_REGION: lambda state: logic.has_vertical_movement(state)})
     #Poko Poko Desert end
     fancy_add_exits(world, SARA_SARA_BAZAAR_AP_REGION, [POKO_POKO_DESERT_AP_REGION, POKO_POKO_EAST_PLATEAU_AP_REGION, SARA_SARA_BEACH_EAST_AP_REGION, IBEK_CAVE_MOUTH_AP_REGION, BELOW_IBEK_CAVE_WEST_AP_REGION, RENTAL_QUINTAR_BEACH_EP_AP_REGION, SHOUDU_DOCKSIDE_AP_REGION, BAZAAR_COAST_AP_REGION, CONTINENTAL_TRAM_AP_REGION],
                     #Swimming connection to both the Bazaar Coast and the Continental Tram bc you can get to the Tram without going into The Open Sea and vice versa
@@ -611,14 +615,14 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
                      CONTINENTAL_TRAM_AP_REGION: lambda state: logic.has_swimming(state) or logic.has_key(state, TRAM_KEY)})
     #Sara Sara Beach start
     #Sara Sara Beach East
-    fancy_add_exits(world, SARA_SARA_BEACH_EAST_AP_REGION, [IBEK_CAVE_MOUTH_AP_REGION, BELOW_IBEK_CAVE_MOUTH_AP_REGION, BELOW_IBEK_CAVE_EAST_AP_REGION, BELOW_IBEK_CAVE_WEST_AP_REGION, SARA_SARA_BAZAAR_AP_REGION, THE_OPEN_SEA_AP_REGION, BAZAAR_COAST_AP_REGION, BEAURIOR_VOLCANO_AP_REGION, CONTINENTAL_TRAM_AP_REGION],
+    fancy_add_exits(world, SARA_SARA_BEACH_EAST_AP_REGION, [IBEK_CAVE_MOUTH_AP_REGION, BELOW_IBEK_CAVE_MOUTH_AP_REGION, BELOW_IBEK_CAVE_EAST_AP_REGION, BELOW_IBEK_CAVE_WEST_AP_REGION, SARA_SARA_BAZAAR_AP_REGION, THE_OPEN_SEA_AP_REGION, BAZAAR_COAST_AP_REGION, BEAURIOR_BOARDWALK_AP_REGION, CONTINENTAL_TRAM_AP_REGION],
                     {IBEK_CAVE_MOUTH_AP_REGION: lambda state: logic.has_vertical_movement(state),
                      BELOW_IBEK_CAVE_MOUTH_AP_REGION: lambda state: logic.has_vertical_movement(state),
                      BELOW_IBEK_CAVE_EAST_AP_REGION: lambda state: logic.has_vertical_movement(state),
                      BELOW_IBEK_CAVE_WEST_AP_REGION: lambda state: logic.has_vertical_movement(state),
                      THE_OPEN_SEA_AP_REGION: lambda state: logic.has_swimming(state),
                      BAZAAR_COAST_AP_REGION: lambda state: logic.has_swimming(state),
-                     BEAURIOR_VOLCANO_AP_REGION: lambda state: logic.has_vertical_movement(state) or logic.has_glide(state),
+                     BEAURIOR_BOARDWALK_AP_REGION: lambda state: logic.has_vertical_movement(state) or logic.has_glide(state) or logic.has_swimming(state),
                      CONTINENTAL_TRAM_AP_REGION: lambda state: logic.has_swimming(state)})
     fancy_add_exits(world, IBEK_CAVE_MOUTH_AP_REGION, [BELOW_IBEK_CAVE_MOUTH_AP_REGION, BELOW_IBEK_CAVE_EAST_AP_REGION, BELOW_IBEK_CAVE_WEST_AP_REGION, SARA_SARA_BEACH_EAST_AP_REGION, IBEK_CAVE_AP_REGION, IBEK_CAVE_SPIRALING_TREK_OUT_AP_REGION])
     fancy_add_exits(world, BELOW_IBEK_CAVE_MOUTH_AP_REGION, [IBEK_CAVE_MOUTH_AP_REGION, BELOW_IBEK_CAVE_EAST_AP_REGION, BELOW_IBEK_CAVE_WEST_AP_REGION, SARA_SARA_BEACH_EAST_AP_REGION],
@@ -682,7 +686,7 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
                      TOWER_OF_ZOT_CAMP_AP_REGION: lambda state: logic.has_glide(state)})
     #Salmon Bay end
     #The Open Sea start
-    fancy_add_exits(world, THE_OPEN_SEA_AP_REGION, [SEASIDE_CLIFFS_AP_REGION, PROVING_MEADOWS_AP_REGION, CAPITAL_MOAT_AP_REGION, WEST_COBBLESTONE_CRAG_AP_REGION, SHOUDU_WATERFRONT_AP_REGION, BAZAAR_COAST_AP_REGION, SARA_SARA_BEACH_EAST_AP_REGION, RENTAL_QUINTAR_BEACH_EP_AP_REGION, RUINS_CRUMBLING_ON_SHORE_AP_REGION, SALMON_BAY_BASIN_AP_REGION, SHOUDU_WATERWAYS_AP_REGION, UNDERCITY_WATERWAYS_AP_REGION, JIDAMBA_ATOLLS_AP_REGION, JIDAMBA_WATERWAYS_AP_REGION, THE_DEEP_SEA_AP_REGION],
+    fancy_add_exits(world, THE_OPEN_SEA_AP_REGION, [SEASIDE_CLIFFS_AP_REGION, PROVING_MEADOWS_AP_REGION, CAPITAL_MOAT_AP_REGION, WEST_COBBLESTONE_CRAG_AP_REGION, SHOUDU_WATERFRONT_AP_REGION, BAZAAR_COAST_AP_REGION, SARA_SARA_BEACH_EAST_AP_REGION, RENTAL_QUINTAR_BEACH_EP_AP_REGION, RUINS_CRUMBLING_ON_SHORE_AP_REGION, SALMON_BAY_BASIN_AP_REGION, SHOUDU_WATERWAYS_AP_REGION, UNDERCITY_WATERWAYS_AP_REGION, BEAURIOR_BOARDWALK_AP_REGION, JIDAMBA_ATOLLS_AP_REGION, JIDAMBA_WATERWAYS_AP_REGION, THE_DEEP_SEA_AP_REGION],
                     {SEASIDE_CLIFFS_AP_REGION: lambda state: logic.has_swimming(state),
                      PROVING_MEADOWS_AP_REGION: lambda state: logic.has_swimming(state),
                      CAPITAL_MOAT_AP_REGION: lambda state: logic.has_swimming(state),
@@ -695,6 +699,7 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
                      RUINS_CRUMBLING_ON_SHORE_AP_REGION: lambda state: logic.has_swimming(state),
                      SALMON_BAY_BASIN_AP_REGION: lambda state: logic.has_swimming(state),
                      SHOUDU_WATERWAYS_AP_REGION: lambda state: logic.has_swimming(state),
+                     BEAURIOR_BOARDWALK_AP_REGION: lambda state: logic.has_swimming(state),
                      JIDAMBA_ATOLLS_AP_REGION: lambda state: logic.has_swimming(state),
                      JIDAMBA_WATERWAYS_AP_REGION: lambda state: logic.has_swimming(state),
                      THE_DEEP_SEA_AP_REGION: lambda state: logic.has_swimming(state)})
@@ -790,11 +795,42 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
                     {SKY_ARENA_AP_REGION: lambda state: logic.has_glide(state),
                      RESERVE_BLUFFS_AP_REGION: lambda state: logic.has_glide(state)})
     #Ganymede Shrine end
-    #Todo: when splitting up Beaurior, add exit to Ibek's Cave Mouth AP Region from the top of the volcano; you can walk down from the save point
-    fancy_add_exits(world, BEAURIOR_VOLCANO_AP_REGION, [SARA_SARA_BEACH_EAST_AP_REGION, BEAURIOR_ROCK_AP_REGION, THE_OPEN_SEA_AP_REGION],
-                    {BEAURIOR_ROCK_AP_REGION: lambda state: logic.has_vertical_movement(state),
+    #Beaurior Volcano start
+    fancy_add_exits(world, BEAURIOR_BOARDWALK_AP_REGION, [SEASIDE_CLIFFS_AP_REGION, SARA_SARA_BEACH_EAST_AP_REGION, BEAURIOR_ROCK_MUDROOM_AND_HAPPY_SPIKE_LAND_AP_REGION, THE_OPEN_SEA_AP_REGION],
+                    {THE_OPEN_SEA_AP_REGION: lambda state: logic.has_swimming(state)})
+    fancy_add_exits(world, VOLCANO_PEAK_AP_REGION, [BEAURIOR_BOARDWALK_AP_REGION, VALKYRIE_WATCHTOWER_AP_REGION, BEAURIOR_ROCK_MAIN_AP_REGION, MAGIC_WELL_FRIENDOS_AP_REGION, BEAURIOR_ROCK_HIGHEST_CATWALK_AP_REGION, BEAURIOR_BOSS_ANTECHAMBER_AP_REGION, BEAURIOR_BOSS_ROOM_AP_REGION, SPAWNING_MEADOWS_AP_REGION, MERCURY_SHRINE_AP_REGION, SEASIDE_CLIFFS_AP_REGION, YAMAGAWA_MA_AP_REGION, THE_OPEN_SEA_AP_REGION],
+                    {BEAURIOR_BOSS_ROOM_AP_REGION: lambda state: state.has(BEAURIOR_VOLCANO_PASS, player) or logic.is_regionsanity_disabled(),
+                     YAMAGAWA_MA_AP_REGION: lambda state: logic.has_golden_quintar(state),
                      THE_OPEN_SEA_AP_REGION: lambda state: logic.has_swimming(state)})
-    fancy_add_exits(world, BEAURIOR_ROCK_AP_REGION, [BEAURIOR_VOLCANO_AP_REGION])
+    fancy_add_exits(world, VALKYRIE_WATCHTOWER_AP_REGION, [BEAURIOR_BOARDWALK_AP_REGION, VOLCANO_PEAK_AP_REGION, SPAWNING_MEADOWS_AP_REGION, MERCURY_SHRINE_AP_REGION, POKO_POKO_EAST_PLATEAU_AP_REGION, POKO_POKO_SPAWNING_MEADOWS_PASS_AP_REGION, IBEK_CAVE_MOUTH_AP_REGION, SARA_SARA_BAZAAR_AP_REGION],
+                    {VOLCANO_PEAK_AP_REGION: lambda state: logic.has_vertical_movement(state) and logic.has_glide(state),
+                     MERCURY_SHRINE_AP_REGION: lambda state: (logic.has_vertical_movement(state) or logic.has_glide(state)) and logic.obscure_routes_on()})
+    #Beaurior Volcano end
+    #Beaurior Rock start
+    fancy_add_exits(world, BEAURIOR_ROCK_MAIN_AP_REGION, [WE_HAVE_ONLY_BEGUN_TO_BEAURIOR_ROCK_AP_REGION, GOLD_ACROSS_FROM_ANCIENT_SWORD_AP_REGION, BEAURIOR_ROCK_HIGHEST_CATWALK_AP_REGION, BEAURIOR_BOSS_ANTECHAMBER_AP_REGION],
+                    {GOLD_ACROSS_FROM_ANCIENT_SWORD_AP_REGION: lambda state: logic.has_glide(state),
+                     BEAURIOR_ROCK_HIGHEST_CATWALK_AP_REGION: lambda state: logic.has_horizontal_movement(state) or logic.has_key(state, SMALL_KEY, 4),
+                     BEAURIOR_BOSS_ANTECHAMBER_AP_REGION: lambda state: logic.has_glide(state)})
+    fancy_add_exits(world, BEAURIOR_ROCK_MUDROOM_AND_HAPPY_SPIKE_LAND_AP_REGION, [WE_HAVE_ONLY_BEGUN_TO_BEAURIOR_ROCK_AP_REGION, BEAURIOR_BOARDWALK_AP_REGION],
+                    {WE_HAVE_ONLY_BEGUN_TO_BEAURIOR_ROCK_AP_REGION: lambda state: logic.has_key(state, SMALL_KEY, 4) and (state.has(BEAURIOR_ROCK_PASS, player) or logic.is_regionsanity_disabled())})
+    fancy_add_exits(world, WE_HAVE_ONLY_BEGUN_TO_BEAURIOR_ROCK_AP_REGION, [BEAURIOR_ROCK_MAIN_AP_REGION, GOLD_ACROSS_FROM_ANCIENT_SWORD_AP_REGION],
+                    {BEAURIOR_ROCK_MAIN_AP_REGION: lambda state: logic.has_key(state, SMALL_KEY, 4) and (state.has(BEAURIOR_ROCK_PASS, player) or logic.is_regionsanity_disabled()),
+                     GOLD_ACROSS_FROM_ANCIENT_SWORD_AP_REGION: lambda state: logic.has_horizontal_movement(state)})
+    fancy_add_exits(world, GOLD_ACROSS_FROM_ANCIENT_SWORD_AP_REGION, [BEAURIOR_ROCK_MAIN_AP_REGION, WE_HAVE_ONLY_BEGUN_TO_BEAURIOR_ROCK_AP_REGION],
+                    {BEAURIOR_ROCK_MAIN_AP_REGION: lambda state: logic.has_glide(state),
+                     WE_HAVE_ONLY_BEGUN_TO_BEAURIOR_ROCK_AP_REGION: lambda state: logic.has_horizontal_movement(state)})
+    fancy_add_exits(world, MAGIC_WELL_FRIENDOS_AP_REGION, [BEAURIOR_ROCK_MAIN_AP_REGION, BEAURIOR_ROCK_HIGHEST_CATWALK_AP_REGION, BEAURIOR_BOSS_ANTECHAMBER_AP_REGION],
+                    #Can hop to lamp to B2 catwalk to enter Beaurior Rock Main with no mounts
+                    {BEAURIOR_ROCK_HIGHEST_CATWALK_AP_REGION: lambda state: logic.has_horizontal_movement(state) or (logic.has_vertical_movement(state) and logic.is_hop_to_it_at_least_fancy_footwork())})
+    fancy_add_exits(world, BEAURIOR_ROCK_HIGHEST_CATWALK_AP_REGION, [BEAURIOR_ROCK_MAIN_AP_REGION, MAGIC_WELL_FRIENDOS_AP_REGION, BEAURIOR_BOSS_ANTECHAMBER_AP_REGION],
+                    {MAGIC_WELL_FRIENDOS_AP_REGION: lambda state: logic.has_horizontal_movement(state) or (logic.has_vertical_movement(state) and logic.is_hop_to_it_at_least_fancy_footwork())})
+    fancy_add_exits(world, BEAURIOR_BOSS_ANTECHAMBER_AP_REGION, [BEAURIOR_ROCK_MAIN_AP_REGION, WE_HAVE_ONLY_BEGUN_TO_BEAURIOR_ROCK_AP_REGION, BEAURIOR_BOSS_ROOM_AP_REGION],
+                    {BEAURIOR_ROCK_MAIN_AP_REGION: lambda state: logic.has_glide(state),
+                     BEAURIOR_BOSS_ROOM_AP_REGION: lambda state: logic.has_key(state, BEAURIOR_BOSS_KEY, 1)})
+    fancy_add_exits(world, BEAURIOR_BOSS_ROOM_AP_REGION, [BEAURIOR_BOSS_ANTECHAMBER_AP_REGION, VOLCANO_PEAK_AP_REGION],
+                    {BEAURIOR_BOSS_ANTECHAMBER_AP_REGION: lambda state: logic.has_key(state, BEAURIOR_BOSS_KEY, 1),
+                     VOLCANO_PEAK_AP_REGION: lambda state: state.has(BEAURIOR_ROCK_PASS, player) or logic.is_regionsanity_disabled()})
+    #Beaurior Rock end
     #Lake Delende start
     fancy_add_exits(world, LAKE_DELENDE_AP_REGION, [ATOP_DAM_AP_REGION, POKO_POKO_LAKE_DELENDE_PASS_AP_REGION, DELENDE_PLAINS_AP_REGION, DELENDE_HIGH_BRIDGES_AP_REGION],
                     {ATOP_DAM_AP_REGION: lambda state: logic.has_vertical_movement(state) and logic.has_glide(state),
@@ -872,9 +908,10 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
                      SEQUOIA_ATHENAEUM_ENTRANCE_AP_REGION: lambda state: logic.has_glide(state)})
     fancy_add_exits(world, LANDS_END_COTTAGE_RIDGE_AP_REGION, [LOWER_ICE_LAKES_AP_REGION, LANDS_END_AP_REGION],
                     {LANDS_END_AP_REGION: lambda state: logic.has_glide(state) and logic.obscure_routes_on()})
-    fancy_add_exits(world, TALL_TALL_DIAMONDSMITH_AP_REGION, [UPPER_ICE_LAKES_AP_REGION, LANDS_END_NORTHERN_PEAK_AP_REGION, NORTHERN_STRETCH_RACE_START_AP_REGION, THE_OPEN_SEA_AP_REGION],
+    fancy_add_exits(world, TALL_TALL_DIAMONDSMITH_AP_REGION, [UPPER_ICE_LAKES_AP_REGION, LANDS_END_NORTHERN_PEAK_AP_REGION, NORTHERN_STRETCH_RACE_START_AP_REGION, THE_OPEN_SEA_AP_REGION, VOLCANO_PEAK_AP_REGION],
                     {NORTHERN_STRETCH_RACE_START_AP_REGION: lambda state: logic.has_glide(state),
-                     THE_OPEN_SEA_AP_REGION: lambda state: logic.has_swimming(state)})
+                     THE_OPEN_SEA_AP_REGION: lambda state: logic.has_swimming(state),
+                     VOLCANO_PEAK_AP_REGION: lambda state: logic.has_glide(state) and logic.obscure_routes_on()})
     fancy_add_exits(world, SLIP_GLIDE_RIDE_EXIT_AP_REGION, [SLIP_TO_CAVE_OR_SOUVENIRS_AP_REGION])
     fancy_add_exits(world, SLIP_TO_CAVE_OR_SOUVENIRS_AP_REGION, [UPPER_ICE_LAKES_AP_REGION, SLIP_GLIDE_RIDE_EXIT_AP_REGION, SOUVENIR_SHOP_AP_REGION, UPPER_NORTHERN_CAVE_AP_REGION],
                     {SLIP_GLIDE_RIDE_EXIT_AP_REGION: lambda state: logic.has_glide(state)})
@@ -907,7 +944,7 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
     fancy_add_exits(world, LOWER_NORTHERN_CAVE_AP_REGION, [ICE_CELL_AP_REGION, LOWER_ICE_LAKES_AP_REGION])
     #Northern Cave end
     #Land's End start
-    fancy_add_exits(world, LANDS_END_AP_REGION, [LANDS_END_NORTHERN_PEAK_AP_REGION, OWL_TREE_AP_REGION, ATOP_FISH_HATCHERY_AP_REGION, HEART_TARN_AP_REGION, SOUTH_SALMON_RIVER_AP_REGION, ATOP_DAM_AP_REGION, LOWER_ICE_LAKES_AP_REGION, LANDS_END_COTTAGE_RIDGE_AP_REGION, THE_OPEN_SEA_AP_REGION],
+    fancy_add_exits(world, LANDS_END_AP_REGION, [LANDS_END_NORTHERN_PEAK_AP_REGION, OWL_TREE_AP_REGION, ATOP_FISH_HATCHERY_AP_REGION, HEART_TARN_AP_REGION, SOUTH_SALMON_RIVER_AP_REGION, ATOP_DAM_AP_REGION, LOWER_ICE_LAKES_AP_REGION, LANDS_END_COTTAGE_RIDGE_AP_REGION, THE_OPEN_SEA_AP_REGION, VOLCANO_PEAK_AP_REGION],
                     #From Callisto Shrine save point, you can drop down to Delende, or to South Salmon River or Atop Salmon River Dam with the quintar
                     {LANDS_END_NORTHERN_PEAK_AP_REGION: lambda state: logic.has_vertical_movement(state) or logic.has_glide(state),
                      OWL_TREE_AP_REGION: lambda state: logic.has_vertical_movement(state),
@@ -915,7 +952,8 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
                      HEART_TARN_AP_REGION: lambda state: logic.has_glide(state),
                      SOUTH_SALMON_RIVER_AP_REGION: lambda state: logic.has_horizontal_movement(state) and logic.obscure_routes_on(),
                      ATOP_DAM_AP_REGION: lambda state: logic.has_horizontal_movement(state) and logic.obscure_routes_on(),
-                     THE_OPEN_SEA_AP_REGION: lambda state: logic.has_swimming(state)})
+                     THE_OPEN_SEA_AP_REGION: lambda state: logic.has_swimming(state),
+                     VOLCANO_PEAK_AP_REGION: lambda state: logic.has_glide(state) and logic.obscure_routes_on()})
     fancy_add_exits(world, LANDS_END_NORTHERN_PEAK_AP_REGION, [LANDS_END_AP_REGION, TALL_TALL_DIAMONDSMITH_AP_REGION, THE_OPEN_SEA_AP_REGION],
                     {TALL_TALL_DIAMONDSMITH_AP_REGION: lambda state: logic.has_glide(state),
                      THE_OPEN_SEA_AP_REGION: lambda state: logic.has_swimming(state)})
@@ -931,8 +969,9 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
     #Regionsanity: can't get out of Athenaeum because you can't reach the duck through the door
     fancy_add_exits(world, SEQUOIA_ATHENAEUM_AP_REGION, [MENU_AP_REGION])
     #Northern Stretch start
-    fancy_add_exits(world, NORTHERN_STRETCH_RACE_START_AP_REGION, [NORTHERN_STRETCH_RACE_FINISH_AP_REGION, SLIP_GLIDE_RIDE_EXIT_AP_REGION, SLIP_TO_CAVE_OR_SOUVENIRS_AP_REGION, SOUVENIR_SHOP_AP_REGION, TALL_TALL_DIAMONDSMITH_AP_REGION, THE_OPEN_SEA_AP_REGION],
-                    {THE_OPEN_SEA_AP_REGION: lambda state: logic.has_swimming(state)})
+    fancy_add_exits(world, NORTHERN_STRETCH_RACE_START_AP_REGION, [NORTHERN_STRETCH_RACE_FINISH_AP_REGION, SLIP_GLIDE_RIDE_EXIT_AP_REGION, SLIP_TO_CAVE_OR_SOUVENIRS_AP_REGION, SOUVENIR_SHOP_AP_REGION, TALL_TALL_DIAMONDSMITH_AP_REGION, THE_OPEN_SEA_AP_REGION, VOLCANO_PEAK_AP_REGION],
+                    {THE_OPEN_SEA_AP_REGION: lambda state: logic.has_swimming(state),
+                     VOLCANO_PEAK_AP_REGION: lambda state: logic.has_glide(state) and logic.obscure_routes_on()})
     fancy_add_exits(world, NORTHERN_STRETCH_RACE_FINISH_AP_REGION, [NORTHERN_STRETCH_RACE_START_AP_REGION, SUMMONERS_TOWER_AP_REGION, SEQUOIA_ATHENAEUM_BALCONY_AP_REGION, TALL_TALL_TALL_CHEST_AP_REGION, THE_OPEN_SEA_AP_REGION],
                     {NORTHERN_STRETCH_RACE_START_AP_REGION: lambda state: logic.has_vertical_movement(state) or logic.has_horizontal_movement(state),
                      SUMMONERS_TOWER_AP_REGION: lambda state: logic.has_vertical_movement(state),
@@ -1202,7 +1241,7 @@ def connect_menu_region(world: "CrystalProjectWorld", options: CrystalProjectOpt
     logic = CrystalProjectLogic(world.player, options)
     player = world.player
 
-    fancy_add_exits(world, MENU_AP_REGION, [SPAWNING_MEADOWS_AP_REGION, DELENDE_PLAINS_AP_REGION, DELENDE_HIGH_BRIDGES_AP_REGION, DELENDE_PEAK_AP_REGION, MERCURY_SHRINE_AP_REGION, THE_PALE_GROTTO_AP_REGION, SEASIDE_CLIFFS_AP_REGION, YAMAGAWA_MA_AP_REGION, PROVING_MEADOWS_AP_REGION, SKUMPARADISE_AP_REGION, CAPITAL_SEQUOIA_AP_REGION, CAPITAL_JAIL_AP_REGION, JAIL_DARK_WING_AP_REGION, ROLLING_QUINTAR_FIELDS_AP_REGION, SANCTUM_ENTRANCE_AP_REGION, QUINTAR_SANCTUM_AP_REGION, BOOMER_SOCIETY_AP_REGION, OKIMOTO_NS_AP_REGION, SALMON_PASS_EAST_AP_REGION, SALMON_RIVER_AP_REGION, CASTLE_SEQUOIA_AP_REGION, TOWER_OF_ZOT_CAMP_AP_REGION, POKO_POKO_DESERT_AP_REGION, SARA_SARA_BAZAAR_AP_REGION, IBEK_CAVE_MOUTH_AP_REGION, BEACH_BIRDS_NEST_AP_REGION, BEAURIOR_VOLCANO_AP_REGION, BEAURIOR_ROCK_AP_REGION, ANCIENT_RESERVOIR_AP_REGION, SHOUDU_DOCKSIDE_AP_REGION, SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_ELEVATOR_BASE_AP_REGION, SHOUDU_FIELDS_WEST_SCAFFOLDING_AP_REGION, SKY_ARENA_AP_REGION, GANYMEDE_SHRINE_AP_REGION, GANYMEDE_STEEPLE_AP_REGION, THE_UNDERCITY_HOMEPOINT_AND_BLADE_MASTER_AP_REGION, PIPELINE_NORTH_AP_REGION, PIPELINE_SOUTH_AP_REGION, SEQUOIA_ATHENAEUM_ENTRANCE_AP_REGION, LOWER_ICE_LAKES_AP_REGION, SOUVENIR_SHOP_AP_REGION, SLIP_GLIDE_RIDE_EXIT_AP_REGION, UPPER_ICE_LAKES_AP_REGION, TALL_TALL_SAVE_POINT_AP_REGION, PEAK_RAMPARTS_AP_REGION, SLIP_GLIDE_RIDE_ENTRANCE_AP_REGION, LANDS_END_AP_REGION, OWL_TREE_AP_REGION, QUINTAR_RESERVE_AP_REGION, EUROPA_SHRINE_AP_REGION, EACLANEYA_ENTRANCE_AP_REGION, SALMON_ROOM_AP_REGION, LABYRINTH_CORE_AP_REGION, DIONE_SHRINE_AP_REGION, DIONE_ROOF_AP_REGION, THE_SEQUOIA_AP_REGION, CHALICE_FOOT_AP_REGION, THE_OPEN_SEA_AP_REGION, CONTINENTAL_TRAM_AP_REGION, POSEIDON_SHRINE_ROOF_AP_REGION, NEPTUNE_SHRINE_AP_REGION, THE_OLD_WORLD_AP_REGION, THE_NEW_WORLD_AP_REGION, DISCIPLINE_HOLLOW_AP_REGION, MODDED_ZONE_AP_REGION],
+    fancy_add_exits(world, MENU_AP_REGION, [SPAWNING_MEADOWS_AP_REGION, DELENDE_PLAINS_AP_REGION, DELENDE_HIGH_BRIDGES_AP_REGION, DELENDE_PEAK_AP_REGION, MERCURY_SHRINE_AP_REGION, THE_PALE_GROTTO_AP_REGION, SEASIDE_CLIFFS_AP_REGION, YAMAGAWA_MA_AP_REGION, PROVING_MEADOWS_AP_REGION, SKUMPARADISE_AP_REGION, CAPITAL_SEQUOIA_AP_REGION, CAPITAL_JAIL_AP_REGION, JAIL_DARK_WING_AP_REGION, ROLLING_QUINTAR_FIELDS_AP_REGION, SANCTUM_ENTRANCE_AP_REGION, QUINTAR_SANCTUM_AP_REGION, BOOMER_SOCIETY_AP_REGION, OKIMOTO_NS_AP_REGION, SALMON_PASS_EAST_AP_REGION, SALMON_RIVER_AP_REGION, CASTLE_SEQUOIA_AP_REGION, TOWER_OF_ZOT_CAMP_AP_REGION, POKO_POKO_DESERT_AP_REGION, SARA_SARA_BAZAAR_AP_REGION, IBEK_CAVE_MOUTH_AP_REGION, BEACH_BIRDS_NEST_AP_REGION, BEAURIOR_BOARDWALK_AP_REGION, VOLCANO_PEAK_AP_REGION, BEAURIOR_BOSS_ANTECHAMBER_AP_REGION, ANCIENT_RESERVOIR_AP_REGION, SHOUDU_DOCKSIDE_AP_REGION, SHOUDU_PROVINCE_PROPER_AP_REGION, SHOUDU_ELEVATOR_BASE_AP_REGION, SHOUDU_FIELDS_WEST_SCAFFOLDING_AP_REGION, SKY_ARENA_AP_REGION, GANYMEDE_SHRINE_AP_REGION, GANYMEDE_STEEPLE_AP_REGION, THE_UNDERCITY_HOMEPOINT_AND_BLADE_MASTER_AP_REGION, PIPELINE_NORTH_AP_REGION, PIPELINE_SOUTH_AP_REGION, SEQUOIA_ATHENAEUM_ENTRANCE_AP_REGION, LOWER_ICE_LAKES_AP_REGION, SOUVENIR_SHOP_AP_REGION, SLIP_GLIDE_RIDE_EXIT_AP_REGION, UPPER_ICE_LAKES_AP_REGION, TALL_TALL_SAVE_POINT_AP_REGION, PEAK_RAMPARTS_AP_REGION, SLIP_GLIDE_RIDE_ENTRANCE_AP_REGION, LANDS_END_AP_REGION, OWL_TREE_AP_REGION, QUINTAR_RESERVE_AP_REGION, EUROPA_SHRINE_AP_REGION, EACLANEYA_ENTRANCE_AP_REGION, SALMON_ROOM_AP_REGION, LABYRINTH_CORE_AP_REGION, DIONE_SHRINE_AP_REGION, DIONE_ROOF_AP_REGION, THE_SEQUOIA_AP_REGION, CHALICE_FOOT_AP_REGION, THE_OPEN_SEA_AP_REGION, CONTINENTAL_TRAM_AP_REGION, POSEIDON_SHRINE_ROOF_AP_REGION, NEPTUNE_SHRINE_AP_REGION, THE_OLD_WORLD_AP_REGION, THE_NEW_WORLD_AP_REGION, DISCIPLINE_HOLLOW_AP_REGION, MODDED_ZONE_AP_REGION],
                     {SPAWNING_MEADOWS_AP_REGION: lambda state: state.has(HOMEPOINT_AP_SPAWN_NAME, player) or state.has(HOMEPOINT_OLD_NANS_WATERING_HOLE_NAME, player),
                      DELENDE_PLAINS_AP_REGION: lambda state: (state.has(HOMEPOINT_THE_PALE_GROTTO_ENTRANCE_NAME, player) or state.has(HOMEPOINT_SOILED_DEN_NAME, player) or state.has(HOMEPOINT_FISH_HATCHERY_NAME, player)),
                      DELENDE_HIGH_BRIDGES_AP_REGION: lambda state: (state.has(HOMEPOINT_CABIN_ON_THE_CLIFF_NAME, player) or state.has(HOMEPOINT_DELENDE_FALLS_NAME, player)),
@@ -1229,8 +1268,9 @@ def connect_menu_region(world: "CrystalProjectWorld", options: CrystalProjectOpt
                      SARA_SARA_BAZAAR_AP_REGION: lambda state: (state.has(HOMEPOINT_SARA_SARA_BAZAAR_PORT_NAME, player) or state.has(HOMEPOINT_POKO_POKO_WEST_GATE_NAME, player) or state.has(HOMEPOINT_POKO_POKO_EAST_GATE_NAME, player)),
                      IBEK_CAVE_MOUTH_AP_REGION: lambda state: state.has(HOMEPOINT_IBEKS_CAVE_NAME, player),
                      BEACH_BIRDS_NEST_AP_REGION: lambda state: state.has(HOMEPOINT_BEACH_BIRDS_NEST_NAME, player),
-                     BEAURIOR_VOLCANO_AP_REGION: lambda state: state.has(HOMEPOINT_BEAURIOR_ROCK_NAME, player),
-                     BEAURIOR_ROCK_AP_REGION: lambda state: (state.has(HOMEPOINT_BEAURIOR_VOLCANO_PEAK_NAME, player) or state.has(HOMEPOINT_BOSS_ROOM_NAME, player)),
+                     BEAURIOR_BOARDWALK_AP_REGION: lambda state: state.has(HOMEPOINT_BEAURIOR_ROCK_NAME, player),
+                     VOLCANO_PEAK_AP_REGION: lambda state: state.has(HOMEPOINT_BEAURIOR_VOLCANO_PEAK_NAME, player),
+                     BEAURIOR_BOSS_ANTECHAMBER_AP_REGION: lambda state: state.has(HOMEPOINT_BOSS_ROOM_NAME, player),
                      ANCIENT_RESERVOIR_AP_REGION: lambda state: (state.has(HOMEPOINT_ANCIENT_RESERVOIR_ENTRANCE_NAME, player) or state.has(HOMEPOINT_MAIN_RESERVOIR_CHAMBER_NAME, player)),
                      SHOUDU_DOCKSIDE_AP_REGION: lambda state: state.has(HOMEPOINT_SHOUDU_PORT_NAME, player) or state.has(HOMEPOINT_SHANTY_INN_NAME, player),
                      SHOUDU_PROVINCE_PROPER_AP_REGION: lambda state: state.has(HOMEPOINT_SHOUDU_MARKET_NAME, player) or state.has(HOMEPOINT_PRIZE_COUNTER_NAME, player),
