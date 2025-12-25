@@ -642,7 +642,7 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         #Sara Sara Beach East
         LocationData(SARA_SARA_BEACH_EAST_AP_REGION, SARA_SARA_BEACH_DISPLAY_NAME + " Chest - How dare you stand where he stood?", 1084 + treasure_index_offset),  # Money chest
         #Below Ibek's Cave Mouth West
-        LocationData(BELOW_IBEK_CAVE_WEST_AP_REGION, SARA_SARA_BEACH_DISPLAY_NAME + " Chest - Just a hop over from the Bazaar", 1085 + treasure_index_offset),  # Tonic Pouch chest; #3 "glittering in the sun" check from west to east
+        LocationData(BELOW_IBEK_CAVE_WEST_AP_REGION, SARA_SARA_BEACH_DISPLAY_NAME + " Chest - Just a hop up and over the Bazaar east stables", 1085 + treasure_index_offset),  # Tonic Pouch chest; #3 "glittering in the sun" check from west to east
         #Below Ibek's Cave Mouth East
         LocationData(BELOW_IBEK_CAVE_EAST_AP_REGION, SARA_SARA_BEACH_DISPLAY_NAME + " Chest - Glittering in the sun east of Ibek's Cave", 1083 + treasure_index_offset),  # Tincture Pouch chest; #8 "glittering in the sun" check from west to east
 
@@ -655,7 +655,7 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         LocationData(SARA_SARA_BEACH_EAST_AP_REGION, SARA_SARA_BEACH_DISPLAY_NAME + " NPC - Silver on the eastern rocks", 2687 + npc_index_offset),  # Ingot
         LocationData(SARA_SARA_BEACH_EAST_AP_REGION, SARA_SARA_BEACH_DISPLAY_NAME + " NPC - Silver beheld by Dr Cool Aids", 2691 + npc_index_offset, lambda state: logic.has_horizontal_movement(state) or logic.has_vertical_movement(state)),  # Ore
         #Below Ibek's Cave Mouth West
-        LocationData(BELOW_IBEK_CAVE_WEST_AP_REGION, SARA_SARA_BEACH_DISPLAY_NAME + " NPC - Just a hop over from the Bazaar for silver", 2683 + npc_index_offset),  # Dust; #2 "glittering in the sun" check from west to east
+        LocationData(BELOW_IBEK_CAVE_WEST_AP_REGION, SARA_SARA_BEACH_DISPLAY_NAME + " NPC - Just a hop up and over the Bazaar east stables for silver", 2683 + npc_index_offset),  # Dust; #2 "glittering in the sun" check from west to east
         LocationData(BELOW_IBEK_CAVE_WEST_AP_REGION, SARA_SARA_BEACH_DISPLAY_NAME + " NPC - Just two hops from the Bazaar for silver", 2688 + npc_index_offset),  # Silver; #4 "glittering in the sun" check from west to east
         #Directly Below Ibek's Cave Mouth
         LocationData(BELOW_IBEK_CAVE_MOUTH_AP_REGION, SARA_SARA_BEACH_DISPLAY_NAME + " NPC - Silver glittering in the sun below Ibek's Cave mouth", 2684 + npc_index_offset),  # Dust; #6 "glittering in the sun" check from west to east
@@ -926,36 +926,41 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         LocationData(GANYMEDE_STEEPLE_AP_REGION, GANYMEDE_SHRINE_DISPLAY_NAME + " Chest - Drop down from the top", 1594 + treasure_index_offset),
 
         #Beaurior Volcano
-        #Treasure chests
-        LocationData(BEAURIOR_VOLCANO_AP_REGION, BEAURIOR_VOLCANO_DISPLAY_NAME + " Chest - Beaurior Rock entrance", 3770 + treasure_index_offset), #Fenix Syrup chest
-	    LocationData(BEAURIOR_VOLCANO_AP_REGION, BEAURIOR_VOLCANO_DISPLAY_NAME + " Chest - Outcropping above the fog", 1168 + treasure_index_offset), #Temporal Blade chest
-	    LocationData(BEAURIOR_VOLCANO_AP_REGION, BEAURIOR_VOLCANO_DISPLAY_NAME + " Chest - Tricky jumps past Rock entrance", 2750 + treasure_index_offset), #Tome of Light chest
+        #Beaurior Boardwalk
+        LocationData(BEAURIOR_BOARDWALK_AP_REGION, BEAURIOR_VOLCANO_DISPLAY_NAME + " Chest - Beaurior Rock entrance", 3770 + treasure_index_offset), #Fenix Syrup chest
+	    LocationData(BEAURIOR_BOARDWALK_AP_REGION, BEAURIOR_VOLCANO_DISPLAY_NAME + " Chest - Outcropping above the fog", 1168 + treasure_index_offset), #Temporal Blade chest
+	    LocationData(BEAURIOR_BOARDWALK_AP_REGION, BEAURIOR_VOLCANO_DISPLAY_NAME + " Chest - Tricky jumps past Rock entrance", 2750 + treasure_index_offset), #Tome of Light chest
+        #Volcano Peak
+        LocationData(VOLCANO_PEAK_AP_REGION, BEAURIOR_VOLCANO_DISPLAY_NAME + " NPC - Summit Gold", 2836 + npc_index_offset),  # Ore Beaurior Volcano at the top
+        #Valkyrie Watchtower
+        LocationData(VALKYRIE_WATCHTOWER_AP_REGION, "Overpass Chest - West of Valkyrie Watchtower", 3540 + treasure_index_offset),  # (1, 129, 62) 7th Overpass Scrap on main map
 
         #Beaurior Rock
-        #Treasure chests
-        LocationData(BEAURIOR_ROCK_AP_REGION, BEAURIOR_ROCK_DISPLAY_NAME + " Chest - B4 big lava room with optional boss", 1796 + treasure_index_offset, lambda state: logic.has_key(state, SMALL_KEY, 2)), #Ether chest
-	    LocationData(BEAURIOR_ROCK_AP_REGION, BEAURIOR_ROCK_DISPLAY_NAME + " Chest - Caged in far corner of B4 big lava room with optional boss", 481 + treasure_index_offset, lambda state: logic.has_key(state, SMALL_KEY, 2)), #Guard Crown chest
-	    LocationData(BEAURIOR_ROCK_AP_REGION, BEAURIOR_ROCK_DISPLAY_NAME + " Chest - Caged through secret tunnel in B4 big lava room with optional boss", 724 + treasure_index_offset, lambda state: logic.has_key(state, SMALL_KEY, 2)), #Halberd chest
-	    LocationData(BEAURIOR_ROCK_AP_REGION, BEAURIOR_ROCK_DISPLAY_NAME + " Chest - Island in B4 big lava room with optional boss", 1682 + treasure_index_offset, lambda state: logic.has_key(state, SMALL_KEY, 2)), #Small Key chest
-        LocationData(BEAURIOR_ROCK_AP_REGION, BEAURIOR_ROCK_DISPLAY_NAME + " Chest - Elevator down from entrance to happy spike land", 894 + treasure_index_offset), #Small Key chest
-        LocationData(BEAURIOR_ROCK_AP_REGION, BEAURIOR_ROCK_DISPLAY_NAME + " Chest - B3 balcony above the lava", 1337 + treasure_index_offset, lambda state: logic.has_key(state, SMALL_KEY)), #Small Key chest
-        LocationData(BEAURIOR_ROCK_AP_REGION, BEAURIOR_ROCK_DISPLAY_NAME + " Chest - B2 with the Lets Make a Deal doors", 2973 + treasure_index_offset, lambda state: logic.has_key(state, SMALL_KEY, 2)), #Potion Pouch chest
-        LocationData(BEAURIOR_ROCK_AP_REGION, BEAURIOR_ROCK_DISPLAY_NAME + " Chest - B1 overlooking the catwalks room", 818 + treasure_index_offset, lambda state: logic.has_key(state, SMALL_KEY, 2)), #Small Key chest
-        LocationData(BEAURIOR_ROCK_AP_REGION, BEAURIOR_ROCK_DISPLAY_NAME + " Chest - B1 square pokeball room", 2916 + treasure_index_offset, lambda state: logic.has_key(state, SMALL_KEY, 2)), #map chest
-        LocationData(BEAURIOR_ROCK_AP_REGION, BEAURIOR_ROCK_DISPLAY_NAME + " Chest - B3 behind wrought-iron fence", 899 + treasure_index_offset, lambda state: logic.has_key(state, SMALL_KEY, 2)), #Shelter Dress chest
-        LocationData(BEAURIOR_ROCK_AP_REGION, BEAURIOR_ROCK_DISPLAY_NAME + " Chest - B3 ominous green dumplings room", 1797 + treasure_index_offset, lambda state: logic.has_key(state, SMALL_KEY, 2)), #Fenix Juice chest
-        LocationData(BEAURIOR_ROCK_AP_REGION, BEAURIOR_ROCK_DISPLAY_NAME + " Chest - B2 danger hops back to purple", 2044 + treasure_index_offset, lambda state: logic.has_key(state, SMALL_KEY, 4)), #Ether Pouch chest
-        LocationData(BEAURIOR_ROCK_AP_REGION, BEAURIOR_ROCK_DISPLAY_NAME + " Chest - B1 cheeky lava platforming 1", 2041 + treasure_index_offset, lambda state: logic.has_key(state, SMALL_KEY, 4)), #Potion
-        LocationData(BEAURIOR_ROCK_AP_REGION, BEAURIOR_ROCK_DISPLAY_NAME + " Chest - B1 cheeky lava platforming 2", 1799 + treasure_index_offset, lambda state: logic.has_key(state, SMALL_KEY, 4)), #Ether
-        LocationData(BEAURIOR_ROCK_AP_REGION, BEAURIOR_ROCK_DISPLAY_NAME + " Chest - B1 jump to odd ice block", 2040 + treasure_index_offset, lambda state: logic.has_key(state, SMALL_KEY, 4)), #Cold Touch chest
-        LocationData(BEAURIOR_ROCK_AP_REGION, BEAURIOR_ROCK_DISPLAY_NAME + " Chest - Top floor ominous lamps room", 1683 + treasure_index_offset, lambda state: logic.has_key(state, SMALL_KEY, 4)), #Boss Key chest
-        LocationData(BEAURIOR_ROCK_AP_REGION, "Overpass Chest - West of Valkyrie Watchtower", 3540 + treasure_index_offset),  # (1, 129, 62) 7th Overpass Scrap on main map
-
-        #NPCs
-        LocationData(BEAURIOR_ROCK_AP_REGION, BEAURIOR_ROCK_DISPLAY_NAME + " NPC - Gold in B4 big lava room with optional boss", 2822 + npc_index_offset, lambda state: logic.has_key(state, SMALL_KEY) and logic.has_horizontal_movement(state)), #Gold Ingot
-        LocationData(BEAURIOR_ROCK_AP_REGION, BEAURIOR_ROCK_DISPLAY_NAME + " NPC - B1 cheeky lava platforming Gold", 2823 + npc_index_offset, lambda state: logic.has_key(state, SMALL_KEY, 4)), #Dust
-        LocationData(BEAURIOR_ROCK_AP_REGION, BEAURIOR_ROCK_DISPLAY_NAME + " NPC - B1 Magic Well friendos hiding in the pillars", 2824 + npc_index_offset, lambda state: logic.has_key(state, SMALL_KEY, 4) and logic.has_horizontal_movement(state)), #Ore
-        LocationData(BEAURIOR_ROCK_AP_REGION, BEAURIOR_VOLCANO_DISPLAY_NAME + " NPC - Summit Gold", 2836 + npc_index_offset, lambda state: logic.has_key(state, SMALL_KEY, 4) and logic.has_key(state, BEAURIOR_BOSS_KEY)), #Ore Beaurior Volcano but it's at the top so Rock it is
+        #Beaurior Rock Mudroom and Happy Spike Land
+        LocationData(BEAURIOR_ROCK_MUDROOM_AND_HAPPY_SPIKE_LAND_AP_REGION, BEAURIOR_ROCK_DISPLAY_NAME + " Chest - Elevator down from entrance to happy spike land", 894 + treasure_index_offset),  # Small Key chest
+        #We Have Only Begun to Beaurior Rock
+        LocationData(WE_HAVE_ONLY_BEGUN_TO_BEAURIOR_ROCK_AP_REGION, BEAURIOR_ROCK_DISPLAY_NAME + " Chest - B3 balcony above the lava", 1337 + treasure_index_offset), #Small Key chest
+        LocationData(WE_HAVE_ONLY_BEGUN_TO_BEAURIOR_ROCK_AP_REGION, BEAURIOR_ROCK_DISPLAY_NAME + " Chest - Caged in far corner of B4 big lava room with optional boss", 481 + treasure_index_offset),  # Guard Crown chest
+        #Gold Across From Ancient Sword
+        LocationData(GOLD_ACROSS_FROM_ANCIENT_SWORD_AP_REGION, BEAURIOR_ROCK_DISPLAY_NAME + " NPC - Gold in B4 big lava room with optional boss", 2822 + npc_index_offset), #Gold Ingot
+        #Beaurior Rock Main
+        LocationData(BEAURIOR_ROCK_MAIN_AP_REGION, BEAURIOR_ROCK_DISPLAY_NAME + " Chest - B2 with the Lets Make a Deal doors", 2973 + treasure_index_offset), #Potion Pouch chest
+        LocationData(BEAURIOR_ROCK_MAIN_AP_REGION, BEAURIOR_ROCK_DISPLAY_NAME + " Chest - What's behind Door Number 3? Ominous lamp room!", 1683 + treasure_index_offset, lambda state: logic.has_key(state, SMALL_KEY, 4)),  # Boss Key chest
+        LocationData(BEAURIOR_ROCK_MAIN_AP_REGION, BEAURIOR_ROCK_DISPLAY_NAME + " Chest - B4 big lava room with optional boss", 1796 + treasure_index_offset), #Ether chest
+        LocationData(BEAURIOR_ROCK_MAIN_AP_REGION, BEAURIOR_ROCK_DISPLAY_NAME + " Chest - Caged through secret tunnel in B4 big lava room with optional boss", 724 + treasure_index_offset),  # Halberd chest
+        LocationData(BEAURIOR_ROCK_MAIN_AP_REGION, BEAURIOR_ROCK_DISPLAY_NAME + " Chest - Island in B4 big lava room with optional boss", 1682 + treasure_index_offset),  # Small Key chest
+        LocationData(BEAURIOR_ROCK_MAIN_AP_REGION, BEAURIOR_ROCK_DISPLAY_NAME + " Chest - B1 square pokeball room", 2916 + treasure_index_offset), #map chest
+        LocationData(BEAURIOR_ROCK_MAIN_AP_REGION, BEAURIOR_ROCK_DISPLAY_NAME + " Chest - B1 overlooking the catwalks room", 818 + treasure_index_offset), #Small Key chest
+        LocationData(BEAURIOR_ROCK_MAIN_AP_REGION, BEAURIOR_ROCK_DISPLAY_NAME + " Chest - B3 ominous green dumplings room", 1797 + treasure_index_offset), #Fenix Juice chest
+        LocationData(BEAURIOR_ROCK_MAIN_AP_REGION, BEAURIOR_ROCK_DISPLAY_NAME + " Chest - B3 behind wrought-iron fence", 899 + treasure_index_offset), #Shelter Dress chest
+        #Magic Well Friendos
+        LocationData(MAGIC_WELL_FRIENDOS_AP_REGION, BEAURIOR_ROCK_DISPLAY_NAME + " NPC - B1 Magic Well friendos hiding in the pillars", 2824 + npc_index_offset), #Ore
+        #Beaurior Rock Highest Catwalk
+        LocationData(BEAURIOR_ROCK_HIGHEST_CATWALK_AP_REGION, BEAURIOR_ROCK_DISPLAY_NAME + " Chest - B2 danger hops back to purple", 2044 + treasure_index_offset), #Ether Pouch chest
+        LocationData(BEAURIOR_ROCK_HIGHEST_CATWALK_AP_REGION, BEAURIOR_ROCK_DISPLAY_NAME + " NPC - B1 cheeky lava platforming Gold", 2823 + npc_index_offset), #Dust
+        LocationData(BEAURIOR_ROCK_HIGHEST_CATWALK_AP_REGION, BEAURIOR_ROCK_DISPLAY_NAME + " Chest - B1 cheeky lava platforming 1", 2041 + treasure_index_offset), #Potion
+        LocationData(BEAURIOR_ROCK_HIGHEST_CATWALK_AP_REGION, BEAURIOR_ROCK_DISPLAY_NAME + " Chest - B1 cheeky lava platforming 2", 1799 + treasure_index_offset), #Ether
+        LocationData(BEAURIOR_ROCK_HIGHEST_CATWALK_AP_REGION, BEAURIOR_ROCK_DISPLAY_NAME + " Chest - B1 jump to odd ice block", 2040 + treasure_index_offset), #Cold Touch chest
 
         #Lake Delende
         #Treasure chests
@@ -1438,7 +1443,7 @@ def get_crystal_locations(player: int, options: CrystalProjectOptions | None) ->
         LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + SAMURAI_JOB_CRYSTAL_LOCATION, 1206 + crystal_index_offset, lambda state: logic.is_area_in_level_range(state, THIRD_SKY_ARENA_FIGHT_LEVEL)),
         # Can just swim or defeat the Undercity Masters; Blade Master: Ibek or Owl, Shadow Master: Horizontal or Fish, Duel Master: Ibek or Owl; to defeat all masters, you either need both ibek + quintar, owl, or fish
         LocationData(THE_UNDERCITY_HOMEPOINT_AND_BLADE_MASTER_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + ASSASSIN_JOB_CRYSTAL_LOCATION, 1204 + crystal_index_offset, lambda state: (logic.has_horizontal_movement(state) and logic.has_vertical_movement(state)) or logic.has_glide(state) or logic.has_swimming(state)),
-        LocationData(BEAURIOR_ROCK_AP_REGION, BEAURIOR_VOLCANO_DISPLAY_NAME + VALKYRIE_JOB_CRYSTAL_LOCATION, 1086 + crystal_index_offset, lambda state: logic.has_key(state, SMALL_KEY, 4) and logic.has_key(state, BEAURIOR_BOSS_KEY)),
+        LocationData(VOLCANO_PEAK_AP_REGION, BEAURIOR_VOLCANO_DISPLAY_NAME + VALKYRIE_JOB_CRYSTAL_LOCATION, 1086 + crystal_index_offset),
         LocationData(SLIP_GLIDE_RIDE_AP_REGION, SLIP_GLIDE_RIDE_DISPLAY_NAME + SUMMONER_JOB_CRYSTAL_LOCATION, 1714 + crystal_index_offset, lambda state: logic.has_key(state, RED_DOOR_KEY, 3)),
         # (404, 243, -386)
         LocationData(PEAK_RAMPARTS_AP_REGION, CASTLE_RAMPARTS_DISPLAY_NAME + BEASTMASTER_JOB_CRYSTAL_LOCATION, 1370 + crystal_index_offset, lambda state: logic.has_glide(state)),
@@ -1489,8 +1494,8 @@ def get_boss_locations(player: int, options: CrystalProjectOptions | None) -> Li
         LocationData(SHADOW_MASTER_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " Boss - Shadow Master", 1940 + boss_index_offset, lambda state: logic.is_area_in_level_range(state, SHADOW_MASTER_FIGHT_LEVEL)), #Monster ID: 144
         #Duel Master old rule: (logic.has_vertical_movement(state) or logic.has_glide(state))
         LocationData(DUEL_MASTER_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " Boss - Duel Master", 1941 + boss_index_offset, lambda state: logic.is_area_in_level_range(state, DUEL_MASTER_FIGHT_LEVEL)), #Monster ID: 146
-        LocationData(BEAURIOR_ROCK_AP_REGION, BEAURIOR_ROCK_DISPLAY_NAME + " Boss - Ancient Sword", 821 + boss_index_offset, lambda state: logic.has_key(state, SMALL_KEY, 2) and logic.is_area_in_level_range(state, ANCIENT_SWORD_FIGHT_LEVEL)), #Monster ID: 59
-        LocationData(BEAURIOR_ROCK_AP_REGION, BEAURIOR_ROCK_DISPLAY_NAME + " Boss - Iguanadon & Iguanadin", 862 + boss_index_offset, lambda state: logic.has_key(state, SMALL_KEY, 4) and logic.has_key(state, BEAURIOR_BOSS_KEY) and logic.is_area_in_level_range(state, IGUANADON_AND_DIN_FIGHT_LEVEL)), #Monster ID: 78 and 100
+        LocationData(BEAURIOR_ROCK_MAIN_AP_REGION, BEAURIOR_ROCK_DISPLAY_NAME + " Boss - Ancient Sword", 821 + boss_index_offset, lambda state: logic.is_area_in_level_range(state, ANCIENT_SWORD_FIGHT_LEVEL)), #Monster ID: 59
+        LocationData(BEAURIOR_BOSS_ROOM_AP_REGION, BEAURIOR_ROCK_DISPLAY_NAME + " Boss - Iguanadon & Iguanadin", 862 + boss_index_offset, lambda state: logic.is_area_in_level_range(state, IGUANADON_AND_DIN_FIGHT_LEVEL)), #Monster ID: 78 and 100
         LocationData(EASTERN_CHASM_AP_REGION, EASTERN_CHASM_DISPLAY_NAME + " Boss - Undergrowth", 3476 + boss_index_offset, lambda state: logic.is_area_in_level_range(state, UNDERGROWTH_FIGHT_LEVEL)), #Monster ID: 293
         LocationData(SEQUOIA_ATHENAEUM_ENTRANCE_AP_REGION, TALL_TALL_HEIGHTS_DISPLAY_NAME + " Boss - Hermetic", 3637 + boss_index_offset, lambda state: logic.is_area_in_level_range(state, HERMETIC_FIGHT_LEVEL)), #Monster ID: 309
         LocationData(LANDS_END_AP_REGION, LANDS_END_DISPLAY_NAME + " Boss - The Owlbear", 2104 + boss_index_offset, lambda state: logic.is_area_in_level_range(state, OWLBEAR_FIGHT_LEVEL)), #Monster ID: 143
@@ -1991,8 +1996,8 @@ def get_region_completion_locations() -> List[LocationData]:
         LocationData(SHOUDU_DOCKSIDE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Region Completion", 6033 + regionsanity_index_offset, regionsanity=True),
         LocationData(THE_UNDERCITY_HOMEPOINT_AND_BLADE_MASTER_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + " Region Completion", 6034 + regionsanity_index_offset, regionsanity=True),
         LocationData(GANYMEDE_SHRINE_AP_REGION, GANYMEDE_SHRINE_DISPLAY_NAME + " Region Completion", 6035 + regionsanity_index_offset, regionsanity=True),
-        LocationData(BEAURIOR_VOLCANO_AP_REGION, BEAURIOR_VOLCANO_DISPLAY_NAME + " Region Completion", 6036 + regionsanity_index_offset, regionsanity=True),
-        LocationData(BEAURIOR_ROCK_AP_REGION, BEAURIOR_ROCK_DISPLAY_NAME + " Region Completion", 6037 + regionsanity_index_offset, regionsanity=True),
+        LocationData(BEAURIOR_BOARDWALK_AP_REGION, BEAURIOR_VOLCANO_DISPLAY_NAME + " Region Completion", 6036 + regionsanity_index_offset, regionsanity=True),
+        LocationData(BEAURIOR_ROCK_MAIN_AP_REGION, BEAURIOR_ROCK_DISPLAY_NAME + " Region Completion", 6037 + regionsanity_index_offset, regionsanity=True),
         LocationData(LAKE_DELENDE_AP_REGION, LAKE_DELENDE_DISPLAY_NAME + " Region Completion", 6038 + regionsanity_index_offset, regionsanity=True),
         LocationData(QUINTAR_RESERVE_AP_REGION, QUINTAR_RESERVE_DISPLAY_NAME + " Region Completion", 6039 + regionsanity_index_offset, regionsanity=True),
         LocationData(DIONE_SHRINE_AP_REGION, DIONE_SHRINE_DISPLAY_NAME + " Region Completion", 6040 + regionsanity_index_offset, regionsanity=True),

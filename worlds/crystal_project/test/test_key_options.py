@@ -74,9 +74,9 @@ class TestKeyRings(MultiuseKeyMethods):
 
     def test_has_beaurior_keyring(self):
         self.collect_mounts_and_progressive_levels_and_passes()
-        self.assertFalse(self.can_reach_location("Beaurior Volcano Crystal - Valkyrie"))
+        self.assertFalse(self.can_reach_location("Beaurior Rock Chest - What's behind Door Number 3? Ominous lamp room!"))
         self.collect(self.get_item_by_name(BEAURIOR_KEY_RING))
-        self.assertTrue(self.can_reach_location("Beaurior Volcano Crystal - Valkyrie"))
+        self.assertTrue(self.can_reach_location("Beaurior Rock Chest - What's behind Door Number 3? Ominous lamp room!"))
 
     def test_has_slip_glide_ride_keyring(self):
         self.collect_mounts_and_progressive_levels_and_passes()
