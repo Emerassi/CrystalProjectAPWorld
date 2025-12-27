@@ -285,7 +285,10 @@ OWL_TREE_AP_REGION = "Owl Tree"
 #Slip Glide Ride start
 SLIP_GLIDE_RIDE_ENTRANCE_AP_REGION = "Slip Glide Ride Entrance"
 SLIP_GLIDE_RIDE_ENTRANCE_AP_REGION_TELEPORT_LOCATION = "119,182,-520"
-SLIP_GLIDE_RIDE_AP_REGION = "Slip Glide Ride"
+SLIP_GLIDE_RIDE_ROOM_ONE_AP_REGION = "Slip Glide Ride 1st Room"
+SLIP_GLIDE_RIDE_ROOM_TWO_AP_REGION = "Slip Glide Ride Through the Locked Red Door"
+SLIP_GLIDE_RIDE_ROOM_THREE_AP_REGION = "Slip Gide Ride Through the 2nd Locked Red Door"
+RED_GUARDIAN_AP_REGION = "Red Guardian's Icy Chamber Above the Tar"
 #Slip Glide Ride end
 SEQUOIA_ATHENAEUM_AP_REGION = "Sequoia Athenaeum"
 SEQUOIA_ATHENAEUM_AP_REGION_TELEPORT_LOCATION = "415,196,-546"

@@ -934,14 +934,13 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
                      CHALICE_FOOT_AP_REGION: lambda state: logic.has_glide(state)})
     #Tall, Tall Heights end
     #Northern Cave start
-    fancy_add_exits(world, UPPER_NORTHERN_CAVE_AP_REGION, [SLIP_TO_CAVE_OR_SOUVENIRS_AP_REGION, SLIP_GLIDE_RIDE_AP_REGION],
-                    {SLIP_GLIDE_RIDE_AP_REGION: lambda state: logic.has_glide(state) and logic.has_vertical_movement(state),
-                     SLIP_TO_CAVE_OR_SOUVENIRS_AP_REGION: lambda state: logic.has_vertical_movement(state)})
+    fancy_add_exits(world, UPPER_NORTHERN_CAVE_AP_REGION, [UPPER_ICE_LAKES_AP_REGION, SLIP_TO_CAVE_OR_SOUVENIRS_AP_REGION, MIDDLE_NORTHERN_CAVE_AP_REGION])
     fancy_add_exits(world, MIDDLE_NORTHERN_CAVE_AP_REGION, [ICE_CELL_AP_REGION, LOWER_NORTHERN_CAVE_AP_REGION])
     fancy_add_exits(world, ICE_CELL_AP_REGION, [LOWER_NORTHERN_CAVE_AP_REGION, SLIP_GLIDE_RIDE_ENTRANCE_AP_REGION],
                     {LOWER_NORTHERN_CAVE_AP_REGION: lambda state: logic.has_key(state, ICE_CELL_KEY),
-                     SLIP_GLIDE_RIDE_ENTRANCE_AP_REGION: lambda state: logic.can_push_ice_block_and_goat(state, NORTHERN_CAVE_DISPLAY_NAME) or logic.has_glide(state)})
-    fancy_add_exits(world, LOWER_NORTHERN_CAVE_AP_REGION, [ICE_CELL_AP_REGION, LOWER_ICE_LAKES_AP_REGION])
+                     SLIP_GLIDE_RIDE_ENTRANCE_AP_REGION: lambda state: logic.has_glide(state)})
+    fancy_add_exits(world, LOWER_NORTHERN_CAVE_AP_REGION, [ICE_CELL_AP_REGION, LOWER_ICE_LAKES_AP_REGION],
+                    {ICE_CELL_AP_REGION: lambda state: logic.has_key(state, ICE_CELL_KEY)})
     #Northern Cave end
     #Land's End start
     fancy_add_exits(world, LANDS_END_AP_REGION, [LANDS_END_NORTHERN_PEAK_AP_REGION, OWL_TREE_AP_REGION, ATOP_FISH_HATCHERY_AP_REGION, HEART_TARN_AP_REGION, SOUTH_SALMON_RIVER_AP_REGION, ATOP_DAM_AP_REGION, LOWER_ICE_LAKES_AP_REGION, LANDS_END_COTTAGE_RIDGE_AP_REGION, THE_OPEN_SEA_AP_REGION, VOLCANO_PEAK_AP_REGION],
@@ -960,11 +959,18 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
     fancy_add_exits(world, OWL_TREE_AP_REGION, [LANDS_END_AP_REGION])
     #Land's End end
     #Slip Glide Ride start
-    fancy_add_exits(world, SLIP_GLIDE_RIDE_ENTRANCE_AP_REGION, [ICE_CELL_AP_REGION, SLIP_GLIDE_RIDE_AP_REGION],
+    fancy_add_exits(world, SLIP_GLIDE_RIDE_ENTRANCE_AP_REGION, [ICE_CELL_AP_REGION, SLIP_GLIDE_RIDE_ROOM_ONE_AP_REGION, SLIP_GLIDE_RIDE_ROOM_TWO_AP_REGION, SLIP_GLIDE_RIDE_ROOM_THREE_AP_REGION],
                     {ICE_CELL_AP_REGION: lambda state: logic.has_glide(state),
-                     SLIP_GLIDE_RIDE_AP_REGION: lambda state: logic.has_glide(state)})
-    fancy_add_exits(world, SLIP_GLIDE_RIDE_AP_REGION, [SLIP_GLIDE_RIDE_EXIT_AP_REGION],
-                    {SLIP_GLIDE_RIDE_EXIT_AP_REGION: lambda state: logic.has_vertical_movement(state) and logic.has_glide(state) and logic.has_key(state, RED_DOOR_KEY, 3)})
+                     SLIP_GLIDE_RIDE_ROOM_ONE_AP_REGION: lambda state: logic.has_vertical_movement(state),
+                     SLIP_GLIDE_RIDE_ROOM_TWO_AP_REGION: lambda state: logic.has_key(state, RED_DOOR_KEY, 1) and logic.has_glide(state),
+                     SLIP_GLIDE_RIDE_ROOM_THREE_AP_REGION: lambda state: logic.has_key(state, RED_DOOR_KEY, 2)})
+    fancy_add_exits(world, SLIP_GLIDE_RIDE_ROOM_ONE_AP_REGION, [MENU_AP_REGION])
+    fancy_add_exits(world, SLIP_GLIDE_RIDE_ROOM_TWO_AP_REGION, [SLIP_GLIDE_RIDE_ROOM_ONE_AP_REGION],
+                    {SLIP_GLIDE_RIDE_ROOM_ONE_AP_REGION: lambda state: logic.has_glide(state)})
+    fancy_add_exits(world, SLIP_GLIDE_RIDE_ROOM_THREE_AP_REGION, [RED_GUARDIAN_AP_REGION],
+                    {RED_GUARDIAN_AP_REGION: lambda state: logic.has_key(state, RED_DOOR_KEY, 3) and (logic.has_horizontal_movement(state) or logic.has_vertical_movement(state))})
+    fancy_add_exits(world, RED_GUARDIAN_AP_REGION, [SLIP_GLIDE_RIDE_EXIT_AP_REGION],
+                    {SLIP_GLIDE_RIDE_EXIT_AP_REGION: lambda state: logic.has_glide(state)})
     #Slip Glide Ride end
     #Regionsanity: can't get out of Athenaeum because you can't reach the duck through the door
     fancy_add_exits(world, SEQUOIA_ATHENAEUM_AP_REGION, [MENU_AP_REGION])

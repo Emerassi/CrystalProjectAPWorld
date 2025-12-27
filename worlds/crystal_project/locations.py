@@ -1129,14 +1129,16 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         LocationData(OWL_TREE_AP_REGION, LANDS_END_DISPLAY_NAME + " NPC - Owl Drum", 1176 + npc_index_offset),
 
         #Slip Glide Ride
-        #Treasure chests
-        LocationData(SLIP_GLIDE_RIDE_AP_REGION, SLIP_GLIDE_RIDE_DISPLAY_NAME + " Chest - Back out to 1st room", 2554 + treasure_index_offset, lambda state: logic.has_key(state, RED_DOOR_KEY)), #Money chest
-        LocationData(SLIP_GLIDE_RIDE_AP_REGION, SLIP_GLIDE_RIDE_DISPLAY_NAME + " Chest - Climb up and fall down", 1172 + treasure_index_offset), #Plate of Lion chest
-        LocationData(SLIP_GLIDE_RIDE_AP_REGION, SLIP_GLIDE_RIDE_DISPLAY_NAME + " Chest - Sparks and tar", 1298 + treasure_index_offset), #Red Door Key chest
-        LocationData(SLIP_GLIDE_RIDE_AP_REGION, SLIP_GLIDE_RIDE_DISPLAY_NAME + " Chest - To the left through 2nd red lock", 1698 + treasure_index_offset, lambda state: logic.has_key(state, RED_DOOR_KEY, 2)), #Red Door Key chest
-        LocationData(SLIP_GLIDE_RIDE_AP_REGION, SLIP_GLIDE_RIDE_DISPLAY_NAME + " Chest - Through 1st red lock", 1716 + treasure_index_offset, lambda state: logic.has_key(state, RED_DOOR_KEY)), #Red Door Key chest
-        LocationData(SLIP_GLIDE_RIDE_AP_REGION, SLIP_GLIDE_RIDE_DISPLAY_NAME + " Chest - Past the mean Ibek jump", 1282 + treasure_index_offset, lambda state: logic.has_key(state, RED_DOOR_KEY)), #Sages Walker chest
-        LocationData(SLIP_GLIDE_RIDE_AP_REGION, SLIP_GLIDE_RIDE_DISPLAY_NAME + " Chest - Nickelodeon slime time :)", 1269 + treasure_index_offset), #Seekers Garb chest
+        #1st Room
+        LocationData(SLIP_GLIDE_RIDE_ROOM_ONE_AP_REGION, SLIP_GLIDE_RIDE_DISPLAY_NAME + " Chest - Nickelodeon slime time :)", 1269 + treasure_index_offset, lambda state: logic.has_glide(state)), #Seekers Garb chest
+        LocationData(SLIP_GLIDE_RIDE_ROOM_ONE_AP_REGION, SLIP_GLIDE_RIDE_DISPLAY_NAME + " Chest - Sparks and tar", 1298 + treasure_index_offset, lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)), #Red Door Key chest
+        LocationData(SLIP_GLIDE_RIDE_ROOM_ONE_AP_REGION, SLIP_GLIDE_RIDE_DISPLAY_NAME + " Chest - Climb up and fall down", 1172 + treasure_index_offset, lambda state: logic.has_vertical_movement(state) and logic.has_glide(state)), #Plate of Lion chest
+        #2nd Room
+        LocationData(SLIP_GLIDE_RIDE_ROOM_TWO_AP_REGION, SLIP_GLIDE_RIDE_DISPLAY_NAME + " Chest - Through 1st red lock", 1716 + treasure_index_offset), #Red Door Key chest
+        LocationData(SLIP_GLIDE_RIDE_ROOM_TWO_AP_REGION, SLIP_GLIDE_RIDE_DISPLAY_NAME + " Chest - Back out to 1st room", 2554 + treasure_index_offset), #Money chest
+        LocationData(SLIP_GLIDE_RIDE_ROOM_TWO_AP_REGION, SLIP_GLIDE_RIDE_DISPLAY_NAME + " Chest - Past the mean Ibek jump", 1282 + treasure_index_offset, lambda state: logic.has_vertical_movement(state)), #Sages Walker chest
+        #3rd Room
+        LocationData(SLIP_GLIDE_RIDE_ROOM_THREE_AP_REGION, SLIP_GLIDE_RIDE_DISPLAY_NAME + " Chest - To the left through 2nd red lock", 1698 + treasure_index_offset, lambda state: logic.has_glide(state)), #Red Door Key chest
 
         #Sequoia Athenaeum
         #Treasure chests
@@ -1444,7 +1446,7 @@ def get_crystal_locations(player: int, options: CrystalProjectOptions | None) ->
         # Can just swim or defeat the Undercity Masters; Blade Master: Ibek or Owl, Shadow Master: Horizontal or Fish, Duel Master: Ibek or Owl; to defeat all masters, you either need both ibek + quintar, owl, or fish
         LocationData(THE_UNDERCITY_HOMEPOINT_AND_BLADE_MASTER_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + ASSASSIN_JOB_CRYSTAL_LOCATION, 1204 + crystal_index_offset, lambda state: (logic.has_horizontal_movement(state) and logic.has_vertical_movement(state)) or logic.has_glide(state) or logic.has_swimming(state)),
         LocationData(VOLCANO_PEAK_AP_REGION, BEAURIOR_VOLCANO_DISPLAY_NAME + VALKYRIE_JOB_CRYSTAL_LOCATION, 1086 + crystal_index_offset),
-        LocationData(SLIP_GLIDE_RIDE_AP_REGION, SLIP_GLIDE_RIDE_DISPLAY_NAME + SUMMONER_JOB_CRYSTAL_LOCATION, 1714 + crystal_index_offset, lambda state: logic.has_key(state, RED_DOOR_KEY, 3)),
+        LocationData(RED_GUARDIAN_AP_REGION, SLIP_GLIDE_RIDE_DISPLAY_NAME + SUMMONER_JOB_CRYSTAL_LOCATION, 1714 + crystal_index_offset, lambda state: logic.has_glide(state)),
         # (404, 243, -386)
         LocationData(PEAK_RAMPARTS_AP_REGION, CASTLE_RAMPARTS_DISPLAY_NAME + BEASTMASTER_JOB_CRYSTAL_LOCATION, 1370 + crystal_index_offset, lambda state: logic.has_glide(state)),
         LocationData(CHALICE_RIM_AP_REGION, THE_CHALICE_OF_TAR_DISPLAY_NAME + MIMIC_JOB_CRYSTAL_LOCATION, 3701 + crystal_index_offset, lambda state: logic.has_glide(state)),
@@ -1499,7 +1501,7 @@ def get_boss_locations(player: int, options: CrystalProjectOptions | None) -> Li
         LocationData(EASTERN_CHASM_AP_REGION, EASTERN_CHASM_DISPLAY_NAME + " Boss - Undergrowth", 3476 + boss_index_offset, lambda state: logic.is_area_in_level_range(state, UNDERGROWTH_FIGHT_LEVEL)), #Monster ID: 293
         LocationData(SEQUOIA_ATHENAEUM_ENTRANCE_AP_REGION, TALL_TALL_HEIGHTS_DISPLAY_NAME + " Boss - Hermetic", 3637 + boss_index_offset, lambda state: logic.is_area_in_level_range(state, HERMETIC_FIGHT_LEVEL)), #Monster ID: 309
         LocationData(LANDS_END_AP_REGION, LANDS_END_DISPLAY_NAME + " Boss - The Owlbear", 2104 + boss_index_offset, lambda state: logic.is_area_in_level_range(state, OWLBEAR_FIGHT_LEVEL)), #Monster ID: 143
-        LocationData(SLIP_GLIDE_RIDE_AP_REGION, SLIP_GLIDE_RIDE_DISPLAY_NAME + " Boss - Red Guardian", 1713 + boss_index_offset, lambda state: logic.has_key(state, RED_DOOR_KEY, 3) and logic.is_area_in_level_range(state, RED_GUARDIAN_FIGHT_LEVEL)), #Monster ID: 224
+        LocationData(RED_GUARDIAN_AP_REGION, SLIP_GLIDE_RIDE_DISPLAY_NAME + " Boss - Red Guardian", 1713 + boss_index_offset, lambda state: logic.is_area_in_level_range(state, RED_GUARDIAN_FIGHT_LEVEL)), #Monster ID: 224
         LocationData(PEAK_RAMPARTS_AP_REGION, CASTLE_RAMPARTS_DISPLAY_NAME + " Boss - Rampart Demon", 1373 + boss_index_offset, lambda state: logic.has_glide(state) and logic.is_area_in_level_range(state, RAMPART_DEMON_FIGHT_LEVEL)), #Monster ID: 222
         LocationData(CONTINENTAL_TRAM_AP_REGION, CONTINENTAL_TRAM_DISPLAY_NAME + " Boss - Conscript", 1621 + boss_index_offset, lambda state: logic.is_area_in_level_range(state, CONSCRIPT_FIGHT_LEVEL)), #Monster ID: 242
         LocationData(LABYRINTH_CORE_AP_REGION, ANCIENT_LABYRINTH_DISPLAY_NAME + " Boss - Anubis", 2473 + boss_index_offset, lambda state: logic.is_area_in_level_range(state, ANUBIS_FIGHT_LEVEL)), #Monster ID: 117
