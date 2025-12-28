@@ -104,8 +104,13 @@ EAST_COBBLESTONE_CRAG_AP_REGION = "East Cobblestone Crag"
 #Cobblestone Crag end
 OKIMOTO_NS_AP_REGION = "Okimoto N.S."
 OKIMOTO_NS_AP_REGION_TELEPORT_LOCATION = "628,160,-178"
-GREENSHIRE_REPRISE_AP_REGION = "Greenshire Reprise"
-GREENSHIRE_REPRISE_AP_REGION_TELEPORT_LOCATION = "286,160,-253"
+#Greenshire Reprise start
+EAST_GREENSHIRE_AP_REGION = "East Greenshire Reprise"
+#Just south of Tall taunter chest
+EAST_GREENSHIRE_AP_REGION_TELEPORT_LOCATION = "286,160,-253"
+WEST_GREENSHIRE_AP_REGION = "West Greenshire Reprise"
+REPRISE_HEIGHTS_AP_REGION = "Greenshire Reprise Heights"
+#Greenshire Reprise end
 #Salmon Pass start
 SALMON_PASS_EAST_AP_REGION = "Salmon Pass East"
 SALMON_PASS_EAST_AP_REGION_TELEPORT_LOCATION = "222,161,-257"

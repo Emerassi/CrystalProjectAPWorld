@@ -522,17 +522,17 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
 
         #Greenshire Reprise
         #Treasure chests
-        LocationData(GREENSHIRE_REPRISE_AP_REGION, GREENSHIRE_REPRISE_DISPLAY_NAME + " Chest - Jump off bridge 4", 483 + treasure_index_offset, lambda state: logic.has_horizontal_movement(state) or logic.has_vertical_movement(state)), #Ambush Knife chest
-        LocationData(GREENSHIRE_REPRISE_AP_REGION, GREENSHIRE_REPRISE_DISPLAY_NAME + " Chest - Atop the waterfalls", 490 + treasure_index_offset), #Ether chest
-        LocationData(GREENSHIRE_REPRISE_AP_REGION, GREENSHIRE_REPRISE_DISPLAY_NAME + " Chest - Jump off bridge 3", 482 + treasure_index_offset, lambda state: logic.has_horizontal_movement(state) or logic.has_vertical_movement(state)), #Looters Ring chest
-        LocationData(GREENSHIRE_REPRISE_AP_REGION, GREENSHIRE_REPRISE_DISPLAY_NAME + " Chest - Tall taunter", 373 + treasure_index_offset), #Shell Amulet chest
-        LocationData(GREENSHIRE_REPRISE_AP_REGION, GREENSHIRE_REPRISE_DISPLAY_NAME + " Chest - In the valley of trees", 487 + treasure_index_offset), #Tincture Pouch chest
-        LocationData(GREENSHIRE_REPRISE_AP_REGION, GREENSHIRE_REPRISE_DISPLAY_NAME + " Chest - Tip of peninsula south of 2nd bridge", 491 + treasure_index_offset), #Tonic Pouch chest
+        LocationData(EAST_GREENSHIRE_AP_REGION, GREENSHIRE_REPRISE_DISPLAY_NAME + " NPC - The furthest southern edge Silver", 474 + npc_index_offset), #Ingot
+        LocationData(EAST_GREENSHIRE_AP_REGION, GREENSHIRE_REPRISE_DISPLAY_NAME + " Chest - In the valley of trees", 487 + treasure_index_offset), #Tincture Pouch chest
+        LocationData(EAST_GREENSHIRE_AP_REGION, GREENSHIRE_REPRISE_DISPLAY_NAME + " Chest - Atop the waterfalls", 490 + treasure_index_offset), #Ether chest
+        LocationData(EAST_GREENSHIRE_AP_REGION, GREENSHIRE_REPRISE_DISPLAY_NAME + " Chest - Tip of peninsula south of 2nd bridge", 491 + treasure_index_offset), #Tonic Pouch chest
+        LocationData(EAST_GREENSHIRE_AP_REGION, GREENSHIRE_REPRISE_DISPLAY_NAME + " NPC - Jump down from 2nd bridge to Silver fallen in north crack", 485 + npc_index_offset), #Ore
+        LocationData(EAST_GREENSHIRE_AP_REGION, GREENSHIRE_REPRISE_DISPLAY_NAME + " NPC - Silver across 1st bridge hiding in a crack", 486 + npc_index_offset), #Dust
+        LocationData(EAST_GREENSHIRE_AP_REGION, GREENSHIRE_REPRISE_DISPLAY_NAME + " Chest - Tall taunter", 373 + treasure_index_offset), #Shell Amulet chest
+        #Reprise Heights
+        LocationData(REPRISE_HEIGHTS_AP_REGION, GREENSHIRE_REPRISE_DISPLAY_NAME + " Chest - Jump off bridge 3", 482 + treasure_index_offset),  # Looters Ring chest
+        LocationData(REPRISE_HEIGHTS_AP_REGION, GREENSHIRE_REPRISE_DISPLAY_NAME + " Chest - Jump off bridge 4", 483 + treasure_index_offset),  # Ambush Knife chest
 
-        #NPCs
-        LocationData(GREENSHIRE_REPRISE_AP_REGION, GREENSHIRE_REPRISE_DISPLAY_NAME + " NPC - Jump down from 2nd bridge to Silver fallen in north crack", 485 + npc_index_offset), #Ore
-        LocationData(GREENSHIRE_REPRISE_AP_REGION, GREENSHIRE_REPRISE_DISPLAY_NAME + " NPC - Silver across 1st bridge hiding in a crack", 486 + npc_index_offset), #Dust
-        LocationData(GREENSHIRE_REPRISE_AP_REGION, GREENSHIRE_REPRISE_DISPLAY_NAME + " NPC - The furthest southern edge Silver", 474 + npc_index_offset), #Ingot
 
         #Salmon Pass
         #Treasure chests
@@ -578,7 +578,7 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         LocationData(POKO_POKO_DESERT_AP_REGION, POKO_POKO_DESERT_DISPLAY_NAME + " Chest - Quintar leapfrog", 1080 + treasure_index_offset, lambda state: logic.has_horizontal_movement(state) or logic.has_vertical_movement(state)),  # Butter Cutter chest
         #if you're Good At Jumping you can get to this chest south of rocky outcropping gold with no mounts
         LocationData(POKO_POKO_DESERT_AP_REGION, POKO_POKO_DESERT_DISPLAY_NAME + " Chest - South of tricky Quintar Gold", 1082 + treasure_index_offset, lambda state: logic.has_horizontal_movement(state) or logic.has_vertical_movement(state)),  # Hatchet chest
-        LocationData(POKO_POKO_DESERT_AP_REGION, POKO_POKO_DESERT_DISPLAY_NAME + " Chest - This chests (on) a butte", 1169 + treasure_index_offset, lambda state: logic.has_rental_quintar(state, SARA_SARA_BAZAAR_DISPLAY_NAME)),  # Dueller
+        LocationData(POKO_POKO_DESERT_AP_REGION, POKO_POKO_DESERT_DISPLAY_NAME + " Chest - This chest's (on) a butte", 1169 + treasure_index_offset, lambda state: logic.has_rental_quintar(state, SARA_SARA_BAZAAR_DISPLAY_NAME)),  # Dueller
         LocationData(POKO_POKO_DESERT_AP_REGION, POKO_POKO_DESERT_DISPLAY_NAME + " Chest - North Lookout Tower", 1190 + treasure_index_offset, lambda state: logic.has_rental_quintar(state, SARA_SARA_BAZAAR_DISPLAY_NAME) or logic.has_vertical_movement(state)), #North Lookout Token chest
         LocationData(POKO_POKO_DESERT_AP_REGION, POKO_POKO_DESERT_DISPLAY_NAME + " Chest - Stormy first floor of ruins", 2676 + treasure_index_offset), #Fenix Juice chest
         #Poko Poko Desert Eastern Plateau
@@ -1985,7 +1985,7 @@ def get_region_completion_locations() -> List[LocationData]:
         LocationData(PIPELINE_SOUTH_AP_REGION, CAPITAL_PIPELINE_DISPLAY_NAME + " Region Completion", 6018 + regionsanity_index_offset, regionsanity=True),
         LocationData(WEST_COBBLESTONE_CRAG_AP_REGION, COBBLESTONE_CRAG_DISPLAY_NAME + " Region Completion", 6019 + regionsanity_index_offset, regionsanity=True),
         LocationData(OKIMOTO_NS_AP_REGION, OKIMOTO_NS_DISPLAY_NAME + " Region Completion", 6020 + regionsanity_index_offset, regionsanity=True),
-        LocationData(GREENSHIRE_REPRISE_AP_REGION, GREENSHIRE_REPRISE_DISPLAY_NAME + " Region Completion", 6021 + regionsanity_index_offset, regionsanity=True),
+        LocationData(EAST_GREENSHIRE_AP_REGION, GREENSHIRE_REPRISE_DISPLAY_NAME + " Region Completion", 6021 + regionsanity_index_offset, regionsanity=True),
         LocationData(SALMON_PASS_EAST_AP_REGION, SALMON_PASS_DISPLAY_NAME + " Region Completion", 6022 + regionsanity_index_offset, regionsanity=True),
         LocationData(SALMON_RIVER_AP_REGION, SALMON_RIVER_DISPLAY_NAME + " Region Completion", 6023 + regionsanity_index_offset, regionsanity=True),
         LocationData(POKO_POKO_DESERT_AP_REGION, POKO_POKO_DESERT_DISPLAY_NAME + " Region Completion", 6024 + regionsanity_index_offset, regionsanity=True),

@@ -311,19 +311,19 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
                      VALKYRIE_WATCHTOWER_AP_REGION: lambda state: logic.has_vertical_movement(state),
                      YAMAGAWA_MA_AP_REGION: lambda state: logic.has_swimming(state) or logic.has_vertical_movement(state)})
     #Delende start
-    fancy_add_exits(world, DELENDE_PLAINS_AP_REGION, [ATOP_FISH_HATCHERY_AP_REGION, DELENDE_HIGH_BRIDGES_AP_REGION, DELENDE_MESA_OVER_SPOOKY_CAVE_AP_REGION, SPAWNING_MEADOWS_AP_REGION, MERCURY_SHRINE_AP_REGION, SOILED_DENLENDE_AP_REGION, THE_PALE_GROTTO_AP_REGION, SEASIDE_CLIFFS_AP_REGION, GREENSHIRE_REPRISE_AP_REGION, SALMON_PASS_WEST_AP_REGION, SALMON_PASS_EAST_AP_REGION, LAKE_DELENDE_AP_REGION],
+    fancy_add_exits(world, DELENDE_PLAINS_AP_REGION, [ATOP_FISH_HATCHERY_AP_REGION, DELENDE_HIGH_BRIDGES_AP_REGION, DELENDE_MESA_OVER_SPOOKY_CAVE_AP_REGION, SPAWNING_MEADOWS_AP_REGION, MERCURY_SHRINE_AP_REGION, SOILED_DENLENDE_AP_REGION, THE_PALE_GROTTO_AP_REGION, SEASIDE_CLIFFS_AP_REGION, EAST_GREENSHIRE_AP_REGION, SALMON_PASS_WEST_AP_REGION, SALMON_PASS_EAST_AP_REGION, LAKE_DELENDE_AP_REGION],
                     #Atop Fish Hatchery's sole purpose is to indicate the obscure route from Delende Plains -> Greenshire without mounts, but Archipelago doesn't like it when you can't reach a region with default settings,
                     # so ibek + owl have been added to its entrance. You can already get from Delende Plains -> Greenshire with those so I'm not adding those on the exit from Atop Fish Hatchery
                     {ATOP_FISH_HATCHERY_AP_REGION: lambda state: logic.obscure_routes_on() or logic.has_vertical_movement(state) or logic.has_glide(state),
                      DELENDE_HIGH_BRIDGES_AP_REGION: lambda state: logic.obscure_routes_on() or logic.has_horizontal_movement(state) or logic.has_vertical_movement(state),
                      DELENDE_MESA_OVER_SPOOKY_CAVE_AP_REGION: lambda state: logic.obscure_routes_on() or logic.has_vertical_movement(state) or logic.has_glide(state),
-                     GREENSHIRE_REPRISE_AP_REGION: lambda state: logic.has_vertical_movement(state) or logic.has_glide(state) or logic.has_swimming(state),
+                     EAST_GREENSHIRE_AP_REGION: lambda state: logic.has_vertical_movement(state) or logic.has_glide(state) or logic.has_swimming(state),
                      SALMON_PASS_WEST_AP_REGION: lambda state: logic.has_swimming(state),
                      SALMON_PASS_EAST_AP_REGION: lambda state: logic.has_swimming(state),
                      LAKE_DELENDE_AP_REGION: lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)})
-    fancy_add_exits(world, ATOP_FISH_HATCHERY_AP_REGION, [DELENDE_PLAINS_AP_REGION, GREENSHIRE_REPRISE_AP_REGION],
-                    {GREENSHIRE_REPRISE_AP_REGION: lambda _: logic.obscure_routes_on()})
-    fancy_add_exits(world, DELENDE_HIGH_BRIDGES_AP_REGION, [DELENDE_PLAINS_AP_REGION, GRAN_AP_REGION, BELOW_GRAN_AP_REGION, DELENDE_MESA_OVER_SPOOKY_CAVE_AP_REGION, DELENDE_PEAK_AP_REGION, HEART_TARN_AP_REGION, YAMAGAWA_MA_AP_REGION, FENCERS_KEEP_CHEST_AP_REGION, THE_PALE_GROTTO_AP_REGION, SEASIDE_CLIFFS_AP_REGION, CLIFF_OVER_SEASIDE_CAMP_AP_REGION, PROVING_MEADOWS_AP_REGION, CAPITAL_MOAT_AP_REGION, GREENSHIRE_REPRISE_AP_REGION, LAKE_DELENDE_AP_REGION],
+    fancy_add_exits(world, ATOP_FISH_HATCHERY_AP_REGION, [DELENDE_PLAINS_AP_REGION, EAST_GREENSHIRE_AP_REGION],
+                    {EAST_GREENSHIRE_AP_REGION: lambda _: logic.obscure_routes_on()})
+    fancy_add_exits(world, DELENDE_HIGH_BRIDGES_AP_REGION, [DELENDE_PLAINS_AP_REGION, GRAN_AP_REGION, BELOW_GRAN_AP_REGION, DELENDE_MESA_OVER_SPOOKY_CAVE_AP_REGION, DELENDE_PEAK_AP_REGION, HEART_TARN_AP_REGION, YAMAGAWA_MA_AP_REGION, FENCERS_KEEP_CHEST_AP_REGION, THE_PALE_GROTTO_AP_REGION, SEASIDE_CLIFFS_AP_REGION, CLIFF_OVER_SEASIDE_CAMP_AP_REGION, PROVING_MEADOWS_AP_REGION, CAPITAL_MOAT_AP_REGION, EAST_GREENSHIRE_AP_REGION, LAKE_DELENDE_AP_REGION],
                     {GRAN_AP_REGION: lambda state: logic.can_fight_gran(state),
                      BELOW_GRAN_AP_REGION: lambda _: logic.obscure_routes_on(),
                      DELENDE_PEAK_AP_REGION: lambda state: logic.has_vertical_movement(state),
@@ -331,7 +331,7 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
                      FENCERS_KEEP_CHEST_AP_REGION: lambda state: logic.has_vertical_movement(state) or logic.has_glide(state),
                      CLIFF_OVER_SEASIDE_CAMP_AP_REGION: lambda _: logic.obscure_routes_on(),
                      CAPITAL_MOAT_AP_REGION: lambda state: logic.has_swimming(state),
-                     GREENSHIRE_REPRISE_AP_REGION: lambda state: logic.has_swimming(state),
+                     EAST_GREENSHIRE_AP_REGION: lambda state: logic.has_swimming(state),
                      LAKE_DELENDE_AP_REGION: lambda _: logic.obscure_routes_on()})
     fancy_add_exits(world, GRAN_AP_REGION, [DELENDE_HIGH_BRIDGES_AP_REGION, BELOW_GRAN_AP_REGION])
     fancy_add_exits(world, BELOW_GRAN_AP_REGION, [GRAN_AP_REGION, ANCIENT_RESERVOIR_AP_REGION, JADE_WATERWAYS_AP_REGION],
@@ -339,9 +339,9 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
                     ANCIENT_RESERVOIR_AP_REGION: lambda state: logic.has_swimming(state),
                     JADE_WATERWAYS_AP_REGION: lambda state: logic.has_swimming(state)})
     fancy_add_exits(world, DELENDE_MESA_OVER_SPOOKY_CAVE_AP_REGION, [DELENDE_PLAINS_AP_REGION, DELENDE_HIGH_BRIDGES_AP_REGION])
-    fancy_add_exits(world, HEART_TARN_AP_REGION, [DELENDE_MESA_OVER_SPOOKY_CAVE_AP_REGION, DELENDE_PEAK_AP_REGION, GREENSHIRE_REPRISE_AP_REGION],
+    fancy_add_exits(world, HEART_TARN_AP_REGION, [DELENDE_MESA_OVER_SPOOKY_CAVE_AP_REGION, DELENDE_PEAK_AP_REGION, EAST_GREENSHIRE_AP_REGION],
                     {DELENDE_PEAK_AP_REGION: lambda state: logic.has_glide(state),
-                     GREENSHIRE_REPRISE_AP_REGION: lambda state: logic.has_glide(state)})
+                     EAST_GREENSHIRE_AP_REGION: lambda state: logic.has_glide(state)})
     fancy_add_exits(world, DELENDE_PEAK_AP_REGION, [DELENDE_HIGH_BRIDGES_AP_REGION, SEASIDE_CLIFFS_AP_REGION, CLIFF_OVER_SEASIDE_CAMP_AP_REGION])
 
     #Delende end
@@ -349,6 +349,7 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
                     {BEAURIOR_BOARDWALK_AP_REGION: lambda state: logic.has_vertical_movement(state) or logic.has_glide(state) or (logic.has_swimming(state) and logic.obscure_routes_on()),
                      VOLCANO_PEAK_AP_REGION: lambda state: logic.has_golden_quintar(state),
                      VALKYRIE_WATCHTOWER_AP_REGION: lambda state: (logic.has_vertical_movement(state) or logic.has_glide(state)) and logic.obscure_routes_on()})
+    #Soiled Den start
     fancy_add_exits(world, SOILED_DENLENDE_AP_REGION, [DELENDE_PLAINS_AP_REGION, THE_BANGLER_AP_REGION, THE_PALE_GROTTO_AP_REGION, JADE_WATERWAYS_AP_REGION],
                     {THE_BANGLER_AP_REGION: lambda state: logic.has_swimming(state),
                      JADE_WATERWAYS_AP_REGION: lambda state: logic.has_swimming(state),
@@ -356,11 +357,13 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
     fancy_add_exits(world, THE_BANGLER_AP_REGION, [SOILED_DENLENDE_AP_REGION, SEASIDE_CLIFFS_AP_REGION, DRAFT_SHAFT_CONDUIT_AP_REGION],
                     {SOILED_DENLENDE_AP_REGION: lambda state: logic.has_swimming(state),
                      DRAFT_SHAFT_CONDUIT_AP_REGION: lambda state: logic.has_swimming(state)})
-    fancy_add_exits(world, THE_PALE_GROTTO_AP_REGION, [DELENDE_PLAINS_AP_REGION, DELENDE_HIGH_BRIDGES_AP_REGION, SOILED_DENLENDE_AP_REGION, JOJO_SEWERS_AP_REGION, LOWER_ICE_LAKES_AP_REGION, SALMON_PASS_EAST_AP_REGION],
+    #Soiled Den end
+    fancy_add_exits(world, THE_PALE_GROTTO_AP_REGION, [DELENDE_PLAINS_AP_REGION, DELENDE_HIGH_BRIDGES_AP_REGION, SOILED_DENLENDE_AP_REGION, JOJO_SEWERS_AP_REGION, EAST_GREENSHIRE_AP_REGION, SALMON_PASS_EAST_AP_REGION, LOWER_ICE_LAKES_AP_REGION],
                     {SOILED_DENLENDE_AP_REGION: lambda state: logic.has_swimming(state),
                      JOJO_SEWERS_AP_REGION: lambda state: logic.has_swimming(state),
-                     LOWER_ICE_LAKES_AP_REGION: lambda state: logic.has_swimming(state),
-                     SALMON_PASS_EAST_AP_REGION: lambda state: logic.has_swimming(state)})
+                     EAST_GREENSHIRE_AP_REGION: lambda state: logic.has_swimming(state) and logic.obscure_routes_on(),
+                     SALMON_PASS_EAST_AP_REGION: lambda state: logic.has_swimming(state),
+                     LOWER_ICE_LAKES_AP_REGION: lambda state: logic.has_swimming(state)})
     #Seaside Cliffs start
     fancy_add_exits(world, SEASIDE_CLIFFS_AP_REGION, [CLIFF_OVER_SEASIDE_CAMP_AP_REGION, DELENDE_PLAINS_AP_REGION, DELENDE_HIGH_BRIDGES_AP_REGION, DELENDE_PEAK_AP_REGION, MERCURY_SHRINE_AP_REGION, THE_BANGLER_AP_REGION, DRAFT_SHAFT_CONDUIT_AP_REGION, THE_OPEN_SEA_AP_REGION, BEAURIOR_BOARDWALK_AP_REGION],
                     {CLIFF_OVER_SEASIDE_CAMP_AP_REGION: lambda state: logic.has_vertical_movement(state),
@@ -398,24 +401,24 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
     #Proving Meadows end
     fancy_add_exits(world, SKUMPARADISE_AP_REGION, [PROVING_MEADOWS_SKUMPARADISE_CONNECTOR_AP_REGION, CAPITAL_SEQUOIA_AP_REGION])
     #Capital Sequoia start
-    fancy_add_exits(world, CAPITAL_SEQUOIA_AP_REGION, [MOAT_SHALLOWS_AP_REGION, CAPITAL_MOAT_AP_REGION, BEATSMITH_DISCO_AP_REGION, PROVING_MEADOWS_AP_REGION, SKUMPARADISE_AP_REGION, JOJO_SEWERS_AP_REGION, BOOMER_SOCIETY_AP_REGION, ROLLING_QUINTAR_FIELDS_AP_REGION, WEST_COBBLESTONE_CRAG_AP_REGION, GREENSHIRE_REPRISE_AP_REGION, RAMPART_ATOP_PORTCULLIS_AP_REGION, CASTLE_SEQUOIA_AP_REGION],
+    fancy_add_exits(world, CAPITAL_SEQUOIA_AP_REGION, [MOAT_SHALLOWS_AP_REGION, CAPITAL_MOAT_AP_REGION, BEATSMITH_DISCO_AP_REGION, PROVING_MEADOWS_AP_REGION, SKUMPARADISE_AP_REGION, JOJO_SEWERS_AP_REGION, BOOMER_SOCIETY_AP_REGION, ROLLING_QUINTAR_FIELDS_AP_REGION, WEST_COBBLESTONE_CRAG_AP_REGION, EAST_GREENSHIRE_AP_REGION, RAMPART_ATOP_PORTCULLIS_AP_REGION, CASTLE_SEQUOIA_AP_REGION],
                     {BEATSMITH_DISCO_AP_REGION: lambda state: logic.has_vertical_movement(state) or (logic.has_glide(state) and logic.obscure_routes_on()) or logic.has_golden_quintar(state),
                      BOOMER_SOCIETY_AP_REGION: lambda state: logic.has_vertical_movement(state) or logic.has_glide(state),
                      # Obscure Routes: it is possible to jump from Rolling Quintar Fields onto the Capital Sequoia walls from the southeast and manage to bypass the guard and thus the job requirement
-                     GREENSHIRE_REPRISE_AP_REGION: lambda state: logic.has_jobs(state, 5) or state.has(GAEA_STONE, player) or (logic.obscure_routes_on() and logic.has_rental_quintar(state, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME) and (state.has(CAPITAL_SEQUOIA_PASS, player) or logic.is_regionsanity_disabled())) or logic.has_horizontal_movement(state) or logic.has_vertical_movement(state),
+                     EAST_GREENSHIRE_AP_REGION: lambda state: logic.has_jobs(state, 5) or state.has(GAEA_STONE, player) or logic.has_horizontal_movement(state) or logic.has_vertical_movement(state),
                      RAMPART_ATOP_PORTCULLIS_AP_REGION: lambda state: logic.has_horizontal_movement(state) and logic.has_vertical_movement(state),
                      #note for eme: technically possible to get into the first dungeon with quintar instead of glide, but it's hard lol; come from Quintar Sanctum save point and go west up mountain and fall down through grate (that part's easy) then the quintar jump to the lamp is hard
                      CASTLE_SEQUOIA_AP_REGION: lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)})
     fancy_add_exits(world, MOAT_SHALLOWS_AP_REGION, [CAPITAL_SEQUOIA_AP_REGION, CAPITAL_MOAT_AP_REGION, DELENDE_HIGH_BRIDGES_AP_REGION, JOJO_SEWERS_AP_REGION, WEST_COBBLESTONE_CRAG_AP_REGION],
                     {CAPITAL_MOAT_AP_REGION: lambda state: logic.has_swimming(state),
                      WEST_COBBLESTONE_CRAG_AP_REGION: lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)})
-    fancy_add_exits(world, CAPITAL_MOAT_AP_REGION, [MOAT_SHALLOWS_AP_REGION, DELENDE_HIGH_BRIDGES_AP_REGION, PROVING_MEADOWS_AP_REGION, JOJO_SEWERS_AP_REGION, WEST_COBBLESTONE_CRAG_AP_REGION, GREENSHIRE_REPRISE_AP_REGION, THE_OPEN_SEA_AP_REGION],
+    fancy_add_exits(world, CAPITAL_MOAT_AP_REGION, [MOAT_SHALLOWS_AP_REGION, DELENDE_HIGH_BRIDGES_AP_REGION, PROVING_MEADOWS_AP_REGION, JOJO_SEWERS_AP_REGION, WEST_COBBLESTONE_CRAG_AP_REGION, EAST_GREENSHIRE_AP_REGION, THE_OPEN_SEA_AP_REGION],
                     {MOAT_SHALLOWS_AP_REGION: lambda state: logic.has_swimming(state),
                      DELENDE_HIGH_BRIDGES_AP_REGION: lambda state: logic.has_swimming(state),
                      PROVING_MEADOWS_AP_REGION: lambda state: logic.has_swimming(state),
                      JOJO_SEWERS_AP_REGION: lambda state: logic.has_swimming(state),
                      WEST_COBBLESTONE_CRAG_AP_REGION: lambda state: logic.has_swimming(state),
-                     GREENSHIRE_REPRISE_AP_REGION: lambda state: logic.has_swimming(state),
+                     EAST_GREENSHIRE_AP_REGION: lambda state: logic.has_swimming(state),
                      THE_OPEN_SEA_AP_REGION: lambda state: logic.has_swimming(state)})
     fancy_add_exits(world, BEATSMITH_DISCO_AP_REGION, [CAPITAL_SEQUOIA_AP_REGION])
     #Capital Sequoia end
@@ -438,11 +441,11 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
     fancy_add_exits(world, SEWER_DETOUR_FOR_QUINTAR_NEST_AP_REGION, [JOJO_SEWERS_AP_REGION, OMINOUS_RED_SEWERS_AP_REGION, QUINTAR_NEST_AP_REGION, NEST_SEWER_DETOUR_CHEST_AP_REGION],
                     {OMINOUS_RED_SEWERS_AP_REGION: lambda state: (logic.has_rental_quintar(state, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME) and (state.has(CAPITAL_SEQUOIA_PASS, player) or logic.is_regionsanity_disabled())) or logic.has_horizontal_movement(state) or logic.has_swimming(state)})
     #Jojo Sewers section end
-    fancy_add_exits(world, BOOMER_SOCIETY_AP_REGION, [CAPITAL_SEQUOIA_AP_REGION, BEATSMITH_DISCO_AP_REGION, SEWERS_TO_BOOMER_SOCIETY_AP_REGION, GREENSHIRE_REPRISE_AP_REGION, BOOMER_OVERLOOK_AP_REGION],
+    fancy_add_exits(world, BOOMER_SOCIETY_AP_REGION, [CAPITAL_SEQUOIA_AP_REGION, BEATSMITH_DISCO_AP_REGION, SEWERS_TO_BOOMER_SOCIETY_AP_REGION, REPRISE_HEIGHTS_AP_REGION, BOOMER_OVERLOOK_AP_REGION],
                     {BEATSMITH_DISCO_AP_REGION: lambda state: logic.has_glide(state) and logic.obscure_routes_on(),
                      BOOMER_OVERLOOK_AP_REGION: lambda state: logic.has_horizontal_movement(state)})
     #Rolling Quintar Fields start
-    fancy_add_exits(world, ROLLING_QUINTAR_FIELDS_AP_REGION, [ROLLING_TREETOP_HIGHWAY_AP_REGION, SANCTUM_ENTRANCE_AP_REGION, AEGIS_OUTPOST_AP_REGION, CAPITAL_SEQUOIA_AP_REGION, MOAT_SHALLOWS_AP_REGION, CAPITAL_MOAT_AP_REGION, QUINTAR_NEST_AP_REGION, WEST_COBBLESTONE_CRAG_AP_REGION, OKIMOTO_NS_AP_REGION, QUINTAR_RESERVE_AP_REGION],
+    fancy_add_exits(world, ROLLING_QUINTAR_FIELDS_AP_REGION, [ROLLING_TREETOP_HIGHWAY_AP_REGION, SANCTUM_ENTRANCE_AP_REGION, AEGIS_OUTPOST_AP_REGION, CAPITAL_SEQUOIA_AP_REGION, MOAT_SHALLOWS_AP_REGION, CAPITAL_MOAT_AP_REGION, QUINTAR_NEST_AP_REGION, WEST_COBBLESTONE_CRAG_AP_REGION, OKIMOTO_NS_AP_REGION, EAST_GREENSHIRE_AP_REGION, WEST_GREENSHIRE_AP_REGION, QUINTAR_RESERVE_AP_REGION],
                     {ROLLING_TREETOP_HIGHWAY_AP_REGION: lambda state: logic.has_rental_quintar(state, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME) or logic.has_vertical_movement(state),
                      # Obscure Route: RQF -> Sanctum Entrance; jump up to the "Pinnacle by short and tall box friends" check from the Quintar Enthusiast's House (auto-jump helps)
                      SANCTUM_ENTRANCE_AP_REGION: lambda _: logic.obscure_routes_on() and logic.is_hop_to_it_at_least_fancy_footwork(),
@@ -451,6 +454,9 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
                      CAPITAL_MOAT_AP_REGION: lambda state: logic.has_swimming(state),
                      WEST_COBBLESTONE_CRAG_AP_REGION: lambda state: logic.has_vertical_movement(state) or logic.has_glide(state),
                      OKIMOTO_NS_AP_REGION: lambda state: logic.has_vertical_movement(state),
+                     #Putting the rental quintar connection to the two sides of Greenshire here to untangle the connection logic from other places
+                     EAST_GREENSHIRE_AP_REGION: lambda state: logic.has_rental_quintar(state, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME) and (logic.has_jobs(state, 5) or logic.obscure_routes_on()) and (state.has(CAPITAL_SEQUOIA_PASS, player) or logic.is_regionsanity_disabled()),
+                     WEST_GREENSHIRE_AP_REGION: lambda state: logic.has_rental_quintar(state, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME) and (logic.has_jobs(state, 5) or logic.obscure_routes_on()) and (state.has(CAPITAL_SEQUOIA_PASS, player) or logic.is_regionsanity_disabled()),
                      QUINTAR_RESERVE_AP_REGION: lambda state: logic.has_vertical_movement(state)})
     fancy_add_exits(world, ROLLING_TREETOP_HIGHWAY_AP_REGION, [ROLLING_QUINTAR_FIELDS_AP_REGION, SANCTUM_ENTRANCE_AP_REGION],
                     {SANCTUM_ENTRANCE_AP_REGION: lambda state: logic.has_rental_quintar(state, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME) or logic.has_vertical_movement(state)})
@@ -531,14 +537,25 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
                      QUINTAR_RESERVE_AP_REGION: lambda state: (logic.obscure_routes_on() and logic.has_vertical_movement(state)) or logic.has_glide(state) or logic.has_swimming(state),
                      FLYERS_CRAG_LOWER_AP_REGION: lambda state: (logic.has_vertical_movement(state) and (logic.has_horizontal_movement(state) or logic.is_hop_to_it_at_least_fancy_footwork())) or logic.has_glide(state),
                      FLYERS_CRAG_UPPER_AP_REGION: lambda state: logic.has_glide(state) or logic.has_swimming(state)})
-    fancy_add_exits(world, GREENSHIRE_REPRISE_AP_REGION, [DELENDE_PLAINS_AP_REGION, DELENDE_HIGH_BRIDGES_AP_REGION, CAPITAL_SEQUOIA_AP_REGION, CAPITAL_MOAT_AP_REGION, SALMON_PASS_EAST_AP_REGION, GREENSHIRE_OVERLOOK_AP_REGION],
+    #Greenshire Reprise start
+    fancy_add_exits(world, EAST_GREENSHIRE_AP_REGION, [WEST_GREENSHIRE_AP_REGION, REPRISE_HEIGHTS_AP_REGION, DELENDE_PLAINS_AP_REGION, DELENDE_HIGH_BRIDGES_AP_REGION, THE_PALE_GROTTO_AP_REGION, CAPITAL_SEQUOIA_AP_REGION, CAPITAL_MOAT_AP_REGION, OMINOUS_RED_SEWERS_AP_REGION],
                     #Obscure Routes: it is possible to jump from Rolling Quintar Fields onto the Capital Sequoia walls from the southeast and manage to bypass the guard and thus the job requirement
-                    {CAPITAL_MOAT_AP_REGION: lambda state: logic.has_swimming(state),
-                     SALMON_PASS_EAST_AP_REGION: lambda state: ((logic.has_jobs(state, 5) or logic.obscure_routes_on()) and logic.has_rental_quintar(state, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME) and (state.has(CAPITAL_SEQUOIA_PASS, player) or logic.is_regionsanity_disabled())) or logic.has_vertical_movement(state),
+                    {WEST_GREENSHIRE_AP_REGION: lambda state: logic.has_horizontal_movement(state) or logic.has_vertical_movement(state),
+                     REPRISE_HEIGHTS_AP_REGION: lambda state: logic.has_horizontal_movement(state) or logic.has_vertical_movement(state),
+                     THE_PALE_GROTTO_AP_REGION: lambda state: logic.has_swimming(state) and logic.obscure_routes_on(),
+                     CAPITAL_MOAT_AP_REGION: lambda state: logic.has_swimming(state),
+                     OMINOUS_RED_SEWERS_AP_REGION: lambda state: logic.has_horizontal_movement(state) or logic.has_swimming(state)})
+    fancy_add_exits(world, WEST_GREENSHIRE_AP_REGION, [EAST_GREENSHIRE_AP_REGION, REPRISE_HEIGHTS_AP_REGION, ATOP_FISH_HATCHERY_AP_REGION, SALMON_PASS_EAST_AP_REGION],
+                    {REPRISE_HEIGHTS_AP_REGION: lambda state: logic.has_vertical_movement(state)})
+    fancy_add_exits(world, REPRISE_HEIGHTS_AP_REGION, [EAST_GREENSHIRE_AP_REGION, WEST_GREENSHIRE_AP_REGION, BOOMER_SOCIETY_AP_REGION, SALMON_PASS_EAST_AP_REGION, GREENSHIRE_OVERLOOK_AP_REGION],
+                    {BOOMER_SOCIETY_AP_REGION: lambda state: logic.has_vertical_movement(state),
+                     SALMON_PASS_EAST_AP_REGION: lambda state: logic.obscure_routes_on(),
                      GREENSHIRE_OVERLOOK_AP_REGION: lambda state: logic.has_vertical_movement(state)})
-    fancy_add_exits(world, SALMON_PASS_EAST_AP_REGION, [GREENSHIRE_REPRISE_AP_REGION, SALMON_PASS_WEST_AP_REGION, DELENDE_PLAINS_AP_REGION],
+    #Greenshire Reprise end
+    fancy_add_exits(world, SALMON_PASS_EAST_AP_REGION, [SALMON_PASS_WEST_AP_REGION, DELENDE_PLAINS_AP_REGION, WEST_GREENSHIRE_AP_REGION, REPRISE_HEIGHTS_AP_REGION],
                     {SALMON_PASS_WEST_AP_REGION: lambda state: logic.has_horizontal_movement(state) or logic.has_swimming(state),
-                     DELENDE_PLAINS_AP_REGION: lambda state: logic.has_swimming(state)})
+                     DELENDE_PLAINS_AP_REGION: lambda state: logic.has_swimming(state),
+                     REPRISE_HEIGHTS_AP_REGION: lambda state: logic.has_swimming(state) and logic.obscure_routes_on()})
     fancy_add_exits(world, SALMON_PASS_WEST_AP_REGION, [SALMON_PASS_EAST_AP_REGION, DELENDE_PLAINS_AP_REGION, SALMON_RIVER_AP_REGION, SOUTH_SALMON_RIVER_AP_REGION],
                     {DELENDE_PLAINS_AP_REGION: lambda state: logic.has_swimming(state),
                      SALMON_PASS_EAST_AP_REGION: lambda state: logic.has_horizontal_movement(state) or logic.has_swimming(state),
@@ -889,7 +906,7 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
                     {RAMPARTS_TALL_TALL_TRAVERSE_AP_REGION: lambda state: logic.has_glide(state) or logic.can_push_ice_block_and_goat(state, TALL_TALL_HEIGHTS_DISPLAY_NAME),
                      TALL_TALL_RAMPARTS_CRAG_CHEST_AP_REGION: lambda state: logic.has_glide(state)})
     fancy_add_exits(world, TALL_TALL_RAMPARTS_CRAG_CHEST_AP_REGION, [BOOMER_OVERLOOK_AP_REGION, UPPER_ICE_LAKES_AP_REGION])
-    fancy_add_exits(world, GREENSHIRE_OVERLOOK_AP_REGION, [GREENSHIRE_REPRISE_AP_REGION, TALL_TALL_SAVE_POINT_AP_REGION],
+    fancy_add_exits(world, GREENSHIRE_OVERLOOK_AP_REGION, [REPRISE_HEIGHTS_AP_REGION, TALL_TALL_SAVE_POINT_AP_REGION],
                     {TALL_TALL_SAVE_POINT_AP_REGION: lambda state: logic.has_vertical_movement(state) or logic.has_glide(state)})
     fancy_add_exits(world, TALL_TALL_SAVE_POINT_AP_REGION, [BOOMER_OVERLOOK_AP_REGION, GREENSHIRE_OVERLOOK_AP_REGION, LOWER_ICE_LAKES_AP_REGION],
                     {BOOMER_OVERLOOK_AP_REGION: lambda state: logic.can_push_ice_block_and_goat(state, TALL_TALL_HEIGHTS_DISPLAY_NAME) or logic.has_glide(state)})

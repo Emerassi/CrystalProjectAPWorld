@@ -20,7 +20,7 @@ class TestRegionsanityOff(CrystalProjectTestBase):
         self.collect_all_progressive_levels()
         self.assert_region_entrances(CAPITAL_SEQUOIA_AP_REGION,
                                      reachable_regions=(JOJO_SEWERS_AP_REGION, ROLLING_QUINTAR_FIELDS_AP_REGION, SKUMPARADISE_AP_REGION,
-                                                        WEST_COBBLESTONE_CRAG_AP_REGION, GREENSHIRE_REPRISE_AP_REGION, CASTLE_SEQUOIA_AP_REGION))
+                                                        WEST_COBBLESTONE_CRAG_AP_REGION, EAST_GREENSHIRE_AP_REGION, CASTLE_SEQUOIA_AP_REGION))
 
 class TestRegionsanityOn(CrystalProjectTestBase):
     options = {
@@ -35,34 +35,34 @@ class TestRegionsanityOn(CrystalProjectTestBase):
         self.collect_all_progressive_levels()
         self.assert_region_entrances(CAPITAL_SEQUOIA_AP_REGION,
                                      unreachable_regions=(JOJO_SEWERS_AP_REGION, ROLLING_QUINTAR_FIELDS_AP_REGION, SKUMPARADISE_AP_REGION,
-                                                          WEST_COBBLESTONE_CRAG_AP_REGION, GREENSHIRE_REPRISE_AP_REGION, CASTLE_SEQUOIA_AP_REGION,))
+                                                          WEST_COBBLESTONE_CRAG_AP_REGION, EAST_GREENSHIRE_AP_REGION, CASTLE_SEQUOIA_AP_REGION,))
         self.collect_by_name(JOJO_SEWERS_PASS)
         self.assert_region_entrances(CAPITAL_SEQUOIA_AP_REGION,
                                      reachable_regions=(JOJO_SEWERS_AP_REGION,),
                                      unreachable_regions=(ROLLING_QUINTAR_FIELDS_AP_REGION, SKUMPARADISE_AP_REGION,
-                                                          WEST_COBBLESTONE_CRAG_AP_REGION, GREENSHIRE_REPRISE_AP_REGION, CASTLE_SEQUOIA_AP_REGION,))
+                                                          WEST_COBBLESTONE_CRAG_AP_REGION, EAST_GREENSHIRE_AP_REGION, CASTLE_SEQUOIA_AP_REGION,))
         self.collect_by_name(ROLLING_QUINTAR_FIELDS_PASS)
         self.assert_region_entrances(CAPITAL_SEQUOIA_AP_REGION,
                                      reachable_regions=(JOJO_SEWERS_AP_REGION, ROLLING_QUINTAR_FIELDS_AP_REGION,),
-                                     unreachable_regions=(SKUMPARADISE_AP_REGION, WEST_COBBLESTONE_CRAG_AP_REGION, GREENSHIRE_REPRISE_AP_REGION, CASTLE_SEQUOIA_AP_REGION,))
+                                     unreachable_regions=(SKUMPARADISE_AP_REGION, WEST_COBBLESTONE_CRAG_AP_REGION, EAST_GREENSHIRE_AP_REGION, CASTLE_SEQUOIA_AP_REGION,))
         self.collect_by_name(SKUMPARADISE_PASS)
         self.assert_region_entrances(CAPITAL_SEQUOIA_AP_REGION,
                                      reachable_regions=(JOJO_SEWERS_AP_REGION, ROLLING_QUINTAR_FIELDS_AP_REGION, SKUMPARADISE_AP_REGION,),
-                                     unreachable_regions=(WEST_COBBLESTONE_CRAG_AP_REGION, GREENSHIRE_REPRISE_AP_REGION, CASTLE_SEQUOIA_AP_REGION,))
+                                     unreachable_regions=(WEST_COBBLESTONE_CRAG_AP_REGION, EAST_GREENSHIRE_AP_REGION, CASTLE_SEQUOIA_AP_REGION,))
         self.collect_by_name(COBBLESTONE_CRAG_PASS)
         self.assert_region_entrances(CAPITAL_SEQUOIA_AP_REGION,
                                      reachable_regions=(JOJO_SEWERS_AP_REGION, ROLLING_QUINTAR_FIELDS_AP_REGION, SKUMPARADISE_AP_REGION,
                                                         WEST_COBBLESTONE_CRAG_AP_REGION,),
-                                     unreachable_regions=(GREENSHIRE_REPRISE_AP_REGION, CASTLE_SEQUOIA_AP_REGION,))
+                                     unreachable_regions=(EAST_GREENSHIRE_AP_REGION, CASTLE_SEQUOIA_AP_REGION,))
         self.collect_by_name(GREENSHIRE_REPRISE_PASS)
         self.assert_region_entrances(CAPITAL_SEQUOIA_AP_REGION,
                                      reachable_regions=(JOJO_SEWERS_AP_REGION, ROLLING_QUINTAR_FIELDS_AP_REGION, SKUMPARADISE_AP_REGION,
-                                                        WEST_COBBLESTONE_CRAG_AP_REGION, GREENSHIRE_REPRISE_AP_REGION,),
+                                                        WEST_COBBLESTONE_CRAG_AP_REGION, EAST_GREENSHIRE_AP_REGION,),
                                      unreachable_regions=(CASTLE_SEQUOIA_AP_REGION,))
         self.collect_by_name(CASTLE_SEQUOIA_PASS)
         self.assert_region_entrances(CAPITAL_SEQUOIA_AP_REGION,
                                      reachable_regions=(JOJO_SEWERS_AP_REGION, ROLLING_QUINTAR_FIELDS_AP_REGION, SKUMPARADISE_AP_REGION,
-                                                        WEST_COBBLESTONE_CRAG_AP_REGION, GREENSHIRE_REPRISE_AP_REGION, CASTLE_SEQUOIA_AP_REGION,))
+                                                        WEST_COBBLESTONE_CRAG_AP_REGION, EAST_GREENSHIRE_AP_REGION, CASTLE_SEQUOIA_AP_REGION,))
     
     def test_has_rental_quintar(self):
         self.set_collected_job_count(5)
