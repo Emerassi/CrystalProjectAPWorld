@@ -560,10 +560,10 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
     fancy_add_exits(world, RIVER_CATS_EGO_AP_REGION, [SALMON_RIVER_AP_REGION, MUSHROOM_MOUNTAIN_AP_REGION],
                     {SALMON_RIVER_AP_REGION: lambda state: logic.has_swimming(state),
                      MUSHROOM_MOUNTAIN_AP_REGION: lambda state: logic.has_swimming(state)})
-    fancy_add_exits(world, MUSHROOM_MOUNTAIN_AP_REGION, [SALMON_RIVER_AP_REGION, RIVER_CATS_EGO_AP_REGION, TOWER_OF_ZOT_CAMP_AP_REGION, SALMON_BAY_BASIN_AP_REGION, SALMON_BAY_WEST_CRAG_AP_REGION, SALMON_BAY_EAST_CRAG_AP_REGION, SALMON_RIVER_MOUTH_AP_REGION, THE_OPEN_SEA_AP_REGION],
+    fancy_add_exits(world, MUSHROOM_MOUNTAIN_AP_REGION, [SALMON_RIVER_AP_REGION, RIVER_CATS_EGO_AP_REGION, ATOP_LABYRINTH_CUBE_AP_REGION, SALMON_BAY_BASIN_AP_REGION, SALMON_BAY_WEST_CRAG_AP_REGION, SALMON_BAY_EAST_CRAG_AP_REGION, SALMON_RIVER_MOUTH_AP_REGION, THE_OPEN_SEA_AP_REGION],
                     {SALMON_RIVER_AP_REGION: lambda state: logic.has_horizontal_movement(state) or logic.has_vertical_movement(state) or logic.has_swimming(state),
                      RIVER_CATS_EGO_AP_REGION: lambda state: logic.has_glide(state) and logic.has_swimming(state),
-                     TOWER_OF_ZOT_CAMP_AP_REGION: lambda state: logic.has_glide(state) and logic.obscure_routes_on(),
+                     ATOP_LABYRINTH_CUBE_AP_REGION: lambda state: logic.has_glide(state) and logic.obscure_routes_on(),
                      SALMON_BAY_EAST_CRAG_AP_REGION: lambda state: logic.has_glide(state),
                      SALMON_RIVER_MOUTH_AP_REGION: lambda state: logic.has_glide(state),
                      THE_OPEN_SEA_AP_REGION: lambda state: logic.has_swimming(state)})
@@ -589,8 +589,8 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
                      LABYRINTH_ENTRANCE_PUSHBLOCK_AP_REGION: lambda state: logic.has_vertical_movement(state) and logic.has_glide(state),
                      GOLD_BEDAZZLING_LABYRINTH_AP_REGION: lambda state: logic.has_glide(state) or (logic.has_horizontal_movement(state) and logic.has_vertical_movement(state)),
                      POKO_POKO_LAKE_DELENDE_PASS_AP_REGION: lambda state: logic.has_glide(state),
-                     SALMON_BAY_BASIN_AP_REGION: lambda state: logic.has_vertical_movement(state) and logic.is_hop_to_it_at_least_one_hop_beyond(),
-                     SALMON_BAY_WEST_CRAG_AP_REGION: lambda state: logic.has_vertical_movement(state) and logic.is_hop_to_it_at_least_one_hop_beyond() and logic.has_glide(state),
+                     SALMON_BAY_BASIN_AP_REGION: lambda state: logic.has_vertical_movement(state) and (logic.is_hop_to_it_at_least_one_hop_beyond() or logic.has_golden_quintar(state)),
+                     SALMON_BAY_WEST_CRAG_AP_REGION: lambda state: logic.has_vertical_movement(state) and ((logic.is_hop_to_it_at_least_one_hop_beyond() and logic.has_glide(state)) or logic.has_golden_quintar(state)),
                      SALMON_RIVER_MOUTH_AP_REGION: lambda state: logic.has_vertical_movement(state) and logic.has_glide(state)})
     fancy_add_exits(world, ATOP_LABYRINTH_CUBE_AP_REGION, [LABYRINTH_ENTRANCE_PUSHBLOCK_AP_REGION, GOLD_BEDAZZLING_LABYRINTH_AP_REGION, TOWER_OF_ZOT_CAMP_AP_REGION, RUINS_CRUMBLING_ON_SHORE_AP_REGION, SALMON_BAY_WEST_CRAG_AP_REGION])
     fancy_add_exits(world, LABYRINTH_ENTRANCE_PUSHBLOCK_AP_REGION, [TOWER_OF_ZOT_CAMP_AP_REGION, ATOP_LABYRINTH_CUBE_AP_REGION, GOLD_BEDAZZLING_LABYRINTH_AP_REGION, ANCIENT_LABYRINTH_AP_REGION],
@@ -682,8 +682,7 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
     fancy_add_exits(world, SALMON_RIVER_MOUTH_AP_REGION, [SALMON_BAY_BASIN_AP_REGION, SALMON_BAY_WEST_CRAG_AP_REGION, SALMON_BAY_EAST_CRAG_AP_REGION, SOUTH_SALMON_RIVER_AP_REGION, POKO_POKO_EAST_PLATEAU_AP_REGION, TOWER_OF_ZOT_CAMP_AP_REGION],
                     {SALMON_BAY_WEST_CRAG_AP_REGION: lambda state: logic.has_glide(state),
                      SALMON_BAY_EAST_CRAG_AP_REGION: lambda state: logic.has_glide(state),
-                     SOUTH_SALMON_RIVER_AP_REGION: lambda state: (logic.has_vertical_movement(state) and logic.has_glide(state)) or logic.has_swimming(state),
-                     TOWER_OF_ZOT_CAMP_AP_REGION: lambda state: logic.has_glide(state)})
+                     SOUTH_SALMON_RIVER_AP_REGION: lambda state: (logic.has_vertical_movement(state) and logic.has_glide(state)) or logic.has_swimming(state)})
     #Salmon Bay end
     #The Open Sea start
     fancy_add_exits(world, THE_OPEN_SEA_AP_REGION, [SEASIDE_CLIFFS_AP_REGION, PROVING_MEADOWS_AP_REGION, CAPITAL_MOAT_AP_REGION, WEST_COBBLESTONE_CRAG_AP_REGION, SHOUDU_WATERFRONT_AP_REGION, BAZAAR_COAST_AP_REGION, SARA_SARA_BEACH_EAST_AP_REGION, RENTAL_QUINTAR_BEACH_EP_AP_REGION, RUINS_CRUMBLING_ON_SHORE_AP_REGION, SALMON_BAY_BASIN_AP_REGION, SHOUDU_WATERWAYS_AP_REGION, UNDERCITY_WATERWAYS_AP_REGION, BEAURIOR_BOARDWALK_AP_REGION, JIDAMBA_ATOLLS_AP_REGION, JIDAMBA_WATERWAYS_AP_REGION, THE_DEEP_SEA_AP_REGION],
