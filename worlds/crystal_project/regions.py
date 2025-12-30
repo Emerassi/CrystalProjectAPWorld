@@ -1119,7 +1119,7 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
     fancy_add_exits(world, JADE_CAVERN_AP_REGION, [JADE_WATERWAYS_AP_REGION],
                     {JADE_WATERWAYS_AP_REGION: lambda state: logic.has_swimming(state)})
     fancy_add_exits(world, CONTINENTAL_TRAM_AP_REGION, [PIPELINE_SOUTH_AP_REGION, SARA_SARA_BAZAAR_AP_REGION, SARA_SARA_BEACH_EAST_AP_REGION, BAZAAR_COAST_AP_REGION],
-                    {SARA_SARA_BAZAAR_AP_REGION: lambda state: logic.has_swimming(state) or state.has(TRAM_KEY, player),
+                    {SARA_SARA_BAZAAR_AP_REGION: lambda state: logic.has_swimming(state) or logic.has_key(state, TRAM_KEY, 1),
                      SARA_SARA_BEACH_EAST_AP_REGION: lambda state: logic.has_swimming(state),
                      BAZAAR_COAST_AP_REGION: lambda state: logic.has_swimming(state)})
     #Ancient Labyrinth section start

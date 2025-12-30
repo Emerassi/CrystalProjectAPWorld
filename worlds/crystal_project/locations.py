@@ -68,14 +68,14 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         LocationData(SPAWNING_MEADOWS_AP_REGION, SPAWNING_MEADOWS_DISPLAY_NAME + " Chest - Mountain summit jump on Nan", 1142 + treasure_index_offset), #Tonic Pouch chest
 
         #NPCs
-        LocationData(SPAWNING_MEADOWS_AP_REGION, SPAWNING_MEADOWS_DISPLAY_NAME + " NPC - Pouch Nan", 53 + npc_index_offset),
+        LocationData(SPAWNING_MEADOWS_AP_REGION, SPAWNING_MEADOWS_DISPLAY_NAME + " NPC - Pouch Nan", 53 + npc_index_offset, tags=[GIFT_LOCATION_GROUP]),
         LocationData(SPAWNING_MEADOWS_AP_REGION, SPAWNING_MEADOWS_DISPLAY_NAME + " NPC - Secret Herb near Shaku", 627 + npc_index_offset, tags=[SECRET_HERB_LOCATION_GROUP]), #Secret Herb 0 Fixed Missable
         LocationData(SPAWNING_MEADOWS_AP_REGION, SPAWNING_MEADOWS_DISPLAY_NAME + " NPC - Promontory south of waterfall Secret Herb", 297 + npc_index_offset, tags=[SECRET_HERB_LOCATION_GROUP]), #(48, 112, -36) Secret Herb 1 Fixed Missable
         LocationData(SPAWNING_MEADOWS_AP_REGION, SPAWNING_MEADOWS_DISPLAY_NAME + " NPC - Secret Herb past mountain summit chest", 545 + npc_index_offset, tags=[SECRET_HERB_LOCATION_GROUP]), #(79, 112, -30) Secret Herb 2 Fixed Missable
         LocationData(SPAWNING_MEADOWS_AP_REGION, SPAWNING_MEADOWS_DISPLAY_NAME + " NPC - Cross trees and jump down for Secret Herb", 546 + npc_index_offset, tags=[SECRET_HERB_LOCATION_GROUP]), #(43, 104, -8) Secret Herb 3 Fixed Missable
-        LocationData(SPAWNING_MEADOWS_AP_REGION, SPAWNING_MEADOWS_DISPLAY_NAME + " NPC - Map Nan", 84 + npc_index_offset),
-        LocationData(SPAWNING_MEADOWS_AP_REGION, SPAWNING_MEADOWS_DISPLAY_NAME + " NPC - Nan Stew", 14 + npc_index_offset),
-        LocationData(SPAWNING_MEADOWS_AP_REGION, SPAWNING_MEADOWS_DISPLAY_NAME + " NPC - Butterfly Goo", 194 + npc_index_offset, lambda state: state.has(BLACK_SQUIRREL, player, 3)), #Tree Fairy NPC seems to have the dialogue for this (ID 194)
+        LocationData(SPAWNING_MEADOWS_AP_REGION, SPAWNING_MEADOWS_DISPLAY_NAME + " NPC - Map Nan", 84 + npc_index_offset, tags=[GIFT_LOCATION_GROUP]),
+        LocationData(SPAWNING_MEADOWS_AP_REGION, SPAWNING_MEADOWS_DISPLAY_NAME + " NPC - Nan Stew", 14 + npc_index_offset, tags=[GIFT_LOCATION_GROUP]),
+        LocationData(SPAWNING_MEADOWS_AP_REGION, SPAWNING_MEADOWS_DISPLAY_NAME + " NPC - Butterfly Goo", 194 + npc_index_offset, lambda state: state.has(BLACK_SQUIRREL, player, 3), tags=[COLLECTIBLE_TURN_IN_LOCATION_GROUP, FETCH_QUEST_LOCATION_GROUP]), #Tree Fairy NPC seems to have the dialogue for this (ID 194)
         LocationData(SPAWNING_MEADOWS_AP_REGION, SPAWNING_MEADOWS_DISPLAY_NAME + " NPC - Buttersquirrel on tree SW of spawn", 264 + npc_index_offset, tags=[SQUIRREL_LOCATION_GROUP]),
         LocationData(SPAWNING_MEADOWS_AP_REGION, SPAWNING_MEADOWS_DISPLAY_NAME + " NPC - Buttersquirrel on tree NW of spawn", 296 + npc_index_offset, tags=[SQUIRREL_LOCATION_GROUP]),
         LocationData(SPAWNING_MEADOWS_AP_REGION, SPAWNING_MEADOWS_DISPLAY_NAME + " NPC - Buttersquirrel on tree near lampposts", 110 + npc_index_offset, tags=[SQUIRREL_LOCATION_GROUP]),
@@ -129,14 +129,14 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         #NPCs Shortcuts: shortcut girl (Z2_Collector Sister ID 3769 (169, 132, -89))
         #NPCs Shortcuts: Rabbit Claws shortcut guy (Z2_RoosterFeetGuy ID 74(281, 128, -159))
         #Delende Plains
-        LocationData(DELENDE_PLAINS_AP_REGION, DELENDE_DISPLAY_NAME + " NPC - Astley gives you a home point stone", 28 + npc_index_offset),
-        LocationData(DELENDE_PLAINS_AP_REGION, DELENDE_DISPLAY_NAME + " NPC - Not-at-all shady guy", 124 + npc_index_offset),  # (181, 132, -200); Rotten Salmon
-        LocationData(DELENDE_PLAINS_AP_REGION, DELENDE_DISPLAY_NAME + " NPC - Fish at the hatchery", 121 + npc_index_offset, lambda state: state.has("Item - Flimsy Rod", player) and state.has("Item - Plug Lure", player)),  # Fisher (Z2_FisherOnDock ID 121 (166, 133, -208))
-        LocationData(DELENDE_PLAINS_AP_REGION, DELENDE_DISPLAY_NAME + " NPC - Dizzy noob chucks something at your face", 831 + npc_index_offset),  # (276, 116, -204); Fervor Charm
-        LocationData(DELENDE_PLAINS_AP_REGION, DELENDE_DISPLAY_NAME + " NPC - Dog Bone Guy", 31 + npc_index_offset, lambda state: state.has(DOG_BONE, player, 3)),
+        LocationData(DELENDE_PLAINS_AP_REGION, DELENDE_DISPLAY_NAME + " NPC - Astley gives you a home point stone", 28 + npc_index_offset, tags=[GIFT_LOCATION_GROUP]),
+        LocationData(DELENDE_PLAINS_AP_REGION, DELENDE_DISPLAY_NAME + " NPC - Not-at-all shady guy", 124 + npc_index_offset, tags=[BRIBE_QUEST_LOCATION_GROUP]),  # (181, 132, -200); Rotten Salmon
+        LocationData(DELENDE_PLAINS_AP_REGION, DELENDE_DISPLAY_NAME + " NPC - Fish at the hatchery", 121 + npc_index_offset, lambda state: state.has("Item - Flimsy Rod", player) and state.has("Item - Plug Lure", player), tags=[FISHER_LOCATION_GROUP, FETCH_QUEST_LOCATION_GROUP]),  # Fisher (Z2_FisherOnDock ID 121 (166, 133, -208))
+        LocationData(DELENDE_PLAINS_AP_REGION, DELENDE_DISPLAY_NAME + " NPC - Dizzy noob chucks something at your face", 831 + npc_index_offset, tags=[GIFT_LOCATION_GROUP]),  # (276, 116, -204); Fervor Charm
+        LocationData(DELENDE_PLAINS_AP_REGION, DELENDE_DISPLAY_NAME + " NPC - Dog Bone Guy", 31 + npc_index_offset, lambda state: state.has(DOG_BONE, player, 3), tags=[COLLECTIBLE_TURN_IN_LOCATION_GROUP, FETCH_QUEST_LOCATION_GROUP]),
         LocationData(DELENDE_PLAINS_AP_REGION, DELENDE_DISPLAY_NAME + " NPC - Dog Bone south of Soiled Den", 184 + npc_index_offset, tags=[DOG_BONE_LOCATION_GROUP]),
         LocationData(DELENDE_PLAINS_AP_REGION, DELENDE_DISPLAY_NAME + " NPC - Dog Bone in spooky cave", 1915 + npc_index_offset, tags=[DOG_BONE_LOCATION_GROUP]),
-        LocationData(DELENDE_PLAINS_AP_REGION, DELENDE_DISPLAY_NAME + " NPC - Cartographer", 1153 + npc_index_offset),  # guy who gives you a map of Delende if you don't have one (Z2_MapMan (198, 131, -74)) Fixed Missable
+        LocationData(DELENDE_PLAINS_AP_REGION, DELENDE_DISPLAY_NAME + " NPC - Cartographer", 1153 + npc_index_offset, tags=[GIFT_LOCATION_GROUP]),  # guy who gives you a map of Delende if you don't have one (Z2_MapMan (198, 131, -74)) Fixed Missable
 
         #Soiled Den
         #Treasure chests
@@ -167,7 +167,7 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         LocationData(THE_PALE_GROTTO_AP_REGION, "Underpass Chest - Blue flower ledge between Pale Grotto & Soiled Den", 3621 + treasure_index_offset, lambda state: logic.has_swimming(state), tags=[PURPLE_CHEST_LOCATION_GROUP]), #(245, 116, -199) Underpass Scrap chest
         
         #NPCs
-        LocationData(THE_PALE_GROTTO_AP_REGION, THE_PALE_GROTTO_DISPLAY_NAME + " NPC - Reid gives you gently worn armor", 1166 + npc_index_offset), #Pale Grotto Temple map (Z2_ReidCamp (273, 122, -327)) gives you Ring Mail
+        LocationData(THE_PALE_GROTTO_AP_REGION, THE_PALE_GROTTO_DISPLAY_NAME + " NPC - Reid gives you gently worn armor", 1166 + npc_index_offset, tags=[GIFT_LOCATION_GROUP]), #Pale Grotto Temple map (Z2_ReidCamp (273, 122, -327)) gives you Ring Mail
 
         #Seaside Cliffs
         #Treasure chests
@@ -204,8 +204,8 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         LocationData(SEASIDE_CLIFFS_AP_REGION, SEASIDE_CLIFFS_DISPLAY_NAME + " Chest - Rocky cove down the lazy river", 269 + treasure_index_offset, tags=[PURPLE_CHEST_LOCATION_GROUP, CLAMSHELL_LOCATION_GROUP]), #Clamshell chest
         
         #NPCs
-        LocationData(SEASIDE_CLIFFS_AP_REGION, SEASIDE_CLIFFS_DISPLAY_NAME + " NPC - ClamHater above the mist", 283 + npc_index_offset),
-        LocationData(SEASIDE_CLIFFS_AP_REGION, SEASIDE_CLIFFS_DISPLAY_NAME + " NPC - If you give a Manana Man a clam... (he will ask you for more)", 284 + npc_index_offset, lambda state: logic.has_enough_clamshells(state)),
+        LocationData(SEASIDE_CLIFFS_AP_REGION, SEASIDE_CLIFFS_DISPLAY_NAME + " NPC - ClamHater above the mist", 283 + npc_index_offset, tags=[GIFT_LOCATION_GROUP]),
+        LocationData(SEASIDE_CLIFFS_AP_REGION, SEASIDE_CLIFFS_DISPLAY_NAME + " NPC - If you give a Manana Man a clam... (he will ask you for more)", 284 + npc_index_offset, lambda state: logic.has_enough_clamshells(state), tags=[COLLECTIBLE_TURN_IN_LOCATION_GROUP, FETCH_QUEST_LOCATION_GROUP]),
         LocationData(SEASIDE_CLIFFS_AP_REGION, SEASIDE_CLIFFS_DISPLAY_NAME + " NPC - Diamond below the bay", 2896 + npc_index_offset, lambda state: logic.has_swimming(state), tags=[ORE_LOCATION_GROUP]), #(343, 81, 0) Ore
         #Todo NPCs Job Masters: Seaside Cliffs Outpost map has Master Shaman ID 3572 (387, 155, -104); gives you Shaman Seal in exchange for job mastery
 
@@ -216,7 +216,7 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
 
         #Mercury Shrine
         #Treasure chests
-        LocationData(MERCURY_SHRINE_AP_REGION, MERCURY_SHRINE_DISPLAY_NAME + " Chest - Pinnacle", 155 + treasure_index_offset, lambda state: state.has(MERCURY_STONE, player) or logic.has_vertical_movement(state)), #Contract chest
+        LocationData(MERCURY_SHRINE_AP_REGION, MERCURY_SHRINE_DISPLAY_NAME + " Chest - Pinnacle", 155 + treasure_index_offset, lambda state: state.has(MERCURY_STONE, player) or logic.has_vertical_movement(state) or logic.has_glide(state)), #Contract chest
 
         #Yamagawa M.A.
         #Treasure chests
@@ -270,9 +270,9 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Chest - Magic store attic", 1389 + treasure_index_offset), #Craftwork Scythe chest
         LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Chest - Training ground parkour", 1390 + treasure_index_offset), #Craftwork Katana chest
         LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Chest - Behind Luxury store", 2651 + treasure_index_offset), #Craftwork Cap chest
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Chest - Locked in Luxury Store storage 1", 1533 + treasure_index_offset, lambda state: logic.has_key(state, LUXURY_KEY) and state.has(PROGRESSIVE_LUXURY_PASS, player)), #Fenix Syrup Pouch chest
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Chest - Locked in Luxury Store storage 2", 1532 + treasure_index_offset, lambda state: logic.has_key(state, LUXURY_KEY) and state.has(PROGRESSIVE_LUXURY_PASS, player)), #Lucky Briefs chest
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Chest - Locked in Luxury Store storage 3", 1531 + treasure_index_offset, lambda state: logic.has_key(state, LUXURY_KEY) and state.has(PROGRESSIVE_LUXURY_PASS, player)), #Lucky Socks chest
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Chest - Locked in Luxury Store storage 1", 1533 + treasure_index_offset, lambda state: logic.has_key(state, LUXURY_KEY) and state.has(PROGRESSIVE_LUXURY_PASS, player), tags=[LUXURY_PASS_LOCATION_GROUP]), #Fenix Syrup Pouch chest
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Chest - Locked in Luxury Store storage 2", 1532 + treasure_index_offset, lambda state: logic.has_key(state, LUXURY_KEY) and state.has(PROGRESSIVE_LUXURY_PASS, player), tags=[LUXURY_PASS_LOCATION_GROUP]), #Lucky Briefs chest
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Chest - Locked in Luxury Store storage 3", 1531 + treasure_index_offset, lambda state: logic.has_key(state, LUXURY_KEY) and state.has(PROGRESSIVE_LUXURY_PASS, player), tags=[LUXURY_PASS_LOCATION_GROUP]), #Lucky Socks chest
         LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Chest - Inn attic by Master Monk", 2656 + treasure_index_offset), #Craftwork Vest chest
         LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Chest - By Master Warrior atop the Luxury Store", 2655 + treasure_index_offset), #Craftwork Shield chest
         LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Chest - Atop library bookcases", 1392 + treasure_index_offset), #Craftwork Sword chest
@@ -307,11 +307,11 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         #Todo NPCs Job Masters: Master Warrior ID 3566 (424, 182, -293); gives you Warrior Seal in exchange for job mastery
         #Todo NPCs Job Masters: Master Wizard ID 3569 (391, 168, -266); gives you Wizard Seal in exchange for job mastery
         #NPCs Blocker: Z14_ProgressionGate ID 3823 (403, 180, -367) requires 18 crystals; we think it"s an original-randomizer-only NPC blocking the way to the castle
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Home Point Stone duck", 560 + npc_index_offset), #Home Point Stone (403, 161, -265) Fixed Missable
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Impress the Luxury Equipment Shop Bouncer with 6 jobs collected", 51162 + npc_index_offset, lambda state: logic.has_jobs(state, 6)), #(419, 171, -289) Blocker-No-Longer, Fixed Missable, and Multichecks
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Impress the Luxury Equipment Shop Bouncer further with 11 jobs collected", 1162 + npc_index_offset, lambda state: logic.has_jobs(state, 11)), #(419, 171, -289)
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Plunder the Luxury storage and skip town to meet a very slow thief", 1529 + npc_index_offset, lambda state: logic.has_key(state, LUXURY_KEY) and state.has(PROGRESSIVE_LUXURY_PASS, player)), #(417, 171, -299) Fixed Missable
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Courtyard Chloe", 1661 + npc_index_offset, lambda state: (logic.has_rental_quintar(state, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME) and logic.obscure_routes_on()) or logic.has_horizontal_movement(state) or logic.has_vertical_movement(state)), #Fly Lure (399, 155, -219) Fixed Missable
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Home Point Stone duck", 560 + npc_index_offset, tags=[GIFT_LOCATION_GROUP]), #Home Point Stone (403, 161, -265) Fixed Missable
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Impress the Luxury Equipment Shop Bouncer with 6 jobs collected", 51162 + npc_index_offset, lambda state: logic.has_jobs(state, 6), tags=[JOB_CHECKER_LOCATION_GROUP]), #(419, 171, -289) Blocker-No-Longer, Fixed Missable, and Multichecks
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Impress the Luxury Equipment Shop Bouncer further with 11 jobs collected", 1162 + npc_index_offset, lambda state: logic.has_jobs(state, 11), tags=[JOB_CHECKER_LOCATION_GROUP]), #(419, 171, -289)
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Plunder the Luxury storage and skip town to meet a very slow thief", 1529 + npc_index_offset, lambda state: logic.has_key(state, LUXURY_KEY) and state.has(PROGRESSIVE_LUXURY_PASS, player), tags=[LUXURY_PASS_LOCATION_GROUP]), #(417, 171, -299) Fixed Missable
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Courtyard Chloe", 1661 + npc_index_offset, lambda state: (logic.has_rental_quintar(state, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME) and logic.obscure_routes_on()) or logic.has_horizontal_movement(state) or logic.has_vertical_movement(state), tags=[GIFT_LOCATION_GROUP]), #Fly Lure (399, 155, -219) Fixed Missable
         LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Glinting Courtyard Key", 2486 + npc_index_offset), #Courtyard Key sparkle that appears if you miss Courtyard Reid in Salmon River (424, 150, -222) Fixed Missable
         LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Sparkling in the fountain", 2584 + npc_index_offset), #Plug Lure
         LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Lost Penguin on a tent", 605 + npc_index_offset, tags=[PENGUIN_LOCATION_GROUP]),
@@ -322,18 +322,18 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Lost Penguin enjoying inn hospitality", 946 + npc_index_offset, tags=[PENGUIN_LOCATION_GROUP]),
         # Progressive Location: 4 checks on the Penguin Keeper, must add a progressive location in the C# app every time you use one of these.
         # The original check that corresponds to the npc id should be last so that when it completes it stops showing up on your minimap.
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Bring 3 Lost Penguins to Penguin Keeper", 50531 + npc_index_offset, lambda state: state.has(LOST_PENGUIN, player, 3)),
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Bring 6 Lost Penguins to Penguin Keeper", 50532 + npc_index_offset, lambda state: state.has(LOST_PENGUIN, player, 6)),
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Bring 9 Lost Penguins to Penguin Keeper", 50533 + npc_index_offset, lambda state: state.has(LOST_PENGUIN, player, 9)),
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Bring all 12 Lost Penguins to Penguin Keeper", 531 + npc_index_offset, lambda state: state.has(LOST_PENGUIN, player, 12)),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Bring 3 Lost Penguins to Penguin Keeper", 50531 + npc_index_offset, lambda state: state.has(LOST_PENGUIN, player, 3), tags=[COLLECTIBLE_TURN_IN_LOCATION_GROUP, FETCH_QUEST_LOCATION_GROUP]),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Bring 6 Lost Penguins to Penguin Keeper", 50532 + npc_index_offset, lambda state: state.has(LOST_PENGUIN, player, 6), tags=[COLLECTIBLE_TURN_IN_LOCATION_GROUP, FETCH_QUEST_LOCATION_GROUP]),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Bring 9 Lost Penguins to Penguin Keeper", 50533 + npc_index_offset, lambda state: state.has(LOST_PENGUIN, player, 9), tags=[COLLECTIBLE_TURN_IN_LOCATION_GROUP, FETCH_QUEST_LOCATION_GROUP]),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Bring all 12 Lost Penguins to Penguin Keeper", 531 + npc_index_offset, lambda state: state.has(LOST_PENGUIN, player, 12), tags=[COLLECTIBLE_TURN_IN_LOCATION_GROUP, FETCH_QUEST_LOCATION_GROUP]),
         LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Lost Penguin trampling Cleric's flowers", 564 + npc_index_offset, lambda state: state.has(GAEA_STONE, player) or (logic.has_rental_quintar(state, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME) and logic.obscure_routes_on()) or logic.has_horizontal_movement(state) or logic.has_vertical_movement(state), tags=[PENGUIN_LOCATION_GROUP]),
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Sadist Sam gives you pain, you give Sadist Sam head(s)", 536 + npc_index_offset, lambda state: state.has(DIGESTED_HEAD, player, 3)), #name is ca69011a in Crystal Edit why lmao
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Sadist Sam gives you pain, you give Sadist Sam head(s)", 536 + npc_index_offset, lambda state: state.has(DIGESTED_HEAD, player, 3), tags=[COLLECTIBLE_TURN_IN_LOCATION_GROUP, FETCH_QUEST_LOCATION_GROUP]), #name is ca69011a in Crystal Edit why lmao
         LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Lost Penguin wandering Magic Store rooftop garden", 573 + npc_index_offset, tags=[PENGUIN_LOCATION_GROUP]),
         LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Lost Penguin atop sewer exit rooftop", 567 + npc_index_offset, tags=[PENGUIN_LOCATION_GROUP]),
         LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Lost Penguin cheating at Garden Maze", 421 + npc_index_offset, tags=[PENGUIN_LOCATION_GROUP]),
         LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - How did you climb that tree, Lost Penguin?", 422 + npc_index_offset, tags=[PENGUIN_LOCATION_GROUP]),
         LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Library roof Lost Penguin", 594 + npc_index_offset, tags=[PENGUIN_LOCATION_GROUP]),
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Library Morii of the East!", 1948 + npc_index_offset), #(440, 171, -296) Z14_Library Scholar
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " NPC - Library Morii of the East!", 1948 + npc_index_offset, tags=[GIFT_LOCATION_GROUP]), #(440, 171, -296) Z14_Library Scholar
 
         #Jojo Sewers
         #Treasure chests
@@ -350,7 +350,7 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
 
         #NPCs
         #Sewer Main (lol)
-        LocationData(JOJO_SEWERS_AP_REGION, JOJO_SEWERS_DISPLAY_NAME + " NPC - Who even wants Stone of Jordan these days?", 2759 + npc_index_offset, lambda state: state.has(CRAG_DEMON_HORN, player)),
+        LocationData(JOJO_SEWERS_AP_REGION, JOJO_SEWERS_DISPLAY_NAME + " NPC - Who even wants Stone of Jordan these days?", 2759 + npc_index_offset, lambda state: state.has(CRAG_DEMON_HORN, player), tags=[FETCH_QUEST_LOCATION_GROUP]),
 
         #Boomer Society
         #Treasure chests
@@ -358,8 +358,8 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         LocationData(BOOMER_SOCIETY_AP_REGION, BOOMER_SOCIETY_DISPLAY_NAME + " Chest - 2nd floor of log cabin", 2909 + treasure_index_offset, tags=[PURPLE_CHEST_LOCATION_GROUP]), #Boomer Society map chest
 
         #NPCs
-        LocationData(BOOMER_SOCIETY_AP_REGION, BOOMER_SOCIETY_DISPLAY_NAME + " NPC - Nice Allowance Lady", 476 + npc_index_offset),
-        LocationData(BOOMER_SOCIETY_AP_REGION, BOOMER_SOCIETY_DISPLAY_NAME + " NPC - Treasury Grandpa", 547 + npc_index_offset),
+        LocationData(BOOMER_SOCIETY_AP_REGION, BOOMER_SOCIETY_DISPLAY_NAME + " NPC - Nice Allowance Lady", 476 + npc_index_offset, tags=[GIFT_LOCATION_GROUP]),
+        LocationData(BOOMER_SOCIETY_AP_REGION, BOOMER_SOCIETY_DISPLAY_NAME + " NPC - Treasury Grandpa", 547 + npc_index_offset, tags=[GIFT_LOCATION_GROUP]),
 
         #Rolling Quintar Fields
         #Treasure chests
@@ -381,9 +381,9 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         #NPCs
         #NPCs CheckOrNot: two Quintar Eggs (decided against)
         #Hunter Master is in Hunter's Tower region, but you need quintar to climb the tower
-        LocationData(ROLLING_QUINTAR_FIELDS_AP_REGION, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME + " NPC - Quintar Stable Owner by Capital Sequoia's eastern gate", 375 + npc_index_offset, lambda state: logic.has_jobs(state, 7)), #Quintar Pass, Fixed Missable
+        LocationData(ROLLING_QUINTAR_FIELDS_AP_REGION, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME + " NPC - Quintar Stable Owner by Capital Sequoia's eastern gate", 375 + npc_index_offset, lambda state: logic.has_jobs(state, 7), tags=[JOB_CHECKER_LOCATION_GROUP]), #Quintar Pass, Fixed Missable
         LocationData(ROLLING_QUINTAR_FIELDS_AP_REGION, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME + " NPC - Silver beneath overhang in eastern Quintar cave crevasse", 2678 + npc_index_offset, tags=[ORE_LOCATION_GROUP]), #Dust
-        LocationData(ROLLING_QUINTAR_FIELDS_AP_REGION, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME + " NPC - Quintar Enthusiast (always pet Buttermint)", 464 + npc_index_offset), #Fixed Missable
+        LocationData(ROLLING_QUINTAR_FIELDS_AP_REGION, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME + " NPC - Quintar Enthusiast (always pet Buttermint)", 464 + npc_index_offset, tags=[MOUNT_INSTRUMENT_LOCATION_GROUP, GIFT_LOCATION_GROUP]), #Fixed Missable
         LocationData(ROLLING_QUINTAR_FIELDS_AP_REGION, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME + " NPC - Silver in Quintar cave beneath the end of the road", 454 + npc_index_offset, tags=[ORE_LOCATION_GROUP]), #Ingot
         #Rolling Treetop Highway
         LocationData(ROLLING_TREETOP_HIGHWAY_AP_REGION, ROLLING_QUINTAR_FIELDS_DISPLAY_NAME + " NPC - Silver behind Quintar Nest befriending a stack of boxes", 323 + npc_index_offset, tags=[ORE_LOCATION_GROUP]), #Ore
@@ -427,8 +427,8 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         LocationData(QUINTAR_SANCTUM_AP_REGION, QUINTAR_SANCTUM_DISPLAY_NAME + " NPC - Silver beneath the shroom", 801 + npc_index_offset, tags=[ORE_LOCATION_GROUP]), #Ingot
         LocationData(QUINTAR_SANCTUM_AP_REGION, QUINTAR_SANCTUM_DISPLAY_NAME + " NPC - East side Silver (Do not look down)", 737 + npc_index_offset, tags=[ORE_LOCATION_GROUP]), #Ore
         LocationData(QUINTAR_SANCTUM_AP_REGION, QUINTAR_SANCTUM_DISPLAY_NAME + " NPC - Big bounce Silver", 754 + npc_index_offset, tags=[ORE_LOCATION_GROUP]), #Ore
-        LocationData(QUINTAR_SANCTUM_AP_REGION, QUINTAR_SANCTUM_DISPLAY_NAME + " NPC - Two Toads bestow Princess Toadstool", 963 + npc_index_offset),
-        LocationData(QUINTAR_SANCTUM_AP_REGION, QUINTAR_SANCTUM_DISPLAY_NAME + " NPC - Two Toads crown Bowsette", 964 + npc_index_offset),
+        LocationData(QUINTAR_SANCTUM_AP_REGION, QUINTAR_SANCTUM_DISPLAY_NAME + " NPC - Two Toads bestow Princess Toadstool", 963 + npc_index_offset, tags=[GIFT_LOCATION_GROUP]),
+        LocationData(QUINTAR_SANCTUM_AP_REGION, QUINTAR_SANCTUM_DISPLAY_NAME + " NPC - Two Toads crown Bowsette", 964 + npc_index_offset, tags=[GIFT_LOCATION_GROUP]),
 
         #Capital Jail
         #Treasure chests
@@ -556,18 +556,18 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         LocationData(MUSHROOM_MOUNTAIN_AP_REGION, "Overpass Chest - Ultimate Mulan challenge past mushroom mountain", 1401 + treasure_index_offset, lambda state: logic.has_horizontal_movement(state)), #(-35, 166, -387) Overpass (Cloudy Wind) Zether Pouch chest
 
         #NPCs
-        LocationData(SALMON_RIVER_AP_REGION, SALMON_RIVER_DISPLAY_NAME + " NPC - Reid chilling by the Fish Hatchery", 2410 + npc_index_offset), #(113, 172, -372) Courtyard Key; Fixed Missable
+        LocationData(SALMON_RIVER_AP_REGION, SALMON_RIVER_DISPLAY_NAME + " NPC - Reid chilling by the Fish Hatchery", 2410 + npc_index_offset, tags=[GIFT_LOCATION_GROUP]), #(113, 172, -372) Courtyard Key; Fixed Missable
         #TODO: require rental salmon for more of these checks once the skilled rental salmon setting is implemented
-        LocationData(SALMON_RIVER_AP_REGION, SALMON_RIVER_DISPLAY_NAME + " NPC - Salmon Race Participation Prize", 50639 + npc_index_offset, lambda state: logic.fish_race_requirements(state, True)),
-        LocationData(SALMON_RIVER_AP_REGION, SALMON_RIVER_DISPLAY_NAME + " NPC - Salmon Race 14th place prize", 50640 + npc_index_offset, lambda state: logic.fish_race_requirements(state)),
-        LocationData(SALMON_RIVER_AP_REGION, SALMON_RIVER_DISPLAY_NAME + " NPC - Salmon Race 12th place prize", 50641 + npc_index_offset, lambda state: logic.fish_race_requirements(state)),
-        LocationData(SALMON_RIVER_AP_REGION, SALMON_RIVER_DISPLAY_NAME + " NPC - Salmon Race 10th place prize", 50642 + npc_index_offset, lambda state: logic.fish_race_requirements(state)),
-        LocationData(SALMON_RIVER_AP_REGION, SALMON_RIVER_DISPLAY_NAME + " NPC - Salmon Race 8th place prize", 50643 + npc_index_offset, lambda state: logic.fish_race_requirements(state)),
-        LocationData(SALMON_RIVER_AP_REGION, SALMON_RIVER_DISPLAY_NAME + " NPC - Salmon Race 6th place prize", 50644 + npc_index_offset, lambda state: logic.fish_race_requirements(state)),
-        LocationData(SALMON_RIVER_AP_REGION, SALMON_RIVER_DISPLAY_NAME + " NPC - Salmon Race 4th place prize", 50645 + npc_index_offset, lambda state: logic.fish_race_requirements(state)),
-        LocationData(SALMON_RIVER_AP_REGION, SALMON_RIVER_DISPLAY_NAME + " NPC - Salmon Race 3rd place prize", 50646 + npc_index_offset, lambda state: logic.fish_race_requirements(state)),
-        LocationData(SALMON_RIVER_AP_REGION, SALMON_RIVER_DISPLAY_NAME + " NPC - Salmon Race 2nd place prize", 50647 + npc_index_offset, lambda state: logic.fish_race_requirements(state)),
-        LocationData(SALMON_RIVER_AP_REGION, SALMON_RIVER_DISPLAY_NAME + " NPC - Win the Salmon Race", 639 + npc_index_offset, lambda state: logic.fish_race_requirements(state)),
+        LocationData(SALMON_RIVER_AP_REGION, SALMON_RIVER_DISPLAY_NAME + " NPC - Salmon Race Participation Prize", 50639 + npc_index_offset, lambda state: logic.fish_race_requirements(state, True), tags=[SALMON_RACE_LOCATION_GROUP, CHALLENGE_QUEST_LOCATION_GROUP]),
+        LocationData(SALMON_RIVER_AP_REGION, SALMON_RIVER_DISPLAY_NAME + " NPC - Salmon Race 14th place prize", 50640 + npc_index_offset, lambda state: logic.fish_race_requirements(state), tags=[SALMON_RACE_LOCATION_GROUP, CHALLENGE_QUEST_LOCATION_GROUP]),
+        LocationData(SALMON_RIVER_AP_REGION, SALMON_RIVER_DISPLAY_NAME + " NPC - Salmon Race 12th place prize", 50641 + npc_index_offset, lambda state: logic.fish_race_requirements(state), tags=[SALMON_RACE_LOCATION_GROUP, CHALLENGE_QUEST_LOCATION_GROUP]),
+        LocationData(SALMON_RIVER_AP_REGION, SALMON_RIVER_DISPLAY_NAME + " NPC - Salmon Race 10th place prize", 50642 + npc_index_offset, lambda state: logic.fish_race_requirements(state), tags=[SALMON_RACE_LOCATION_GROUP, CHALLENGE_QUEST_LOCATION_GROUP]),
+        LocationData(SALMON_RIVER_AP_REGION, SALMON_RIVER_DISPLAY_NAME + " NPC - Salmon Race 8th place prize", 50643 + npc_index_offset, lambda state: logic.fish_race_requirements(state), tags=[SALMON_RACE_LOCATION_GROUP, CHALLENGE_QUEST_LOCATION_GROUP]),
+        LocationData(SALMON_RIVER_AP_REGION, SALMON_RIVER_DISPLAY_NAME + " NPC - Salmon Race 6th place prize", 50644 + npc_index_offset, lambda state: logic.fish_race_requirements(state), tags=[SALMON_RACE_LOCATION_GROUP, CHALLENGE_QUEST_LOCATION_GROUP]),
+        LocationData(SALMON_RIVER_AP_REGION, SALMON_RIVER_DISPLAY_NAME + " NPC - Salmon Race 4th place prize", 50645 + npc_index_offset, lambda state: logic.fish_race_requirements(state), tags=[SALMON_RACE_LOCATION_GROUP, CHALLENGE_QUEST_LOCATION_GROUP]),
+        LocationData(SALMON_RIVER_AP_REGION, SALMON_RIVER_DISPLAY_NAME + " NPC - Salmon Race 3rd place prize", 50646 + npc_index_offset, lambda state: logic.fish_race_requirements(state), tags=[SALMON_RACE_LOCATION_GROUP, CHALLENGE_QUEST_LOCATION_GROUP]),
+        LocationData(SALMON_RIVER_AP_REGION, SALMON_RIVER_DISPLAY_NAME + " NPC - Salmon Race 2nd place prize", 50647 + npc_index_offset, lambda state: logic.fish_race_requirements(state), tags=[SALMON_RACE_LOCATION_GROUP, CHALLENGE_QUEST_LOCATION_GROUP]),
+        LocationData(SALMON_RIVER_AP_REGION, SALMON_RIVER_DISPLAY_NAME + " NPC - Win the Salmon Race", 639 + npc_index_offset, lambda state: logic.fish_race_requirements(state), tags=[MOUNT_INSTRUMENT_LOCATION_GROUP, SALMON_RACE_LOCATION_GROUP, CHALLENGE_QUEST_LOCATION_GROUP]),
         #Mushroom Mountain
         LocationData(MUSHROOM_MOUNTAIN_AP_REGION, "Overpass NPC - Fall off mushroom mountain onto Gold", 2739 + npc_index_offset, tags=[ORE_LOCATION_GROUP]), #(63, 191, -399) 2nd Gold Dust on Overpass (Cloudy Wind)
 
@@ -598,7 +598,7 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         LocationData(POKO_POKO_DESERT_AP_REGION, POKO_POKO_DESERT_DISPLAY_NAME + " NPC - Rocky outcropping Gold will put your Quintar to the test", 2817 + npc_index_offset, lambda state: logic.has_horizontal_movement(state) or logic.has_vertical_movement(state), tags=[ORE_LOCATION_GROUP]), #Dust
         LocationData(POKO_POKO_DESERT_AP_REGION, POKO_POKO_DESERT_DISPLAY_NAME + " NPC - Stormy Silver atop ruins", 2677 + npc_index_offset, tags=[ORE_LOCATION_GROUP]),  # Ore
         LocationData(POKO_POKO_DESERT_AP_REGION, POKO_POKO_DESERT_DISPLAY_NAME + " NPC - Gold Ingot atop ridge south of North Lookout Tower", 2818 + npc_index_offset, tags=[ORE_LOCATION_GROUP]),
-        LocationData(POKO_POKO_DESERT_AP_REGION, POKO_POKO_DESERT_DISPLAY_NAME + " NPC - Thirsty Lad", 1201 + npc_index_offset, lambda state: state.has(SPECIAL_MILK, player)),
+        LocationData(POKO_POKO_DESERT_AP_REGION, POKO_POKO_DESERT_DISPLAY_NAME + " NPC - Thirsty Lad", 1201 + npc_index_offset, lambda state: state.has(SPECIAL_MILK, player), tags=[FETCH_QUEST_LOCATION_GROUP]),
         LocationData(POKO_POKO_DESERT_AP_REGION, POKO_POKO_DESERT_DISPLAY_NAME + " NPC - Silver in desert arch shade", 2682 + npc_index_offset, tags=[ORE_LOCATION_GROUP]),  # Ingot
         LocationData(POKO_POKO_DESERT_AP_REGION, POKO_POKO_DESERT_DISPLAY_NAME + " NPC - Silver in the sandstorm on ruins 2nd floor", 2680 + npc_index_offset, lambda state: logic.has_horizontal_movement(state) or logic.has_vertical_movement(state), tags=[ORE_LOCATION_GROUP]), #Dust
         LocationData(POKO_POKO_DESERT_AP_REGION, POKO_POKO_DESERT_DISPLAY_NAME + " NPC - Stormy Silver on ruined building floor", 2681 + npc_index_offset, tags=[ORE_LOCATION_GROUP]), #Ore
@@ -622,14 +622,14 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         LocationData(SARA_SARA_BAZAAR_AP_REGION, SARA_SARA_BAZAAR_DISPLAY_NAME + " Chest - Spilled booty", 2936 + treasure_index_offset, lambda state: logic.has_swimming(state)), #Captains Hat chest
 
         #NPCs
-        LocationData(SARA_SARA_BAZAAR_AP_REGION, SARA_SARA_BAZAAR_DISPLAY_NAME + " NPC - Quintar West Stable Owner", 1852 + npc_index_offset, lambda state: logic.has_jobs(state, 7)), #Quintar Pass; Fixed Missable
-        LocationData(SARA_SARA_BAZAAR_AP_REGION, SARA_SARA_BAZAAR_DISPLAY_NAME + " NPC - Quintar East Stable Owner", 2234 + npc_index_offset, lambda state: logic.has_jobs(state, 7)), #Quintar Pass; Fixed Missable
-        LocationData(SARA_SARA_BAZAAR_AP_REGION, SARA_SARA_BAZAAR_DISPLAY_NAME + " NPC - Ticket Agent forgot what Ferry Passes are but she found this in her desk", 940 + npc_index_offset, lambda state: logic.has_jobs(state, 11)), #(-166,93,56) Fixed Missable
-        LocationData(SARA_SARA_BAZAAR_AP_REGION, SARA_SARA_BAZAAR_DISPLAY_NAME + " NPC - Three tokens makes a Pyramid Key something something triangles", 949 + npc_index_offset, lambda state: state.has(WEST_LOOKOUT_TOKEN, player) and state.has(CENTRAL_LOOKOUT_TOKEN, player) and state.has(NORTH_LOOKOUT_TOKEN, player)),
-        LocationData(SARA_SARA_BAZAAR_AP_REGION, SARA_SARA_BAZAAR_DISPLAY_NAME + " NPC - The One and Only Room 1 Key", 385 + npc_index_offset, lambda state: logic.can_earn_money(state, SARA_SARA_BAZAAR_AP_REGION)),
-        LocationData(SARA_SARA_BAZAAR_AP_REGION, SARA_SARA_BAZAAR_DISPLAY_NAME + " NPC - Circle the eastern desert wall for Worried Mom's Lost Son", 1196 + npc_index_offset, lambda state: (state.has(POKO_POKO_DESERT_PASS, player) or logic.is_regionsanity_disabled()) and logic.is_area_in_level_range(state, POKO_POKO_ENEMY_LEVEL)), #Ferry Pass, if regionsanity extreme is enabled, you'll need the pass for the desert
-        LocationData(SARA_SARA_BAZAAR_AP_REGION, SARA_SARA_BAZAAR_DISPLAY_NAME + " NPC - Pelt this Fish Merchant with Rotten Salmon", 942 + npc_index_offset, lambda state: state.has(SPECIAL_ROTTEN_SALMON, player) and state.has(SPECIAL_FRESH_SALMON, player)),
-        LocationData(SARA_SARA_BAZAAR_AP_REGION, SARA_SARA_BAZAAR_DISPLAY_NAME + " NPC - No Shoudu Stew for you!", 1200 + npc_index_offset, lambda state: state.has(SPECIAL_SHOUDU_STEW, player)),
+        LocationData(SARA_SARA_BAZAAR_AP_REGION, SARA_SARA_BAZAAR_DISPLAY_NAME + " NPC - Quintar West Stable Owner", 1852 + npc_index_offset, lambda state: logic.has_jobs(state, 7), tags=[JOB_CHECKER_LOCATION_GROUP]), #Quintar Pass; Fixed Missable
+        LocationData(SARA_SARA_BAZAAR_AP_REGION, SARA_SARA_BAZAAR_DISPLAY_NAME + " NPC - Quintar East Stable Owner", 2234 + npc_index_offset, lambda state: logic.has_jobs(state, 7), tags=[JOB_CHECKER_LOCATION_GROUP]), #Quintar Pass; Fixed Missable
+        LocationData(SARA_SARA_BAZAAR_AP_REGION, SARA_SARA_BAZAAR_DISPLAY_NAME + " NPC - Ticket Agent forgot what Ferry Passes are but she found this in her desk", 940 + npc_index_offset, lambda state: logic.has_jobs(state, 11), tags=[JOB_CHECKER_LOCATION_GROUP]), #(-166,93,56) Fixed Missable
+        LocationData(SARA_SARA_BAZAAR_AP_REGION, SARA_SARA_BAZAAR_DISPLAY_NAME + " NPC - Three tokens makes a Pyramid Key something something triangles", 949 + npc_index_offset, lambda state: state.has(WEST_LOOKOUT_TOKEN, player) and state.has(CENTRAL_LOOKOUT_TOKEN, player) and state.has(NORTH_LOOKOUT_TOKEN, player), tags=[FETCH_QUEST_LOCATION_GROUP]),
+        LocationData(SARA_SARA_BAZAAR_AP_REGION, SARA_SARA_BAZAAR_DISPLAY_NAME + " NPC - The One and Only Room 1 Key", 385 + npc_index_offset, lambda state: logic.can_earn_money(state, SARA_SARA_BAZAAR_AP_REGION), tags=[BRIBE_QUEST_LOCATION_GROUP]),
+        LocationData(SARA_SARA_BAZAAR_AP_REGION, SARA_SARA_BAZAAR_DISPLAY_NAME + " NPC - Circle the eastern desert wall for Worried Mom's Lost Son", 1196 + npc_index_offset, lambda state: (state.has(POKO_POKO_DESERT_PASS, player) or logic.is_regionsanity_disabled()) and logic.is_area_in_level_range(state, POKO_POKO_ENEMY_LEVEL), tags=[CHALLENGE_QUEST_LOCATION_GROUP]), #Ferry Pass, if regionsanity extreme is enabled, you'll need the pass for the desert
+        LocationData(SARA_SARA_BAZAAR_AP_REGION, SARA_SARA_BAZAAR_DISPLAY_NAME + " NPC - Pelt this Fish Merchant with Rotten Salmon", 942 + npc_index_offset, lambda state: state.has(SPECIAL_ROTTEN_SALMON, player) and state.has(SPECIAL_FRESH_SALMON, player), tags=[FETCH_QUEST_LOCATION_GROUP]),
+        LocationData(SARA_SARA_BAZAAR_AP_REGION, SARA_SARA_BAZAAR_DISPLAY_NAME + " NPC - No Shoudu Stew for you!", 1200 + npc_index_offset, lambda state: state.has(SPECIAL_SHOUDU_STEW, player), tags=[FETCH_QUEST_LOCATION_GROUP]),
         LocationData(SARA_SARA_BAZAAR_AP_REGION, SARA_SARA_BAZAAR_DISPLAY_NAME + " NPC - Spilled booty Silver", 2905 + npc_index_offset, lambda state: logic.has_swimming(state), tags=[ORE_LOCATION_GROUP]), #Dust
         LocationData(SARA_SARA_BAZAAR_AP_REGION, SARA_SARA_BAZAAR_DISPLAY_NAME + " NPC - Spilled booty Silverer", 2906 + npc_index_offset, lambda state: logic.has_swimming(state), tags=[ORE_LOCATION_GROUP]), #Dust
         LocationData(SARA_SARA_BAZAAR_AP_REGION, SARA_SARA_BAZAAR_DISPLAY_NAME + " NPC - Spilled booty Silvererer", 2903 + npc_index_offset, lambda state: logic.has_swimming(state), tags=[ORE_LOCATION_GROUP]), #Ingot
@@ -709,7 +709,7 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         LocationData(TALL_POSSESSOR_ROCK_AP_REGION, ANCIENT_RESERVOIR_DISPLAY_NAME + " Chest - Celebrate your new hops", 2517 + treasure_index_offset),  # Fenix Juice Pouch chest
 
         #NPCs
-        LocationData(IBEK_CAVE_AP_REGION, ANCIENT_RESERVOIR_DISPLAY_NAME + " NPC - Goat victory Ibek Bell", 1676 + npc_index_offset, tags=[BOSS_LOCATION_GROUP]),  # Z30_PostBossEvent
+        LocationData(IBEK_CAVE_AP_REGION, ANCIENT_RESERVOIR_DISPLAY_NAME + " NPC - Goat victory Ibek Bell", 1676 + npc_index_offset, tags=[BOSS_LOCATION_GROUP, MOUNT_INSTRUMENT_LOCATION_GROUP]),  # Z30_PostBossEvent
         #Trek Spiraling Up Out of Ibek's Cave
         LocationData(IBEK_CAVE_SPIRALING_TREK_OUT_AP_REGION, ANCIENT_RESERVOIR_DISPLAY_NAME + " NPC - Silver in the goat digs", 2696 + npc_index_offset, tags=[ORE_LOCATION_GROUP]),  # Dust
 
@@ -782,7 +782,7 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         LocationData(JIDAMBA_ATOLLS_AP_REGION, THE_OPEN_SEA_DISPLAY_NAME + " Chest - Atoll southeast of Jidamba Tangle", 3767 + treasure_index_offset),  # Fenix Syrup chest
         LocationData(JIDAMBA_ATOLLS_AP_REGION, THE_OPEN_SEA_DISPLAY_NAME + " Chest - Atoll southwest of southeast Jidamba Tangle atoll", 3765 + treasure_index_offset),  # Z-Potion chest
         #NPCs
-        LocationData(THE_OPEN_SEA_AP_REGION, THE_OPEN_SEA_DISPLAY_NAME + " NPC - I'm on a raft!", 2804 + npc_index_offset, lambda state: state.has("Item - Super Rod", player) and state.has("Item - Jigging Lure", player)),
+        LocationData(THE_OPEN_SEA_AP_REGION, THE_OPEN_SEA_DISPLAY_NAME + " NPC - I'm on a raft!", 2804 + npc_index_offset, lambda state: state.has("Item - Super Rod", player) and state.has("Item - Jigging Lure", player), tags=[FISHER_LOCATION_GROUP, FETCH_QUEST_LOCATION_GROUP]),
         #CheckOrNot: (930, 91, 253) do we put a check on the guy who gives you a Gaea Shard if you get there with no Salmon lol: no
         #LocationData(THE_OPEN_SEA_AP_REGION, THE_OPEN_SEA_DISPLAY_NAME + " NPC - Z34_SinisterSailor", 2520 + npc_index_offset),
 
@@ -843,7 +843,7 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
 
         #Northeast Upper Scaffolding
         LocationData(NORTHEAST_UPPER_SCAFFOLDING_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - Gold near sky fishing", 2834 + npc_index_offset, tags=[ORE_LOCATION_GROUP]),  # Ore
-        LocationData(NORTHEAST_UPPER_SCAFFOLDING_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - Chloe and Talon sky fishing", 3702 + npc_index_offset),  # (765, 125, -248) Fixed Missable; removed post-sparkle
+        LocationData(NORTHEAST_UPPER_SCAFFOLDING_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - Chloe and Talon sky fishing", 3702 + npc_index_offset, tags=[GIFT_LOCATION_GROUP]),  # (765, 125, -248) Fixed Missable; removed post-sparkle
 
         #Elevator Base
         LocationData(SHOUDU_ELEVATOR_BASE_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - In the flower room", 2789 + treasure_index_offset),  # Potion chest
@@ -859,37 +859,37 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
 
         #Sky Arena
         # NPCs Multichecks: Shoudu Province (Sky Arena) map Z38_SkyArenaPrizes ID 1921 (765, 125, -248) gives 5 prizes in exchange for winning fights
-        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - 1 Sky Arena Win Prize", 51921 + npc_index_offset, lambda state: logic.is_area_in_level_range(state, FIRST_SKY_ARENA_FIGHT_LEVEL)), #(765, 125, -248)
-        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - 4 Sky Arena Wins Prize", 51922 + npc_index_offset, lambda state: logic.is_area_in_level_range(state, FOURTH_SKY_ARENA_FIGHT_LEVEL)), #(765, 125, -248)
-        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - 6 Sky Arena Wins Prize", 51923 + npc_index_offset, lambda state: logic.is_area_in_level_range(state, SIXTH_SKY_ARENA_FIGHT_LEVEL)), #(765, 125, -248)
-        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - 7 Sky Arena Wins Prize", 51924 + npc_index_offset, lambda state: logic.is_area_in_level_range(state, SEVENTH_SKY_ARENA_FIGHT_LEVEL)), #(765, 125, -248)
-        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - 9 Sky Arena Wins Prize", 1921 + npc_index_offset, lambda state: logic.is_area_in_level_range(state, NINTH_SKY_ARENA_FIGHT_LEVEL)), #(765, 125, -248)
-        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 2 Sky Arena Wins Room 1", 2794 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, SECOND_SKY_ARENA_FIGHT_LEVEL)),  # Money chest
-        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 2 Sky Arena Wins Room 2", 2751 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, SECOND_SKY_ARENA_FIGHT_LEVEL)),  # Bone Mail chest
-        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 2 Sky Arena Wins room 3", 2747 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, SECOND_SKY_ARENA_FIGHT_LEVEL)),  # Cutlass chest
-        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 2 Sky Arena Wins room 4", 2796 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, SECOND_SKY_ARENA_FIGHT_LEVEL)),  # Tonic Pouch
-        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 2 Sky Arena Wins room 5", 2748 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, SECOND_SKY_ARENA_FIGHT_LEVEL)),  # Soul Kris chest
-        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - Gold in 2 Sky Arena Wins room", 2829 + npc_index_offset, lambda state: logic.is_area_in_level_range(state, SECOND_SKY_ARENA_FIGHT_LEVEL), tags=[ORE_LOCATION_GROUP]), #Dust
-        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 5 Sky Arena Wins room 1", 2812 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, FIFTH_SKY_ARENA_FIGHT_LEVEL)),  # Money chest
-        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 5 Sky Arena Wins room 2", 2723 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, FIFTH_SKY_ARENA_FIGHT_LEVEL)),  # Gaia Axe chest
-        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 5 Sky Arena Wins room 3", 2813 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, FIFTH_SKY_ARENA_FIGHT_LEVEL)),  # Money chest
-        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 5 Sky Arena Wins room 4", 2753 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, FIFTH_SKY_ARENA_FIGHT_LEVEL)),  # Gaia Vest chest
-        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - Gold in 5 Sky Arena Wins room 1", 2720 + npc_index_offset, lambda state: logic.is_area_in_level_range(state, FIFTH_SKY_ARENA_FIGHT_LEVEL), tags=[ORE_LOCATION_GROUP]),  # Ore
-        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - Gold in 5 Sky Arena Wins room 2", 2722 + npc_index_offset, lambda state: logic.is_area_in_level_range(state, FIFTH_SKY_ARENA_FIGHT_LEVEL), tags=[ORE_LOCATION_GROUP]),  # Ingot
-        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - Gold in 5 Sky Arena Wins room 3", 2721 + npc_index_offset, lambda state: logic.is_area_in_level_range(state, FIFTH_SKY_ARENA_FIGHT_LEVEL), tags=[ORE_LOCATION_GROUP]),  # Dust
-        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 8 Sky Arena Wins room 1", 2665 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, EIGHTH_SKY_ARENA_FIGHT_LEVEL)),  # Gravedigger chest
-        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 8 Sky Arena Wins room 2", 2805 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, EIGHTH_SKY_ARENA_FIGHT_LEVEL)),  # Malifice chest
-        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 8 Sky Arena Wins room 3", 2800 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, EIGHTH_SKY_ARENA_FIGHT_LEVEL)),  # Wizards Wall chest
-        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - Gold in 8 Sky Arena Wins room 1", 2830 + npc_index_offset, lambda state: logic.is_area_in_level_range(state, EIGHTH_SKY_ARENA_FIGHT_LEVEL), tags=[ORE_LOCATION_GROUP]),  # Ingot
-        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - Gold in 8 Sky Arena Wins room 2", 2831 + npc_index_offset, lambda state: logic.is_area_in_level_range(state, EIGHTH_SKY_ARENA_FIGHT_LEVEL), tags=[ORE_LOCATION_GROUP]),  # Ore
-        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 10 Sky Arena Wins room 1", 2756 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL), tags=[BOSS_LOCATION_GROUP]),  # (753, 134, -263) Yasha chest
-        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 10 Sky Arena Wins room 2", 2928 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL), tags=[BOSS_LOCATION_GROUP]),  # (754, 134, -264) Muramasa chest
-        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 10 Sky Arena Wins room 3", 2929 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL), tags=[BOSS_LOCATION_GROUP]),  # (755, 134, -263) Shadow Gi chest
-        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - 10 Sky Arena Wins room Diamond 1", 2833 + npc_index_offset, lambda state: logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL), tags=[BOSS_LOCATION_GROUP, ORE_LOCATION_GROUP]),  # (752, 133, -262) Dust
-        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - 10 Sky Arena Wins room Diamond 2", 2811 + npc_index_offset, lambda state: logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL), tags=[BOSS_LOCATION_GROUP, ORE_LOCATION_GROUP]),  # (756, 133, -261) Ingot
-        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Fall through floorboards of 10 Sky Arena Wins room 1", 3763 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL), tags=[BOSS_LOCATION_GROUP]),  # (754, 130, -264) Zether chest
-        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Fall through floorboards of 10 Sky Arena Wins room 2", 3764 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL), tags=[BOSS_LOCATION_GROUP]),  # (755, 130, -263) Z-Potion chest
-        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - Diamond through a hole in the 10 Sky Arena Wins room floor", 2832 + npc_index_offset, lambda state: logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL), tags=[BOSS_LOCATION_GROUP, ORE_LOCATION_GROUP]), #(753, 130, -264) Ore
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - 1 Sky Arena Win Prize", 51921 + npc_index_offset, lambda state: logic.is_area_in_level_range(state, FIRST_SKY_ARENA_FIGHT_LEVEL), tags=[CHALLENGE_QUEST_LOCATION_GROUP]), #(765, 125, -248)
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - 4 Sky Arena Wins Prize", 51922 + npc_index_offset, lambda state: logic.is_area_in_level_range(state, FOURTH_SKY_ARENA_FIGHT_LEVEL), tags=[CHALLENGE_QUEST_LOCATION_GROUP]), #(765, 125, -248)
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - 6 Sky Arena Wins Prize", 51923 + npc_index_offset, lambda state: logic.is_area_in_level_range(state, SIXTH_SKY_ARENA_FIGHT_LEVEL), tags=[CHALLENGE_QUEST_LOCATION_GROUP]), #(765, 125, -248)
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - 7 Sky Arena Wins Prize", 51924 + npc_index_offset, lambda state: logic.is_area_in_level_range(state, SEVENTH_SKY_ARENA_FIGHT_LEVEL), tags=[CHALLENGE_QUEST_LOCATION_GROUP]), #(765, 125, -248)
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - 9 Sky Arena Wins Prize", 1921 + npc_index_offset, lambda state: logic.is_area_in_level_range(state, NINTH_SKY_ARENA_FIGHT_LEVEL), tags=[CHALLENGE_QUEST_LOCATION_GROUP]), #(765, 125, -248)
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 2 Sky Arena Wins Room 1", 2794 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, SECOND_SKY_ARENA_FIGHT_LEVEL), tags=[CHALLENGE_QUEST_LOCATION_GROUP]),  # Money chest
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 2 Sky Arena Wins Room 2", 2751 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, SECOND_SKY_ARENA_FIGHT_LEVEL), tags=[CHALLENGE_QUEST_LOCATION_GROUP]),  # Bone Mail chest
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 2 Sky Arena Wins room 3", 2747 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, SECOND_SKY_ARENA_FIGHT_LEVEL), tags=[CHALLENGE_QUEST_LOCATION_GROUP]),  # Cutlass chest
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 2 Sky Arena Wins room 4", 2796 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, SECOND_SKY_ARENA_FIGHT_LEVEL), tags=[CHALLENGE_QUEST_LOCATION_GROUP]),  # Tonic Pouch
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 2 Sky Arena Wins room 5", 2748 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, SECOND_SKY_ARENA_FIGHT_LEVEL), tags=[CHALLENGE_QUEST_LOCATION_GROUP]),  # Soul Kris chest
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - Gold in 2 Sky Arena Wins room", 2829 + npc_index_offset, lambda state: logic.is_area_in_level_range(state, SECOND_SKY_ARENA_FIGHT_LEVEL), tags=[ORE_LOCATION_GROUP, CHALLENGE_QUEST_LOCATION_GROUP]), #Dust
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 5 Sky Arena Wins room 1", 2812 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, FIFTH_SKY_ARENA_FIGHT_LEVEL), tags=[CHALLENGE_QUEST_LOCATION_GROUP]),  # Money chest
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 5 Sky Arena Wins room 2", 2723 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, FIFTH_SKY_ARENA_FIGHT_LEVEL), tags=[CHALLENGE_QUEST_LOCATION_GROUP]),  # Gaia Axe chest
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 5 Sky Arena Wins room 3", 2813 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, FIFTH_SKY_ARENA_FIGHT_LEVEL), tags=[CHALLENGE_QUEST_LOCATION_GROUP]),  # Money chest
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 5 Sky Arena Wins room 4", 2753 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, FIFTH_SKY_ARENA_FIGHT_LEVEL), tags=[CHALLENGE_QUEST_LOCATION_GROUP]),  # Gaia Vest chest
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - Gold in 5 Sky Arena Wins room 1", 2720 + npc_index_offset, lambda state: logic.is_area_in_level_range(state, FIFTH_SKY_ARENA_FIGHT_LEVEL), tags=[ORE_LOCATION_GROUP, CHALLENGE_QUEST_LOCATION_GROUP]),  # Ore
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - Gold in 5 Sky Arena Wins room 2", 2722 + npc_index_offset, lambda state: logic.is_area_in_level_range(state, FIFTH_SKY_ARENA_FIGHT_LEVEL), tags=[ORE_LOCATION_GROUP, CHALLENGE_QUEST_LOCATION_GROUP]),  # Ingot
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - Gold in 5 Sky Arena Wins room 3", 2721 + npc_index_offset, lambda state: logic.is_area_in_level_range(state, FIFTH_SKY_ARENA_FIGHT_LEVEL), tags=[ORE_LOCATION_GROUP, CHALLENGE_QUEST_LOCATION_GROUP]),  # Dust
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 8 Sky Arena Wins room 1", 2665 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, EIGHTH_SKY_ARENA_FIGHT_LEVEL), tags=[CHALLENGE_QUEST_LOCATION_GROUP]),  # Gravedigger chest
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 8 Sky Arena Wins room 2", 2805 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, EIGHTH_SKY_ARENA_FIGHT_LEVEL), tags=[CHALLENGE_QUEST_LOCATION_GROUP]),  # Malifice chest
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 8 Sky Arena Wins room 3", 2800 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, EIGHTH_SKY_ARENA_FIGHT_LEVEL), tags=[CHALLENGE_QUEST_LOCATION_GROUP]),  # Wizards Wall chest
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - Gold in 8 Sky Arena Wins room 1", 2830 + npc_index_offset, lambda state: logic.is_area_in_level_range(state, EIGHTH_SKY_ARENA_FIGHT_LEVEL), tags=[ORE_LOCATION_GROUP, CHALLENGE_QUEST_LOCATION_GROUP]),  # Ingot
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - Gold in 8 Sky Arena Wins room 2", 2831 + npc_index_offset, lambda state: logic.is_area_in_level_range(state, EIGHTH_SKY_ARENA_FIGHT_LEVEL), tags=[ORE_LOCATION_GROUP, CHALLENGE_QUEST_LOCATION_GROUP]),  # Ore
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 10 Sky Arena Wins room 1", 2756 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL), tags=[BOSS_LOCATION_GROUP, CHALLENGE_QUEST_LOCATION_GROUP]),  # (753, 134, -263) Yasha chest
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 10 Sky Arena Wins room 2", 2928 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL), tags=[BOSS_LOCATION_GROUP, CHALLENGE_QUEST_LOCATION_GROUP]),  # (754, 134, -264) Muramasa chest
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 10 Sky Arena Wins room 3", 2929 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL), tags=[BOSS_LOCATION_GROUP, CHALLENGE_QUEST_LOCATION_GROUP]),  # (755, 134, -263) Shadow Gi chest
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - 10 Sky Arena Wins room Diamond 1", 2833 + npc_index_offset, lambda state: logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL), tags=[BOSS_LOCATION_GROUP, ORE_LOCATION_GROUP, CHALLENGE_QUEST_LOCATION_GROUP]),  # (752, 133, -262) Dust
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - 10 Sky Arena Wins room Diamond 2", 2811 + npc_index_offset, lambda state: logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL), tags=[BOSS_LOCATION_GROUP, ORE_LOCATION_GROUP, CHALLENGE_QUEST_LOCATION_GROUP]),  # (756, 133, -261) Ingot
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Fall through floorboards of 10 Sky Arena Wins room 1", 3763 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL), tags=[BOSS_LOCATION_GROUP, CHALLENGE_QUEST_LOCATION_GROUP]),  # (754, 130, -264) Zether chest
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Fall through floorboards of 10 Sky Arena Wins room 2", 3764 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL), tags=[BOSS_LOCATION_GROUP, CHALLENGE_QUEST_LOCATION_GROUP]),  # (755, 130, -263) Z-Potion chest
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - Diamond through a hole in the 10 Sky Arena Wins room floor", 2832 + npc_index_offset, lambda state: logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL), tags=[BOSS_LOCATION_GROUP, ORE_LOCATION_GROUP, CHALLENGE_QUEST_LOCATION_GROUP]), #(753, 130, -264) Ore
 
         #The Undercity
         # can get without mounts from Shoudu
@@ -1002,7 +1002,7 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         LocationData(RESERVE_HIGH_OCEAN_OVERLOOK_AP_REGION, QUINTAR_RESERVE_DISPLAY_NAME + " NPC - Shedding overlooking the ocean", 2261 + npc_index_offset, tags=[SHEDDING_LOCATION_GROUP]),  # Shedding 6
         #Quintar Reserve Bluffs
         LocationData(RESERVE_BLUFFS_AP_REGION, QUINTAR_RESERVE_DISPLAY_NAME + " NPC - Shedding just north of Quintar cosplayer", 2267 + npc_index_offset, tags=[SHEDDING_LOCATION_GROUP]),  # Shedding 12
-        LocationData(RESERVE_BLUFFS_AP_REGION, QUINTAR_RESERVE_DISPLAY_NAME + " NPC - Eastern Quintar overlooking the sea", 427 + npc_index_offset, lambda state: state.has(BABEL_QUINTAR, player)), #The Sequoia map (789, 191, -338); Fixed Missable
+        LocationData(RESERVE_BLUFFS_AP_REGION, QUINTAR_RESERVE_DISPLAY_NAME + " NPC - Eastern Quintar overlooking the sea", 427 + npc_index_offset, lambda state: state.has(BABEL_QUINTAR, player), tags=[GIFT_LOCATION_GROUP]), #The Sequoia map (789, 191, -338); Fixed Missable
         #shedding 9 is in the Dione Shrine because why not I guess
 
         #Dione Shrine
@@ -1074,10 +1074,10 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         LocationData(GREENSHIRE_OVERLOOK_AP_REGION, TALL_TALL_HEIGHTS_DISPLAY_NAME + " NPC - I bek you can get this one (or come back with the bird) for Gold", 2845 + npc_index_offset, lambda state: logic.has_glide(state) or logic.can_push_ice_block_and_goat(state, TALL_TALL_HEIGHTS_DISPLAY_NAME), tags=[ORE_LOCATION_GROUP]),  # Ingot
         #Lower Ice Lakes
         LocationData(LOWER_ICE_LAKES_AP_REGION, TALL_TALL_HEIGHTS_DISPLAY_NAME + " NPC - Melted snow Gold past the chest east of the Athenaeum", 2847 + npc_index_offset, lambda state: logic.has_horizontal_movement(state) or logic.has_vertical_movement(state), tags=[ORE_LOCATION_GROUP]),  # Ingot
-        LocationData(LOWER_ICE_LAKES_AP_REGION, TALL_TALL_HEIGHTS_DISPLAY_NAME + " NPC - Fish in the hut", 1549 + npc_index_offset, lambda state: state.has("Item - Tough Rod", player) and state.has("Item - Fly Lure", player)),  # Z8_FisherInHut (197, 192, -441)
+        LocationData(LOWER_ICE_LAKES_AP_REGION, TALL_TALL_HEIGHTS_DISPLAY_NAME + " NPC - Fish in the hut", 1549 + npc_index_offset, lambda state: state.has("Item - Tough Rod", player) and state.has("Item - Fly Lure", player), tags=[FISHER_LOCATION_GROUP, FETCH_QUEST_LOCATION_GROUP]),  # Z8_FisherInHut (197, 192, -441)
         LocationData(LOWER_ICE_LAKES_AP_REGION, "Overpass NPC - Gold past Tall Tall Heights spiky tunnel to Salmon River", 2710 + npc_index_offset, tags=[ORE_LOCATION_GROUP]),  # 1st Gold Dust Overpass (Cloudy Wind)
         #Upper Ice Lakes
-        LocationData(UPPER_ICE_LAKES_AP_REGION, TALL_TALL_HEIGHTS_DISPLAY_NAME + " NPC - Chip Challenge himself", 2388 + npc_index_offset),
+        LocationData(UPPER_ICE_LAKES_AP_REGION, TALL_TALL_HEIGHTS_DISPLAY_NAME + " NPC - Chip Challenge himself", 2388 + npc_index_offset, tags=[CHALLENGE_QUEST_LOCATION_GROUP]),
         #Land's End Cottage Ridge
         LocationData(LANDS_END_COTTAGE_RIDGE_AP_REGION, TALL_TALL_HEIGHTS_DISPLAY_NAME + " NPC - Hop along spike mountain to Gold", 2853 + npc_index_offset, tags=[ORE_LOCATION_GROUP]), #Dust
         #Slip Glide Ride Exit
@@ -1092,7 +1092,7 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         #Lower Northern Cave
         LocationData(LOWER_NORTHERN_CAVE_AP_REGION, NORTHERN_CAVE_DISPLAY_NAME + " Chest - Island in the ice", 2787 + treasure_index_offset, tags=[PURPLE_CHEST_LOCATION_GROUP]), #Tear Seed chest
         #Ice Cell
-        LocationData(ICE_CELL_AP_REGION, NORTHERN_CAVE_DISPLAY_NAME + " Chest - Ominous Chips Challenge cave", 1579 + treasure_index_offset, tags=[PURPLE_CHEST_LOCATION_GROUP]), #Ice Cell Key chest
+        LocationData(ICE_CELL_AP_REGION, NORTHERN_CAVE_DISPLAY_NAME + " Chest - Ominous Chip's Challenge cave", 1579 + treasure_index_offset, tags=[PURPLE_CHEST_LOCATION_GROUP]), #Ice Cell Key chest
         #Note: ibek here requires ice block; check can be made with quintar and not owl but the owl is required from Slip Glide Ride save point or Ice Cell start
         LocationData(ICE_CELL_AP_REGION, NORTHERN_CAVE_DISPLAY_NAME + " Chest - Hop along the igloos or Quintar skip the Chip", 1552 + treasure_index_offset, lambda state: logic.has_glide(state) or logic.can_push_ice_block_and_goat(state, NORTHERN_CAVE_DISPLAY_NAME)), #Apprentice chest
         #Upper Northern Cave
@@ -1122,11 +1122,11 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         #Land's End Northern Peak
         LocationData(LANDS_END_NORTHERN_PEAK_AP_REGION, LANDS_END_DISPLAY_NAME + " NPC - Lets get down to business in the mountains for Gold", 2848 + npc_index_offset, tags=[ORE_LOCATION_GROUP]), #Ingot
         #Land's End
-        LocationData(LANDS_END_AP_REGION, LANDS_END_DISPLAY_NAME + " NPC - Pillar Gold by River Cats Ego", 2850 + npc_index_offset, tags=[ORE_LOCATION_GROUP]), #Ore
+        LocationData(LANDS_END_AP_REGION, LANDS_END_DISPLAY_NAME + " NPC - Pillar Gold by River Cat's Ego", 2850 + npc_index_offset, tags=[ORE_LOCATION_GROUP]), #Ore
         LocationData(LANDS_END_AP_REGION, LANDS_END_DISPLAY_NAME + " NPC - Gold in spikes and storm", 2851 + npc_index_offset, lambda state: logic.has_horizontal_movement(state), tags=[ORE_LOCATION_GROUP]), #Dust
         LocationData(LANDS_END_AP_REGION, LANDS_END_DISPLAY_NAME + " NPC - Gold behind the shrine", 2852 + npc_index_offset, tags=[ORE_LOCATION_GROUP]), #Ingot
         #Owl Tree
-        LocationData(OWL_TREE_AP_REGION, LANDS_END_DISPLAY_NAME + " NPC - Owl Drum", 1176 + npc_index_offset),
+        LocationData(OWL_TREE_AP_REGION, LANDS_END_DISPLAY_NAME + " NPC - Owl Drum", 1176 + npc_index_offset, tags=[MOUNT_INSTRUMENT_LOCATION_GROUP]),
 
         #Slip Glide Ride
         #1st Room
@@ -1238,10 +1238,10 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         #Southwest Beach Cliff
         LocationData(JIDAMBA_SOUTHWEST_BEACH_CLIFF_AP_REGION, JIDAMBA_TANGLE_DISPLAY_NAME + " NPC - Diamond at southern mouth of cave", 2874 + npc_index_offset, lambda state: logic.has_horizontal_movement(state), tags=[ORE_LOCATION_GROUP]),  # Ingot
         #Summit
-        LocationData(JIDAMBA_SUMMIT_AP_REGION, JIDAMBA_TANGLE_DISPLAY_NAME + " NPC - Fly from Summoners weeping tree to hot tub Diamond", 2876 + npc_index_offset, lambda state: logic.has_glide(state), tags=[ORE_LOCATION_GROUP]),  # Ingot
+        LocationData(JIDAMBA_SUMMIT_AP_REGION, JIDAMBA_TANGLE_DISPLAY_NAME + " NPC - Fly from Summoner's weeping tree to hot tub Diamond", 2876 + npc_index_offset, lambda state: logic.has_glide(state), tags=[ORE_LOCATION_GROUP]),  # Ingot
         LocationData(JIDAMBA_SUMMIT_AP_REGION, JIDAMBA_TANGLE_DISPLAY_NAME + " NPC - Diamond atop broken ruins by the Summoner tree", 2875 + npc_index_offset, lambda state: logic.has_glide(state), tags=[ORE_LOCATION_GROUP]),  # Ore
         #Canopy
-        LocationData(JIDAMBA_CANOPY_AP_REGION, JIDAMBA_TANGLE_DISPLAY_NAME + " NPC - Chloe Queen of the Canopy", 2775 + npc_index_offset), #Super Rod (828, 119, 99); Fixed Missable
+        LocationData(JIDAMBA_CANOPY_AP_REGION, JIDAMBA_TANGLE_DISPLAY_NAME + " NPC - Chloe Queen of the Canopy", 2775 + npc_index_offset, tags=[GIFT_LOCATION_GROUP]), #Super Rod (828, 119, 99); Fixed Missable
         LocationData(JIDAMBA_CANOPY_AP_REGION, JIDAMBA_TANGLE_DISPLAY_NAME + " NPC - Splash Mountain Diamond (pool at S end of canopy)", 2870 + npc_index_offset, tags=[ORE_LOCATION_GROUP]),  # Ore
         LocationData(JIDAMBA_CANOPY_AP_REGION, JIDAMBA_TANGLE_DISPLAY_NAME + " NPC - Splash Mountain Gold (pool at NE end of canopy)", 2900 + npc_index_offset, tags=[ORE_LOCATION_GROUP]),  # Ore
         LocationData(JIDAMBA_CANOPY_AP_REGION, JIDAMBA_TANGLE_DISPLAY_NAME + " NPC - Diamond in the boughs above the shrine", 2898 + npc_index_offset, tags=[ORE_LOCATION_GROUP]),  # Ingot
@@ -1260,7 +1260,7 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         LocationData(LAND_OF_TIMER_FISHES_AP_REGION, JIDAMBA_EACLANEYA_DISPLAY_NAME + " Chest - Past glass elevator (if you're like me, smash that Extend Timers Assist Option)", 2301 + treasure_index_offset), #Stardust Wand chest
         LocationData(LAND_OF_TIMER_FISHES_AP_REGION, JIDAMBA_EACLANEYA_DISPLAY_NAME + " Chest - Spiral through second underwater fish relay", 2317 + treasure_index_offset, tags=[PURPLE_CHEST_LOCATION_GROUP]), #Viridian Book chest
         #Salmon Room
-        LocationData(SALMON_ROOM_AP_REGION, JIDAMBA_EACLANEYA_DISPLAY_NAME + " Chest - Claim the prize of the Timer Fishes", 2288 + treasure_index_offset), #why is this chest brown lol it's the Salmon Violin
+        LocationData(SALMON_ROOM_AP_REGION, JIDAMBA_EACLANEYA_DISPLAY_NAME + " Chest - Claim the prize of the Timer Fishes", 2288 + treasure_index_offset, tags=[MOUNT_INSTRUMENT_LOCATION_GROUP]), #why is this chest brown lol it's the Salmon Violin
 
         #NPCs
         #1 Diamond Dust on Jidamba Eaclaneya Fish Floor map has been categorized under the Capital Pipeline
@@ -1313,12 +1313,12 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         LocationData(THE_DEEP_SEA_AP_REGION, THE_DEEP_SEA_DISPLAY_NAME + " NPC - Putt Putt Crab mows the lawn", 3437 + npc_index_offset, tags=[CRAB_LOCATION_GROUP]), #(54, 52, 200) Crab 13
         LocationData(THE_DEEP_SEA_AP_REGION, THE_DEEP_SEA_DISPLAY_NAME + " NPC - King of the middle of nowhere ocean crab", 3438 + npc_index_offset, tags=[CRAB_LOCATION_GROUP]), #(52, 76, -616) Crab 14
         LocationData(THE_DEEP_SEA_AP_REGION, THE_DEEP_SEA_DISPLAY_NAME + " NPC - Crab scuttling SE of volcano", 3439 + npc_index_offset, tags=[CRAB_LOCATION_GROUP]), #(207, 53, 152) Crab 15
-        LocationData(THE_DEEP_SEA_AP_REGION, THE_DEEP_SEA_DISPLAY_NAME + " NPC - Undersea Crab People Crab Retirement Home south of Salmon Race start", 3424 + npc_index_offset, lambda state: state.has(UNDERSEA_CRAB, player, 15)), #(256, 63, 113)
+        LocationData(THE_DEEP_SEA_AP_REGION, THE_DEEP_SEA_DISPLAY_NAME + " NPC - Undersea Crab People Crab Retirement Home south of Salmon Race start", 3424 + npc_index_offset, lambda state: state.has(UNDERSEA_CRAB, player, 15), tags=[COLLECTIBLE_TURN_IN_LOCATION_GROUP, FETCH_QUEST_LOCATION_GROUP]), #(256, 63, 113)
         LocationData(THE_DEEP_SEA_AP_REGION, THE_DEEP_SEA_DISPLAY_NAME + " NPC - Fastest squid in the West", 3450 + npc_index_offset), #(-314, 64, -624) (swims in a fixed path; slightly slower than golden Quintar but faster than royal salmon) Z35_SpeedOcto
 
         #Jade Cavern
         #Treasure chests
-        LocationData(JADE_CAVERN_AP_REGION, JADE_CAVERN_DISPLAY_NAME + " Chest - Tell Archie to say hi to the Quizard", 3604 + treasure_index_offset, tags=[PURPLE_CHEST_LOCATION_GROUP]), #(239, 99, -124) Jade Cavern map chest
+        LocationData(JADE_CAVERN_AP_REGION, JADE_CAVERN_DISPLAY_NAME + " Chest - Tell Archie to say hi to the Quizard", 3604 + treasure_index_offset, tags=[PURPLE_CHEST_LOCATION_GROUP, CHALLENGE_QUEST_LOCATION_GROUP]), #(239, 99, -124) Jade Cavern map chest
 
         #NPCs
         #Todo NPCs CheckOrNot Job Masters: this guy trades you a thing for each job seal you've gotten from a job master for mastering that job
@@ -1442,7 +1442,7 @@ def get_crystal_locations(player: int, options: CrystalProjectOptions | None) ->
         LocationData(RIVER_CATS_EGO_AP_REGION, RIVER_CATS_EGO_AP_REGION + NOMAD_JOB_CRYSTAL_LOCATION, 630 + crystal_index_offset),
         LocationData(ANCIENT_RESERVOIR_AP_REGION, ANCIENT_RESERVOIR_DISPLAY_NAME + DERVISH_JOB_CRYSTAL_LOCATION, 1121 + crystal_index_offset),
         # Zones (Expert)
-        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + SAMURAI_JOB_CRYSTAL_LOCATION, 1206 + crystal_index_offset, lambda state: logic.is_area_in_level_range(state, THIRD_SKY_ARENA_FIGHT_LEVEL)),
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + SAMURAI_JOB_CRYSTAL_LOCATION, 1206 + crystal_index_offset, lambda state: logic.is_area_in_level_range(state, THIRD_SKY_ARENA_FIGHT_LEVEL), tags=[CHALLENGE_QUEST_LOCATION_GROUP]),
         # Can just swim or defeat the Undercity Masters; Blade Master: Ibek or Owl, Shadow Master: Horizontal or Fish, Duel Master: Ibek or Owl; to defeat all masters, you either need both ibek + quintar, owl, or fish
         LocationData(THE_UNDERCITY_HOMEPOINT_AND_BLADE_MASTER_AP_REGION, THE_UNDERCITY_DISPLAY_NAME + ASSASSIN_JOB_CRYSTAL_LOCATION, 1204 + crystal_index_offset, lambda state: (logic.has_horizontal_movement(state) and logic.has_vertical_movement(state)) or logic.has_glide(state) or logic.has_swimming(state)),
         LocationData(VOLCANO_PEAK_AP_REGION, BEAURIOR_VOLCANO_DISPLAY_NAME + VALKYRIE_JOB_CRYSTAL_LOCATION, 1086 + crystal_index_offset),
@@ -1480,7 +1480,7 @@ def get_boss_locations(player: int, options: CrystalProjectOptions | None) -> Li
         LocationData(THE_PALE_GROTTO_AP_REGION, THE_PALE_GROTTO_DISPLAY_NAME + " Boss - Guardian", 143 + boss_index_offset, lambda state: logic.is_area_in_level_range(state, GUARDIAN_FIGHT_LEVEL)), #Monster ID: 23
         LocationData(DRAFT_SHAFT_CONDUIT_AP_REGION, DRAFT_SHAFT_CONDUIT_DISPLAY_NAME + " Boss - Canal Beast", 138 + boss_index_offset, lambda state: logic.is_area_in_level_range(state, CANAL_BEAST_FIGHT_LEVEL)), #Monster ID: 18
         LocationData(YAMAGAWA_MA_AP_REGION, YAMAGAWA_MA_DISPLAY_NAME + " Boss - Sepulchra", 167 + boss_index_offset, lambda state: logic.is_area_in_level_range(state, SEPULCHRA_FIGHT_LEVEL)), #Monster ID: 27
-        LocationData(PROVING_MEADOWS_AP_REGION, PROVING_MEADOWS_DISPLAY_NAME + " Boss - Knight", 128 + boss_index_offset, lambda state: logic.has_jobs(state, 3) and logic.is_area_in_level_range(state, KNIGHT_FIGHT_LEVEL)), #Monster ID: 212 (using Z7_CrystalCheckerNPC)
+        LocationData(PROVING_MEADOWS_AP_REGION, PROVING_MEADOWS_DISPLAY_NAME + " Boss - Knight", 128 + boss_index_offset, lambda state: logic.has_jobs(state, 3) and logic.is_area_in_level_range(state, KNIGHT_FIGHT_LEVEL), tags=[JOB_CHECKER_LOCATION_GROUP]), #Monster ID: 212 (using Z7_CrystalCheckerNPC)
         LocationData(SKUMPARADISE_AP_REGION, SKUMPARADISE_DISPLAY_NAME + " Boss - Parasite", 333 + boss_index_offset, lambda state: logic.is_area_in_level_range(state, PARASITE_FIGHT_LEVEL)), #Monster ID: 38
         LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Boss - Defeat L60 dummy and it shall appear...!", 3530 + boss_index_offset, lambda state: logic.is_area_in_level_range(state, DUMMY_BOSS_FIGHT_LEVEL)), #Monster ID: 303
         LocationData(MOAT_SHALLOWS_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Boss - Enami", 458 + boss_index_offset, lambda state: logic.is_area_in_level_range(state, ENAMI_FIGHT_LEVEL)), #Monster ID: 49
@@ -1510,7 +1510,7 @@ def get_boss_locations(player: int, options: CrystalProjectOptions | None) -> Li
         LocationData(THE_DEPTHS_AP_REGION, THE_DEPTHS_DISPLAY_NAME + " Boss - The Old One", 206 + boss_index_offset, lambda state: logic.is_area_in_level_range(state, OLD_ONE_FIGHT_LEVEL), tags=[END_GAME_BOSS_LOCATION_GROUP]), #Monster ID: 170
         LocationData(THE_DEPTHS_AP_REGION, THE_DEPTHS_DISPLAY_NAME + " Boss - The Enforcer", 1128 + boss_index_offset, lambda state: logic.is_area_in_level_range(state, ENFORCER_FIGHT_LEVEL), tags=[END_GAME_BOSS_LOCATION_GROUP]), #Monster ID: 172
         LocationData(THE_DEPTHS_AP_REGION, THE_DEPTHS_DISPLAY_NAME + " Boss - The Peacekeeper", 2579 + boss_index_offset, lambda state: logic.is_area_in_level_range(state, PEACEKEEPER_FIGHT_LEVEL), tags=[END_GAME_BOSS_LOCATION_GROUP]), #Monster ID: 169
-        LocationData(THE_DEPTHS_AP_REGION, THE_DEPTHS_DISPLAY_NAME + " Boss - With STEM WARD in hand, offer 4 Deity Eyes to battle Gabriel", 2580 + boss_index_offset, lambda state: state.has(DEITY_EYE, player, 4) and state.has(STEM_WARD, player) and logic.is_area_in_level_range(state, GABRIEL_FIGHT_LEVEL), tags=[END_GAME_BOSS_LOCATION_GROUP]), #Monster ID: 241
+        LocationData(THE_DEPTHS_AP_REGION, THE_DEPTHS_DISPLAY_NAME + " Boss - With STEM WARD in hand, offer 4 Deity Eyes to battle Gabriel", 2580 + boss_index_offset, lambda state: state.has(DEITY_EYE, player, 4) and state.has(STEM_WARD, player) and logic.is_area_in_level_range(state, GABRIEL_FIGHT_LEVEL), tags=[END_GAME_BOSS_LOCATION_GROUP, FETCH_QUEST_LOCATION_GROUP]), #Monster ID: 241
         LocationData(CASTLE_SEQUOIA_AP_REGION, CASTLE_SEQUOIA_DISPLAY_NAME + " Boss - Parasite X", 1457 + boss_index_offset, lambda state: logic.is_area_in_level_range(state, PARASITE_X_FIGHT_LEVEL)), #Monster ID: 198 (Castle Sequoia (Skums) Z58_TrapdoorGuard)
         LocationData(CASTLE_SEQUOIA_AP_REGION, CASTLE_SEQUOIA_DISPLAY_NAME + " Boss - Neo Warden", 1477 + boss_index_offset, lambda state: logic.is_area_in_level_range(state, NEO_WARDEN_FIGHT_LEVEL)), #Monster ID: 200 (Castle Sequoia (Bounce) Z58_F2TrapdoorGuard)
         LocationData(CASTLE_SEQUOIA_AP_REGION, CASTLE_SEQUOIA_DISPLAY_NAME + " Boss - Akamanto", 1503 + boss_index_offset, lambda state: logic.is_area_in_level_range(state, AKAMANTO_FIGHT_LEVEL)), #Monster ID: 201 (Castle Sequoia (Ice) Z58_F3TrapdoorGuard)
@@ -1524,21 +1524,21 @@ def get_shop_locations(player: int, options: CrystalProjectOptions | None) -> Li
     location_table: List[LocationData] = [
         #Zones (Beginner)
         #Spawning Meadows
-        LocationData(SPAWNING_MEADOWS_AP_REGION, SPAWNING_MEADOWS_DISPLAY_NAME + " Shop - Nans Knick Knacks 1", 10013 + shop_index_offset),
-        LocationData(SPAWNING_MEADOWS_AP_REGION, SPAWNING_MEADOWS_DISPLAY_NAME + " Shop - Nans Knick Knacks 2", 20013 + shop_index_offset),
-        LocationData(SPAWNING_MEADOWS_AP_REGION, SPAWNING_MEADOWS_DISPLAY_NAME + " Shop - Nans Knick Knacks 3", 30013 + shop_index_offset),
-        LocationData(SPAWNING_MEADOWS_AP_REGION, SPAWNING_MEADOWS_DISPLAY_NAME + " Shop - Nans Knick Knacks 4", 40013 + shop_index_offset),
-        LocationData(SPAWNING_MEADOWS_AP_REGION, SPAWNING_MEADOWS_DISPLAY_NAME + " Shop - Nans Knick Knacks 5", 50013 + shop_index_offset),
-        LocationData(SPAWNING_MEADOWS_AP_REGION, SPAWNING_MEADOWS_DISPLAY_NAME + " Shop - Nans Knick Knacks 6", 60013 + shop_index_offset),
-        LocationData(SPAWNING_MEADOWS_AP_REGION, SPAWNING_MEADOWS_DISPLAY_NAME + " Shop - Nans Knick Knacks 7", 70013 + shop_index_offset),
-        LocationData(SPAWNING_MEADOWS_AP_REGION, SPAWNING_MEADOWS_DISPLAY_NAME + " Shop - Nans Knick Knacks 8", 80013 + shop_index_offset),
-        LocationData(SPAWNING_MEADOWS_AP_REGION, SPAWNING_MEADOWS_DISPLAY_NAME + " Shop - Nans Knick Knacks 9", 90013 + shop_index_offset),
-        LocationData(SPAWNING_MEADOWS_AP_REGION, SPAWNING_MEADOWS_DISPLAY_NAME + " Shop - Nans Knick Knacks 10", 100013 + shop_index_offset),
-        LocationData(SPAWNING_MEADOWS_AP_REGION, SPAWNING_MEADOWS_DISPLAY_NAME + " Shop - Nans Knick Knacks 11", 110013 + shop_index_offset),
-        LocationData(SPAWNING_MEADOWS_AP_REGION, SPAWNING_MEADOWS_DISPLAY_NAME + " Shop - Nans Knick Knacks 12", 120013 + shop_index_offset),
+        LocationData(SPAWNING_MEADOWS_AP_REGION, SPAWNING_MEADOWS_DISPLAY_NAME + " Shop - Nan's Knick Knacks 1", 10013 + shop_index_offset),
+        LocationData(SPAWNING_MEADOWS_AP_REGION, SPAWNING_MEADOWS_DISPLAY_NAME + " Shop - Nan's Knick Knacks 2", 20013 + shop_index_offset),
+        LocationData(SPAWNING_MEADOWS_AP_REGION, SPAWNING_MEADOWS_DISPLAY_NAME + " Shop - Nan's Knick Knacks 3", 30013 + shop_index_offset),
+        LocationData(SPAWNING_MEADOWS_AP_REGION, SPAWNING_MEADOWS_DISPLAY_NAME + " Shop - Nan's Knick Knacks 4", 40013 + shop_index_offset),
+        LocationData(SPAWNING_MEADOWS_AP_REGION, SPAWNING_MEADOWS_DISPLAY_NAME + " Shop - Nan's Knick Knacks 5", 50013 + shop_index_offset),
+        LocationData(SPAWNING_MEADOWS_AP_REGION, SPAWNING_MEADOWS_DISPLAY_NAME + " Shop - Nan's Knick Knacks 6", 60013 + shop_index_offset),
+        LocationData(SPAWNING_MEADOWS_AP_REGION, SPAWNING_MEADOWS_DISPLAY_NAME + " Shop - Nan's Knick Knacks 7", 70013 + shop_index_offset),
+        LocationData(SPAWNING_MEADOWS_AP_REGION, SPAWNING_MEADOWS_DISPLAY_NAME + " Shop - Nan's Knick Knacks 8", 80013 + shop_index_offset),
+        LocationData(SPAWNING_MEADOWS_AP_REGION, SPAWNING_MEADOWS_DISPLAY_NAME + " Shop - Nan's Knick Knacks 9", 90013 + shop_index_offset),
+        LocationData(SPAWNING_MEADOWS_AP_REGION, SPAWNING_MEADOWS_DISPLAY_NAME + " Shop - Nan's Knick Knacks 10", 100013 + shop_index_offset),
+        LocationData(SPAWNING_MEADOWS_AP_REGION, SPAWNING_MEADOWS_DISPLAY_NAME + " Shop - Nan's Knick Knacks 11", 110013 + shop_index_offset),
+        LocationData(SPAWNING_MEADOWS_AP_REGION, SPAWNING_MEADOWS_DISPLAY_NAME + " Shop - Nan's Knick Knacks 12", 120013 + shop_index_offset),
 
-        LocationData(SPAWNING_MEADOWS_AP_REGION, SPAWNING_MEADOWS_DISPLAY_NAME + " Shop - Nans Stew 1", 10014 + shop_index_offset),
-        LocationData(SPAWNING_MEADOWS_AP_REGION, SPAWNING_MEADOWS_DISPLAY_NAME + " Shop - Nans Stew 2", 20014 + shop_index_offset),
+        LocationData(SPAWNING_MEADOWS_AP_REGION, SPAWNING_MEADOWS_DISPLAY_NAME + " Shop - Nan's Stew 1", 10014 + shop_index_offset),
+        LocationData(SPAWNING_MEADOWS_AP_REGION, SPAWNING_MEADOWS_DISPLAY_NAME + " Shop - Nan's Stew 2", 20014 + shop_index_offset),
 
         #Delende
         LocationData(DELENDE_PLAINS_AP_REGION, DELENDE_DISPLAY_NAME + " Shop - Fish Hatchery Weapon Merchant 1", 10052 + shop_index_offset),
@@ -1654,49 +1654,49 @@ def get_shop_locations(player: int, options: CrystalProjectOptions | None) -> Li
         LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Map Seller 9", 91158 + shop_index_offset),
         LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Map Seller 10", 101158 + shop_index_offset),
 
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Luxury Shop Martial Weapons 1", 10599 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player)),
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Luxury Shop Martial Weapons 2", 20599 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player)),
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Luxury Shop Martial Weapons 3", 30599 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player)),
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Luxury Shop Martial Weapons 4", 40599 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player)),
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Upgraded Luxury Shop Martial Weapons 1", 50599 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player, 2)),
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Upgraded Luxury Shop Martial Weapons 2", 60599 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player, 2)),
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Upgraded Luxury Shop Martial Weapons 3", 70599 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player, 2)),
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Upgraded Luxury Shop Martial Weapons 4", 80599 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player, 2)),
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Upgraded Luxury Shop Martial Weapons 5", 90599 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player, 2)),
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Upgraded Luxury Shop Martial Weapons 6", 100599 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player, 2)),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Luxury Shop Martial Weapons 1", 10599 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player), tags=[LUXURY_PASS_LOCATION_GROUP]),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Luxury Shop Martial Weapons 2", 20599 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player), tags=[LUXURY_PASS_LOCATION_GROUP]),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Luxury Shop Martial Weapons 3", 30599 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player), tags=[LUXURY_PASS_LOCATION_GROUP]),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Luxury Shop Martial Weapons 4", 40599 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player), tags=[LUXURY_PASS_LOCATION_GROUP]),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Upgraded Luxury Shop Martial Weapons 1", 50599 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player, 2), tags=[LUXURY_PASS_LOCATION_GROUP]),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Upgraded Luxury Shop Martial Weapons 2", 60599 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player, 2), tags=[LUXURY_PASS_LOCATION_GROUP]),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Upgraded Luxury Shop Martial Weapons 3", 70599 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player, 2), tags=[LUXURY_PASS_LOCATION_GROUP]),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Upgraded Luxury Shop Martial Weapons 4", 80599 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player, 2), tags=[LUXURY_PASS_LOCATION_GROUP]),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Upgraded Luxury Shop Martial Weapons 5", 90599 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player, 2), tags=[LUXURY_PASS_LOCATION_GROUP]),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Upgraded Luxury Shop Martial Weapons 6", 100599 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player, 2), tags=[LUXURY_PASS_LOCATION_GROUP]),
 
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Luxury Shop Exotic Weapons 1", 10600 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player)),
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Luxury Shop Exotic Weapons 2", 20600 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player)),
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Luxury Shop Exotic Weapons 3", 30600 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player)),
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Luxury Shop Exotic Weapons 4", 40600 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player)),
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Upgraded Luxury Shop Exotic Weapons 1", 50600 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player, 2)),
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Upgraded Luxury Shop Exotic Weapons 2", 60600 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player, 2)),
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Upgraded Luxury Shop Exotic Weapons 3", 70600 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player, 2)),
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Upgraded Luxury Shop Exotic Weapons 4", 80600 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player, 2)),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Luxury Shop Exotic Weapons 1", 10600 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player), tags=[LUXURY_PASS_LOCATION_GROUP]),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Luxury Shop Exotic Weapons 2", 20600 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player), tags=[LUXURY_PASS_LOCATION_GROUP]),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Luxury Shop Exotic Weapons 3", 30600 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player), tags=[LUXURY_PASS_LOCATION_GROUP]),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Luxury Shop Exotic Weapons 4", 40600 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player), tags=[LUXURY_PASS_LOCATION_GROUP]),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Upgraded Luxury Shop Exotic Weapons 1", 50600 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player, 2), tags=[LUXURY_PASS_LOCATION_GROUP]),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Upgraded Luxury Shop Exotic Weapons 2", 60600 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player, 2), tags=[LUXURY_PASS_LOCATION_GROUP]),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Upgraded Luxury Shop Exotic Weapons 3", 70600 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player, 2), tags=[LUXURY_PASS_LOCATION_GROUP]),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Upgraded Luxury Shop Exotic Weapons 4", 80600 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player, 2), tags=[LUXURY_PASS_LOCATION_GROUP]),
 
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Luxury Shop Heavy Armor 1", 10601 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player)),
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Luxury Shop Heavy Armor 2", 20601 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player)),
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Luxury Shop Heavy Armor 3", 30601 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player)),
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Upgraded Luxury Shop Heavy Armor 1", 40601 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player, 2)),
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Upgraded Luxury Shop Heavy Armor 2", 50601 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player, 2)),
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Upgraded Luxury Shop Heavy Armor 3", 60601 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player, 2)),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Luxury Shop Heavy Armor 1", 10601 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player), tags=[LUXURY_PASS_LOCATION_GROUP]),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Luxury Shop Heavy Armor 2", 20601 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player), tags=[LUXURY_PASS_LOCATION_GROUP]),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Luxury Shop Heavy Armor 3", 30601 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player), tags=[LUXURY_PASS_LOCATION_GROUP]),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Upgraded Luxury Shop Heavy Armor 1", 40601 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player, 2), tags=[LUXURY_PASS_LOCATION_GROUP]),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Upgraded Luxury Shop Heavy Armor 2", 50601 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player, 2), tags=[LUXURY_PASS_LOCATION_GROUP]),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Upgraded Luxury Shop Heavy Armor 3", 60601 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player, 2), tags=[LUXURY_PASS_LOCATION_GROUP]),
 
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Luxury Shop Medium Armor 1", 10602 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player)),
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Luxury Shop Medium Armor 2", 20602 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player)),
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Upgraded Luxury Shop Medium Armor 1", 30602 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player, 2)),
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Upgraded Luxury Shop Medium Armor 2", 40602 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player, 2)),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Luxury Shop Medium Armor 1", 10602 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player), tags=[LUXURY_PASS_LOCATION_GROUP]),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Luxury Shop Medium Armor 2", 20602 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player), tags=[LUXURY_PASS_LOCATION_GROUP]),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Upgraded Luxury Shop Medium Armor 1", 30602 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player, 2), tags=[LUXURY_PASS_LOCATION_GROUP]),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Upgraded Luxury Shop Medium Armor 2", 40602 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player, 2), tags=[LUXURY_PASS_LOCATION_GROUP]),
 
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Luxury Shop Magic Weapons 1", 10603 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player)),
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Luxury Shop Magic Weapons 2", 20603 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player)),
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Luxury Shop Magic Weapons 3", 30603 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player)),
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Upgraded Luxury Shop Magic Weapons 1", 40603 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player, 2)),
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Upgraded Luxury Shop Magic Weapons 2", 50603 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player, 2)),
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Upgraded Luxury Shop Magic Weapons 3", 60603 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player, 2)),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Luxury Shop Magic Weapons 1", 10603 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player), tags=[LUXURY_PASS_LOCATION_GROUP]),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Luxury Shop Magic Weapons 2", 20603 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player), tags=[LUXURY_PASS_LOCATION_GROUP]),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Luxury Shop Magic Weapons 3", 30603 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player), tags=[LUXURY_PASS_LOCATION_GROUP]),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Upgraded Luxury Shop Magic Weapons 1", 40603 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player, 2), tags=[LUXURY_PASS_LOCATION_GROUP]),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Upgraded Luxury Shop Magic Weapons 2", 50603 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player, 2), tags=[LUXURY_PASS_LOCATION_GROUP]),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Upgraded Luxury Shop Magic Weapons 3", 60603 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player, 2), tags=[LUXURY_PASS_LOCATION_GROUP]),
 
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Luxury Shop Light Armor 1", 10604 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player)),
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Luxury Shop Light Armor 2", 20604 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player)),
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Upgraded Luxury Shop Light Armor 1", 30604 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player, 2)),
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Upgraded Luxury Shop Light Armor 2", 40604 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player, 2)),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Luxury Shop Light Armor 1", 10604 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player), tags=[LUXURY_PASS_LOCATION_GROUP]),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Luxury Shop Light Armor 2", 20604 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player), tags=[LUXURY_PASS_LOCATION_GROUP]),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Upgraded Luxury Shop Light Armor 1", 30604 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player, 2), tags=[LUXURY_PASS_LOCATION_GROUP]),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Upgraded Luxury Shop Light Armor 2", 40604 + shop_index_offset, lambda state: state.has(PROGRESSIVE_LUXURY_PASS, player, 2), tags=[LUXURY_PASS_LOCATION_GROUP]),
 
         LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Martial Weapons R Us 1", 10500 + shop_index_offset),
         LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Martial Weapons R Us 2", 20500 + shop_index_offset),
@@ -1788,7 +1788,7 @@ def get_shop_locations(player: int, options: CrystalProjectOptions | None) -> Li
         LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Item Merchant 5", 50456 + shop_index_offset),
         LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Item Merchant 6", 60456 + shop_index_offset),
 
-        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Old Nans Stew", 10423 + shop_index_offset),
+        LocationData(CAPITAL_SEQUOIA_AP_REGION, CAPITAL_SEQUOIA_DISPLAY_NAME + " Shop - Old Nan's Stew", 10423 + shop_index_offset),
 
         #Salmon River
         #Poseidon Shrine Proper
@@ -1906,7 +1906,7 @@ def get_shop_locations(player: int, options: CrystalProjectOptions | None) -> Li
         LocationData(DIONE_SHRINE_AP_REGION, DIONE_SHRINE_DISPLAY_NAME + " Shop - Quintar Attendant 1", 12253 + shop_index_offset, lambda state: state.has(BABEL_QUINTAR, player)),
         LocationData(DIONE_SHRINE_AP_REGION, DIONE_SHRINE_DISPLAY_NAME + " Shop - Quintar Attendant 2", 22253 + shop_index_offset, lambda state: state.has(BABEL_QUINTAR, player)),
 
-        LocationData(DIONE_SHRINE_AP_REGION, DIONE_SHRINE_DISPLAY_NAME + " Shop - Quintar Raising Supplies 1", 12227 + shop_index_offset, lambda state: state.has(BABEL_QUINTAR, player)),
+        LocationData(DIONE_SHRINE_AP_REGION, DIONE_SHRINE_DISPLAY_NAME + " Shop - Quintar Raising Supplies 1", 12227 + shop_index_offset, lambda state: state.has(BABEL_QUINTAR, player), tags=[MOUNT_INSTRUMENT_LOCATION_GROUP]),
         LocationData(DIONE_SHRINE_AP_REGION, DIONE_SHRINE_DISPLAY_NAME + " Shop - Quintar Raising Supplies 2", 22227 + shop_index_offset, lambda state: state.has(BABEL_QUINTAR, player)),
         LocationData(DIONE_SHRINE_AP_REGION, DIONE_SHRINE_DISPLAY_NAME + " Shop - Quintar Raising Supplies 3", 32227 + shop_index_offset, lambda state: state.has(BABEL_QUINTAR, player)),
         LocationData(DIONE_SHRINE_AP_REGION, DIONE_SHRINE_DISPLAY_NAME + " Shop - Quintar Raising Supplies 4", 42227 + shop_index_offset, lambda state: state.has(BABEL_QUINTAR, player)),
