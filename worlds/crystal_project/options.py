@@ -385,7 +385,19 @@ class PrioritizeCrystals(DefaultOnToggle):
     Here's an example:
     priority_locations = ["Crystals", "Region Completions", "Bosses", "Salmon River NPC - Win the Salmon Race"]
 
-    Crystal Project's location groups: Crystals, Bosses, Region Completions, and Shops
+    Crystal Project's location groups:
+      - Every region and subregion; e.g. Shoudu Province, Sky Arena
+      - Base groups: Crystals, Mount Instruments, Purple Chests, Ore Nodes
+      - Collectible groups: Collectible Turn-ins; Black Squirrels, Dog Bones, Clamshells, Penguins, Quintar Sheddings, Secret Herbs, Undersea Crabs
+      - Special access groups: Salmon Race Prizes, Luxury Pass Required
+      - NPC groups: Bribe Quests (pay NPC money), Challenge Quests (do a challenge like complete a number of Sky Arena fights,
+        complete an ice block pushing puzzle, or answer Quizard questions), Fetch Quests (give NPC one or more items),
+        Gifts (NPC gives you an item), Job Checkers (find a certain number of Jobs to get an item), Fishers
+      - Relevant Depending On Your Other Options:
+          - Home Point Hustle: Home Points
+          - Kill Bosses: Bosses, Summons, End-Game Bosses
+          - Regionsanity: Region Completions
+          - Shopsanity: Shops
     """
     display_name = "Prioritize Crystals"
 
