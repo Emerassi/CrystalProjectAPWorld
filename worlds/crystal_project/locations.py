@@ -709,7 +709,7 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         LocationData(TALL_POSSESSOR_ROCK_AP_REGION, ANCIENT_RESERVOIR_DISPLAY_NAME + " Chest - Celebrate your new hops", 2517 + treasure_index_offset),  # Fenix Juice Pouch chest
 
         #NPCs
-        LocationData(IBEK_CAVE_AP_REGION, ANCIENT_RESERVOIR_DISPLAY_NAME + " NPC - Goat victory Ibek Bell", 1676 + npc_index_offset),  # Z30_PostBossEvent;
+        LocationData(IBEK_CAVE_AP_REGION, ANCIENT_RESERVOIR_DISPLAY_NAME + " NPC - Goat victory Ibek Bell", 1676 + npc_index_offset, tags=[BOSS_LOCATION_GROUP]),  # Z30_PostBossEvent;
         #Trek Spiraling Up Out of Ibek's Cave
         LocationData(IBEK_CAVE_SPIRALING_TREK_OUT_AP_REGION, ANCIENT_RESERVOIR_DISPLAY_NAME + " NPC - Silver in the goat digs", 2696 + npc_index_offset),  # Dust
 
@@ -882,14 +882,14 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 8 Sky Arena Wins room 3", 2800 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, EIGHTH_SKY_ARENA_FIGHT_LEVEL)),  # Wizards Wall chest
         LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - Gold in 8 Sky Arena Wins room 1", 2830 + npc_index_offset, lambda state: logic.is_area_in_level_range(state, EIGHTH_SKY_ARENA_FIGHT_LEVEL)),  # Ingot
         LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - Gold in 8 Sky Arena Wins room 2", 2831 + npc_index_offset, lambda state: logic.is_area_in_level_range(state, EIGHTH_SKY_ARENA_FIGHT_LEVEL)),  # Ore
-        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 10 Sky Arena Wins room 1", 2756 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL)),  # (753, 134, -263) Yasha chest
-        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 10 Sky Arena Wins room 2", 2928 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL)),  # (754, 134, -264) Muramasa chest
-        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 10 Sky Arena Wins room 3", 2929 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL)),  # (755, 134, -263) Shadow Gi chest
-        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - 10 Sky Arena Wins room Diamond 1", 2833 + npc_index_offset, lambda state: logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL)),  # (752, 133, -262) Dust
-        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - 10 Sky Arena Wins room Diamond 2", 2811 + npc_index_offset, lambda state: logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL)),  # (756, 133, -261) Ingot
-        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Fall through floorboards of 10 Sky Arena Wins room 1", 3763 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL)),  # (754, 130, -264) Zether chest
-        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Fall through floorboards of 10 Sky Arena Wins room 2", 3764 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL)),  # (755, 130, -263) Z-Potion chest
-        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - Diamond through a hole in the 10 Sky Arena Wins room floor", 2832 + npc_index_offset, lambda state: logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL)), #(753, 130, -264) Ore
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 10 Sky Arena Wins room 1", 2756 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL), tags=[BOSS_LOCATION_GROUP]),  # (753, 134, -263) Yasha chest
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 10 Sky Arena Wins room 2", 2928 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL), tags=[BOSS_LOCATION_GROUP]),  # (754, 134, -264) Muramasa chest
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - 10 Sky Arena Wins room 3", 2929 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL), tags=[BOSS_LOCATION_GROUP]),  # (755, 134, -263) Shadow Gi chest
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - 10 Sky Arena Wins room Diamond 1", 2833 + npc_index_offset, lambda state: logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL), tags=[BOSS_LOCATION_GROUP]),  # (752, 133, -262) Dust
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - 10 Sky Arena Wins room Diamond 2", 2811 + npc_index_offset, lambda state: logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL), tags=[BOSS_LOCATION_GROUP]),  # (756, 133, -261) Ingot
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Fall through floorboards of 10 Sky Arena Wins room 1", 3763 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL), tags=[BOSS_LOCATION_GROUP]),  # (754, 130, -264) Zether chest
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " Chest - Fall through floorboards of 10 Sky Arena Wins room 2", 3764 + treasure_index_offset, lambda state: logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL), tags=[BOSS_LOCATION_GROUP]),  # (755, 130, -263) Z-Potion chest
+        LocationData(SKY_ARENA_AP_REGION, SHOUDU_PROVINCE_DISPLAY_NAME + " NPC - Diamond through a hole in the 10 Sky Arena Wins room floor", 2832 + npc_index_offset, lambda state: logic.is_area_in_level_range(state, ARACHLEA_FIGHT_LEVEL), tags=[BOSS_LOCATION_GROUP]), #(753, 130, -264) Ore
 
         #The Undercity
         # can get without mounts from Shoudu
@@ -2038,23 +2038,23 @@ def get_location_names_per_category() -> Dict[str, Set[str]]:
         process_location_tags(categories, location)
 
     for location in get_crystal_locations(-1, None):
-        categories.setdefault("Crystals", set()).add(location.name)
+        categories.setdefault(CRYSTAL_LOCATION_GROUP, set()).add(location.name)
         process_location_tags(categories, location)
 
     for location in get_shop_locations(-1, None):
-        categories.setdefault("Shops", set()).add(location.name)
+        categories.setdefault(SHOP_LOCATION_GROUP, set()).add(location.name)
         process_location_tags(categories, location)
 
     for location in get_boss_locations(-1, None):
-        categories.setdefault("Bosses", set()).add(location.name)
+        categories.setdefault(BOSS_LOCATION_GROUP, set()).add(location.name)
         process_location_tags(categories, location)
 
     for location in get_home_points():
-        categories.setdefault("Home Points", set()).add(location.name)
+        categories.setdefault(HOME_POINT_LOCATION_GROUP, set()).add(location.name)
         process_location_tags(categories, location)
 
     for location in get_region_completion_locations():
-        categories.setdefault("Region Completions", set()).add(location.name)
+        categories.setdefault(REGION_COMPLETION_LOCATION_GROUP, set()).add(location.name)
         process_location_tags(categories, location)
 
     return categories

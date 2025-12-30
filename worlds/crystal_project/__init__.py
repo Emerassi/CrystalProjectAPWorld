@@ -8,6 +8,7 @@ from .constants.ap_regions import *
 from .constants.display_regions import *
 from .constants.teleport_stones import *
 from .constants.item_groups import *
+from .constants.location_groups import *
 from .constants.region_passes import *
 from .home_point_locations import get_home_points
 from .items import item_table, optional_scholar_abilities, filler_items, \
@@ -172,6 +173,16 @@ class CrystalProjectWorld(World):
         if self.options.kill_bosses_mode.value == self.options.kill_bosses_mode.option_true:
             bosses = get_boss_locations(self.player, self.options)
             locations.extend(bosses)
+        else:
+            #Can't just do "for location in locations" because when a location is removed, then the number of things inside the list changes, and the code will skip the next location
+            i = 0
+            while i < len(locations):
+                location = locations[i]
+                if location.tags is not None:
+                    if BOSS_LOCATION_GROUP in location.tags:
+                        locations.remove(location)
+                        i -= 1
+                i += 1
 
         if self.options.shopsanity.value != self.options.shopsanity.option_disabled:
             shops = get_shop_locations(self.player, self.options)
