@@ -304,34 +304,31 @@ class MaxLevel(Range):
     range_end = 99
     default = 60
 
-class MaximumPassivePoints(Range):
-    """
-    This controls the maximum number of passive points each party member will have
-    Default is the vanilla value of 10
-    If your starting Passive points are less than your maximum, checks will be added to the pool that increase the maximum when found.
-    """
-    display_name = "Max Passive Points"
-    range_start = 0
-    range_end = 50
-    default = 10
-
 class StartingPassivePoints(Range):
     """
-    This controls the number of passive points each party member will have at the start of the seed
-    Default is the vanilla value of 10
-    If your starting Passive points are less than your maximum, checks will be added to the pool that increase the maximum when found.
+    The number of Passive Points each party member starts with. Default is the vanilla value of 10.
     """
     display_name = "Starting Passive Points"
     range_start = 0
     range_end = 50
     default = 10
 
-class PassivePointCapIncreaseSize(Range):
+class MaximumPassivePoints(Range):
     """
-    If your Maximum Passive Points is greate than your starting passive points
-    this controls how many additional passive points each check will give you
+    The maximum number of Passive Points each party member can have. Default is the vanilla value of 10.
+
+    If you set your Maximum Passive Points higher than your Starting Passive Points, Passive Point Boosts will be added to the item pool that increase your party's available Passive Points when found.
     """
-    display_name = "Passive Point Cap Increase Size"
+    display_name = "Maximum Passive Points"
+    range_start = 0
+    range_end = 50
+    default = 10
+
+class PassivePointBoostSize(Range):
+    """
+    This sets the number of Passive Points you gain per Passive Point Boost.
+    """
+    display_name = "Passive Point Boost Size"
     range_start = 1
     range_end = 10
     default = 2
@@ -550,7 +547,7 @@ class CrystalProjectOptions(PerGameCommonOptions):
     max_level: MaxLevel
     starting_passive_points: StartingPassivePoints
     maximum_passive_points: MaximumPassivePoints
-    passive_point_cap_increase_size: PassivePointCapIncreaseSize
+    passive_point_boost_size: PassivePointBoostSize
     key_mode: KeyMode
     obscure_routes: ObscureRoutes
     hop_to_it: HopToIt
@@ -572,7 +569,7 @@ class CrystalProjectOptions(PerGameCommonOptions):
 crystal_project_option_groups: Dict[str, List[Any]] = {
     "Goal Options": [Goal, ClamshellGoalQuantity, ExtraClamshellsInPool, AstleyJobQuantity],
     "Location Options": [IncludedRegions, JobRando, StartingJobQuantity, DisableSparks, KillBossesMode, Shopsanity, Regionsanity, RegionsanityStarterRegionMinLevel, RegionsanityStarterRegionMaxLevel, HomePointHustle],
-    "Progression Options": [ProgressiveMountMode, StartingLevel, LevelGating, LevelComparedToEnemies, ProgressiveLevelSize, MaxLevel, StartingPassivePoints, MaximumPassivePoints, PassivePointCapIncreaseSize, KeyMode, ObscureRoutes, HopToIt, PrioritizeCrystals, AutoSpendLP, AutoEquipPassives, EasyLeveling],
+    "Progression Options": [ProgressiveMountMode, StartingLevel, LevelGating, LevelComparedToEnemies, ProgressiveLevelSize, MaxLevel, StartingPassivePoints, MaximumPassivePoints, PassivePointBoostSize, KeyMode, ObscureRoutes, HopToIt, PrioritizeCrystals, AutoSpendLP, AutoEquipPassives, EasyLeveling],
     "Item Pool Options": [ProgressiveEquipmentMode, StartWithTreasureFinder, StartWithMaps, FillFullMap, IncludeSummonAbilities, IncludeScholarAbilities],
     "Bonus Fun": [ItemInfoMode, RandomizeMusic, UseMods]
 }
