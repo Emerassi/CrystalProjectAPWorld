@@ -22,6 +22,11 @@ if TYPE_CHECKING:
 
 MAX_SUPPORTED_EDITOR_VERSION: int = 32
 
+NPC_ENTITY_TYPE: int = 0 #Could be a boss or an npc check or a store or not a check at all
+SPARK_ENTITY_TYPE: int = 2 #Could be a boss or not a boss
+TREASURE_ENTITY_TYPE: int = 5
+CRYSTAL_ENTITY_TYPE: int = 6
+
 class ModDataModel(object):
     def __init__(self, json_data):
         self.ID = None
@@ -83,6 +88,12 @@ def get_mod_info() -> List[ModInfoModel]:
     item_ids_in_use: List[int] = [229, 230, 231, 232]
     job_ids_in_use: List[int] = []
     entity_ids_in_use: List[int] = [5000, 5001, 5002, 5003, 5004, 5005, 5006, 5007, 5008, 5009, 5010, 5011, 5012, 5013, 5014]
+    lowest_region_completion: int = 6000
+    highest_region_completion: int = 6064
+    i = lowest_region_completion
+    while i <= highest_region_completion:
+        entity_ids_in_use.append(i)
+        i += 1
     spark_ids_in_use: List[int] = []
     order_loaded = 1
 
@@ -268,19 +279,19 @@ def get_modded_locations(mod_info: List[ModInfoModel]) -> List[ModLocationData]:
         for location in mod.data_model.Entities:
             entity_type = location['EntityType']
             #Entity type 0 is NPC
-            if entity_type == 0:
+            if entity_type == NPC_ENTITY_TYPE:
                 location = build_npc_location(location, mod.shifted_entity_ids, mod.excluded_ids)
                 if location is not None:
                     locations.append(location)
 
             #Entity type 5 is Treasure
-            if entity_type == 5:
+            if entity_type == TREASURE_ENTITY_TYPE:
                 location = build_treasure_location(location, mod.shifted_entity_ids, mod.excluded_ids)
                 if location is not None:
                     locations.append(location)
 
             # Entity type 6 is Crystal
-            if entity_type == 6:
+            if entity_type == CRYSTAL_ENTITY_TYPE:
                 location = build_crystal_location(location, mod.shifted_entity_ids, mod.excluded_ids)
                 if location is not None:
                     locations.append(location)
@@ -294,7 +305,7 @@ def get_modded_shopsanity_locations(mod_info: List[ModInfoModel]) -> List[ModLoc
         for location in mod.data_model.Entities:
             entity_type = location['EntityType']
             # Entity type 0 is NPC
-            if entity_type == 0:
+            if entity_type == NPC_ENTITY_TYPE:
                 npc_locations = build_shop_locations(location, mod.shifted_entity_ids, mod.excluded_ids)
                 locations.extend(npc_locations)
 
@@ -308,13 +319,13 @@ def get_modded_bosses(mod_info: List[ModInfoModel]) -> List[ModLocationData]:
             entity_type = location['EntityType']
 
             #Entity type 0 is NPC
-            if entity_type == 0:
+            if entity_type == NPC_ENTITY_TYPE:
                 location = build_boss_npc(location, mod.boss_troop_ids, mod.shifted_entity_ids)
                 if location is not None:
                     locations.append(location)
 
             #Entity type 2 is Spark
-            if entity_type == 2:
+            if entity_type == SPARK_ENTITY_TYPE:
                 location = build_spark_location(location, mod.shifted_entity_ids)
                 if location is not None:
                     locations.append(location)
@@ -332,29 +343,61 @@ def get_removed_locations(mod_info: List[ModInfoModel]) -> List[LocationData]:
         for location in mod.data_model.Entities:
             location_id = location['ID']
             has_no_npc_info = location['NpcData'] is None or not location['NpcData']['Pages']
+            entity_type = location['EntityType']
+
+            treasure_id = location_id + treasure_index_offset
+            npc_id = location_id + npc_index_offset
+            crystal_id = location_id + crystal_index_offset
+            boss_id = location_id + boss_index_offset
+            shop_id = location_id + shop_index_offset
+
+            removed_this_location: bool = False
+            should_be_removed_because_no_npc_info: bool = False
 
             if has_no_npc_info and location['SignData'] is None and location['SparkData'] is None and location['DoorData'] is None and location['HomePointData'] is None and location['TreasureData'] is None and location['CrystalData'] is None and location['MarkerData'] is None:
-                treasure_id = location_id + treasure_index_offset
-                npc_id = location_id + npc_index_offset
-                crystal_id = location_id + crystal_index_offset
-                boss_id = location_id + boss_index_offset
-                shop_id = location_id + shop_index_offset
+                should_be_removed_because_no_npc_info = True
 
-                for treasure_or_npc in vanilla_treasures_and_npcs:
-                    if treasure_or_npc.code == treasure_id or treasure_or_npc.code == npc_id:
-                        removed_locations.append(LocationData(treasure_or_npc.ap_region, treasure_or_npc.name, location_id))
+            for treasure_or_npc in vanilla_treasures_and_npcs:
+                if (treasure_or_npc.code == treasure_id and (should_be_removed_because_no_npc_info
+                    # If the item's entity type is definitely not a treasure or npc, then remove the vanilla location, because it's type was changed by the mod
+                    or entity_type != TREASURE_ENTITY_TYPE)):
+                    removed_locations.append(LocationData(treasure_or_npc.ap_region, treasure_or_npc.name, location_id))
+                    removed_this_location = True
+                    break
 
+                if (treasure_or_npc.code == npc_id and (should_be_removed_because_no_npc_info
+                    # If the item's entity type is definitely not a treasure or npc, then remove the vanilla location, because it's type was changed by the mod
+                    or entity_type != NPC_ENTITY_TYPE)):
+                    removed_locations.append(LocationData(treasure_or_npc.ap_region, treasure_or_npc.name, location_id))
+                    removed_this_location = True
+                    break
+
+            if not removed_this_location:
                 for crystal in vanilla_crystals:
-                    if crystal.code == crystal_id:
+                    if (crystal.code == crystal_id and (should_be_removed_because_no_npc_info
+                        # If the item's entity type is definitely not a crystal, then remove the vanilla location, because it's type was changed by the mod
+                        or entity_type != CRYSTAL_ENTITY_TYPE)):
                         removed_locations.append(LocationData(crystal.ap_region, crystal.name, location_id))
+                        removed_this_location = True
+                        break
 
+            if not removed_this_location:
                 for boss in vanilla_bosses:
-                    if boss.code == boss_id:
+                    if (boss.code == boss_id and (should_be_removed_because_no_npc_info
+                        # If the item's entity type is definitely not an npc or spark, then remove the vanilla location, because it's type was changed by the mod
+                        or (entity_type != NPC_ENTITY_TYPE and entity_type != SPARK_ENTITY_TYPE))):
                         removed_locations.append(LocationData(boss.ap_region, boss.name, location_id))
+                        removed_this_location = True
+                        break
 
+            if not removed_this_location:
                 for shop in vanilla_shops:
-                    if shop.code == shop_id:
+                    if (shop.code == shop_id and (should_be_removed_because_no_npc_info
+                        # If the item's entity type is definitely not an npc, then remove the vanilla location, because it's type was changed by the mod
+                        or entity_type != NPC_ENTITY_TYPE)):
                         removed_locations.append(LocationData(shop.ap_region, shop.name, location_id))
+                        removed_this_location = True
+                        break
 
     return removed_locations
 

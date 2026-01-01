@@ -648,7 +648,7 @@ class CrystalProjectWorld(World):
                     pool.append(item)
 
         if self.options.use_mods:
-            combined_locations: List[ModLocationData] = self.modded_locations
+            combined_locations: List[ModLocationData] = self.modded_locations.copy()
             combined_locations.extend(self.modded_shops)
 
             for modded_item in self.modded_items:
