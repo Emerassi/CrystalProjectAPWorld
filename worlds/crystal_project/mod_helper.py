@@ -88,12 +88,6 @@ def get_mod_info() -> List[ModInfoModel]:
     item_ids_in_use: List[int] = [229, 230, 231, 232]
     job_ids_in_use: List[int] = []
     entity_ids_in_use: List[int] = [5000, 5001, 5002, 5003, 5004, 5005, 5006, 5007, 5008, 5009, 5010, 5011, 5012, 5013, 5014]
-    lowest_region_completion: int = 6000
-    highest_region_completion: int = 6064
-    i = lowest_region_completion
-    while i <= highest_region_completion:
-        entity_ids_in_use.append(i)
-        i += 1
     spark_ids_in_use: List[int] = []
     order_loaded = 1
 
