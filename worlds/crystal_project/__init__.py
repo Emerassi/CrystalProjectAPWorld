@@ -356,6 +356,10 @@ class CrystalProjectWorld(World):
             #Giving players who start in a swimming-required region a salmon to start
             if self.starter_ap_region in display_regions_desperate_for_a_salmon:
                 self.multiworld.push_precollected(self.create_item(PROGRESSIVE_SALMON_VIOLA))
+            #Decided it would be cute to start players in the Salmon Room with the Salmon Violin in its chest for The Deep Sea
+            if self.starter_ap_region == THE_DEEP_SEA_AP_REGION:
+                self.multiworld.push_precollected(self.create_item(JIDAMBA_EACLANEYA_PASS))
+                self.get_location(JIDAMBA_EACLANEYA_DISPLAY_NAME + " Chest - Claim the prize of the Timer Fishes").place_locked_item(self.create_item(PROGRESSIVE_SALMON_VIOLA))
 
         self.origin_region_name = self.starter_ap_region
         logging.getLogger().info("Starting region for " + self.player_name + " is " + ap_region_to_display_region_dictionary[self.starter_ap_region])

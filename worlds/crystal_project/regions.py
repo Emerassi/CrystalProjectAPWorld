@@ -1101,9 +1101,9 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
     #Jidamba Eaclaneya end
     #The Deep Sea start
     fancy_add_exits(world, THE_DEEP_SEA_AP_REGION, [SARA_SARA_SAND_BAR_AP_REGION, THE_OPEN_SEA_AP_REGION, SALMON_ROOM_AP_REGION, NEPTUNE_SHRINE_AP_REGION, THE_DEPTHS_AP_REGION, THE_SEQUOIA_AP_REGION],
+                    #Removed swimming rule from The Deep Sea into the Salmon Room b/c i'm using the Salmon Room as The Deep Sea starting location
                     {SARA_SARA_SAND_BAR_AP_REGION: lambda state: logic.has_swimming(state),
                      THE_OPEN_SEA_AP_REGION: lambda state: logic.has_swimming(state),
-                     SALMON_ROOM_AP_REGION: lambda state: logic.has_swimming(state),
                      NEPTUNE_SHRINE_AP_REGION: lambda state: logic.has_swimming(state),
                      THE_DEPTHS_AP_REGION: lambda state: logic.has_swimming(state),
                      THE_SEQUOIA_AP_REGION: lambda state: logic.has_golden_quintar(state) or (logic.is_hop_to_it_pray() and logic.has_swimming(state) and logic.has_glide(state))})
