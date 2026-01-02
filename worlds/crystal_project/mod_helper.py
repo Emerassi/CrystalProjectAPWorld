@@ -300,7 +300,8 @@ def get_modded_shopsanity_locations(mod_info: List[ModInfoModel]) -> List[ModLoc
             entity_type = location['EntityType']
             # Entity type 0 is NPC
             if entity_type == NPC_ENTITY_TYPE:
-                npc_locations = build_shop_locations(location, mod.shifted_entity_ids, mod.excluded_ids)
+                code_list = [location.code for location in locations]
+                npc_locations = build_shop_locations(location, mod.shifted_entity_ids, mod.excluded_ids, code_list)
                 locations.extend(npc_locations)
 
     return locations
@@ -485,7 +486,7 @@ def build_npc_location(location, shifted_entity_ids: List[ModIncrementedIdData],
 
     return None
 
-def build_shop_locations(location, shifted_entity_ids: List[ModIncrementedIdData], excluded_ids: IdsExcludedFromRandomization) -> List[ModLocationData]:
+def build_shop_locations(location, shifted_entity_ids: List[ModIncrementedIdData], excluded_ids: IdsExcludedFromRandomization, other_mod_codes) -> List[ModLocationData]:
     locations: List[ModLocationData] = []
     location_codes: List[int] = []
     options: CrystalProjectOptions
@@ -525,7 +526,7 @@ def build_shop_locations(location, shifted_entity_ids: List[ModIncrementedIdData
                             rule_condition = None
 
                         location = ModLocationData(display_region, shop_name, id_with_offset, shop_item_id, coordinates, biome_id, rule_condition)
-                        if not location.code in location_codes:
+                        if not location.code in location_codes and not location.code in other_mod_codes:
                             locations.append(location)
                             location_codes.append(location.code)
 
