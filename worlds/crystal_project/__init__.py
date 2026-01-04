@@ -22,7 +22,7 @@ from .regions import init_ap_region_to_display_region_dictionary, init_areas, ap
     display_region_levels_dictionary
 from .options import CrystalProjectOptions, create_option_groups
 from .rules import CrystalProjectLogic
-from .mod_helper import ModLocationData, get_modded_items, get_modded_locations, \
+from .mod_helper import ModLocationData, get_modded_items, get_modded_locations, get_modded_home_points, \
     get_modded_shopsanity_locations, get_modded_bosses, build_condition_rule, update_item_classification, get_mod_info, get_removed_locations
 from typing import List, Set, Dict, Any
 from worlds.AutoWorld import World, WebWorld
@@ -93,6 +93,15 @@ class CrystalProjectWorld(World):
 
     for modded_boss in modded_bosses:
         location_name_to_id[modded_boss.name] = modded_boss.code
+
+    modded_home_points = get_modded_home_points(mod_info)
+
+    for modded_home_point in modded_home_points:
+        location_name_to_id[modded_home_point.name] = modded_home_point.code + home_point_location_index_offset
+        if modded_home_point.name in item_name_to_id and item_name_to_id[modded_home_point.name] != modded_home_point.code:
+            raise Exception(f"A modded item({modded_home_point.name}) with id {modded_home_point.code} tried to change the code of item_name_to_id and it can never change!")
+        item_name_to_id[modded_home_point.name] = modded_home_point.code + home_point_item_index_offset
+        item_name_groups.setdefault(MOD, set()).add(modded_home_point.name)
 
     removed_locations = get_removed_locations(mod_info)
 
@@ -221,9 +230,19 @@ class CrystalProjectWorld(World):
         if self.options.home_point_hustle.value != self.options.home_point_hustle.option_disabled:
             home_points = get_home_points()
 
+            # todo removed home points
             for home_point in home_points:
                 home_point_location = LocationData(home_point.ap_region, home_point.name, (home_point.code + home_point_location_index_offset), home_point.rule)
                 locations.append(home_point_location)
+
+            if self.options.use_mods.value == self.options.use_mods.option_true:
+                for modded_home_point in self.modded_home_points:
+                    location = LocationData(display_region_subregions_dictionary[modded_home_point.display_region][0],
+                                            modded_home_point.name,
+                                            modded_home_point.code + home_point_location_index_offset,
+                                            build_condition_rule(modded_home_point.display_region,
+                                                                 modded_home_point.rule_condition, self))
+                    locations.append(location)
 
         #Regionsanity completion locations need to be added after all other locations so they can be removed if the region is empty (e.g. Neptune Shrine w/o Shopsanity)
         if self.options.regionsanity.value != self.options.regionsanity.option_disabled:
@@ -381,8 +400,14 @@ class CrystalProjectWorld(World):
             return Item(name, data.classification, data.code, self.player)
         else:
             matches_mod = [item for (index, item) in enumerate(self.modded_items) if item.name == name]
+            matches_mod_home_point = [item for (index, item) in enumerate(self.modded_home_points) if item.name == name]
 
-            return Item(matches_mod[0].name, matches_mod[0].classification, matches_mod[0].code, self.player)
+            if len(matches_mod) > 0:
+                return Item(matches_mod[0].name, matches_mod[0].classification, matches_mod[0].code, self.player)
+            elif len(matches_mod_home_point) > 0:
+                return Item(matches_mod_home_point[0].name, ItemClassification.progression, matches_mod_home_point[0].code + home_point_item_index_offset, self.player)
+            else:
+                raise Exception(f"No matches found for name {name}")
 
     def create_items(self) -> None:
         pool = self.get_item_pool(self.get_excluded_items())
@@ -656,6 +681,12 @@ class CrystalProjectWorld(World):
                 item = self.create_item(modded_item.name)
                 pool.append(item)
 
+            if self.options.home_point_hustle != self.options.home_point_hustle.option_disabled:
+                for modded_home_point in self.modded_home_points:
+                    item = self.create_item(modded_home_point.name)
+                    update_item_classification(item, [location.rule_condition for location in combined_locations], self)
+                    pool.append(item)
+
         if not self.options.level_gating.value == self.options.level_gating.option_none:
             #guarantee space for 2 clamshells
             min_clamshells = 2
@@ -710,7 +741,10 @@ class CrystalProjectWorld(World):
     def fill_slot_data(self) -> Dict[str, Any]:
         mod_info = []
         slot_data_locations = []
+        slot_data_home_points = []
         slot_data_removed_locations = []
+        slot_data_removed_home_points = []
+
         if self.options.use_mods:
             for mod in self.mod_info:
                 mod_info.append({ "Id": mod.mod_id, "Name": mod.mod_name, "LoadOrder": mod.load_order })
@@ -740,9 +774,20 @@ class CrystalProjectWorld(World):
                                                  "BiomeId": boss.biomeId,
                                                  "Rule": None })
 
+            if self.options.home_point_hustle != self.options.home_point_hustle.option_disabled:
+                for home_point in self.modded_home_points:
+                    slot_data_home_points.append({ "Id": home_point.offsetless_code,
+                                                 "APRegion": display_region_subregions_dictionary[home_point.display_region][0],
+                                                 "Name": home_point.name,
+                                                 "Coordinates": home_point.coordinates,
+                                                 "BiomeId": home_point.biomeId,
+                                                 "Rule": None })
+
             for location in self.removed_locations:
                 slot_data_removed_locations.append({"Id": location.code,
                                             "APRegion": location.ap_region})
+
+            #TODO removed home points
 
         # look into replacing this big chonky return block with self.options.as_dict() and then just adding the extras to the dict after
         return {
@@ -782,6 +827,7 @@ class CrystalProjectWorld(World):
             "useMods": self.options.use_mods.value,
             "modInfo": mod_info,
             "moddedLocations": slot_data_locations,
+            "moddedHomePoints": slot_data_home_points,
             "removedLocations": slot_data_removed_locations,
             # "moddedLocationsForUT": self.modded_locations,
             # "moddedShopsForUT": self.modded_shops,

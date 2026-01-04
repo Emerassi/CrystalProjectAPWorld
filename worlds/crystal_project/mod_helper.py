@@ -9,6 +9,7 @@ from .options import CrystalProjectOptions
 from .items import item_table, equipment_index_offset, item_index_offset, job_index_offset
 from .locations import LocationData, get_treasure_and_npc_locations, get_shop_locations, get_boss_locations, npc_index_offset, treasure_index_offset, crystal_index_offset, \
     boss_index_offset, shop_index_offset, get_crystal_locations
+from .home_point_locations import get_home_points
 from .unused_locations import get_unused_locations
 from .constants.biomes import get_display_region_by_id
 from .constants.display_regions import *
@@ -18,12 +19,13 @@ from .rules import CrystalProjectLogic
 import json
 
 if TYPE_CHECKING:
-    from . import CrystalProjectWorld
+    from . import CrystalProjectWorld, home_point_location_index_offset
 
 MAX_SUPPORTED_EDITOR_VERSION: int = 32
 
 NPC_ENTITY_TYPE: int = 0 #Could be a boss or an npc check or a store or not a check at all
 SPARK_ENTITY_TYPE: int = 2 #Could be a boss or not a boss
+HOME_POINT_ENTITY_TYPE: int = 4
 TREASURE_ENTITY_TYPE: int = 5
 CRYSTAL_ENTITY_TYPE: int = 6
 
@@ -322,6 +324,21 @@ def get_modded_bosses(mod_info: List[ModInfoModel]) -> List[ModLocationData]:
             #Entity type 2 is Spark
             if entity_type == SPARK_ENTITY_TYPE:
                 location = build_spark_location(location, mod.shifted_entity_ids)
+                if location is not None:
+                    locations.append(location)
+
+    return locations
+
+def get_modded_home_points(mod_info: List[ModInfoModel]) -> List[ModLocationData]:
+    locations: List[ModLocationData] = []
+
+    for mod in mod_info:
+        for location in mod.data_model.Entities:
+            entity_type = location['EntityType']
+
+            # Entity type 0 is NPC
+            if entity_type == HOME_POINT_ENTITY_TYPE:
+                location = build_home_point_location(location, mod.shifted_entity_ids)
                 if location is not None:
                     locations.append(location)
 
@@ -690,6 +707,29 @@ def build_spark_location(location, shifted_entity_ids: List[ModIncrementedIdData
 
     if not location_in_pool:
         location = ModLocationData(display_region, name, id_with_offset, new_id, coordinates, biome_id, None)
+        return location
+
+    return None
+
+def build_home_point_location(location, shifted_entity_ids: List[ModIncrementedIdData]) -> Optional[ModLocationData]:
+    biome_id = location['BiomeID']
+    display_region = get_display_region_by_id(biome_id)
+    item_id = location['ID']
+    name = location['HomePointData']['Name']
+
+    new_id = item_id
+    for incremented_id in shifted_entity_ids:
+        if incremented_id.original_id == item_id:
+            new_id = incremented_id.new_id
+
+    name = 'Home Point - Modded Home Point ' + name + ' ' + str(new_id)
+    coord = location['Coord']
+    coordinates = str(coord['X']) + ',' + str(coord['Y']) + ',' + str(coord['Z'])
+
+    location_in_pool = any(location.code == item_id for location in get_home_points())
+
+    if not location_in_pool:
+        location = ModLocationData(display_region, name, new_id, new_id, coordinates, biome_id, None)
         return location
 
     return None
