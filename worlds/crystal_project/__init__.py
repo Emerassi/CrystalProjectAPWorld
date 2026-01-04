@@ -23,7 +23,7 @@ from .regions import init_ap_region_to_display_region_dictionary, init_areas, ap
 from .options import CrystalProjectOptions, create_option_groups
 from .rules import CrystalProjectLogic
 from .mod_helper import ModLocationData, get_modded_items, get_modded_locations, get_modded_home_points, \
-    get_modded_shopsanity_locations, get_modded_bosses, build_condition_rule, update_item_classification, get_mod_info, get_removed_locations
+    get_modded_shopsanity_locations, get_modded_bosses, build_condition_rule, update_item_classification, get_mod_info, get_removed_locations, get_removed_home_points
 from typing import List, Set, Dict, Any
 from worlds.AutoWorld import World, WebWorld
 from BaseClasses import Item, Tutorial, MultiWorld, CollectionState, ItemClassification
@@ -104,6 +104,7 @@ class CrystalProjectWorld(World):
         item_name_groups.setdefault(MOD, set()).add(modded_home_point.name)
 
     removed_locations = get_removed_locations(mod_info)
+    removed_home_points = get_removed_home_points(mod_info)
 
     web = CrystalProjectWeb()
 
@@ -229,11 +230,16 @@ class CrystalProjectWorld(World):
 
         if self.options.home_point_hustle.value != self.options.home_point_hustle.option_disabled:
             home_points = get_home_points()
+            removed_code_list = [home_point.code for home_point in self.removed_home_points]
 
-            # todo removed home points
             for home_point in home_points:
-                home_point_location = LocationData(home_point.ap_region, home_point.name, (home_point.code + home_point_location_index_offset), home_point.rule)
-                locations.append(home_point_location)
+                should_add = True
+                if self.options.use_mods.value == self.options.use_mods.option_true:
+                    should_add = home_point.code not in removed_code_list
+
+                if should_add:
+                    home_point_location = LocationData(home_point.ap_region, home_point.name, (home_point.code + home_point_location_index_offset), home_point.rule)
+                    locations.append(home_point_location)
 
             if self.options.use_mods.value == self.options.use_mods.option_true:
                 for modded_home_point in self.modded_home_points:
@@ -787,6 +793,10 @@ class CrystalProjectWorld(World):
                 slot_data_removed_locations.append({"Id": location.code,
                                             "APRegion": location.ap_region})
 
+            for home_point in self.removed_home_points:
+                slot_data_removed_home_points.append({"Id": home_point.code,
+                                            "APRegion": location.ap_region})
+
             #TODO removed home points
 
         # look into replacing this big chonky return block with self.options.as_dict() and then just adding the extras to the dict after
@@ -829,6 +839,7 @@ class CrystalProjectWorld(World):
             "moddedLocations": slot_data_locations,
             "moddedHomePoints": slot_data_home_points,
             "removedLocations": slot_data_removed_locations,
+            "removedHomePoints": slot_data_removed_home_points,
             # "moddedLocationsForUT": self.modded_locations,
             # "moddedShopsForUT": self.modded_shops,
             "prefillMap": bool(self.options.fill_full_map.value),

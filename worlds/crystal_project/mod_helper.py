@@ -413,6 +413,31 @@ def get_removed_locations(mod_info: List[ModInfoModel]) -> List[LocationData]:
 
     return removed_locations
 
+def get_removed_home_points(mod_info: List[ModInfoModel]) -> List[LocationData]:
+    removed_locations: List[LocationData] = []
+    vanilla_home_points = get_home_points()
+
+    for mod in mod_info:
+        for location in mod.data_model.Entities:
+            location_id = location['ID']
+            has_no_npc_info = location['NpcData'] is None or not location['NpcData']['Pages']
+            entity_type = location['EntityType']
+            should_be_removed_because_no_npc_info: bool = False
+
+            if has_no_npc_info and location['SignData'] is None and location['SparkData'] is None and location[
+                'DoorData'] is None and location['HomePointData'] is None and location['TreasureData'] is None and \
+                    location['CrystalData'] is None and location['MarkerData'] is None:
+                should_be_removed_because_no_npc_info = True
+
+            for home_point in vanilla_home_points:
+                if (home_point.code == location_id and (should_be_removed_because_no_npc_info
+                                                             # If the item's entity type is definitely not a home point, then remove the vanilla location, because it's type was changed by the mod
+                                                             or entity_type != HOME_POINT_ENTITY_TYPE)):
+                    removed_locations.append(LocationData(home_point.ap_region, home_point.name, location_id))
+                    break
+
+    return removed_locations
+
 def get_mod_directory() -> str:
     current_directory = getcwd()
     mod_directory = join(current_directory, 'crystal_project_mods')
