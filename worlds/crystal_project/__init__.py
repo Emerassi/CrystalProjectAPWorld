@@ -799,9 +799,7 @@ class CrystalProjectWorld(World):
 
             for home_point in self.removed_home_points:
                 slot_data_removed_home_points.append({"Id": home_point.code,
-                                            "APRegion": location.ap_region})
-
-            #TODO removed home points
+                                            "APRegion": home_point.ap_region})
 
         # look into replacing this big chonky return block with self.options.as_dict() and then just adding the extras to the dict after
         return {
