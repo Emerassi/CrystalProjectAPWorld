@@ -276,19 +276,19 @@ def get_modded_locations(mod_info: List[ModInfoModel]) -> List[ModLocationData]:
             entity_type = location['EntityType']
             #Entity type 0 is NPC
             if entity_type == NPC_ENTITY_TYPE:
-                location = build_npc_location(location, mod.shifted_entity_ids, mod.excluded_ids)
+                location = build_npc_location(location, mod.mod_name, mod.shifted_entity_ids, mod.excluded_ids)
                 if location is not None:
                     locations.append(location)
 
             #Entity type 5 is Treasure
             if entity_type == TREASURE_ENTITY_TYPE:
-                location = build_treasure_location(location, mod.shifted_entity_ids, mod.excluded_ids)
+                location = build_treasure_location(location, mod.mod_name, mod.shifted_entity_ids, mod.excluded_ids)
                 if location is not None:
                     locations.append(location)
 
             # Entity type 6 is Crystal
             if entity_type == CRYSTAL_ENTITY_TYPE:
-                location = build_crystal_location(location, mod.shifted_entity_ids, mod.excluded_ids)
+                location = build_crystal_location(location, mod.mod_name, mod.shifted_entity_ids, mod.excluded_ids)
                 if location is not None:
                     locations.append(location)
 
@@ -317,13 +317,13 @@ def get_modded_bosses(mod_info: List[ModInfoModel]) -> List[ModLocationData]:
 
             #Entity type 0 is NPC
             if entity_type == NPC_ENTITY_TYPE:
-                location = build_boss_npc(location, mod.boss_troop_ids, mod.shifted_entity_ids)
+                location = build_boss_npc(location, mod.mod_name, mod.boss_troop_ids, mod.shifted_entity_ids)
                 if location is not None:
                     locations.append(location)
 
             #Entity type 2 is Spark
             if entity_type == SPARK_ENTITY_TYPE:
-                location = build_spark_location(location, mod.shifted_entity_ids)
+                location = build_spark_location(location, mod.mod_name, mod.shifted_entity_ids)
                 if location is not None:
                     locations.append(location)
 
@@ -338,7 +338,7 @@ def get_modded_home_points(mod_info: List[ModInfoModel]) -> List[ModLocationData
 
             # Entity type 0 is NPC
             if entity_type == HOME_POINT_ENTITY_TYPE:
-                location = build_home_point_location(location, mod.shifted_entity_ids)
+                location = build_home_point_location(location, mod.mod_name, mod.shifted_entity_ids)
                 if location is not None:
                     locations.append(location)
 
@@ -457,7 +457,7 @@ def get_mod_directory() -> str:
 
     return mod_directory
 
-def build_npc_location(location, shifted_entity_ids: List[ModIncrementedIdData], excluded_ids: IdsExcludedFromRandomization) -> Optional[ModLocationData]:
+def build_npc_location(location, mod_name, shifted_entity_ids: List[ModIncrementedIdData], excluded_ids: IdsExcludedFromRandomization) -> Optional[ModLocationData]:
     options: CrystalProjectOptions
     biome_id = location['BiomeID']
     display_region = get_display_region_by_id(biome_id)
@@ -469,7 +469,7 @@ def build_npc_location(location, shifted_entity_ids: List[ModIncrementedIdData],
             new_id = incremented_id.new_id
 
     id_with_offset = new_id + npc_index_offset
-    name = display_region + ' NPC - Modded NPC ' + str(new_id)
+    name = display_region + ' - ' + mod_name + ' - ' + 'NPC - Modded NPC ' + str(new_id)
     coord = location['Coord']
     coordinates = str(coord['X']) + ',' + str(coord['Y']) + ',' + str(coord['Z'])
     has_add_inventory = False
@@ -589,7 +589,7 @@ def build_shop_locations(location, shifted_entity_ids: List[ModIncrementedIdData
 
     return locations
 
-def build_treasure_location(location, shifted_entity_ids: List[ModIncrementedIdData], excluded_ids: IdsExcludedFromRandomization) -> Optional[ModLocationData]:
+def build_treasure_location(location, mod_name, shifted_entity_ids: List[ModIncrementedIdData], excluded_ids: IdsExcludedFromRandomization) -> Optional[ModLocationData]:
     #Chests always add an item and never have conditions, so nice and easy
     biome_id = location['BiomeID']
     display_region = get_display_region_by_id(biome_id)
@@ -601,7 +601,7 @@ def build_treasure_location(location, shifted_entity_ids: List[ModIncrementedIdD
             new_id = incremented_id.new_id
 
     id_with_offset = new_id + treasure_index_offset
-    name = display_region + ' Chest - Modded Chest ' + str(new_id)
+    name = display_region + ' - ' + mod_name + ' - ' + ' Chest - Modded Chest ' + str(new_id)
     coord = location['Coord']
     coordinates = str(coord['X']) + ',' + str(coord['Y']) + ',' + str(coord['Z'])
     is_excluded = is_item_at_location_excluded(location['TreasureData'], excluded_ids)
@@ -615,7 +615,7 @@ def build_treasure_location(location, shifted_entity_ids: List[ModIncrementedIdD
 
     return None
 
-def build_crystal_location(location, shifted_entity_ids: List[ModIncrementedIdData], excluded_ids: IdsExcludedFromRandomization) -> Optional[ModLocationData]:
+def build_crystal_location(location, mod_name, shifted_entity_ids: List[ModIncrementedIdData], excluded_ids: IdsExcludedFromRandomization) -> Optional[ModLocationData]:
     # Crystals always add a job and never have conditions, so nice and easy
     biome_id = location['BiomeID']
     display_region = get_display_region_by_id(biome_id)
@@ -627,7 +627,7 @@ def build_crystal_location(location, shifted_entity_ids: List[ModIncrementedIdDa
             new_id = incremented_id.new_id
 
     id_with_offset = new_id + crystal_index_offset
-    name = display_region + ' Crystal - Modded Job ' + str(new_id)
+    name = display_region + ' - ' + mod_name + ' - ' + ' Crystal - Modded Job ' + str(new_id)
     coord = location['Coord']
     coordinates = str(coord['X']) + ',' + str(coord['Y']) + ',' + str(coord['Z'])
     job_id = location['CrystalData']['JobID']
@@ -643,7 +643,7 @@ def build_crystal_location(location, shifted_entity_ids: List[ModIncrementedIdDa
 
     return None
 
-def build_boss_npc(location, boss_troop_ids: List[int], shifted_entity_ids: List[ModIncrementedIdData]) -> Optional[ModLocationData]:
+def build_boss_npc(location, mod_name, boss_troop_ids: List[int], shifted_entity_ids: List[ModIncrementedIdData]) -> Optional[ModLocationData]:
     options: CrystalProjectOptions
     biome_id = location['BiomeID']
     display_region = get_display_region_by_id(biome_id)
@@ -656,7 +656,7 @@ def build_boss_npc(location, boss_troop_ids: List[int], shifted_entity_ids: List
             new_id = incremented_id.new_id
 
     id_with_offset = new_id + boss_index_offset
-    name = display_region + ' Boss - Modded Boss ' + str(new_id)
+    name = display_region + ' - ' + mod_name + ' - ' + ' Boss - Modded Boss ' + str(new_id)
     coord = location['Coord']
     coordinates = str(coord['X']) + ',' + str(coord['Y']) + ',' + str(coord['Z'])
     has_battle = False
@@ -716,7 +716,7 @@ def build_boss_npc(location, boss_troop_ids: List[int], shifted_entity_ids: List
 
     return None
 
-def build_spark_location(location, shifted_entity_ids: List[ModIncrementedIdData]) -> Optional[ModLocationData]:
+def build_spark_location(location, mod_name, shifted_entity_ids: List[ModIncrementedIdData]) -> Optional[ModLocationData]:
     if not location['SparkData']:
         return None
 
@@ -737,7 +737,7 @@ def build_spark_location(location, shifted_entity_ids: List[ModIncrementedIdData
             new_id = incremented_id.new_id
 
     id_with_offset = new_id + boss_index_offset
-    name = display_region + ' Boss - Modded Boss ' + str(new_id)
+    name = display_region + ' - ' + mod_name + ' - ' + ' Boss - Modded Boss ' + str(new_id)
     coord = location['Coord']
     coordinates = str(coord['X']) + ',' + str(coord['Y']) + ',' + str(coord['Z'])
 
@@ -749,7 +749,7 @@ def build_spark_location(location, shifted_entity_ids: List[ModIncrementedIdData
 
     return None
 
-def build_home_point_location(location, shifted_entity_ids: List[ModIncrementedIdData]) -> Optional[ModLocationData]:
+def build_home_point_location(location, mod_name, shifted_entity_ids: List[ModIncrementedIdData]) -> Optional[ModLocationData]:
     biome_id = location['BiomeID']
     display_region = get_display_region_by_id(biome_id)
     item_id = location['ID']
@@ -760,7 +760,7 @@ def build_home_point_location(location, shifted_entity_ids: List[ModIncrementedI
         if incremented_id.original_id == item_id:
             new_id = incremented_id.new_id
 
-    name = 'Home Point - Modded Home Point ' + name + ' ' + str(new_id)
+    name =  mod_name + ' - ' + 'Home Point - Modded Home Point ' + name + ' ' + str(new_id)
     coord = location['Coord']
     coordinates = str(coord['X']) + ',' + str(coord['Y']) + ',' + str(coord['Z'])
 
