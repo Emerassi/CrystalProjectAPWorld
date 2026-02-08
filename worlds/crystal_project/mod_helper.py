@@ -441,7 +441,9 @@ def get_removed_home_points(mod_info: List[ModInfoModel]) -> List[LocationData]:
                 should_be_removed_because_no_npc_info = True
 
             for home_point in vanilla_home_points:
-                if (home_point.code == location_id and (should_be_removed_because_no_npc_info
+                #5003 is a special value in that it's added via the archipelago mod, we shouldn't remove it because it's not in
+                #the mod list, as it's not a vanilla location
+                if (home_point.code != 5003 and home_point.code == location_id and (should_be_removed_because_no_npc_info
                                                              # If the item's entity type is definitely not a home point, then remove the vanilla location, because it's type was changed by the mod
                                                              or entity_type != HOME_POINT_ENTITY_TYPE)):
                     removed_locations.append(LocationData(home_point.ap_region, home_point.name, location_id))
