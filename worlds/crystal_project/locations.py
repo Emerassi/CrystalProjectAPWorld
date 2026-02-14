@@ -1397,20 +1397,20 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         #Treasure chests
         #Map and Decapitator chests categorized in Castle Ramparts since they're in a locked room there requiring the Ramparts key
         LocationData(CASTLE_SEQUOIA_AP_REGION, CASTLE_SEQUOIA_DISPLAY_NAME + " Chest - Hop through keyhole over lava", 2515 + treasure_index_offset), #(422, 169, -406) (Skums) Zether Pouch chest
-        LocationData(CASTLE_SEQUOIA_AP_REGION, CASTLE_SEQUOIA_DISPLAY_NAME + " Chest - Stared at by lava miniboss", 1465 + treasure_index_offset), #(427, 170, -441) (Skums) Z-Potion chest
-        LocationData(CASTLE_SEQUOIA_AP_REGION, CASTLE_SEQUOIA_DISPLAY_NAME + " Chest - Enjoy riding lava shrooms", 1447 + treasure_index_offset), #(409, 169, -406) (Skums) Z-Potion Pouch chest
-        LocationData(CASTLE_SEQUOIA_AP_REGION, CASTLE_SEQUOIA_DISPLAY_NAME + " Chest - Biiig bounce!", 1472 + treasure_index_offset), #(375, 153, -405) (Bounce) Beads of Defense chest
-        LocationData(CASTLE_SEQUOIA_AP_REGION, CASTLE_SEQUOIA_DISPLAY_NAME + " Chest - Bounce up!!", 2949 + treasure_index_offset), #(401, 151, -404) (Bounce) Ether chest
-        LocationData(CASTLE_SEQUOIA_AP_REGION, CASTLE_SEQUOIA_DISPLAY_NAME + " Chest - Bounce around!", 2948 + treasure_index_offset), #(401, 151, -424) (Bounce) Fenix Syrup chest
-        LocationData(CASTLE_SEQUOIA_AP_REGION, CASTLE_SEQUOIA_DISPLAY_NAME + " Chest - Bounce right!", 2945 + treasure_index_offset), #(434, 154, -441) (Bounce) Potion chest
-        LocationData(CASTLE_SEQUOIA_AP_REGION, CASTLE_SEQUOIA_DISPLAY_NAME + " Chest - Bounce up!", 2922 + treasure_index_offset), #(395, 155, -453) (Bounce) Protector chest
-        LocationData(CASTLE_SEQUOIA_AP_REGION, CASTLE_SEQUOIA_DISPLAY_NAME + " Chest - Chilly uno in Chips Challenge of doom", 2927 + treasure_index_offset), #(387, 134, -431) (Ice) Kings Guard chest
-        LocationData(CASTLE_SEQUOIA_AP_REGION, CASTLE_SEQUOIA_DISPLAY_NAME + " Chest - Chilly duo in Chips Challenge of doom", 1492 + treasure_index_offset), #(387, 134, -427) (Ice) Royal Guard chest
-        LocationData(CASTLE_SEQUOIA_AP_REGION, CASTLE_SEQUOIA_DISPLAY_NAME + " Chest - One fish", 2479 + treasure_index_offset), #(401, 119, -415) (Fish) Dream Hunter chest
-        LocationData(CASTLE_SEQUOIA_AP_REGION, CASTLE_SEQUOIA_DISPLAY_NAME + " Chest - Two fish", 2509 + treasure_index_offset), #(388, 122, -445) (Fish) Nightingale chest
-        LocationData(CASTLE_SEQUOIA_AP_REGION, CASTLE_SEQUOIA_DISPLAY_NAME + " Chest - Redfish bluefish", 2484 + treasure_index_offset), #(397, 119, -415) (Fish) Oily Sword chest
-        LocationData(CASTLE_SEQUOIA_AP_REGION, CASTLE_SEQUOIA_DISPLAY_NAME + " Chest - Bounce for your life", 2510 + treasure_index_offset), #(364, 85, -424) (2D) Paladin Wand chest
-        LocationData(CASTLE_SEQUOIA_AP_REGION, CASTLE_SEQUOIA_DISPLAY_NAME + " Chest - Throne snacks", 2505 + treasure_index_offset, tags=[PURPLE_CHEST_LOCATION_GROUP]), #(401, 250, -478) (Throne) New World Stone chest
+        LocationData(CASTLE_SEQUOIA_FIRE_AP_REGION, CASTLE_SEQUOIA_DISPLAY_NAME + " Chest - Stared at by lava miniboss", 1465 + treasure_index_offset), #(427, 170, -441) (Skums) Z-Potion chest
+        LocationData(CASTLE_SEQUOIA_FIRE_AP_REGION, CASTLE_SEQUOIA_DISPLAY_NAME + " Chest - Enjoy riding lava shrooms", 1447 + treasure_index_offset), #(409, 169, -406) (Skums) Z-Potion Pouch chest
+        LocationData(CASTLE_SEQUOIA_SHROOM_AP_REGION, CASTLE_SEQUOIA_DISPLAY_NAME + " Chest - Biiig bounce!", 1472 + treasure_index_offset, lambda state: logic.has_horizontal_movement(state)), #(375, 153, -405) (Bounce) Beads of Defense chest
+        LocationData(CASTLE_SEQUOIA_SHROOM_AP_REGION, CASTLE_SEQUOIA_DISPLAY_NAME + " Chest - Bounce up!!", 2949 + treasure_index_offset), #(401, 151, -404) (Bounce) Ether chest
+        LocationData(CASTLE_SEQUOIA_SHROOM_AP_REGION, CASTLE_SEQUOIA_DISPLAY_NAME + " Chest - Bounce around!", 2948 + treasure_index_offset), #(401, 151, -424) (Bounce) Fenix Syrup chest
+        LocationData(CASTLE_SEQUOIA_SHROOM_AP_REGION, CASTLE_SEQUOIA_DISPLAY_NAME + " Chest - Bounce right!", 2945 + treasure_index_offset), #(434, 154, -441) (Bounce) Potion chest
+        LocationData(CASTLE_SEQUOIA_SHROOM_AP_REGION, CASTLE_SEQUOIA_DISPLAY_NAME + " Chest - Bounce up!", 2922 + treasure_index_offset, lambda state: logic.has_vertical_movement(state)), #(395, 155, -453) (Bounce) Protector chest
+        LocationData(CASTLE_SEQUOIA_ICE_AP_REGION, CASTLE_SEQUOIA_DISPLAY_NAME + " Chest - Chilly uno in Chips Challenge of doom", 2927 + treasure_index_offset), #(387, 134, -431) (Ice) Kings Guard chest
+        LocationData(CASTLE_SEQUOIA_ICE_AP_REGION, CASTLE_SEQUOIA_DISPLAY_NAME + " Chest - Chilly duo in Chips Challenge of doom", 1492 + treasure_index_offset), #(387, 134, -427) (Ice) Royal Guard chest
+        LocationData(CASTLE_SEQUOIA_FISH_AP_REGION, CASTLE_SEQUOIA_DISPLAY_NAME + " Chest - One fish", 2479 + treasure_index_offset), #(401, 119, -415) (Fish) Dream Hunter chest
+        LocationData(CASTLE_SEQUOIA_FISH_AP_REGION, CASTLE_SEQUOIA_DISPLAY_NAME + " Chest - Two fish", 2509 + treasure_index_offset), #(388, 122, -445) (Fish) Nightingale chest
+        LocationData(CASTLE_SEQUOIA_FISH_AP_REGION, CASTLE_SEQUOIA_DISPLAY_NAME + " Chest - Redfish bluefish", 2484 + treasure_index_offset), #(397, 119, -415) (Fish) Oily Sword chest
+        LocationData(CASTLE_SEQUOIA_2D_AP_REGION, CASTLE_SEQUOIA_DISPLAY_NAME + " Chest - Bounce for your life", 2510 + treasure_index_offset), #(364, 85, -424) (2D) Paladin Wand chest
+        LocationData(CASTLE_SEQUOIA_THRONE_AP_REGION, CASTLE_SEQUOIA_DISPLAY_NAME + " Chest - Throne snacks", 2505 + treasure_index_offset, tags=[PURPLE_CHEST_LOCATION_GROUP]), #(401, 250, -478) (Throne) New World Stone chest
 
         #NPCs
         #NPCs CheckOrNot: Z58_StrandedShard ID 3785 (401, 183, -382); this gives you a Gaea Shard if you're stuck: no

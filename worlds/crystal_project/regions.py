@@ -1137,7 +1137,16 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
                     {THE_DEEP_SEA_AP_REGION: lambda state: logic.has_swimming(state)})
     fancy_add_exits(world, THE_DEPTHS_AP_REGION, [THE_DEEP_SEA_AP_REGION],
                     {THE_DEEP_SEA_AP_REGION: lambda state: logic.has_swimming(state)})
-    fancy_add_exits(world, CASTLE_SEQUOIA_AP_REGION, [CAPITAL_SEQUOIA_AP_REGION])
+    fancy_add_exits(world, CASTLE_SEQUOIA_AP_REGION, [CASTLE_SEQUOIA_FIRE_AP_REGION],
+                    {CASTLE_SEQUOIA_FIRE_AP_REGION: lambda state: logic.has_horizontal_movement(state) or logic.has_vertical_movement(state)})
+    fancy_add_exits(world, CASTLE_SEQUOIA_FIRE_AP_REGION, [CASTLE_SEQUOIA_SHROOM_AP_REGION])
+    fancy_add_exits(world, CASTLE_SEQUOIA_SHROOM_AP_REGION, [CASTLE_SEQUOIA_ICE_AP_REGION],
+                    {CASTLE_SEQUOIA_ICE_AP_REGION: lambda state: logic.has_glide(state)})
+    fancy_add_exits(world, CASTLE_SEQUOIA_ICE_AP_REGION, [CASTLE_SEQUOIA_FISH_AP_REGION],
+                    {CASTLE_SEQUOIA_FISH_AP_REGION: lambda state: logic.has_glide(state)})
+    fancy_add_exits(world, CASTLE_SEQUOIA_FISH_AP_REGION, [CASTLE_SEQUOIA_2D_AP_REGION])
+    fancy_add_exits(world, CASTLE_SEQUOIA_2D_AP_REGION, [CASTLE_SEQUOIA_THRONE_AP_REGION],
+                    {CASTLE_SEQUOIA_THRONE_AP_REGION: lambda state: logic.has_glide(state)})
     #The New World start
     # Normally this would take the proof of merit but we unlocked the door
     fancy_add_exits(world, THE_NEW_WORLD_AP_REGION, [DISCIPLINE_HOLLOW_AP_REGION])
