@@ -1147,6 +1147,7 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
     fancy_add_exits(world, CASTLE_SEQUOIA_FISH_AP_REGION, [CASTLE_SEQUOIA_2D_AP_REGION])
     fancy_add_exits(world, CASTLE_SEQUOIA_2D_AP_REGION, [CASTLE_SEQUOIA_THRONE_AP_REGION],
                     {CASTLE_SEQUOIA_THRONE_AP_REGION: lambda state: logic.has_glide(state)})
+    fancy_add_exits(world, CASTLE_SEQUOIA_THRONE_AP_REGION, [CASTLE_SEQUOIA_AP_REGION])
     #The New World start
     # Normally this would take the proof of merit but we unlocked the door
     fancy_add_exits(world, THE_NEW_WORLD_AP_REGION, [DISCIPLINE_HOLLOW_AP_REGION])
