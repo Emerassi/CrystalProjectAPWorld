@@ -89,7 +89,7 @@ def get_mod_info() -> List[ModInfoModel]:
     equipment_ids_in_use: List[int] = [591, 592, 593, 594, 595, 596, 597, 598, 599, 600, 601, 602, 603, 604, 605, 606, 607, 608, 609, 610]
     item_ids_in_use: List[int] = [229, 230, 231, 232]
     job_ids_in_use: List[int] = []
-    entity_ids_in_use: List[int] = [5000, 5001, 5002, 5003, 5004, 5005, 5006, 5007, 5008, 5009, 5010, 5011, 5012, 5013, 5014]
+    entity_ids_in_use: List[int] = [5000, 5001, 5002, 5004, 5005, 5006, 5007, 5008, 5009, 5010, 5011, 5012, 5013, 5014]
     spark_ids_in_use: List[int] = []
     order_loaded = 1
 
@@ -441,9 +441,7 @@ def get_removed_home_points(mod_info: List[ModInfoModel]) -> List[LocationData]:
                 should_be_removed_because_no_npc_info = True
 
             for home_point in vanilla_home_points:
-                #5003 is a special value in that it's added via the archipelago mod, we shouldn't remove it because it's not in
-                #the mod list, as it's not a vanilla location
-                if (home_point.code != 5003 and home_point.code == location_id and (should_be_removed_because_no_npc_info
+                if (home_point.code == location_id and (should_be_removed_because_no_npc_info
                                                              # If the item's entity type is definitely not a home point, then remove the vanilla location, because it's type was changed by the mod
                                                              or entity_type != HOME_POINT_ENTITY_TYPE)):
                     removed_locations.append(LocationData(home_point.ap_region, home_point.name, location_id))
