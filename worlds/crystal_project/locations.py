@@ -716,7 +716,7 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         #Salmon Bay
         #Salmon Bay Base
         LocationData(SALMON_BAY_BASIN_AP_REGION, SALMON_BAY_DISPLAY_NAME + " NPC - Moodlit shore behind waterfall", 2438 + npc_index_offset), #Ancient Tablet B
-        LocationData(SALMON_BAY_BASIN_AP_REGION, SALMON_BAY_DISPLAY_NAME + " NPC - Quintar splish splash", 1272 + npc_index_offset), #Ancient Tablet A
+        LocationData(SALMON_BAY_ISLAND, SALMON_BAY_DISPLAY_NAME + " NPC - Quintar splish splash", 1272 + npc_index_offset), #Ancient Tablet A
         LocationData(SALMON_BAY_BASIN_AP_REGION, SALMON_BAY_DISPLAY_NAME + " Chest - Across the bridge", 2974 + treasure_index_offset), #Potion Pouch chest
         #Salmon Bay West Crag
         LocationData(SALMON_BAY_WEST_CRAG_AP_REGION, SALMON_BAY_DISPLAY_NAME + " NPC - West cliff diving", 1271 + npc_index_offset), #Ancient Tablet C
@@ -782,7 +782,7 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         LocationData(JIDAMBA_ATOLLS_AP_REGION, THE_OPEN_SEA_DISPLAY_NAME + " Chest - Atoll southeast of Jidamba Tangle", 3767 + treasure_index_offset),  # Fenix Syrup chest
         LocationData(JIDAMBA_ATOLLS_AP_REGION, THE_OPEN_SEA_DISPLAY_NAME + " Chest - Atoll southwest of southeast Jidamba Tangle atoll", 3765 + treasure_index_offset),  # Z-Potion chest
         #NPCs
-        LocationData(THE_OPEN_SEA_AP_REGION, THE_OPEN_SEA_DISPLAY_NAME + " NPC - I'm on a raft!", 2804 + npc_index_offset, lambda state: state.has("Item - Super Rod", player) and state.has("Item - Jigging Lure", player), tags=[FISHER_LOCATION_GROUP, FETCH_QUEST_LOCATION_GROUP]),
+        LocationData(BAZAAR_COAST_AP_REGION, THE_OPEN_SEA_DISPLAY_NAME + " NPC - I'm on a raft!", 2804 + npc_index_offset, lambda state: state.has("Item - Super Rod", player) and state.has("Item - Jigging Lure", player), tags=[FISHER_LOCATION_GROUP, FETCH_QUEST_LOCATION_GROUP]),
         #CheckOrNot: (930, 91, 253) do we put a check on the guy who gives you a Gaea Shard if you get there with no Salmon lol: no
         #LocationData(THE_OPEN_SEA_AP_REGION, THE_OPEN_SEA_DISPLAY_NAME + " NPC - Z34_SinisterSailor", 2520 + npc_index_offset),
 
