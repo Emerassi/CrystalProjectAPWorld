@@ -467,7 +467,7 @@ def build_npc_location(location, mod_name, shifted_entity_ids: List[ModIncrement
             new_id = incremented_id.new_id
 
     id_with_offset = new_id + npc_index_offset
-    name = display_region + ' - ' + mod_name + ' - ' + 'NPC - Modded NPC ' + str(new_id)
+    name = display_region + ' - ' + 'NPC - Modded NPC ' + ' - ' + mod_name + str(new_id)
     coord = location['Coord']
     coordinates = str(coord['X']) + ',' + str(coord['Y']) + ',' + str(coord['Z'])
     has_add_inventory = False
@@ -599,7 +599,7 @@ def build_treasure_location(location, mod_name, shifted_entity_ids: List[ModIncr
             new_id = incremented_id.new_id
 
     id_with_offset = new_id + treasure_index_offset
-    name = display_region + ' - ' + mod_name + ' - ' + ' Chest - Modded Chest ' + str(new_id)
+    name = display_region + ' - ' + ' Chest - Modded Chest ' + ' - ' + mod_name + str(new_id)
     coord = location['Coord']
     coordinates = str(coord['X']) + ',' + str(coord['Y']) + ',' + str(coord['Z'])
     is_excluded = is_item_at_location_excluded(location['TreasureData'], excluded_ids)
@@ -625,7 +625,7 @@ def build_crystal_location(location, mod_name, shifted_entity_ids: List[ModIncre
             new_id = incremented_id.new_id
 
     id_with_offset = new_id + crystal_index_offset
-    name = display_region + ' - ' + mod_name + ' - ' + ' Crystal - Modded Job ' + str(new_id)
+    name = display_region + ' - ' + ' Crystal - Modded Job ' + ' - ' + mod_name + str(new_id)
     coord = location['Coord']
     coordinates = str(coord['X']) + ',' + str(coord['Y']) + ',' + str(coord['Z'])
     job_id = location['CrystalData']['JobID']
@@ -654,7 +654,7 @@ def build_boss_npc(location, mod_name, boss_troop_ids: List[int], shifted_entity
             new_id = incremented_id.new_id
 
     id_with_offset = new_id + boss_index_offset
-    name = display_region + ' - ' + mod_name + ' - ' + ' Boss - Modded Boss ' + str(new_id)
+    name = display_region + ' - ' + ' Boss - Modded Boss ' + ' - ' + mod_name + str(new_id)
     coord = location['Coord']
     coordinates = str(coord['X']) + ',' + str(coord['Y']) + ',' + str(coord['Z'])
     has_battle = False
@@ -735,7 +735,7 @@ def build_spark_location(location, mod_name, shifted_entity_ids: List[ModIncreme
             new_id = incremented_id.new_id
 
     id_with_offset = new_id + boss_index_offset
-    name = display_region + ' - ' + mod_name + ' - ' + ' Boss - Modded Boss ' + str(new_id)
+    name = display_region + ' - ' + ' Boss - Modded Boss ' +  ' - ' + mod_name + str(new_id)
     coord = location['Coord']
     coordinates = str(coord['X']) + ',' + str(coord['Y']) + ',' + str(coord['Z'])
 
@@ -758,7 +758,7 @@ def build_home_point_location(location, mod_name, shifted_entity_ids: List[ModIn
         if incremented_id.original_id == item_id:
             new_id = incremented_id.new_id
 
-    name =  mod_name + ' - ' + 'Home Point - Modded Home Point ' + name + ' ' + str(new_id)
+    name =  'Home Point - Modded Home Point ' + mod_name + ' - ' + name + ' ' + str(new_id)
     coord = location['Coord']
     coordinates = str(coord['X']) + ',' + str(coord['Y']) + ',' + str(coord['Z'])
 
