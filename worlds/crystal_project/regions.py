@@ -612,7 +612,7 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
     fancy_add_exits(world, ATOP_LABYRINTH_CUBE_AP_REGION, [LABYRINTH_ENTRANCE_PUSHBLOCK_AP_REGION, GOLD_BEDAZZLING_LABYRINTH_AP_REGION, TOWER_OF_ZOT_CAMP_AP_REGION, RUINS_CRUMBLING_ON_SHORE_AP_REGION, SALMON_BAY_WEST_CRAG_AP_REGION])
     fancy_add_exits(world, LABYRINTH_ENTRANCE_PUSHBLOCK_AP_REGION, [TOWER_OF_ZOT_CAMP_AP_REGION, ATOP_LABYRINTH_CUBE_AP_REGION, GOLD_BEDAZZLING_LABYRINTH_AP_REGION, ANCIENT_LABYRINTH_AP_REGION],
                     {ATOP_LABYRINTH_CUBE_AP_REGION: lambda state: logic.has_vertical_movement(state) and logic.has_golden_quintar(state),
-                     GOLD_BEDAZZLING_LABYRINTH_AP_REGION: lambda state: logic.has_glide(state) or (logic.has_horizontal_movement(state) and logic.has_vertical_movement(state)),
+                     GOLD_BEDAZZLING_LABYRINTH_AP_REGION: lambda state: logic.has_glide(state) and logic.has_vertical_movement(state),
                      ANCIENT_LABYRINTH_AP_REGION: lambda state: (state.has(POKO_POKO_DESERT_PASS, player) or logic.is_regionsanity_disabled()) and (logic.has_a_caster(state)) and (state.has(ANCIENT_TABLET_A, player) or logic.obscure_routes_on()),})
     fancy_add_exits(world, GOLD_BEDAZZLING_LABYRINTH_AP_REGION, [RUINS_CRUMBLING_ON_SHORE_AP_REGION])
     fancy_add_exits(world, POKO_POKO_LAKE_DELENDE_PASS_AP_REGION, [POKO_POKO_EAST_PLATEAU_AP_REGION, TOWER_OF_ZOT_CAMP_AP_REGION, POKO_POKO_SPAWNING_MEADOWS_PASS_AP_REGION, LAKE_DELENDE_AP_REGION, SALMON_BAY_WEST_CRAG_AP_REGION, SALMON_RIVER_MOUTH_AP_REGION],

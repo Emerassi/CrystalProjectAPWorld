@@ -835,6 +835,7 @@ class CrystalProjectWorld(World):
             "includeSummonAbilities": self.options.include_summon_abilities.value,
             "includeScholarAbilities": self.options.include_scholar_abilities.value,
             "itemInfoMode": self.options.item_info_mode.value,
+            "earnedItemInfoPercent": self.options.earned_item_info_percent.value,
             "randomizeMusic": bool(self.options.randomize_music.value),
             "useMods": self.options.use_mods.value,
             "modInfo": mod_info,
