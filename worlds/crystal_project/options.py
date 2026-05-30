@@ -493,7 +493,7 @@ class ItemInfoMode(Choice):
 
 class EarnedItemInfoPercent(Range):
     """
-    This is the likelihood that a trap will replace a filler check. A value of 0 means no traps.
+    This is the percent of checks that must be collected to earn check info when Item Info Mode is set to earned.
     """
     display_name = "Percent of checks that must be collected to earn info on treasure and store icons."
     range_start = 1
