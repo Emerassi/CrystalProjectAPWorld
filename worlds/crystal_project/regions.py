@@ -1015,10 +1015,12 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
                     {PEAK_RAMPARTS_AP_REGION: lambda state: logic.has_vertical_movement(state) and logic.has_horizontal_movement(state)})
     fancy_add_exits(world, PEAK_RAMPARTS_AP_REGION, [RAMPARTS_TALL_TALL_TRAVERSE_AP_REGION, TALL_TALL_TALL_CHEST_AP_REGION],
                     {TALL_TALL_TALL_CHEST_AP_REGION: lambda state: logic.has_glide(state)})
-    fancy_add_exits(world, EAST_RAMPARTS_AP_REGION, [PEAK_RAMPARTS_AP_REGION],
-                    {PEAK_RAMPARTS_AP_REGION: lambda state: logic.has_vertical_movement(state) or logic.has_horizontal_movement(state)})
-    fancy_add_exits(world, WEST_RAMPARTS_AP_REGION, [PEAK_RAMPARTS_AP_REGION],
-                    {PEAK_RAMPARTS_AP_REGION: lambda state: logic.has_vertical_movement(state) or logic.has_horizontal_movement(state)})
+    fancy_add_exits(world, EAST_RAMPARTS_AP_REGION, [CENTER_RAMPARTS_AP_REGION]),
+    fancy_add_exits(world, WEST_RAMPARTS_AP_REGION, [CENTER_RAMPARTS_AP_REGION]),
+    fancy_add_exits(world, CENTER_RAMPARTS_AP_REGION, [EAST_RAMPARTS_AP_REGION, WEST_RAMPARTS_AP_REGION, PEAK_RAMPARTS_AP_REGION],
+                    {EAST_RAMPARTS_AP_REGION: lambda state: logic.has_vertical_movement(state),
+                          WEST_RAMPARTS_AP_REGION: lambda state: logic.has_vertical_movement(state),
+                          PEAK_RAMPARTS_AP_REGION: lambda state: logic.has_vertical_movement(state)})
     #Castle Ramparts end
     #The Chalice of Tar start
     fancy_add_exits(world, CHALICE_RIM_AP_REGION, [CHALICE_ASCENT_AP_REGION, CHALICE_FOOT_AP_REGION, THE_OPEN_SEA_AP_REGION, QUINTAR_RESERVE_AP_REGION, RESERVE_TREETOPS_AP_REGION, DIONE_ROOF_AP_REGION, EASTERN_CHASM_AP_REGION, TALL_TALL_TALL_CHEST_AP_REGION, PAMOA_TREE_AP_REGION, NORTHERN_STRETCH_RACE_FINISH_AP_REGION, JIDAMBA_SUMMIT_AP_REGION],

@@ -1160,7 +1160,7 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         #Treasure chests
         #Lone Chest Rampart
         LocationData(LONE_CHEST_RAMPART_AP_REGION, CASTLE_RAMPARTS_DISPLAY_NAME + " Chest - Tucked beside eastern turret", 1547 + treasure_index_offset), #(443, 206, -378) Money chest
-        LocationData(PEAK_RAMPARTS_AP_REGION, CASTLE_RAMPARTS_DISPLAY_NAME + " Chest - Below the crystal", 2908 + treasure_index_offset, tags=[PURPLE_CHEST_LOCATION_GROUP]), #(407, 228, -383) Castle Ramparts map chest
+        LocationData(CENTER_RAMPARTS_AP_REGION, CASTLE_RAMPARTS_DISPLAY_NAME + " Chest - Below the crystal", 2908 + treasure_index_offset, tags=[PURPLE_CHEST_LOCATION_GROUP]), #(407, 228, -383) Castle Ramparts map chest
         LocationData(EAST_RAMPARTS_AP_REGION, CASTLE_RAMPARTS_DISPLAY_NAME + " Chest - Jump down from eastern save point", 2742 + treasure_index_offset), #(440, 227, -386) Conquest chest
         LocationData(WEST_RAMPARTS_AP_REGION, CASTLE_RAMPARTS_DISPLAY_NAME + " Chest - Jump down from western save point", 2741 + treasure_index_offset), #(369, 227, -386) Rune Sword chest
         #Technically Castle Sequoia but they're in a locked room only accessible from Peak Ramparts
