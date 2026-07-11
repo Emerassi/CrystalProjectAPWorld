@@ -1015,8 +1015,10 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
                     {PEAK_RAMPARTS_AP_REGION: lambda state: logic.has_vertical_movement(state) and logic.has_horizontal_movement(state)})
     fancy_add_exits(world, PEAK_RAMPARTS_AP_REGION, [RAMPARTS_TALL_TALL_TRAVERSE_AP_REGION, TALL_TALL_TALL_CHEST_AP_REGION],
                     {TALL_TALL_TALL_CHEST_AP_REGION: lambda state: logic.has_glide(state)})
-    fancy_add_exits(world, EAST_RAMPARTS_AP_REGION, [CENTER_RAMPARTS_AP_REGION]),
-    fancy_add_exits(world, WEST_RAMPARTS_AP_REGION, [CENTER_RAMPARTS_AP_REGION]),
+    fancy_add_exits(world, EAST_RAMPARTS_AP_REGION, [CENTER_RAMPARTS_AP_REGION, WEST_RAMPARTS_AP_REGION],
+                    {WEST_RAMPARTS_AP_REGION: lambda state: logic.has_glide(state)}),
+    fancy_add_exits(world, WEST_RAMPARTS_AP_REGION, [CENTER_RAMPARTS_AP_REGION, EAST_RAMPARTS_AP_REGION],
+                    {EAST_RAMPARTS_AP_REGION: lambda state: logic.has_glide(state)}),
     fancy_add_exits(world, CENTER_RAMPARTS_AP_REGION, [EAST_RAMPARTS_AP_REGION, WEST_RAMPARTS_AP_REGION, PEAK_RAMPARTS_AP_REGION],
                     {EAST_RAMPARTS_AP_REGION: lambda state: logic.has_vertical_movement(state),
                           WEST_RAMPARTS_AP_REGION: lambda state: logic.has_vertical_movement(state),

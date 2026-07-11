@@ -847,6 +847,7 @@ class CrystalProjectWorld(World):
             # "moddedLocationsForUT": self.modded_locations,
             # "moddedShopsForUT": self.modded_shops,
             "prefillMap": bool(self.options.fill_full_map.value),
+            "skipIntroCrawl": bool(self.options.skip_intro_crawl),
             "disableSparks": bool(self.options.disable_sparks.value),
             "homePointHustle": self.options.home_point_hustle.value,
             "maximumPassivePoints": self.options.maximum_passive_points.value,
