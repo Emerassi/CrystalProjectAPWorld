@@ -1394,7 +1394,7 @@ def get_treasure_and_npc_locations(player: int, options: CrystalProjectOptions |
         #Castle Sequoia
         #Treasure chests
         #Map and Decapitator chests categorized in Castle Ramparts since they're in a locked room there requiring the Ramparts key
-        LocationData(CASTLE_SEQUOIA_AP_REGION, CASTLE_SEQUOIA_DISPLAY_NAME + " Chest - Hop through keyhole over lava", 2515 + treasure_index_offset), #(422, 169, -406) (Skums) Zether Pouch chest
+        LocationData(CASTLE_SEQUOIA_FIRE_AP_REGION, CASTLE_SEQUOIA_DISPLAY_NAME + " Chest - Hop through keyhole over lava", 2515 + treasure_index_offset), #(422, 169, -406) (Skums) Zether Pouch chest
         LocationData(CASTLE_SEQUOIA_FIRE_AP_REGION, CASTLE_SEQUOIA_DISPLAY_NAME + " Chest - Stared at by lava miniboss", 1465 + treasure_index_offset), #(427, 170, -441) (Skums) Z-Potion chest
         LocationData(CASTLE_SEQUOIA_FIRE_AP_REGION, CASTLE_SEQUOIA_DISPLAY_NAME + " Chest - Enjoy riding lava shrooms", 1447 + treasure_index_offset), #(409, 169, -406) (Skums) Z-Potion Pouch chest
         LocationData(CASTLE_SEQUOIA_SHROOM_AP_REGION, CASTLE_SEQUOIA_DISPLAY_NAME + " Chest - Biiig bounce!", 1472 + treasure_index_offset, lambda state: logic.has_horizontal_movement(state)), #(375, 153, -405) (Bounce) Beads of Defense chest
@@ -1509,7 +1509,7 @@ def get_boss_locations(player: int, options: CrystalProjectOptions | None) -> Li
         LocationData(THE_DEPTHS_AP_REGION, THE_DEPTHS_DISPLAY_NAME + " Boss - The Enforcer", 1128 + boss_index_offset, lambda state: logic.is_area_in_level_range(state, ENFORCER_FIGHT_LEVEL), tags=[END_GAME_BOSS_LOCATION_GROUP]), #Monster ID: 172
         LocationData(THE_DEPTHS_AP_REGION, THE_DEPTHS_DISPLAY_NAME + " Boss - The Peacekeeper", 2579 + boss_index_offset, lambda state: logic.is_area_in_level_range(state, PEACEKEEPER_FIGHT_LEVEL), tags=[END_GAME_BOSS_LOCATION_GROUP]), #Monster ID: 169
         LocationData(THE_DEPTHS_AP_REGION, THE_DEPTHS_DISPLAY_NAME + " Boss - With STEM WARD in hand, offer 4 Deity Eyes to battle Gabriel", 2580 + boss_index_offset, lambda state: state.has(DEITY_EYE, player, 4) and state.has(STEM_WARD, player) and logic.is_area_in_level_range(state, GABRIEL_FIGHT_LEVEL), tags=[END_GAME_BOSS_LOCATION_GROUP, FETCH_QUEST_LOCATION_GROUP]), #Monster ID: 241
-        LocationData(CASTLE_SEQUOIA_AP_REGION, CASTLE_SEQUOIA_DISPLAY_NAME + " Boss - Parasite X", 1457 + boss_index_offset, lambda state: logic.is_area_in_level_range(state, PARASITE_X_FIGHT_LEVEL)), #Monster ID: 198 (Castle Sequoia (Skums) Z58_TrapdoorGuard)
+        LocationData(CASTLE_SEQUOIA_FIRE_AP_REGION, CASTLE_SEQUOIA_DISPLAY_NAME + " Boss - Parasite X", 1457 + boss_index_offset, lambda state: logic.is_area_in_level_range(state, PARASITE_X_FIGHT_LEVEL)), #Monster ID: 198 (Castle Sequoia (Skums) Z58_TrapdoorGuard)
         LocationData(CASTLE_SEQUOIA_SHROOM_AP_REGION, CASTLE_SEQUOIA_DISPLAY_NAME + " Boss - Neo Warden", 1477 + boss_index_offset, lambda state: logic.is_area_in_level_range(state, NEO_WARDEN_FIGHT_LEVEL)), #Monster ID: 200 (Castle Sequoia (Bounce) Z58_F2TrapdoorGuard)
         LocationData(CASTLE_SEQUOIA_ICE_AP_REGION, CASTLE_SEQUOIA_DISPLAY_NAME + " Boss - Akamanto", 1503 + boss_index_offset, lambda state: logic.is_area_in_level_range(state, AKAMANTO_FIGHT_LEVEL)), #Monster ID: 201 (Castle Sequoia (Ice) Z58_F3TrapdoorGuard)
         LocationData(THE_OLD_WORLD_AP_REGION, THE_OLD_WORLD_DISPLAY_NAME + " Boss - Periculum", 3650 + boss_index_offset, tags=[END_GAME_BOSS_LOCATION_GROUP]), #Monster ID: 268 (min level 70)

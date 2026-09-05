@@ -1013,7 +1013,7 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
                     {BEATSMITH_DISCO_AP_REGION: lambda state: logic.has_glide(state) and logic.obscure_routes_on()})
     fancy_add_exits(world, RAMPARTS_TALL_TALL_TRAVERSE_AP_REGION, [LONE_CHEST_RAMPART_AP_REGION, BOOMER_OVERLOOK_AP_REGION, PEAK_RAMPARTS_AP_REGION],
                     {PEAK_RAMPARTS_AP_REGION: lambda state: logic.has_vertical_movement(state) and logic.has_horizontal_movement(state)})
-    fancy_add_exits(world, PEAK_RAMPARTS_AP_REGION, [RAMPARTS_TALL_TALL_TRAVERSE_AP_REGION, TALL_TALL_TALL_CHEST_AP_REGION],
+    fancy_add_exits(world, PEAK_RAMPARTS_AP_REGION, [RAMPARTS_TALL_TALL_TRAVERSE_AP_REGION, TALL_TALL_TALL_CHEST_AP_REGION, CENTER_RAMPARTS_AP_REGION],
                     {TALL_TALL_TALL_CHEST_AP_REGION: lambda state: logic.has_glide(state)})
     fancy_add_exits(world, EAST_RAMPARTS_AP_REGION, [CENTER_RAMPARTS_AP_REGION, LONE_CHEST_RAMPART_AP_REGION, WEST_RAMPARTS_AP_REGION],
                     {WEST_RAMPARTS_AP_REGION: lambda state: logic.has_glide(state)})
@@ -1152,11 +1152,12 @@ def init_areas(world: "CrystalProjectWorld", locations: List[LocationData], opti
                     {THE_DEEP_SEA_AP_REGION: lambda state: logic.has_swimming(state)})
     fancy_add_exits(world, CASTLE_SEQUOIA_AP_REGION, [CASTLE_SEQUOIA_FIRE_AP_REGION],
                     {CASTLE_SEQUOIA_FIRE_AP_REGION: lambda state: logic.has_horizontal_movement(state) or logic.has_vertical_movement(state)})
-    fancy_add_exits(world, CASTLE_SEQUOIA_FIRE_AP_REGION, [CASTLE_SEQUOIA_SHROOM_AP_REGION])
+    fancy_add_exits(world, CASTLE_SEQUOIA_FIRE_AP_REGION, [CASTLE_SEQUOIA_SHROOM_AP_REGION],
+                    {CASTLE_SEQUOIA_SHROOM_AP_REGION: lambda state: logic.is_area_in_level_range(state, PARASITE_X_FIGHT_LEVEL)})
     fancy_add_exits(world, CASTLE_SEQUOIA_SHROOM_AP_REGION, [CASTLE_SEQUOIA_ICE_AP_REGION],
-                    {CASTLE_SEQUOIA_ICE_AP_REGION: lambda state: logic.has_glide(state)})
+                    {CASTLE_SEQUOIA_ICE_AP_REGION: lambda state: logic.has_glide(state) and logic.is_area_in_level_range(state, NEO_WARDEN_FIGHT_LEVEL)})
     fancy_add_exits(world, CASTLE_SEQUOIA_ICE_AP_REGION, [CASTLE_SEQUOIA_FISH_AP_REGION],
-                    {CASTLE_SEQUOIA_FISH_AP_REGION: lambda state: logic.has_glide(state)})
+                    {CASTLE_SEQUOIA_FISH_AP_REGION: lambda state: logic.has_glide(state) and logic.is_area_in_level_range(state, AKAMANTO_FIGHT_LEVEL)})
     fancy_add_exits(world, CASTLE_SEQUOIA_FISH_AP_REGION, [CASTLE_SEQUOIA_2D_AP_REGION])
     fancy_add_exits(world, CASTLE_SEQUOIA_2D_AP_REGION, [CASTLE_SEQUOIA_THRONE_AP_REGION],
                     {CASTLE_SEQUOIA_THRONE_AP_REGION: lambda state: logic.has_glide(state)})
