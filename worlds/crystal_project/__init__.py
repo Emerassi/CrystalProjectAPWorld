@@ -856,4 +856,5 @@ class CrystalProjectWorld(World):
             "maximumPassivePoints": self.options.maximum_passive_points.value,
             "startingPassivePoints": self.options.starting_passive_points.value,
             "passivePointBoostSize": self.options.passive_point_boost_size.value,
+            "skipQuizardQuiz": bool(self.options.skip_quizard_quiz.value)
         }

@@ -141,13 +141,18 @@ class Shopsanity(Choice):
     """
     When enabled, all shop inventories will be replaced with checks. Be prepared, adventurer.
 
-    Choosing "enabled and hint" will, when you CLOSE the store, automatically create a hint for every item you did not purchase
+    Choosing "and hint" will, when you CLOSE the store, automatically create a hint for every item you did not purchase
     so other players will realize you have betrayed them by refusing to purchase their key progression item!
+
+    Choosing "and vanilla" will reset a store to its vanilla items when all checks in it have been cleared out,
+    allowing the player access to the shops vanilla stock.
     """
     display_name = "Shopsanity"
     option_disabled = 0
     option_enabled = 1
     option_enabled_and_hint = 2
+    option_enabled_and_vanilla = 3
+    option_enabled_and_hint_and_vanilla = 4
     default = 0
 
 class Regionsanity(Choice):
@@ -376,6 +381,12 @@ class HopToIt(Choice):
     option_pray = 3
     default = 0
 
+class SkipQuizardQuiz(Toggle):
+    """
+    When enabled, the door behind the quizards that normally requires the player to answer all the quiz questions will be automatically opened.
+    """
+    display_name = "Skip Quizard Quiz"
+
 class PrioritizeCrystals(DefaultOnToggle):
     """
     When enabled, crystals will be prioritized when placing progression items.
@@ -571,6 +582,7 @@ class CrystalProjectOptions(PerGameCommonOptions):
     key_mode: KeyMode
     obscure_routes: ObscureRoutes
     hop_to_it: HopToIt
+    skip_quizard_quiz: SkipQuizardQuiz
     prioritize_crystals: PrioritizeCrystals
     auto_spend_lp: AutoSpendLP
     auto_equip_passives: AutoEquipPassives
@@ -590,7 +602,7 @@ class CrystalProjectOptions(PerGameCommonOptions):
 
 crystal_project_option_groups: Dict[str, List[Any]] = {
     "Goal Options": [Goal, ClamshellGoalQuantity, ExtraClamshellsInPool, AstleyJobQuantity],
-    "Location Options": [IncludedRegions, JobRando, StartingJobQuantity, DisableSparks, KillBossesMode, Shopsanity, Regionsanity, RegionsanityStarterRegionMinLevel, RegionsanityStarterRegionMaxLevel, HomePointHustle],
+    "Location Options": [IncludedRegions, JobRando, StartingJobQuantity, DisableSparks, KillBossesMode, Shopsanity, Regionsanity, RegionsanityStarterRegionMinLevel, RegionsanityStarterRegionMaxLevel, HomePointHustle, SkipQuizardQuiz],
     "Progression Options": [ProgressiveMountMode, StartingLevel, LevelGating, LevelComparedToEnemies, ProgressiveLevelSize, MaxLevel, StartingPassivePoints, MaximumPassivePoints, PassivePointBoostSize, KeyMode, ObscureRoutes, HopToIt, PrioritizeCrystals, AutoSpendLP, AutoEquipPassives, EasyLeveling],
     "Item Pool Options": [ProgressiveEquipmentMode, StartWithTreasureFinder, StartWithMaps, FillFullMap, IncludeSummonAbilities, IncludeScholarAbilities],
     "Bonus Fun": [ItemInfoMode, EarnedItemInfoPercent, RandomizeMusic, UseMods]
