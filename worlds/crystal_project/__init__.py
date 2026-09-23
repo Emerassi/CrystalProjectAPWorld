@@ -632,22 +632,35 @@ class CrystalProjectWorld(World):
         for name, data in item_table.items():
             if name not in excluded_items:
                 #Check region type and add the region-type amounts; then check Shopsanity and add the shop amounts
-                amount:int = int(data.beginnerAmount or 0)
+                beginner_amount:int = int(data.beginnerAmount or 0)
+                advanced_amount:int = int(data.advancedAmount or 0)
+                expert_amount:int = int(data.expertAmount or 0)
+                end_game_amount:int = int(data.endGameAmount or 0)
+
+                beginner_shop_amount:int = int(data.beginnerShops or 0)
+                advanced_shop_amount:int = int(data.advancedShops or 0)
+                expert_shop_amount:int = int(data.expertShops or 0)
+                end_game_shop_amount:int = int(data.endGameShops or 0)
+
+                amount:int = beginner_amount
                 if self.options.shopsanity.value != self.options.shopsanity.option_disabled:
-                    amount = amount + int(data.beginnerShops or 0)
-                if self.options.included_regions == self.options.included_regions.option_advanced:
-                    amount = amount + int(data.advancedAmount or 0)
+                    amount = amount + beginner_shop_amount
+
+                if self.options.included_regions.value >= self.options.included_regions.option_advanced:
+                    amount = amount + advanced_amount
                     if self.options.shopsanity.value != self.options.shopsanity.option_disabled:
-                        amount = amount + int(data.advancedShops or 0)
-                elif self.options.included_regions == self.options.included_regions.option_expert:
-                    amount = amount + int(data.advancedAmount or 0) + int(data.expertAmount or 0)
+                        amount = amount + advanced_shop_amount
+
+                if self.options.included_regions.value >= self.options.included_regions.option_expert:
+                    amount = amount + expert_amount
                     if self.options.shopsanity.value != self.options.shopsanity.option_disabled:
-                        amount = amount + int(data.expertShops or 0)
-                elif self.options.included_regions == self.options.included_regions.option_all:
-                    amount = amount + int(data.advancedAmount or 0) + int(data.expertAmount or 0) + int(data.endGameAmount or 0)
+                        amount = amount + expert_shop_amount
+
+                if self.options.included_regions.value == self.options.included_regions.option_all:
+                    amount = amount + end_game_amount
                     #atm there are no end-game specific shopsanity items
                     if self.options.shopsanity.value != self.options.shopsanity.option_disabled:
-                        amount = amount + int(data.endGameShops or 0)
+                        amount = amount + end_game_shop_amount
 
                 # Make sure new world pass is included if regionsanity is on and its required for the goal
                 if (self.options.regionsanity.value != self.options.regionsanity.option_disabled and
