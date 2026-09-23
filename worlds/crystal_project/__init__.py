@@ -128,6 +128,7 @@ class CrystalProjectWorld(World):
         self.jobs_not_to_exclude: List[str] = []
         self.included_regions: List[str] = []
         self.statically_placed_jobs: int = 0
+        self.trap_item_list: List[str] = []
 
     def generate_early(self):
         # implement .yaml-less Universal Tracker support
@@ -178,7 +179,9 @@ class CrystalProjectWorld(World):
             self.multiworld.push_precollected(self.create_item(TREASURE_FINDER))
 
         if self.options.start_with_maps.value == self.options.start_with_maps.option_true:
-            for map_name in self.item_name_groups[MAP]:
+            map_list:List[str] = list(self.item_name_groups[MAP])
+            map_list.sort()
+            for map_name in map_list:
                 self.multiworld.push_precollected(self.create_item(map_name))
 
     def create_regions(self) -> None:
@@ -508,7 +511,10 @@ class CrystalProjectWorld(World):
         trap_chance: int = self.options.trap_likelihood.value
 
         if trap_chance > 0 and self.random.random() < (trap_chance / 100):
-             return self.random.choice(list(self.item_name_groups[TRAP]))
+            if len(self.trap_item_list) == 0:
+                self.trap_item_list = list(self.item_name_groups[TRAP])
+                self.trap_item_list.sort()
+            return self.random.choice(self.trap_item_list)
         else:
             return self.random.choice(filler_items)
 

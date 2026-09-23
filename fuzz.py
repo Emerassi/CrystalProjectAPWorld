@@ -1,4 +1,4 @@
-__version__ = "0.3.0"
+__version__ = "0.6.2"
 
 import sys
 import os
@@ -24,6 +24,7 @@ from Options import (
     OptionSet,
     FreeText,
     PlandoConnections,
+    OptionCounter,
     OptionList,
     PlandoTexts,
     OptionDict,
@@ -35,6 +36,11 @@ import Utils
 import settings
 
 from Generate import main as GenMain
+try:
+    from Generate import PlayerFilesError
+except ImportError:
+    class PlayerFilesError(Exception):
+        pass
 from Fill import FillError
 from Main import main as ERmain
 from settings import get_settings
@@ -48,6 +54,7 @@ from functools import wraps
 from io import StringIO
 from multiprocessing import Pool
 
+import gc
 import importlib
 import json
 import functools
@@ -68,6 +75,17 @@ OUT_DIR = f"fuzz_output"
 settings.no_gui = True
 settings.skip_autosave = True
 MP_HOOKS = []
+MANAGER = None
+
+# This whole thing is to prevent infinite growth of ABC caches
+# See https://github.com/python/cpython/issues/92810
+from abc import ABCMeta
+ABC_CLASSES = [obj for obj in gc.get_objects() if isinstance(obj, ABCMeta)]
+
+
+def clear_abc_caches():
+    for cls in ABC_CLASSES:
+        cls._abc_caches_clear()
 
 
 # We patch this because AP can't keep its hands to itself and has to start a thread to clean stuff up.
@@ -161,6 +179,186 @@ def world_from_apworld_name(apworld_name):
 # See https://github.com/yaml/pyyaml/issues/103
 yaml.SafeDumper.ignore_aliases = lambda *args: True
 
+
+def _ensure_list(values):
+    return values if isinstance(values, list) else [values]
+
+
+def apply_constraints(game_options, constraints, option_defs):
+    # Collect mutually_exclusive info for requires_any filtering
+    mutual_exclusions = [
+        {"option": c.get("option"), "values": c["mutually_exclusive"]}
+        for c in constraints if "mutually_exclusive" in c
+    ]
+
+    other_constraints = [c for c in constraints if "mutually_exclusive" not in c]
+
+    # Run other constraints twice: once for initial processing, once for dependencies
+    for _ in range(2):
+        for constraint in other_constraints:
+            _apply_single_constraint(game_options, constraint, mutual_exclusions, option_defs)
+
+    # Run mutually_exclusive last to resolve any conflicts created by additions
+    for excl in mutual_exclusions:
+        _apply_single_constraint(game_options, {"option": excl["option"], "mutually_exclusive": excl["values"]}, mutual_exclusions, option_defs)
+
+    # Run other constraints once more to fix any requirements broken by mutually_exclusive
+    for constraint in other_constraints:
+        _apply_single_constraint(game_options, constraint, mutual_exclusions, option_defs)
+
+    return game_options
+
+
+def _apply_single_constraint(game_options, constraint, mutual_exclusions, option_defs):
+    if "sum_cap" in constraint:
+        _handle_sum_cap(game_options, constraint, option_defs)
+
+    option_name = constraint.get("option")
+    if option_name not in game_options:
+        return
+
+    option_value = game_options[option_name]
+
+    if "if_selected" in constraint:
+        _handle_if_selected(option_value, constraint)
+
+    elif "if_value" in constraint:
+        _handle_if_value(game_options, option_value, constraint)
+
+    elif "mutually_exclusive" in constraint:
+        _handle_mutually_exclusive(option_value, constraint)
+
+    elif "if_any_selected" in constraint and "requires_any" in constraint:
+        _handle_requires_any(option_name, option_value, constraint, mutual_exclusions)
+
+    elif "max_count_of" in constraint:
+        _handle_max_count_of(game_options, option_name, option_value, constraint, option_defs)
+
+    elif "max_remaining_from" in constraint:
+        _handle_max_remaining_from(game_options, option_name, option_value, constraint, option_defs)
+
+    elif "ensure_any" in constraint:
+        _handle_ensure_any(option_value, constraint)
+
+
+def _handle_if_selected(option_value, constraint):
+    if constraint["if_selected"] not in option_value:
+        return
+
+    for val in _ensure_list(constraint.get("must_include", [])):
+        if val not in option_value:
+            option_value.append(val)
+
+    for val in _ensure_list(constraint.get("must_exclude", [])):
+        if val in option_value:
+            option_value.remove(val)
+
+
+def _handle_if_value(game_options, option_value, constraint):
+    if option_value != constraint["if_value"]:
+        return
+
+    for target_option, target_value in constraint.get("then", {}).items():
+        game_options[target_option] = target_value
+
+    for target_option, excluded in constraint.get("then_exclude", {}).items():
+        target = game_options[target_option]
+        for val in _ensure_list(excluded):
+            if val in target:
+                target.remove(val)
+
+    for target_option, included in constraint.get("then_include", {}).items():
+        target = game_options[target_option]
+        for val in _ensure_list(included):
+            if val not in target:
+                target.append(val)
+
+
+def _handle_mutually_exclusive(option_value, constraint):
+    present = [val for val in constraint["mutually_exclusive"] if val in option_value]
+    if len(present) > 1:
+        keep = random.choice(present)
+        for val in present:
+            if val != keep:
+                option_value.remove(val)
+
+
+def _handle_requires_any(option_name, option_value, constraint, mutual_exclusions):
+    trigger_values = constraint["if_any_selected"]
+    required_values = constraint["requires_any"]
+
+    if not any(val in option_value for val in trigger_values):
+        return
+    if any(val in option_value for val in required_values):
+        return
+
+    # Filter candidates that would conflict with mutually_exclusive constraints
+    candidates = list(required_values)
+    for excl in mutual_exclusions:
+        if excl["option"] == option_name:
+            present_excl = [v for v in excl["values"] if v in option_value]
+            if present_excl:
+                candidates = [c for c in candidates if c not in excl["values"]]
+
+    if not candidates:
+        candidates = list(required_values)
+
+    choice = random.choice(candidates)
+    if choice not in option_value:
+        option_value.append(choice)
+
+
+def _handle_sum_cap(game_options, constraint, option_defs):
+    all_option_names = [o for o in constraint["sum_cap"] if o in game_options]
+    cap = int(constraint["max_capacity"])
+    total = sum(game_options[o] for o in all_option_names)
+
+    if total <= cap:
+        return
+
+    random.shuffle(all_option_names)
+    for name in all_option_names:
+        if total <= cap:
+            break
+        rest_sum = total - game_options[name]
+        option_def = option_defs[name]
+        max_allowed = cap - rest_sum
+        new_value = max(option_def.range_start, min(game_options[name], max_allowed))
+        game_options[name] = new_value
+        total = rest_sum + new_value
+
+
+def _handle_max_count_of(game_options, option_name, option_value, constraint, option_defs):
+    other_value = game_options[constraint["max_count_of"]]
+    cap = len(other_value)
+    if option_value > cap:
+        option_def = option_defs[option_name]
+        if cap < option_def.range_start:
+            game_options[option_name] = cap
+        else:
+            game_options[option_name] = random.randint(option_def.range_start, cap)
+
+
+def _handle_max_remaining_from(game_options, option_name, option_value, constraint, option_defs):
+    other_value = game_options[constraint["max_remaining_from"]]
+    max_capacity = int(constraint["max_capacity"])
+    cap = max_capacity - len(other_value)
+    if option_value > cap:
+        option_def = option_defs[option_name]
+        if cap < option_def.range_start:
+            game_options[option_name] = cap
+        else:
+            game_options[option_name] = random.randint(option_def.range_start, cap)
+
+
+def _handle_ensure_any(option_value, constraint):
+    required_values = constraint["ensure_any"]
+    if not any(val in option_value for val in required_values):
+        choice = random.choice(required_values)
+        if choice not in option_value:
+            option_value.append(choice)
+
+
 # Adapted from archipelago'd generate_yaml_templates
 # https://github.com/ArchipelagoMW/Archipelago/blob/f75a1ae1174fb467e5c5bd5568d7de3c806d5b1c/Options.py#L1504
 def generate_random_yaml(world_name, meta):
@@ -190,13 +388,18 @@ def generate_random_yaml(world_name, meta):
     if world is None:
         raise Exception(f"Failed to resolve apworld from apworld name: {world_name}")
 
+    global_meta = meta.get(None, {})
+    game_meta = meta.get(game_name, {})
+
     game_options = {}
+    option_defs = {}
     option_groups = get_option_groups(world)
     for group, options in option_groups.items():
+        option_defs.update(options)
         for option_name, option_value in options.items():
-            override = meta.get(None, {}).get(option_name)
+            override = global_meta.get(option_name)
             if not override:
-                override = meta.get(game_name, {}).get(option_name)
+                override = game_meta.get(option_name)
 
             if override is not None:
                 game_options[option_name] = override
@@ -205,6 +408,13 @@ def generate_random_yaml(world_name, meta):
             game_options[option_name] = sanitize(
                 get_random_value(option_name, option_value)
             )
+
+    if "triggers" in game_meta:
+        game_options["triggers"] = game_meta["triggers"]
+
+    fuzz_constraints = game_meta.get("fuzz_constraints", [])
+    if fuzz_constraints:
+        apply_constraints(game_options, fuzz_constraints, option_defs)
 
     yaml_content = {
         "description": f"{game_name} Template, generated with https://github.com/Eijebong/Archipelago-fuzzer/tree/{__version__}",
@@ -215,9 +425,74 @@ def generate_random_yaml(world_name, meta):
         game_name: game_options,
     }
 
+    if "triggers" in meta:
+        yaml_content["triggers"] = meta["triggers"]
+
     res = yaml.safe_dump(yaml_content, sort_keys=False)
 
     return res
+
+
+_UNSUPPORTED = object()
+
+
+def _extract_schema_properties(option):
+    schema_obj = getattr(option, "schema", None)
+    if schema_obj is None:
+        return {}, [], []
+
+    js = schema_obj.json_schema("")
+    properties = js.get("properties", {})
+    required = [k for k in js.get("required", []) if k in properties]
+    optional = [k for k in properties if k not in required]
+    return properties, required, optional
+
+
+def _random_value_for_property(prop, fallback_min, fallback_max):
+    if "enum" in prop:
+        choices = prop["enum"]
+        return random.choice(choices) if choices else _UNSUPPORTED
+
+    if "anyOf" in prop:
+        return _random_value_for_property(random.choice(prop["anyOf"]), fallback_min, fallback_max)
+
+    types = prop.get("type")
+    if isinstance(types, list):
+        type_ = random.choice(types)
+    else:
+        type_ = types
+
+    if type_ == "integer":
+        lo = prop.get("minimum", fallback_min)
+        hi = prop.get("maximum", fallback_max)
+        if lo > hi:
+            return _UNSUPPORTED
+        return random.randint(lo, hi)
+
+    if type_ == "number":
+        lo = prop.get("minimum", fallback_min)
+        hi = prop.get("maximum", fallback_max)
+        if lo > hi:
+            return _UNSUPPORTED
+        return random.uniform(lo, hi)
+
+    if type_ == "boolean":
+        return random.choice([True, False])
+
+    if type_ == "string":
+        # we can't reasonably generate random strings with a format/regex
+        if "pattern" in prop or "format" in prop:
+            return _UNSUPPORTED
+        lo = prop.get("minLength", 0)
+        hi = prop.get("maxLength", max(lo, 10))
+        if lo > hi:
+            return _UNSUPPORTED
+        return "".join(random.choice(string.ascii_lowercase) for _ in range(random.randint(lo, hi)))
+
+    if type_ == "null":
+        return None
+
+    return _UNSUPPORTED
 
 
 def get_random_value(name, option):
@@ -233,11 +508,35 @@ def get_random_value(name, option):
         # See, I was already afraid with item_links but now it's plain terror. Let's not ever touch this ever.
         return option.default
 
-    if name == "gfxmod":
-        # XXX: LADX has this and it should be a choice but is freetext for some reason...
-        # Putting invalid values here means the gen fails even though it doesn't affect any logic
-        # Just return Link for now.
-        return "Link"
+    if issubclass(option, OptionCounter):
+        # ItemDict subclasses like StartInventory might not have valid_keys and
+        # instead rely on verify_item_name for runtime validation against world.item_names.
+        # Some OptionCounter subclasses define a
+        # schema.Schema({...}) instead, from which we can extract the allowed keys from.
+        min_val = option.min if option.min is not None else 0
+        max_val = option.max if option.max is not None else 1000
+        if option.valid_keys:
+            keys = list(option.valid_keys)
+            selected_keys = random.sample(keys, k=random.randint(0, len(keys)))
+            return {key: random.randint(min_val, max_val) for key in selected_keys}
+
+        properties, required, optional = _extract_schema_properties(option)
+        if not properties:
+            return option.default
+
+        picked_optional = random.sample(optional, k=random.randint(0, len(optional)))
+        result = {}
+        for key in required + picked_optional:
+            value = _random_value_for_property(properties[key], min_val, max_val)
+            if value is _UNSUPPORTED:
+                has_default = isinstance(option.default, dict) and key in option.default
+                if not has_default and key in required:
+                    return option.default
+                if has_default:
+                    result[key] = option.default[key]
+                continue
+            result[key] = value
+        return result
 
     if issubclass(option, OptionDict):
         # This is for example factorio's start_items and worldgen settings. I don't think it's worth randomizing those as I'm not expecting the generation outcome to change from them.
@@ -254,11 +553,10 @@ def get_random_value(name, option):
     if issubclass(option, Range):
         return random.randint(option.range_start, option.range_end)
 
-    if issubclass(option, (ItemSet, ItemDict, LocationSet)):
+    if issubclass(option, (ItemSet, LocationSet)):
         # I don't know what to do here so just return the default value instead of a random one.
-        # This affects options like start inventory, local items, non local
-        # items so it's not the end of the world if they don't get randomized
-        # but we might want to look into that later on
+        # This affects options like local items, non local items so it's not the end of the world
+        # if they don't get randomized but we might want to look into that later on
         return option.default
 
     if issubclass(option, OptionSet):
@@ -290,13 +588,15 @@ def get_random_value(name, option):
     return option.default
 
 
-def call_generate(yaml_path, args, output_path):
+def call_generate(yaml_path, fuzz_args, output_path):
     from settings import get_settings
+    from Generate import mystery_argparse
 
     settings = get_settings()
+    args = mystery_argparse([])
 
-    args = Namespace(
-        **{
+    vars(args).update(
+        {
             "weights_file_path": settings.generator.weights_file_path,
             "sameoptions": False,
             "player_files_path": yaml_path,
@@ -310,7 +610,7 @@ def call_generate(yaml_path, args, output_path):
             "yaml_output": 1,
             "plando": PlandoOptions.items | PlandoOptions.connections | PlandoOptions.texts | PlandoOptions.bosses,
             "skip_prog_balancing": False,
-            "skip_output": args.skip_output,
+            "skip_output": fuzz_args.skip_output,
             "csv_output": False,
             "log_time": False,
             "spoiler_only": False,
@@ -335,7 +635,6 @@ def gen_wrapper(yaml_path, apworld_name, i, args, queue, tmp):
             queue.put_nowait((myself, apworld_name, i, yaml_path, out_buf))
             queue.join()
         timer = threading.Timer(args.timeout, stop)
-        timer.start()
 
 
     raised = None
@@ -351,6 +650,13 @@ def gen_wrapper(yaml_path, apworld_name, i, args, queue, tmp):
                         hook.setup_worker(args)
                         MP_HOOKS.append(hook)
 
+                # Since 74f41e37, Generate.main no longer calls init_logging
+                # when imported as a module, so we have to do it ourselves.
+                patched_init_logging("Fuzzer")
+
+                if timer:
+                    timer.start()
+
                 mw = call_generate(yaml_path, args, output_path)
             except Exception as e:
                 raised = e
@@ -364,7 +670,11 @@ def gen_wrapper(yaml_path, apworld_name, i, args, queue, tmp):
                     # dumping YAMLs, and that would be bad.
                     if timer is not None:
                         timer.cancel()
-                        timer.join()
+                        if timer.ident is not None:
+                            timer.join()
+
+                    clear_abc_caches()
+
                 root_logger = logging.getLogger()
                 handlers = root_logger.handlers[:]
                 for handler in handlers:
@@ -375,6 +685,10 @@ def gen_wrapper(yaml_path, apworld_name, i, args, queue, tmp):
                 if raised:
                     is_timeout = isinstance(raised, TimeoutError)
                     is_option_error = exception_in_causes(raised, OptionError)
+                    if not is_option_error and isinstance(raised, PlayerFilesError):
+                        is_option_error = all(
+                            exception_in_causes(e, OptionError) for e in raised.exceptions
+                        )
 
                     if is_timeout:
                         outcome = GenOutcome.Timeout
@@ -394,6 +708,8 @@ def gen_wrapper(yaml_path, apworld_name, i, args, queue, tmp):
 
                 if outcome == GenOutcome.Timeout:
                     extra = f"[...] Generation killed here after {args.timeout}s"
+                elif isinstance(raised, PlayerFilesError):
+                    extra = str(raised)
                 else:
                     extra = "".join(traceback.format_exception(raised))
 
@@ -515,7 +831,7 @@ def print_status():
     print("Timeouts:", TIMEOUTS)
     print("Ignored:", OPTION_ERRORS)
     print()
-    print("Time taken:{:.2f}s".format(time.time() - START))
+    print("Time taken: {:.2f}s".format(time.perf_counter() - START))
 
 
 def find_hook(hook_path):
@@ -601,18 +917,27 @@ if __name__ == "__main__":
     def main(p, args, tmp):
         global SUBMITTED
 
-        apworld_name = args.game
+        if args.sample_from:
+            if args.game:
+                raise Exception(
+                    "--sample-from is incompatible with -g/--game"
+                )
+            if args.meta:
+                raise Exception(
+                    "--sample-from is incompatible with -m/--meta"
+                )
+
         if args.meta:
             with open(args.meta, "r", encoding='utf-8-sig') as fd:
                 meta = yaml.safe_load(fd.read())
         else:
             meta = {}
 
-        if apworld_name is not None:
-            world = world_from_apworld_name(apworld_name)
-            if world is None:
+        apworld_names = list(dict.fromkeys(args.game))
+        for apworld in apworld_names:
+            if world_from_apworld_name(apworld) is None:
                 raise Exception(
-                    f"Failed to resolve apworld from apworld name: {apworld_name}"
+                    f"Failed to resolve apworld from apworld name: {apworld}"
                 )
 
         if os.path.exists(OUT_DIR):
@@ -656,9 +981,34 @@ if __name__ == "__main__":
                 with open(path, "r", encoding='utf-8-sig') as fd:
                     static_yamls.append(fd.read())
 
+        sample_yamls = []
+        if args.sample_from:
+            for yaml_file in os.listdir(args.sample_from):
+                path = os.path.join(args.sample_from, yaml_file)
+                if not os.path.isfile(path):
+                    continue
+                with open(path, "r", encoding='utf-8-sig') as fd:
+                    raw = fd.read()
+                try:
+                    docs = list(yaml.safe_load_all(raw))
+                except yaml.YAMLError as e:
+                    raise Exception(f"Failed to parse {path}: {e}") from e
+                for doc in docs:
+                    if isinstance(doc, dict) and 'name' in doc:
+                        doc['name'] = 'Player{number}'
+                sample_yamls.append((yaml_file, yaml.safe_dump_all(docs, sort_keys=False)))
+            if not sample_yamls:
+                raise Exception(
+                    f"--sample-from directory {args.sample_from!r} contains no YAML files"
+                )
+            if yamls_per_run_bounds[-1] > len(sample_yamls):
+                raise Exception(
+                    f"--sample-from has {len(sample_yamls)} YAML(s) but -n requests up to {yamls_per_run_bounds[-1]}"
+                )
 
-        manager = multiprocessing.Manager()
-        queue = manager.Queue(1000)
+        global MANAGER
+        MANAGER = multiprocessing.Manager()
+        queue = MANAGER.Queue(1000)
         def handle_timeouts():
             while True:
                 try:
@@ -686,11 +1036,6 @@ if __name__ == "__main__":
         timeout_handler.start()
 
         while i < args.runs:
-            if apworld_name is None:
-                actual_apworld = random.choice(valid_worlds)
-            else:
-                actual_apworld = apworld_name
-
             if len(yamls_per_run_bounds) == 1:
                 yamls_this_run = yamls_per_run_bounds[0]
             else:
@@ -699,15 +1044,40 @@ if __name__ == "__main__":
                     yamls_per_run_bounds[0], yamls_per_run_bounds[1] + 1
                 )
 
-            random_yamls = [
-                generate_random_yaml(actual_apworld, meta) for _ in range(yamls_this_run)
-            ]
+            if args.sample_from:
+                actual_apworld = "sample"
+                yamls_to_write = [
+                    (f"sample-{i}-{nb}-{orig_name}", content)
+                    for nb, (orig_name, content) in enumerate(
+                        random.sample(sample_yamls, yamls_this_run)
+                    )
+                ]
+            else:
+                if not apworld_names:
+                    games_this_run = [random.choice(valid_worlds)]
+                else:
+                    games_this_run = apworld_names
+
+                if len(games_this_run) == 1:
+                    actual_apworld = games_this_run[0]
+                else:
+                    actual_apworld = "multi"
+
+                yamls_to_write = [
+                    (f"{i}-{nb}.yaml", generate_random_yaml(game, meta))
+                    for nb, game in enumerate(
+                        g for g in games_this_run for _ in range(yamls_this_run)
+                    )
+                ]
+
+            if i % 100 == 0:
+                clear_abc_caches()
 
             SUBMITTED += 1
 
             yamls_dir = tempfile.mkdtemp(prefix="apfuzz", dir=tmp)
-            for nb, yaml_content in enumerate(random_yamls):
-                yaml_path = os.path.join(yamls_dir, f"{i}-{nb}.yaml")
+            for name, yaml_content in yamls_to_write:
+                yaml_path = os.path.join(yamls_dir, name)
                 open(yaml_path, "wb").write(yaml_content.encode("utf-8"))
 
             for nb, yaml_content in enumerate(static_yamls):
@@ -733,7 +1103,8 @@ if __name__ == "__main__":
             time.sleep(0.05)
 
     parser = ArgumentParser(prog="apfuzz")
-    parser.add_argument("-g", "--game", default=None)
+    parser.add_argument("-g", "--game", default=[], action="append",
+                        help="Restrict to a given apworld. Can be passed multiple times to fuzz several games together; each generation will include N (see -n) YAMLs for each listed game.")
     parser.add_argument("-j", "--jobs", default=10, type=int)
     parser.add_argument("-r", "--runs", type=int, required=True)
     parser.add_argument("-n", "--yamls_per_run", default="1", type=str)
@@ -741,6 +1112,8 @@ if __name__ == "__main__":
     parser.add_argument("-m", "--meta", default=None, type=None)
     parser.add_argument("--dump-ignored", default=False, action="store_true")
     parser.add_argument("--with-static-worlds", default=None)
+    parser.add_argument("--sample-from", default=None,
+                        help="Directory of YAML files to sample from instead of generating random YAMLs. Each generation picks N (see -n) random files from the directory. Incompatible with -g and -m")
     parser.add_argument("--hook", action="append", default=[])
     parser.add_argument("--skip-output", default=False, action="store_true")
 
@@ -759,7 +1132,7 @@ if __name__ == "__main__":
         multiprocessing.set_start_method(start_method)
         tmp = tempfile.TemporaryDirectory(prefix="apfuzz")
         with Pool(processes=args.jobs, maxtasksperchild=None) as p:
-            START = time.time()
+            START = time.perf_counter()
             main(p, args, tmp.name)
     except KeyboardInterrupt:
         pass
@@ -772,10 +1145,13 @@ if __name__ == "__main__":
 
         tmp.cleanup()
 
+        if MANAGER is not None:
+            MANAGER._process.kill()
+
         if not crashed:
             print_status()
             write_report(REPORT)
-            sys.exit((FAILURE + TIMEOUTS) != 0)
+            os._exit((FAILURE + TIMEOUTS) != 0)
 
-        sys.exit(2)
+        os._exit(2)
 
