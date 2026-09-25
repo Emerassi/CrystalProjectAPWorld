@@ -333,7 +333,7 @@ class CrystalProjectWorld(World):
             # If this is UT re-gen the value isn't empty and we skip trying to pick a starter_region since we already have one
             if self.starter_ap_region == "":
                 valid_starting_regions = []
-                display_regions_forbidden_from_being_starters: list[str] = [MENU_DISPLAY_NAME, THE_OLD_WORLD_DISPLAY_NAME, MODDED_ZONE_DISPLAY_NAME]
+                display_regions_forbidden_from_being_starters: list[str] = [MENU_DISPLAY_NAME, THE_OLD_WORLD_DISPLAY_NAME, SEQUOIA_ATHENAEUM_DISPLAY_NAME, MODDED_ZONE_DISPLAY_NAME]
                 actual_starting_level_value = self.options.starting_level.value
 
                 if self.options.regionsanity_starter_region_max_level.value < self.options.regionsanity_starter_region_min_level.value:
