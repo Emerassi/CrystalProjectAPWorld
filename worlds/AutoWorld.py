@@ -99,6 +99,7 @@ class AutoWorldRegister(type):
             if (dct["game"] == "Crystal Project"  # the game I actually want to test
                     # all the "magic" game names that core AP tests assume exist and fail without
                     or dct["game"] == "Archipelago"
+                    or dct["game"] == "Rule Builder Test Game"
                     or dct["game"] == "Test Game"
                     or dct["game"] == "APQuest"
                     # these two are easy to miss since they're only required by the CI-only hosting/__main__.py test
